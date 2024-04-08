@@ -187,7 +187,7 @@ function ProjResumeCont(){
   return(
     <div className='container-fluid centered-container'>
       <div className='container-fluid'>
-        <div className='row mt-2 justify-content-between d-flex align-items-center'>
+        <div className='row justify-content-between d-flex align-items-center'>
           <InfoProj lead={"Gerardo Deustúa Hernández"} profLead={"Michel Lara Wainstein"} judge={"Marcela Dominguez Rosas"}></InfoProj>
 
           <ProjResume type={"Prototipo"} area={"Biotecnologia"} descr={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."} title={"Robot automata para automatizar automatas"}></ProjResume>        
@@ -209,6 +209,22 @@ function ProjResumeCont(){
 function App() {
   return (
     <>
+      <div className ="container-fluid">
+          <div className="row" id = "NavBar">
+            <div className="col-10">
+              <div className = "ToggleButton">
+
+              </div>
+            </div>
+
+            <div className="col-2">
+              <div className = "ToggleButton">
+                <div className="ProfPictFrame">
+                </div>
+              </div>
+            </div>          
+          </div>
+        </div>
       <nav className='fixed-top'>
         <div className ="container-fluid">
           <div className="row" id = "NavBar">
