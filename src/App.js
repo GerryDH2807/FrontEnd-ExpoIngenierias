@@ -1,73 +1,22 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.min.css';
-
-import './Page.css';
-import './Resume.css'
-import './ProjectResumenContent.js';
-
-
-import ProfPict from './img/descargar.jpeg'
-import logo from './img/logo.svg';
-import ProjResumeCont from './ProjectResumenContent.js';
-
-function Algo(){
-  return (
-    <div className='container-fluid mt-5 p-4 bg-primary'>
-      <div className='row p-4 bg-warning '>
-        <div className='col p-4 bg-secondary '>
-          <p>gjsadasdadsd</p>
-        </div>
-      </div>
-    </div>
-  );
-}
+import { Routes, Route } from 'react-router-dom';
+import Navigation from './Navigation';
+import Inicio from './Inicio'; 
+import Juez from './Juez'; 
+import Admin from './Admin'; 
+import Login from './Login'; 
 
 function App() {
   return (
-    <>
-      <div className ="container-fluid">
-          <div className="row" id = "NavBar">
-            <div className="col-10">
-              <div className = "ToggleButton">
-
-              </div>
-            </div>
-
-            <div className="col-2">
-              <div className = "ToggleButton">
-                <div className="ProfPictFrame">
-                </div>
-              </div>
-            </div>          
-          </div>
-        </div>
-
-
-      <nav className='fixed-top'>
-        <div className ="container-fluid">
-          <div className="row" id = "NavBar">
-            <div className="col-10">
-              <div className = "ToggleButton">
-                <img className="ExpoIngLog" src ={logo} alt=""></img>
-                <span className="textm"><strong>Registro de Proyecto</strong></span>
-              </div>
-            </div>
-
-            <div className="col-2">
-              <div className = "ToggleButton">
-                <div className="ProfPictFrame">
-                  <img src = {ProfPict} alt=""></img>
-                </div>
-              </div>
-            </div>          
-          </div>
-        </div>
-      </nav>
-
-      <ProjResumeCont />
-    
-    </>
-
+    <div>
+      <Routes>
+        <Route path="/" element={<Navigation />} />
+        <Route path="/inicio" element={<Inicio />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/juez" element={<Juez />} />
+        <Route path="/login" element={<Login />} />
+        {/* Puedes agregar más rutas aquí para tus otras páginas */}
+      </Routes>
+    </div>
   );
 }
 
