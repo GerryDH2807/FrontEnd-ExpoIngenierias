@@ -1,19 +1,20 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
-function Prueba() {
+import './Page.css';
+import './Resume.css'
+import './ProjectResumenContent.js';
+import {Lienzo} from './components/Lienzo.js';
+
+function PageJuez() {
   return (
-    <div>
-      <h1>JUEEEEEEZ</h1>
-      <h1>ESTA VIVOOOOOO</h1>
-      <h1>ESTA VIVOOOOOO</h1>
-      <h1>ESTA VIVOOOOOO</h1>
-      <h1>ESTA VIVOOOOOO</h1>
-      <h1>ESTA VIVOOOOOO</h1>
-      <h1>ESTA VIVOOOOOO</h1>
-      <h1>ESTA VIVOOOOOO</h1>
-      <h1>ESTA VIVOOOOOO</h1>
-    </div>
+    <>
+      <Lienzo/>
+
+      <h1></h1>
+    </>
 
   );
 }
 
-export default Prueba;
+export default PageJuez;
