@@ -1,6 +1,5 @@
 import ProfPict from '../img/descargar.jpeg'
 import logo from '../img/logo.svg';
-import ProjResumeCont from '../ProjectResumenContent.js';
 
 export function Lienzo() {
     return (
