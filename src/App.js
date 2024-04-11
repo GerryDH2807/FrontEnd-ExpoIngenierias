@@ -4,6 +4,7 @@ import Inicio from './Inicio';
 import Juez from './Juez'; 
 import Admin from './Admin'; 
 import Login from './Login'; 
+import Rubrica from './Rubrica'; 
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/juez" element={<Juez />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/rubrica" element={<Rubrica />} />
         {/* Puedes agregar más rutas aquí para tus otras páginas */}
       </Routes>
     </div>
