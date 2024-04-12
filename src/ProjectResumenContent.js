@@ -4,6 +4,8 @@ import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import './Page.css';
 import './Resume.css'
 
+import Table from 'react-bootstrap/Table';
+
 function InfoProj({lead,profLead,judge}){
   return(
 
@@ -15,31 +17,31 @@ function InfoProj({lead,profLead,judge}){
 
         <div className ='container-fluid p-1'>
           <div className ="row pb-3"> 
-            <div className ='col-md-auto pe-0'>
+            <div className ='col-md-4 pe-0'>
               <span className ="Subtitulo">Líder:</span> 
             </div>
 
-            <div className ='col-md-auto ps-0'>
+            <div className ='col-md-8 ps-0'>
               <span className="Texto text-break"> {lead}</span>
             </div>
           </div>
 
           <div className ="row pb-3"> 
-            <div className ='col-md-auto pe-0'>
+            <div className ='col-md-4 pe-0'>
               <span className ="Subtitulo">Profesor líder:</span>
             </div>
 
-            <div className ='col-md-auto ps-0'>
+            <div className ='col-md-8 ps-0'>
               <span className="Texto text-break">{profLead}</span>
             </div>
           </div>
 
           <div className ="row pb-3"> 
-            <div className ='col-md-auto pe-0'>
+            <div className ='col-md-4 pe-0'>
               <span className ="Subtitulo">Juez:</span>
             </div>
 
-            <div className ='col-md-auto ps-0'>
+            <div className ='col-md-8 ps-0'>
               <span className="Texto text-break"> {judge}</span>
             </div>
           </div>
@@ -122,7 +124,7 @@ function ProjVal({finalRes}){
 
 function CommentCont({role, comment}){
   return(
-    <div className ="col-6">
+    <div className ="col-4">
       <h1 className ="Titulo text-break">Comentarios del {role}</h1>
 
       <div className ='container-fluid p-1'>
@@ -136,6 +138,55 @@ function CommentCont({role, comment}){
   );
 }
 
+function BasicExample() {
+  return (
+    <Table striped bordered hover>
+      <tbody className='text-center'>
+        <tr>
+          <td colSpan={1}>1</td>
+          <td >rubro1</td>
+          <td >4</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td > rubro2</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td >rubro3</td>
+          <td>9</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td >rubro4</td>
+          <td>10</td>
+        </tr>     
+        <tr>
+          <td>5</td>
+          <td >rubro5</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td colSpan={2}>Resultado final</td>
+          <td><strong>10</strong></td>
+        </tr>   
+      </tbody>
+    </Table>
+  );
+}
+
+function Rubrica(){
+  return(
+    <div className ="col-4">
+      <h1 className ="Titulo text-break">Desgloce de rubrica</h1>
+
+      <div className ='container-fluid p-1'>
+        <BasicExample />
+      </div>
+    </div>
+  );
+}
 
 
 function CommenSec(){
@@ -147,6 +198,7 @@ function CommenSec(){
           <div className ='row '>
             <CommentCont role={"Profesor"} comment ={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."}></CommentCont>
             <CommentCont role={"Juez"} comment={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."}></CommentCont>
+            <Rubrica></Rubrica>
           </div>
         </div>
       </div>
