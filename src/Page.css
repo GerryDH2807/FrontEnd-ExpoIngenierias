@@ -5,8 +5,13 @@ body{
 }
 
 .ExpoIngLog{
-    width: 40px;
-    height: auto;
+    width: 40px
+}
+
+.ExpoIngLog2{
+
+    cursor: pointer;
+
 }
 
 .textm{
@@ -56,7 +61,3 @@ body{
     align-items: center;
 
 }
-
-
-
-
