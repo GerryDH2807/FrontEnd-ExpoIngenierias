@@ -209,7 +209,7 @@ function CommenSec(){
 function FinalCalf({finalCalf}){
   return(
     <div className='col-md-3'>
-      <div className="Info m-4 p-4">
+      <div className="Info m-4 p-4 ">
 
         <h1 className ="Titulo text-break">Calificación final</h1>
 

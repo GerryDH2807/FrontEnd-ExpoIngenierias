@@ -1,0 +1,82 @@
+.Titulo{
+
+    font-weight: bolder;
+    color: #0C356A;
+    font-size: 20px;
+
+
+}
+
+.Subtitulo{
+
+    font-weight: bolder;
+
+}
+
+.Texto{
+
+    margin-left: 5px;
+
+}
+
+.TextoValid{
+
+    margin-left: 5px;
+    font-size: 25px;
+
+}
+
+
+.TextoValid2{
+
+    margin-left: 8px;
+    font-size: 25px;
+    font-weight: bolder;
+    color: #0C356A;
+
+}
+
+.ButtonAddLessMaterials{
+
+    background-color: #0C356A;
+    border-color: #0C356A;
+    font-weight: bold;
+    
+
+}
+  
+
+.ButtonMaterials{
+
+    background-color: #0C356A;
+    border-color: #0C356A;
+    font-weight: bold;
+    
+}
+
+
+.InputFormat{
+
+    background-color: rgb(225, 225, 225);
+  
+}
+
+.BckGrnd{
+    background-color: rgb(225, 225, 225);
+    border-radius: 5px;
+    width: 50%;
+}
+
+  
+.FormBack{
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+  
+.ButtonRegister{
+    background-color: #406eaa;
+    border-color: #406eaa;
+    font-weight: bold;
+    font-size: 25px;
+}
+  

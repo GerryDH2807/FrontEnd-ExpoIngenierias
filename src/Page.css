@@ -32,6 +32,7 @@ body{
     cursor: pointer;
     margin-left: 40px;
     padding: 1vh;
+
 }
 
 .ProfPictFrame{
@@ -59,5 +60,24 @@ body{
     background-color: #0C356A;
     text-align: center;
     align-items: center;
+
+}
+
+.no-select{
+
+    user-select: none;
+}
+
+.the_bars{
+    padding-right: 2%;
+    color: #ffffff;
+    font-weight: bolder;
+    font-size: 40px;
+
+}
+
+.the_bars:hover{
+
+    color: #6da0e2;
 
 }
