@@ -8,13 +8,20 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import Modal from 'react-bootstrap/Modal';
 import './Register.css';
 
+//backend
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
+
+const URI = 'http://localhost:8000/projects/'
+
 function ButtonMaterials() {
   const [show, setShow] = useState(false);
   const [extension, setExtension] = useState(0);
   const [table, setTable] = useState(0);
   const [screen, setScreen] = useState(0);
   
-  return (
+
+  return ( 
     <>
       <Button variant="primary" onClick={() => setShow(true)} className='ButtonMaterials'>
         Abrir lista de materiales
@@ -138,11 +145,21 @@ function FormExample() {
     const [members, setMembers] = useState([{ id: 1, value: '' }]);
     const [teachers, setTeachers] = useState([{ id: 1, value: '' }]);
   
-    const handleSubmit = (event) => {
+    //Datos backend
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('Nuevo proyecto');
+    const [linkVideo, setLinkVideo] = useState('');
+    const [linkPoster, setLinkPoster] = useState('');
+    const [status, setStatus] = useState('en revisión');
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
       const form = event.currentTarget;
       if (form.checkValidity() === false) {
         event.preventDefault();
+        await axios.post(URI, {title: title, description: description, linkVideo: linkVideo, linkPoster: linkPoster, status: status})
         event.stopPropagation();
+        navigate('/')
       }
   
       setValidated(true);
@@ -181,6 +198,8 @@ return (
             <Form.Label className='Titulo'>Titulo del proycto</Form.Label>
             <Form.Control
                 required
+                value={title}
+                onChange={(e)=> setTitle(e.target.value)}
                 type="text"
                 placeholder="Ingresa un titulo para tu proyecto"
                 className='InputFormat'
@@ -287,6 +306,8 @@ return (
         <Form.Label className='Titulo'>Poster(PDF)</Form.Label>
         <Form.Control
             required
+            value={linkPoster}
+            onChange={(e)=> setLinkPoster(e.target.value)}
             type="text"
             placeholder="Link de tu carpeta de drive"
             className='InputFormat'
@@ -301,6 +322,8 @@ return (
             <Form.Label className='Titulo'>Link video</Form.Label>
             <Form.Control
                 required
+                value={linkVideo}
+                onChange={(e)=> setLinkVideo(e.target.value)}
                 type="text"
                 placeholder="Link de youtube"
                 className='InputFormat'

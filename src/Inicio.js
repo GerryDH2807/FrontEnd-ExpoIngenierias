@@ -13,6 +13,7 @@ import {Routes, Route, Link} from 'react-router-dom';
 import ProjRegisterCont from './ProjResgister.js';
 import ProjResumeCont from './ProjectResumenContent.js';
 import UserRegisterCont from './UserRegister.js';
+import CompShowProjects from './ShowProject.js';
 
 
 
@@ -93,6 +94,13 @@ function ToggleBar() {
                 </div>  
               </div>
 
+              <div className='row m-2'>
+                <div className ='col-md-auto '>
+                  <i class="bi bi-boxes docu-icon2"></i>
+                  <Link to='/projcat' className ="TextoValid2" onClick={() => { handleClose(); setSection("Proyectos"); }}>Proyectos</Link> 
+                </div>  
+              </div>
+
             </div>
           </nav>
         </Offcanvas.Body>
@@ -138,6 +146,7 @@ function App() {
         <Route path='/projregister' element={<ProjRegisterCont></ProjRegisterCont>}></Route>
         <Route path='/constancias' element={<UserRegisterCont></UserRegisterCont>}></Route>
         <Route path='/extra' element={<ProjRegisterCont></ProjRegisterCont>}></Route>
+        <Route path='/projcat' element={<CompShowProjects></CompShowProjects>}></Route>
       </Routes>
 
     </>
