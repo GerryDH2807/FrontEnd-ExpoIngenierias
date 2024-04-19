@@ -9,16 +9,16 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 
 import {Routes, Route, Link} from 'react-router-dom';
 
-
-import ProjRegisterCont from './ProjResgister.js';
+import ProjRegisterCont from './ProjRegister/ProjResgister.js';
 import ProjResumeCont from './ProjectResumenContent.js';
-import UserRegisterCont from './UserRegister.js';
+import RegisterCont from './Register content/RegisterContent.js';
+import UserRegister from './UserRegister/UserRegister.js';
+import StudentRegister from './StudentRegister/StudentRegister.js';
 
 
 
 import './Page.css';
 import './Resume.css';
-import './Register.css';
 
 
 
@@ -32,7 +32,7 @@ function ToggleBar() {
 
   return (
     <>
-      <div className = "ToggleButton">
+      <div className ="ToggleButton">
         <i className='bi bi-list the_bars' onClick={handleShow}></i>
         <img className="ExpoIngLog" src ={logo} alt="" onClick={handleShow}></img>
         <span className="textm no-select" onClick={handleShow}><strong>{section}</strong></span>
@@ -107,7 +107,7 @@ function App() {
     <>
       <div className ="container-fluid">
           <div className="row" id = "NavBar">
-            <div className="col-10">
+            <div className="col-auto">
               <div className = "ToggleButton">
               </div>
             </div>
@@ -125,7 +125,7 @@ function App() {
       <nav className='fixed-top'>
         <div className ="container-fluid">
           <div className="row " id = "NavBar">
-            <div className="col-12">
+            <div className="col-5">
               <ToggleBar />
             </div>
          
@@ -136,8 +136,10 @@ function App() {
       <Routes>
         <Route path='/inicio' element={<ProjResumeCont></ProjResumeCont>}></Route>
         <Route path='/projregister' element={<ProjRegisterCont></ProjRegisterCont>}></Route>
-        <Route path='/constancias' element={<UserRegisterCont></UserRegisterCont>}></Route>
+        <Route path='/constancias/' element={<RegisterCont></RegisterCont>}></Route>
         <Route path='/extra' element={<ProjRegisterCont></ProjRegisterCont>}></Route>
+        <Route path='/studentregister' element={<StudentRegister></StudentRegister>}></Route>
+        <Route path='/userregister' element={<UserRegister></UserRegister>}></Route>
       </Routes>
 
     </>
