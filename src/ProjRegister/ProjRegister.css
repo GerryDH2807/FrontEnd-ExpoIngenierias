@@ -21,7 +21,6 @@
 
 
 
-
 .ButtonMaterials{  
 
     background-color: #0C356A;
@@ -30,7 +29,14 @@
     
 }
 
+.BckGrnd{
+    background-color: rgb(225, 225, 225);
+    border-radius: 5px;
+    width: 50%;
+}
+
 .ButtonAddLessMaterials{
+
     background-color: #0C356A;
     border-color: #0C356A;
     font-weight: bold;
@@ -39,4 +45,12 @@
 .InputFormat{
 
     background-color: rgb(225, 225, 225);
+  
+}
+
+.ButtonRegister{
+    background-color: #406eaa;
+    border-color: #406eaa;
+    font-weight: bold;
+    font-size: 25px;
 }

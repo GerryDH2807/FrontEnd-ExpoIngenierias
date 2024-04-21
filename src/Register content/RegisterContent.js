@@ -14,7 +14,7 @@ export default function UserRegisterCont(){
                     <div className='container-fluid'>
                         <div className='row'>
                             <div className='col d-flex justify-content-center'>
-                                <Link to={'/studentregister'} className ="TextoValid3">Registrar estudiante</Link>
+                                <Link to={'/studentregister'} className ="TextoValid3 text-center">Registrar estudiante</Link>
                             </div>
                         </div>
 
@@ -30,7 +30,7 @@ export default function UserRegisterCont(){
                     <div className='container-fluid'>
                         <div className='row'>
                             <div className='col d-flex justify-content-center'>
-                                <Link to={'/userregister'} className ="TextoValid3">Registrar profesor</Link>
+                                <Link to={'/userregister'} className ="TextoValid3 text-center">Registrar profesor</Link>
                             </div>
                         </div>
 

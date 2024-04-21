@@ -27,8 +27,6 @@ body::-webkit-scrollbar{
 
 }
 
-
-
 .ToggleButton{
     display: flex;
     flex-direction: row;
@@ -86,4 +84,19 @@ body::-webkit-scrollbar{
 
     color: #6da0e2;
 
+}
+
+.TextoValid2{
+
+    margin-left: 8px;
+    font-size: 25px;
+    font-weight: bolder;
+    text-decoration: none;
+  
+    color: black;
+  
+  }
+
+.TextoValid2:hover{
+    color: #6da0e2;
 }
