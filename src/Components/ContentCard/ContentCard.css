@@ -1,0 +1,23 @@
+/* Widget.css */
+.content-card {
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+    
+}
+
+.content-title {
+    color: gray;
+    padding: 10px;
+}
+
+.content-subtitle {
+    color: gray;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.card-content {
+    padding-bottom: 20px;
+}
+  

@@ -1,0 +1,18 @@
+/* Widget.css */
+.widget {
+    background-color: white;
+    border-radius: 15px;
+}
+
+.widget-title {
+    color: #0C356A;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 5px 10px;
+}
+
+.widget-content {
+    /* Add any styles you want for the content here */
+    margin-bottom: 5px;
+}
+  
