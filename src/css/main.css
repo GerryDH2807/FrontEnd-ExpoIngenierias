@@ -1,0 +1,104 @@
+.portadaimg{
+    background-image: url('../img/2.png') ;
+    background-size: contain; 
+    background-position: center;
+    width: 100vw;
+    height: 93vh;
+}
+.boton-main {
+    border-radius: 20px; /* Bordes redondeados */
+    background-color: #406eaa; /* Color de fondo personalizado */
+    color: #fff; /* Color de texto */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambiar cursor al pasar el ratón */
+    font-weight: bold;
+  }
+  
+  /* Estilos al pasar el ratón */
+.boton-main:hover {
+    background-color: white; /* Cambiar color de fondo al pasar el ratón */
+    color: black;
+  }
+
+.titulomain{
+    height: 50vh;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    right: 35%;
+}
+
+.titulomain h1{
+    font-size: 10vh;
+    color: #fff;
+}
+
+.boton-foto-main{
+    height: 50vh;
+    position: absolute;
+    top: 70%;
+    left: 45%;
+    right: 45%;
+}
+.boton-foto-main button{
+    font-size: 3vh; /* Tamaño del texto */
+    padding: 20px 30px; 
+}
+.carrusel-main{
+    background-color: #e6e6e6;
+    height: 100vh;
+}
+.carrusel-main img{
+    width: 100%;
+    height: 100vh;   
+}
+.carrusel-text{
+    width: 30%;
+    justify-self: center;
+}
+.carrusel-text h3{
+    color:white; 
+    background-color: #406eaa;
+    padding-left: none;
+    padding-right: none;
+    border-radius: 10px;
+}
+
+.boton-carrusel{
+    border-radius: 20px; /* Bordes redondeados */
+    background-color: #0C356A; /* Color de fondo personalizado */
+    color: #fff; /* Color de texto */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 40px; /* Tamaño de fuente */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambiar cursor al pasar el ratón */
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+}
+.boton-carrusel:hover {
+    background-color: white; /* Cambiar color de fondo al pasar el ratón */
+    color: black;
+  }
+.boton-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto; 
+}
+.text-conoce h6{
+    font-weight: bold;
+    text-align: center;
+    font-size: 3vh;
+}
+.pie-foto{
+    display: flex;
+    align-items: end;
+    justify-content: start;
+}
+.coment{
+    height: 100%;
+}
