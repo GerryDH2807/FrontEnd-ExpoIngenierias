@@ -4,7 +4,74 @@ import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import './Page.css';
 import './Resume.css'
 
-import Table from 'react-bootstrap/Table';
+import Accordion from 'react-bootstrap/Accordion';
+
+function RubricaCalf() {
+  return (
+    <Accordion>
+      <Accordion.Item eventKey="0">
+        <Accordion.Header><span className='Subtitulo'>Calificación rubro 1: </span> <span className='Texto Resultado'> 10 pts</span></Accordion.Header>
+        <Accordion.Body>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="1">
+        <Accordion.Header><span className='Subtitulo'>Calificación rubro 2: </span> <span className='Texto Resultado'> 6 pts</span></Accordion.Header>
+        <Accordion.Body>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="2">
+        <Accordion.Header><span className='Subtitulo'>Calificación rubro 3: </span> <span className='Texto Resultado'> 8 pts</span></Accordion.Header>
+        <Accordion.Body>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="3">
+        <Accordion.Header><span className='Subtitulo'>Calificación rubro 4: </span> <span className='Texto Resultado'> 7 pts</span></Accordion.Header>
+        <Accordion.Body>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="4">
+        <Accordion.Header><span className='Subtitulo'>Calificación rubro 5: </span> <span className='Texto Resultado'> 9 pts</span></Accordion.Header>
+        <Accordion.Body>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+  );
+}
 
 function InfoProj({lead,profLead,judge}){
   return(
@@ -138,51 +205,13 @@ function CommentCont({role, comment}){
   );
 }
 
-function BasicExample() {
-  return (
-    <Table striped bordered hover>
-      <tbody className='text-center'>
-        <tr>
-          <td colSpan={1}>1</td>
-          <td >rubro1</td>
-          <td >4</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td > rubro2</td>
-          <td>6</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td >rubro3</td>
-          <td>9</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td >rubro4</td>
-          <td>10</td>
-        </tr>     
-        <tr>
-          <td>5</td>
-          <td >rubro5</td>
-          <td>6</td>
-        </tr>
-        <tr>
-          <td colSpan={2}>Resultado final</td>
-          <td><strong>10</strong></td>
-        </tr>   
-      </tbody>
-    </Table>
-  );
-}
-
 function Rubrica(){
   return(
     <div className ="col-4">
       <h1 className ="Titulo text-break">Desgloce de rubrica</h1>
 
       <div className ='container-fluid p-1'>
-        <BasicExample />
+        <RubricaCalf />
       </div>
     </div>
   );

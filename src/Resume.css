@@ -27,17 +27,6 @@
 }
 
 
-.TextoValid2{
-
-  margin-left: 8px;
-  font-size: 25px;
-  font-weight: bolder;
-  color: #0C356A;
-
-}
-
-
-
 .Info{
 
   background-color: #ffffff;
@@ -102,17 +91,6 @@
 
 }
 
-.TextoValid2{
-
-  margin-left: 8px;
-  font-size: 25px;
-  font-weight: bolder;
-  text-decoration: none;
-
-  color: black;
-
-}
-
 
 .aceptado{
 
@@ -155,5 +133,12 @@
   font-weight: bolder;
 
   font-size: 75px;
+
+}
+
+.Resultado{
+
+  font-weight: bolder;
+  color: #6da0e2;
 
 }

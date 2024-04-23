@@ -9,17 +9,23 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 
 import {Routes, Route, Link} from 'react-router-dom';
 
-
-import ProjRegisterCont from './ProjResgister.js';
 import ProjResumeCont from './ProjectResumenContent.js';
-import UserRegisterCont from './UserRegister.js';
+import ProjRegisterCont from './ProjRegister/ProjResgister.js';
+
+import Constancia from './Constancia/Constancia.js';
+
+import Announ from './Announcement/Announ.js';
+
+import RegisterCont from './Register content/RegisterContent.js';
+import UserRegister from './UserRegister/UserRegister.js';
+import StudentRegister from './StudentRegister/StudentRegister.js';
+
 import CompShowProjects from './ShowProject.js';
 
 
 
 import './Page.css';
 import './Resume.css';
-import './Register.css';
 
 
 
@@ -29,11 +35,11 @@ function ToggleBar() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
-  const [section,setSection] = useState("Resumen")
+  const [section,setSection] = useState("Expo Ingenierias")
 
   return (
     <>
-      <div className = "ToggleButton">
+      <div className ="ToggleButton">
         <i className='bi bi-list the_bars' onClick={handleShow}></i>
         <img className="ExpoIngLog" src ={logo} alt="" onClick={handleShow}></img>
         <span className="textm no-select" onClick={handleShow}><strong>{section}</strong></span>
@@ -54,43 +60,43 @@ function ToggleBar() {
             <div className='container'>
               <div className='row m-2'>
                 <div className ='col-md-auto '>
-                  <i class="bi bi-book-fill docu-icon2"></i>
-                  <Link to='/inicio' className ="TextoValid2" onClick={() => { handleClose(); setSection("Resumen"); }} >Resumen</Link> 
+                  <Link to='/resumen' onClick={() => { handleClose(); setSection("Resumen"); }} class="bi bi-book-fill docu-icon2"></Link>
+                  <Link to='/resumen' className ="TextoValid2" onClick={() => { handleClose(); setSection("Resumen");}}>Resumen</Link> 
                 </div>  
               </div>
 
               <div className='row m-2'>
                 <div className ='col-md-auto '>
-                  <i class="bi bi-boxes docu-icon2"></i>
-                  <Link to='/constancias' className ="TextoValid2" onClick={() => { handleClose(); setSection("Mis Proyectos"); }}>Mis Proyectos</Link> 
+                  <Link to='/projselection' onClick={() => { handleClose(); setSection("Mis Proyectos"); }} class="bi bi-boxes docu-icon2"></Link>
+                  <Link to='/projselection' className ="TextoValid2" onClick={() => { handleClose(); setSection("Mis Proyectos"); }}>Mis Proyectos</Link> 
                 </div>  
               </div>
 
               <div className='row m-2'>
                 <div className ='col-md-auto '>
-                  <i class="bi bi-wrench-adjustable-circle docu-icon2"></i>
-                  <Link to='/projregister' className ="TextoValid2" onClick={() => { handleClose(); setSection("Solicitar material extra"); }}>Solicitar material extra</Link> 
+                  <Link to ='/extramaterial'onClick={() => { handleClose(); setSection("Solicitar material extra"); }} class="bi bi-wrench-adjustable-circle docu-icon2"></Link>
+                  <Link to='/extramaterial' className ="TextoValid2" onClick={() => { handleClose(); setSection("Solicitar material extra"); }}>Solicitar material extra</Link> 
                 </div>  
               </div>
 
               <div className='row m-2'>
                 <div className ='col-md-auto '>
-                  <i class="bi bi-trophy-fill docu-icon2"></i>
-                  <span className ="TextoValid2">Constancia</span> 
+                  <Link to='/constancia' onClick={() => { handleClose(); setSection("Constancias");}} class="bi bi-trophy-fill docu-icon2"></Link>
+                  <Link to='/constancia' className ="TextoValid2" onClick={() => { handleClose(); setSection("Constancias"); }}>Constancia</Link> 
                 </div>  
               </div>
 
               <div className='row m-2'>
                 <div className ='col-md-auto '>
-                  <i class="bi bi-megaphone-fill docu-icon2"></i>
-                  <span className ="TextoValid2">Anuncios</span> 
+                  <Link to='/anuncios' onClick={() => { handleClose(); setSection("Anuncios");}} class="bi bi-megaphone-fill docu-icon2"></Link>
+                  <Link to='/anuncios' className ="TextoValid2" onClick={() => { handleClose(); setSection("Anuncios");}}>Anuncios</Link> 
                 </div>  
               </div>
 
               <div className='row m-2'>
                 <div className ='col-md-auto '>
-                  <i class="bi bi-map-fill docu-icon2"></i>
-                  <span className ="TextoValid2">Mapa</span> 
+                  <Link to='/mapa' onClick={() => { handleClose(); setSection("Mapa"); }} class="bi bi-map-fill docu-icon2"></Link>
+                  <Link to='/mapa' className ="TextoValid2" onClick={() => { handleClose(); setSection("Mapa"); }}>Mapa</Link> 
                 </div>  
               </div>
 
@@ -115,7 +121,7 @@ function App() {
     <>
       <div className ="container-fluid">
           <div className="row" id = "NavBar">
-            <div className="col-10">
+            <div className="col-auto">
               <div className = "ToggleButton">
               </div>
             </div>
@@ -133,7 +139,7 @@ function App() {
       <nav className='fixed-top'>
         <div className ="container-fluid">
           <div className="row " id = "NavBar">
-            <div className="col-12">
+            <div className="col-5">
               <ToggleBar />
             </div>
          
@@ -142,11 +148,17 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path='/inicio' element={<ProjResumeCont></ProjResumeCont>}></Route>
-        <Route path='/projregister' element={<ProjRegisterCont></ProjRegisterCont>}></Route>
-        <Route path='/constancias' element={<UserRegisterCont></UserRegisterCont>}></Route>
-        <Route path='/extra' element={<ProjRegisterCont></ProjRegisterCont>}></Route>
+        <Route path='/resumen' element={<ProjResumeCont></ProjResumeCont>}></Route>
+        <Route path='/projselection' element={<ProjRegisterCont></ProjRegisterCont>}></Route>
+        <Route path='/extramaterial' element={<RegisterCont></RegisterCont>}></Route>
+        <Route path='/constancia' element={<Constancia></Constancia>}></Route>
+        <Route path='/anuncios' element={<Announ></Announ>}></Route>
+        <Route path='/mapa' element={<UserRegister></UserRegister>}></Route>
+
+        <Route path='/studentregister' element={<StudentRegister></StudentRegister>}></Route>
+        <Route path='/userregister' element={<UserRegister></UserRegister>}></Route>
         <Route path='/projcat' element={<CompShowProjects></CompShowProjects>}></Route>
+ 
       </Routes>
 
     </>

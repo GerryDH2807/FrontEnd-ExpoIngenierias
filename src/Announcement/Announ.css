@@ -1,0 +1,50 @@
+.Titulo1{
+
+    font-weight: bolder;
+    color: #406eaa;
+    font-size: 20px;
+
+    padding-left: 20px;
+
+}
+
+.Subtitulo{
+
+    font-weight: bolder;
+
+}
+
+.Texto{
+
+    margin-left: 5px;
+
+}
+
+.ContainerAnnoun{
+    background-color: #ffffff;
+    padding: 30px;
+
+    width: 100%;
+
+    border-radius: 5px;
+    --bs-gutter-x: 0;
+}
+
+.ButtonMaterials{  
+
+    background-color: #0C356A;
+    border-color: #0C356A;
+    font-weight: bold;
+    
+}
+
+.AnnounInfoContainer{
+    background-color: #cac9c9e6;
+    border-radius: 5px;
+}
+
+.AnnounIcon{
+    font-weight: bolder;
+    font-size: 40px;
+    color: #0C356A;
+}

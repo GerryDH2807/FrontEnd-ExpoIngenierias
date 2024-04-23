@@ -12,7 +12,7 @@ import './Register.css';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
 
-const URI = 'http://localhost:8000/projects/'
+const URI = 'http://localhost:8000/projects'
 
 function ButtonMaterials() {
   const [show, setShow] = useState(false);
@@ -150,7 +150,7 @@ function FormExample() {
     const [description, setDescription] = useState('Nuevo proyecto');
     const [linkVideo, setLinkVideo] = useState('');
     const [linkPoster, setLinkPoster] = useState('');
-    const [status, setStatus] = useState('en revisión');
+    const [status, setStatus] = useState('en revision');
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
