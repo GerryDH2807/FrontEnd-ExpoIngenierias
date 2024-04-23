@@ -20,10 +20,15 @@ import RegisterCont from './Register content/RegisterContent.js';
 import UserRegister from './UserRegister/UserRegister.js';
 import StudentRegister from './StudentRegister/StudentRegister.js';
 
+import DetailedAnnoun from './Announcement/DetailedAnnoun.js';
+
+import Actual from './ProyectosActuales/Actual.js';
+
 
 
 import './Page.css';
 import './Resume.css';
+import './Announcement/DetailedAnnoun.css'
 
 
 
@@ -144,10 +149,14 @@ function App() {
         <Route path='/extramaterial' element={<RegisterCont></RegisterCont>}></Route>
         <Route path='/constancia' element={<Constancia></Constancia>}></Route>
         <Route path='/anuncios' element={<Announ></Announ>}></Route>
-        <Route path='/mapa' element={<UserRegister></UserRegister>}></Route>
+        <Route path='/mapa' element={<Actual></Actual>}></Route>
 
         <Route path='/studentregister' element={<StudentRegister></StudentRegister>}></Route>
         <Route path='/userregister' element={<UserRegister></UserRegister>}></Route>
+
+        <Route path='/announ1' element ={<DetailedAnnoun></DetailedAnnoun>}></Route>
+
+  
  
       </Routes>
 

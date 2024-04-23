@@ -175,20 +175,53 @@ function FormExample() {
 return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
-        <Row className="mb-3  ">
+      <Row className="mb-3  ">
 
-        <Form.Group as={Col} md="12" controlId="validationCustom06">
-            <Form.Label className='Titulo'>Titulo del proyecto</Form.Label>
-            <Form.Control
+      <Form.Group as={Col} md="12" controlId="validationCustom06">
+
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col'>
+              <Form.Label className='Titulo ps-2'>Titulo del proyecto</Form.Label>
+            </div>
+          </div>
+
+          <div className='row'>
+            <div className='col'>
+              <Form.Control
                 required
                 type="text"
                 placeholder="Ingresa un titulo para tu proyecto"
                 className='InputFormat'
-            />
-        </Form.Group>
-        </Row>
+              />
+            </div>
+          </div>
 
-    <Row className="mb-3  ">
+        </div>
+         
+      </Form.Group>
+      </Row>
+
+      <Row className="mb-3">
+        <Form.Group  controlId="exampleForm.ControlTextarea1">
+          <div className='container-fluid'>
+            <div className='row'>
+              <div className='col p-0'>
+                <Form.Label className='Titulo'>Descripción del proyecto</Form.Label>
+              </div>
+            </div>
+
+            <div className='row '>
+              <div className='col '>
+                <Form.Control as="textarea" className='InputFormat' rows={5} />
+              </div>
+            </div>
+          </div>
+
+        </Form.Group>
+      </Row>
+
+      <Row className="mb-3">
         <Form.Group as={Col} md="12" controlId="validationMembers">
           <Form.Label className='Titulo'>Integrantes</Form.Label>
           {members.map((member, index) => (
@@ -207,24 +240,37 @@ return (
                   </div>
                 )}
               </div>
-              <Form.Control
-                required
-                type="text"
-                placeholder="Ingresa el nombre de tu nuevo integrante"
-                className='InputFormat'
-              />
+              <div className='row'>
+                <div className='col'>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="Ingresa el nombre"
+                    className='InputFormat'
+                  />
+                </div>
+                <div className='col'>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="Ahora los apellidos"
+                    className='InputFormat'
+                  />
+                </div>
+              </div>
               <Form.Control.Feedback type='invalid'>No hay integrantes</Form.Control.Feedback>
             </div>
           ))}
         </Form.Group>
-    </Row>
+      </Row>
+
         
     <Row className="mb-3  ">
         <Form.Group as={Col} md="12" controlId="validationArea">
         <div className='container-fluid'>
             <div className='row'>
               <div className='col'>
-                <Form.Label className='Titulo'>Área</Form.Label>
+                <Form.Label className='Titulo ps-2'>Área</Form.Label>
               </div>
             </div>
 
@@ -243,7 +289,7 @@ return (
         <div className='container-fluid'>
             <div className='row'>
                 <div className='col'>
-                    <Form.Label className='Titulo'>Categoría</Form.Label>
+                    <Form.Label className='Titulo ps-2'>Categoría</Form.Label>
                 </div>
             </div>
 
@@ -256,57 +302,90 @@ return (
         </Form.Group>
     </Row>
 
-    <Row className="mb-3  ">
-        <Form.Group as={Col} md="12" controlId="validationCustom04">
-          <Form.Label className='Titulo'>Profesor(es) asesor</Form.Label>
-          {teachers.map((teacher, index) => (
-            <div key={teacher.id} className='container'>
-              <div className='row pt-2 pb-2 pe-2'>
-                {index !== 0 && (
-                  <>
-                    <div className='col-auto'>
-                      <Button className='ButtonAddLessMaterials' onClick={() => handleRemoveProf(teacher.id)}>-</Button>
-                    </div>
-                  </>
-                )}
-                {index === teachers.length - 1 && (
-                  <div className='col-auto'>
-                    <Button className='ButtonAddLessMaterials' onClick={() => handleAddProf()}>+</Button>
-                  </div>
-                )}
-              </div>
-              <Form.Control type="text" placeholder="Ingresa el nombre del profesor que aprobará tu proyecto" required className='InputFormat' />
+    <Row className="mb-3">
+      <Form.Group as={Col} md="12" controlId="validationCustom04">
+        <Form.Label className='Titulo'>Profesor(es) asesor</Form.Label>
+        {teachers.map((teacher, index) => (
+          <div key={teacher.id} className='container'>
+            <div className='row pt-2 pb-2 pe-2'>
+              {index !== 0 && (
+                <div className='col-auto'>
+                  <Button className='ButtonAddLessMaterials' onClick={() => handleRemoveProf(teacher.id)}>-</Button>
+                </div>
+              )}
+              {index === teachers.length - 1 && (
+                <div className='col-auto'>
+                  <Button className='ButtonAddLessMaterials' onClick={() => handleAddProf()}>+</Button>
+                </div>
+              )}
             </div>
-          ))}
-        </Form.Group>
-      </Row>
-
-    <Row className="mb-3  ">
-
-        <Form.Group as={Col} md="12" controlId="validationCustom06">
-        <Form.Label className='Titulo'>Poster(PDF)</Form.Label>
-        <Form.Control
-            required
-            type="text"
-            placeholder="Link de tu carpeta de drive"
-            className='InputFormat'
-        />
-        </Form.Group>
+            <div className='row'>
+              <div className='col'>
+                <Form.Control type="text" placeholder="Ingresa el nombre" required className='InputFormat' />
+              </div>
+              <div className='col'>
+                <Form.Control type="text" placeholder="Ingresa los apellidos" required className='InputFormat' />
+              </div>
+            </div>
+          </div>
+        ))}
+      </Form.Group>
     </Row>
 
 
     <Row className="mb-3  ">
 
         <Form.Group as={Col} md="12" controlId="validationCustom06">
-            <Form.Label className='Titulo'>Link video</Form.Label>
-            <Form.Control
+
+          <div className='container-fluid'>
+            <div className='row'>
+              <div className='col'>
+                <Form.Label className='Titulo ps-2'>Poster(PDF)</Form.Label>
+              </div>
+            </div>
+
+            <div className='row'>
+              <div className='col'>
+                <Form.Control
                 required
                 type="text"
-                placeholder="Link de youtube"
+                placeholder="Link de tu carpeta de drive"
                 className='InputFormat'
-            />
+                />            
+              </div>
+            </div>
+          </div>
+
         </Form.Group>
     </Row>
+
+
+    <Row className="mb-3  ">
+
+        <Form.Group as={Col} md="12" controlId="validationCustom06">
+
+          <div className='container-fluid'>
+            <div className='row'>
+              <div className='col'>
+                <Form.Label className='Titulo ps-2'>Link video</Form.Label>
+              </div>
+            </div>
+
+
+            <div className='row'>
+              <div className='col'>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Link de youtube"
+                  className='InputFormat'
+                />                
+              </div>
+            </div>            
+          </div>
+        </Form.Group>
+    </Row>
+
     <Row className="mb-3  ">
         <Form.Group as={Col} md="12" controlId="validationCustom07">
         <div className='cotainer-fluid'>

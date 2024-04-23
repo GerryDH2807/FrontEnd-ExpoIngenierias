@@ -48,6 +48,13 @@
   
 }
 
+.InputDescrFormat{
+
+    background-color: rgb(225, 225, 225);
+    height: 200px;
+  
+}
+
 .ButtonRegister{
     background-color: #406eaa;
     border-color: #406eaa;

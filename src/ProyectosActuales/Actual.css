@@ -1,0 +1,66 @@
+.Titulo123{
+
+    font-weight: bolder;
+    color: #0C356A;
+
+}
+
+
+.Subtitulo{
+
+    font-weight: bolder;
+
+}
+
+.Texto{
+
+    margin-left: 5px;
+
+}
+
+
+
+
+
+
+.slider-container {
+    width: 100%;
+    overflow-x: auto;
+    white-space: wrap;
+}
+  
+.slider-content {
+    display: inline-block;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.CardsContainer{
+
+    background-color: #ffffff;
+    border-radius: 5px;
+
+}
+
+.CardsInfoContainer{
+
+    background-color: #e6e6e6e6;
+
+
+}
+
+.ButtonColors{
+
+    background-color: #406eaa;
+    border-color: #406eaa;
+    font-weight: bold;
+}
+
+.scroll-container {
+    width: 100%;
+    overflow-x: auto;
+
+  }
+  
