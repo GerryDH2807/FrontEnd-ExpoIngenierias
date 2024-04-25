@@ -60,7 +60,7 @@ function CardCalif({ title, image, description, ubicacion, categoria, nivelDesar
           <Badge data={status} className={badgeClassName} />
         </div>
 
-        <Link to="/inicio" className="btn">Ver Proyecto</Link>
+        <Link to="/inicio" className="btn23">Ver Proyecto</Link>
         
         {btnAction ? (
           <Link to={btnAction} className={btnClassName}>{btnText}</Link>

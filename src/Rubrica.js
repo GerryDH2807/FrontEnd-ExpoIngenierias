@@ -44,7 +44,6 @@ const Rubrica = () => {
   return (
     <div className="container">
       <Lienzo />
-      <Link to="/Juez" className="btn2">Cancelar</Link>
       <h1>CALIFICA EL PROYECTO EN BASE A LA RÚBRICA</h1>
       <div className="rubrica-container">
         {criteria.map((criterion, index) => (
@@ -71,7 +70,10 @@ const Rubrica = () => {
           onChange={(e) => setComments(e.target.value)}
         />
         {showErrorMessage && (comments.trim() === '' || comments.trim().length < 100) && <p className="error-message">Por favor, ingresa tus comentarios con al menos 100 caracteres.</p>}
-        <button onClick={handleSubmit} className="btn">Enviar</button>
+        <div className="buttons-container2">
+      <Link to="/Juez" className="btn2">Cancelar</Link>
+      <button onClick={handleSubmit} className="btn3">Enviar</button>
+      </div>
       </div>
     </div>
   );

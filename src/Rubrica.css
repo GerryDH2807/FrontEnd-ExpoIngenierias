@@ -53,15 +53,14 @@
   .checkboxes-container input[type="checkbox"] {
     margin-right: 10px;
   }
-
   .btn2 {
-    width: 16%;
+    width: 30%;
     min-width: 16%;
+    font-weight: bold;
     min-height: 5.5vh;
     margin-top: 0.9rem;
     margin-bottom: 1rem;
     font-size: 1.1em;
-    font-weight: bolder;
     cursor: pointer;
     background-color: #FF5733;
     color: #fff;
@@ -75,22 +74,28 @@
     align-items: center; /* Centrar verticalmente */
     text-decoration: none;
   }
-  .btn2:hover {
-    border-radius: 5px;
-    transform: translateY(-10px);
-    box-shadow: 0 7px 0 -2px #171717,
-     0 15px 0 -4px #FF5733,
-     0 16px 10px -3px #FF5733;
+   .btn3 {
+    width: 30%;
+    font-weight: bold;
+    min-width: 16%;
+    min-height: 5.5vh;
+    margin-top: 0.9rem;
+    margin-bottom: 1rem;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #0C356A;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.4s;
+    
+    /* Aplicar flexbox para centrar texto verticalmente */
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    text-decoration: none;
+  }
 
-   }
-   
-   .btn2:active {
-    transition: all 0.2s;
-    transform: translateY(-5px);
-    box-shadow: 0 2px 0 -2px #171717,
-     0 8px 0 -4px #FF5733,
-     0 12px 10px -3px #FF5733;
-   }
    .comment-box {
     width: 100%;
     resize: vertical; /* Esto permite que el usuario redimensione verticalmente el cuadro de texto */
@@ -103,4 +108,16 @@
     border: 2px solid red;
     background-color: #ffe6e6;
   }
-  
+  .buttons-container2 {
+    display: flex;
+    justify-content: center;
+}
+
+.btn2, .btn3 {
+    /* Agrega estilos adicionales según sea necesario */
+    
+    margin-right: 10vh;
+    font-size: 16px;
+    font-weight: bold;
+    /* Otros estilos... */
+}
