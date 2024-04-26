@@ -9,7 +9,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 
 import {Routes, Route, Link} from 'react-router-dom';
 
-import ProjResumeCont from './ProjectResumenContent.js';
+import ProjResumeCont from './ProjResume/ProjectResumenContent.js';
 import ProjRegisterCont from './ProjRegister/ProjResgister.js';
 
 import Constancia from './Constancia/Constancia.js';
@@ -27,7 +27,7 @@ import Actual from './ProyectosActuales/Actual.js';
 
 
 import './Page.css';
-import './Resume.css';
+import './ProjResume/Resume.css';
 import './Announcement/DetailedAnnoun.css'
 
 

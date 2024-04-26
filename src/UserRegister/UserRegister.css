@@ -39,3 +39,16 @@
     font-weight: bold;
     font-size: 25px;
 }
+
+.IconBack{
+    color:#0C356A;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+}
+
+.IconBack:hover{
+    color:#0b5ed7;
+}

@@ -18,17 +18,17 @@ function AnnounSearch(){
     );
 }
 
-function AnnounInfo(){
+function AnnounInfo({Fecha, Titulo}){
 
     return(
         <Link to={'/announ1'} className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
             <div className='col-10 d-flex align-items-center'>
-                <i className='bi bi-envelope-fill AnnounIcon'></i> <span className='Titulo'> Titulo del anuncio</span>
+                <i className='bi bi-envelope-fill AnnounIcon'></i> <span className='Titulo'> {Titulo}</span>
             </div>
 
 
             <div className='col-2 text-end'>
-                <span className='Subtitulo text-break'>20/04/24</span>
+                <span className='Subtitulo text-wrap'>{Fecha}</span>
             </div>
         </Link>
     );
@@ -39,9 +39,9 @@ function AnnounInfoCont(){
         <div className='col-12 p-12'>
             
             <div className='container-fluid'>
-                <AnnounInfo></AnnounInfo>
-                <AnnounInfo></AnnounInfo>
-                <AnnounInfo></AnnounInfo>
+                <AnnounInfo Titulo={'Titulo del anuncio 1'} Fecha={'20/02/24'}></AnnounInfo>
+                <AnnounInfo Titulo={'Titulo del anuncio 2'} Fecha={'15/05/19'}></AnnounInfo>
+                <AnnounInfo Titulo={'Titulo del anuncio 3'} Fecha={'28/07/03'}></AnnounInfo>
             </div>
 
         </div>
