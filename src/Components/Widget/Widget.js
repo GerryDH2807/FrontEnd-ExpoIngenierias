@@ -1,14 +1,13 @@
-import React from 'react'
+import React from 'react';
+import './Widget.css';
 
-import './Widget.css'
-
-function Widget({title, content}) {
+function Widget({ title, content, centered = false }) {
   return (
-    <div className="widget">
-        <p className="widget-title">{title}</p>
-        <div className="widget-content">{content}</div>
+    <div className={`widget ${centered ? 'centered' : ''}`}>
+      <p className="widget-title">{title}</p>
+      <div className="widget-content">{content}</div>
     </div>
-  )
+  );
 }
 
-export default Widget
+export default Widget;

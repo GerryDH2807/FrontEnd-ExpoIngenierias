@@ -2,6 +2,7 @@
 .widget {
     background-color: white;
     border-radius: 15px;
+    margin-bottom: 15px;
 }
 
 .widget-title {
@@ -9,10 +10,15 @@
     font-weight: bold;
     font-size: 20px;
     margin: 5px 10px;
+    padding-top: 5px;
 }
 
 .widget-content {
-    /* Add any styles you want for the content here */
-    margin-bottom: 5px;
+    padding-bottom: 10px;
 }
-  
+
+.centered .widget-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

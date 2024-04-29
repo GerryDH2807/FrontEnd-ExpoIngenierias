@@ -2,13 +2,15 @@ import React from 'react';
 import './ProjectCard.css';
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
 import { mockProjects } from '../../MockData/MockData';
+import { Link } from 'react-router-dom';
 
 function ProjectCard({ project }) {
-    const { title, img, categories, review } = project; // Destructure project object
+    const { id, title, img, categories, review, isDisqualified } = project; // Destructure project object
     const statusClassName = review ? 'review-true' : 'review-false'; // Determine class based on review status
     const StatusIcon = review ? AiOutlineCheckCircle : AiOutlineCloseCircle; // Choose icon based on review status
+    const disqualifiedClass = isDisqualified ? 'disqualified' : ''; // Determine disqualified class
     return (
-      <div className={`card mb-4`} style={{ width: "18rem" }}>
+      <div className={`card mb-4 ${disqualifiedClass}`} style={{ width: "18rem" }}>
         <div className={`project-card-status ${statusClassName}`}>
           <StatusIcon /> {/* Render dynamic icon */}
         </div>
@@ -20,7 +22,7 @@ function ProjectCard({ project }) {
               <span key={index} className="badge">{category}</span>
             ))}
           </div>
-          <a href="#" className="btn btn-primary">Abrir</a>
+          <Link to={`/proyecto/${id}`} className="btn btn-primary custom-primaty-btn">Abrir</Link>
         </div>
       </div>
     );

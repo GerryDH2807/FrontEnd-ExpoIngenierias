@@ -32,7 +32,7 @@ function Historical() {
               </>
             } />
             <div className="d-flex justify-content-center mt-3">
-              <button className="btn btn-primary" onClick={handleExport}>Exportar</button>
+              <button className="btn btn-primary custom-primaty-btn" onClick={handleExport}>Exportar</button>
             </div>
           </div>
         </div>

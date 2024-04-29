@@ -8,7 +8,7 @@ function UserRow({ user, onDelete, onRoleChange }) {
             <td className="text-center">{user.name}</td>
             {/* Second column - Bootstrap button */}
             <td className="text-center">
-                <div className="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                <div className="btn-group role-btn-group" role="group" aria-label="Basic checkbox toggle button group">
                     <RoleCheckbox
                         id={user.id}
                         role="Alumno"

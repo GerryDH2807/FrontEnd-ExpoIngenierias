@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { AiOutlineSearch } from "react-icons/ai";
+import { IoIosClose } from "react-icons/io";
 
 function SearchBar({ onSearch }) {
     const [searchTerm, setSearchTerm] = useState("");
 
     const handleChange = (event) => {
-        setSearchTerm(event.target.value);
+        const value = event.target.value;
+        setSearchTerm(value);
+        onSearch(value);
     };
 
-    const handleSearch = () => {
-        onSearch(searchTerm);
+    const handleClear = () => {
+        setSearchTerm("");
+        onSearch("");
     };
 
     return (
@@ -23,15 +26,18 @@ function SearchBar({ onSearch }) {
                     value={searchTerm}
                     onChange={handleChange}
                 />
-                <div className="input-group-append">
-                    <button 
-                        className="btn btn-primary" 
-                        type="button"
-                        onClick={handleSearch}
-                    >
-                        <AiOutlineSearch />
-                    </button>
-                </div>
+                {searchTerm && (
+                    <div className="input-group-append">
+                        <button
+                            className="btn btn-primary custom-primaty-btn"
+                            type="button"
+                            onClick={handleClear}
+                            aria-label="Clear"
+                        >
+                            <IoIosClose />
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import './RoleFilter.css';
 
 function RoleFilter({ onRoleFilter }) {
     const handleRoleChange = (role) => {
@@ -8,7 +9,7 @@ function RoleFilter({ onRoleFilter }) {
     return (
         <div className="col-md-4">
             {/* Group of Buttons */}
-            <div className="btn-group" role="group" aria-label="Basic radio toggle button group" style={{backgroundColor:"#fff"}}>
+            <div className="btn-group" role="group" aria-label="Basic radio toggle button group" style={{ backgroundColor: "#fff" }}>
                 <input 
                     type="radio" 
                     className="btn-check" 
