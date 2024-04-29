@@ -1,0 +1,86 @@
+.Titulo123{
+
+    font-weight: bolder;
+    color: #0C356A;
+
+}
+
+
+.Subtitulo{
+
+    font-weight: bolder;
+
+}
+
+.Texto{
+
+    margin-left: 5px;
+
+}
+
+
+
+.scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.scroll-container::-webkit-scrollbar {
+    height: 5px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: #aeaeae; /* Color del fondo de la scrollbar */
+    
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background: #555555e6; /* Color del thumb (barra deslizante) */
+    border-radius: 5px; /* Borde redondeado del thumb */
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #000000; /* Cambio de color al pasar el mouse sobre la scrollbar */
+}
+  
+/* Evita el desbordamiento de las tarjetas de la fila */
+.d-flex > .col {
+    flex: 0 0 auto;
+}
+
+
+
+
+
+
+.TextoCardWrap{
+    white-space: wrap !important; 
+}
+
+.CardsContainer{
+
+    background-color: #ffffff;
+    border-radius: 5px;
+
+}
+
+.CardsInfoContainer{
+
+    background-color: #e6e6e6e6;
+
+
+}
+
+.ButtonColors{
+
+    background-color: #0C356A;
+    border-color: #0C356A;
+    font-weight: bold;
+}
+
+.scroll-container {
+    width: 100%;
+    overflow-x: auto;
+
+  }
+  

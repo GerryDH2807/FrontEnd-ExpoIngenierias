@@ -12,14 +12,15 @@ import './ProjRegister.css';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
 
-const URI = 'http://localhost:8000/projects'
+const URI = 'http://localhost:8000/projects/register'
 
-function ButtonMaterials() {
+function ButtonMaterials({extension, setExtension, table, setTable, screen, setScreen}) {
   const [show, setShow] = useState(false);
+  /*
   const [extension, setExtension] = useState(0);
   const [table, setTable] = useState(0);
   const [screen, setScreen] = useState(0);
-  
+  */
   return (
     <>
       <Button variant="primary" onClick={() => setShow(true)} className='ButtonMaterials'>
@@ -105,7 +106,7 @@ function ButtonMaterials() {
   );
 }
 
-function AreaButtons() {
+function AreaButtons({setArea}) {
   return (
     <ToggleButtonGroup type="radio" name="options" defaultValue={1} className='d-flex justify-content-between w-100'>
       <ToggleButton id="tbg-radio-1" value={1} onChange={(e)=> setArea(e.target.value)} className='ButtonMaterials w-100'>
@@ -121,7 +122,7 @@ function AreaButtons() {
   );
 }
 
-function CategoryButtons() {
+function CategoryButtons({setCategory}) {
   return (
     <ToggleButtonGroup type="radio" name="options1" defaultValue={1} className='d-flex justify-content-between w-100'>
       <ToggleButton id="tbg-radio-1.1" value={1} onChange={(e)=> setCategory(e.target.value)}  className='ButtonMaterials w-100'>
@@ -141,32 +142,38 @@ function FormExample() {
     const [validated, setValidated] = useState(false);
     const [memberNum, setMemberNum] = useState(1);
     const [teacherNum, setTeacherNum] = useState(1);
-    const [members, setMembers] = useState([{ id: 1, value: '' }]);
-    const [teachers, setTeachers] = useState([{ id: 1, value: '' }]);
+    const [members, setMembers] = useState([{ id: 1, nameMember: '', lastNameMember: '', enrollment: '' }]);
+    const [teachers, setTeachers] = useState([{ id: 1, nameTeacher: '', lastNameTeacher: '', email: '' }]);
 
     //Valores registro tabla proyecto
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('Nuevo proyecto');
-    const [linkVideo, setLinkVideo] = useState('');
-    const [linkPoster, setLinkPoster] = useState('');
-    const [status, setStatus] = useState('en revision');
-    const [area, setArea] = useState(0);
-    const [category, setCategory] = useState(0);
+    const [title, setTitle] = useState('nuevo');
+    const [description, setDescription] = useState('descripcion');
+    const [linkVideo, setLinkVideo] = useState('video.mp4');
+    const [linkPoster, setLinkPoster] = useState('poster.pdf');
+    const [area, setArea] = useState(1);
+    const [category, setCategory] = useState(1);
 
-    //tabla personas
-    const [name, setName] = useState('');
-    const [lastName, setLastName] = useState('');
 
     const navigate = useNavigate();
 
-  
+    const [extension, setExtension] = useState(0);
+    const [table, setTable] = useState(0);
+    const [screen, setScreen] = useState(0);  
 
     const handleSubmit = async (event) => {
       const form = event.currentTarget;
       if (form.checkValidity() === false) {
         event.preventDefault();
-        await axios.post(URI, {title: title, description: description, linkVideo: linkVideo, linkPoster: linkPoster, status: status})
         event.stopPropagation();
+        
+      }else{
+        await axios.post(URI, {title: title, description: description, linkVideo: linkVideo, 
+          linkPoster: linkPoster, area: area, 
+          category: category,
+          materials: [{id_material: 1, amount: extension}, {id_material: 2, amount: screen}, { id_material: 3, amount: table }],
+          members: members.map(member => ({ name: member.nameMember, lastName: member.lastNameMember, enrollment: member.enrollment })),
+          teachers: teachers.map(teacher => ({ name: teacher.nameTeacher, lastName: teacher.lastNameTeacher, email: teacher.email }))
+        });
         navigate('/')
       }
   
@@ -176,7 +183,8 @@ function FormExample() {
     const handleAddMember = () => {
       const newMemberId = memberNum + 1;
       setMemberNum(newMemberId);
-      setMembers([...members, { id: newMemberId, value: '' }]);
+      setMembers([...members, { id: newMemberId, nameMember: '', lastNameTeacher: '' }]);
+
     };
   
     const handleRemoveMember = (id) => {
@@ -188,7 +196,7 @@ function FormExample() {
     const handleAddProf = () => {
       const newTeacherId = teacherNum + 1;
       setTeacherNum(newTeacherId);
-      setTeachers([...teachers, { id: newTeacherId, value: '' }]);
+      setTeachers([...teachers, { id: newTeacherId, nameTeacher: '', lastNameTeacher: ''}]);
     };
   
     const handleRemoveProf = (id) => {
@@ -199,65 +207,141 @@ function FormExample() {
 
 return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Row className="mb-3  ">
 
-          <Row className="mb-3  ">
-
-          <Form.Group as={Col} md="12" controlId="validationCustom06">
-              <Form.Label className='Titulo'>Titulo del proyecto</Form.Label>
-              <Form.Control
+        <Form.Group as={Col} md="12" controlId="validationCustom06">
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col'>
+                <Form.Label className='Titulo ps-2'>Titulo del proyecto</Form.Label>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col'>
+                <Form.Control
                   required
                   value={title}
                   onChange={(e)=> setTitle(e.target.value)}
                   type="text"
                   placeholder="Ingresa un titulo para tu proyecto"
                   className='InputFormat'
-              />
-          </Form.Group>
-          </Row>
+                />
+            </div>
+          </div>
 
-      <Row className="mb-3  ">
+        </div>
+         
+      </Form.Group>
+      </Row>
+
+      <Row className="mb-3">
+        <Form.Group  controlId="exampleForm.ControlTextarea1">
+          <div className='container-fluid'>
+            <div className='row'>
+              <div className='col p-0'>
+                <Form.Label className='Titulo'>Descripción del proyecto</Form.Label>
+              </div>
+            </div>
+
+            <div className='row '>
+              <div className='col '>
+                <Form.Control as="textarea" 
+                  value={description}
+                  onChange={(e)=> setDescription(e.target.value)}
+                  className='InputFormat' rows={5} />
+              </div>
+            </div>
+          </div>
+
+          </Form.Group>
+        </Row>
+
+        <Row className="mb-3">
           <Form.Group as={Col} md="12" controlId="validationMembers">
             <Form.Label className='Titulo'>Integrantes</Form.Label>
-            {members.map((member, index) => (
+            {members.map((member, indexMember) => (
               <div key={member.id} className='container'>
                 <div className='row pt-2 pb-2 pe-2'>
-                  {index !== 0 && (
+                  {indexMember !== 0 && (
                     <>
                       <div className='col-auto'>
                         <Button className='ButtonAddLessMaterials' onClick={() => handleRemoveMember(member.id)}>-</Button>
                       </div>
                     </>
                   )}
-                  {index === members.length - 1 && (
+                  {indexMember === members.length - 1 && (
                     <div className='col-auto'>
                       <Button className='ButtonAddLessMaterials' onClick={() => handleAddMember()}>+</Button>
                     </div>
                   )}
                 </div>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="Ingresa el nombre de tu nuevo integrante"
-                  className='InputFormat'
-                />
+              <div className='row'>
+                <div className='col'>
+                    <Form.Control
+                      required
+                      value={members[indexMember].enrollment}
+                      onChange={(e) => {
+                        const updatedMembers = [...members];
+                        updatedMembers[indexMember].enrollment = e.target.value;
+                        setMembers(updatedMembers);
+                      }} 
+                      type="text"
+                      placeholder="A01XXXXXX"
+                      className='InputFormat'
+                    />
+                </div>
+                <div className='col'>
+                  <Form.Control
+                    required
+                    value={members[indexMember].name}
+                    onChange={(e) => {
+                      const updatedMembers = [...members];
+                      updatedMembers[indexMember].nameMember = e.target.value;
+                      setMembers(updatedMembers);
+                    }}  
+                    type="text"
+                    placeholder="Ingresa el nombre(s)"
+                    className='InputFormat'
+                  />
+                </div>
+                <div className='col'>
+                    <Form.Control
+                      required
+                      value={members[indexMember].lastName}
+                      onChange={(e) => {
+                        const updatedMembers = [...members];
+                        updatedMembers[indexMember].lastNameMember = e.target.value;
+                        setMembers(updatedMembers);
+                      }} 
+                      type="text"
+                      placeholder="Ahora los apellidos"
+                      className='InputFormat'
+                    />
+                </div>
+
+                    
+
+
+              </div>
                 <Form.Control.Feedback type='invalid'>No hay integrantes</Form.Control.Feedback>
               </div>
             ))}
           </Form.Group>
-      </Row>
+        </Row>
+
           
       <Row className="mb-3  ">
           <Form.Group as={Col} md="12" controlId="validationArea">
           <div className='container-fluid'>
               <div className='row'>
                 <div className='col'>
-                  <Form.Label className='Titulo'>Área</Form.Label>
+                  <Form.Label className='Titulo ps-2'>Área</Form.Label>
                 </div>
               </div>
 
               <div className='row'>
                 <div className='col'>
-                  <AreaButtons/>
+                  <AreaButtons setArea={setArea}/>
                 </div>
               </div>
           </div>
@@ -265,91 +349,148 @@ return (
       </Row>
 
 
+    <Row className="mb-3  ">
+        <Form.Group as={Col} md="12" controlId="validationCustom03">
+        <div className='container-fluid'>
+            <div className='row'>
+                <div className='col'>
+                    <Form.Label className='Titulo ps-2'>Categoría</Form.Label>
+                </div>
+            </div>
+
+              <div className='row'>
+                  <div className='col'>
+                      <CategoryButtons setCategory={setCategory}/>
+                  </div>
+              </div>
+          </div>
+          </Form.Group>
+      </Row>
+
+    <Row className="mb-3">
+      <Form.Group as={Col} md="12" controlId="validationTeacher">
+        <Form.Label className='Titulo'>Profesor(es) asesor</Form.Label>
+        {teachers.map((teacher, indexTeacher) => (
+          <div key={teacher.id} className='container'>
+            <div className='row pt-2 pb-2 pe-2'>
+              {indexTeacher !== 0 && (
+                <div className='col-auto'>
+                  <Button className='ButtonAddLessMaterials' onClick={() => handleRemoveProf(teacher.id)}>-</Button>
+                </div>
+              )}
+              {indexTeacher === teachers.length - 1 && (
+                <div className='col-auto'>
+                  <Button className='ButtonAddLessMaterials' onClick={() => handleAddProf()}>+</Button>
+                </div>
+              )}
+            </div>
+            <div className='row'>
+              <div className='col'>
+                <Form.Control type="text"
+                    value={teachers[indexTeacher].email}
+                    onChange={(e) => {
+                      const updatedTeachers = [...teachers];
+                      updatedTeachers[indexTeacher].email = e.target.value;
+                      setTeachers(updatedTeachers);
+                    }}  
+                placeholder="Ingresa el email" required className='InputFormat' />
+              </div>
+
+              <div className='col'>
+                <Form.Control type="text"
+                    value={teachers[indexTeacher].name}
+                    onChange={(e) => {
+                      const updatedTeachers = [...teachers];
+                      updatedTeachers[indexTeacher].nameTeacher = e.target.value;
+                      setTeachers(updatedTeachers);
+                    }}  
+                placeholder="Ingresa el nombre" required className='InputFormat' />
+              </div>
+              <div className='col'>
+                <Form.Control type="text"
+                   value={teachers[indexTeacher].lastName}
+                   onChange={(e) => {
+                     const updatedTeachers = [...teachers];
+                     updatedTeachers[indexTeacher].lastNameTeacher = e.target.value;
+                     setTeachers(updatedTeachers);
+                   }}  
+                 placeholder="Ingresa los apellidos" required className='InputFormat' />
+              </div>
+            </div>
+          </div>
+        ))}
+      </Form.Group>
+    </Row>
+
+
       <Row className="mb-3  ">
-          <Form.Group as={Col} md="12" controlId="validationCustom03">
+
+        <Form.Group as={Col} md="12" controlId="validationCustom06">
+
           <div className='container-fluid'>
-              <div className='row'>
-                  <div className='col'>
-                      <Form.Label className='Titulo'>Categoría</Form.Label>
-                  </div>
+            <div className='row'>
+              <div className='col'>
+                <Form.Label className='Titulo ps-2'>Poster(PDF)</Form.Label>
               </div>
+            </div>
 
-              <div className='row'>
-                  <div className='col'>
-                      <CategoryButtons/>
-                  </div>
+            <div className='row'>
+              <div className='col'>
+                <Form.Control
+                required
+                value={linkPoster}
+                onChange={(e)=> setLinkPoster(e.target.value)}
+                type="text"
+                placeholder="Link de tu carpeta de drive"
+                className='InputFormat'
+                />            
               </div>
+            </div>
           </div>
-          </Form.Group>
-      </Row>
+
+        </Form.Group>
+    </Row>
 
       <Row className="mb-3  ">
-          <Form.Group as={Col} md="12" controlId="validationCustom04">
-            <Form.Label className='Titulo'>Profesor(es) asesor</Form.Label>
-            {teachers.map((teacher, index) => (
-              <div key={teacher.id} className='container'>
-                <div className='row pt-2 pb-2 pe-2'>
-                  {index !== 0 && (
-                    <>
-                      <div className='col-auto'>
-                        <Button className='ButtonAddLessMaterials' onClick={() => handleRemoveProf(teacher.id)}>-</Button>
-                      </div>
-                    </>
-                  )}
-                  {index === teachers.length - 1 && (
-                    <div className='col-auto'>
-                      <Button className='ButtonAddLessMaterials' onClick={() => handleAddProf()}>+</Button>
-                    </div>
-                  )}
-                </div>
-                <Form.Control type="text" placeholder="Ingresa el nombre del profesor que aprobará tu proyecto" required className='InputFormat' />
+
+        <Form.Group as={Col} md="12" controlId="validationCustom06">
+
+          <div className='container-fluid'>
+            <div className='row'>
+              <div className='col'>
+                <Form.Label className='Titulo ps-2'>Link video</Form.Label>
               </div>
-            ))}
-          </Form.Group>
-        </Row>
-
-      <Row className="mb-3  ">
-
-          <Form.Group as={Col} md="12" controlId="validationCustom06">
-          <Form.Label className='Titulo'>Poster(PDF)</Form.Label>
-          <Form.Control
-              required
-              value={linkPoster}
-              onChange={(e)=> setLinkPoster(e.target.value)}
-              type="text"
-              placeholder="Link de tu carpeta de drive"
-              className='InputFormat'
-          />
-          </Form.Group>
-      </Row>
+            </div>
 
 
-      <Row className="mb-3  ">
-
-          <Form.Group as={Col} md="12" controlId="validationCustom06">
-              <Form.Label className='Titulo'>Link video</Form.Label>
-              <Form.Control
+            <div className='row'>
+              <div className='col'>
+                <Form.Control
                   required
                   value={linkVideo}
                   onChange={(e)=> setLinkVideo(e.target.value)}
                   type="text"
                   placeholder="Link de youtube"
                   className='InputFormat'
-              />
-          </Form.Group>
-      </Row>
-      <Row className="mb-3  ">
-          <Form.Group as={Col} md="12" controlId="validationCustom07">
-          <div className='cotainer-fluid'>
-              <div className='row'>
-                  <div className='col'>
-                      <Form.Label className='Titulo'>Necestias materiales extra?</Form.Label>
-                  </div>
+                />                
               </div>
+            </div>            
+          </div>
+        </Form.Group>
+    </Row>
+
+    <Row className="mb-3  ">
+        <Form.Group as={Col} md="12" controlId="validationCustom07">
+        <div className='cotainer-fluid'>
+            <div className='row'>
+                <div className='col'>
+                    <Form.Label className='Titulo'>Necestias materiales extra?</Form.Label>
+                </div>
+            </div>
 
               <div className='row d-flex justify-content-center'>
                   <div className='d-flex justify-content-center p-3 BckGrnd'>
-                      <ButtonMaterials/>
+                      <ButtonMaterials extension={extension} setExtension={setExtension} screen={screen} setScreen={setScreen} table={table} setTable={setTable}/>
                   </div>
               </div>
           </div>

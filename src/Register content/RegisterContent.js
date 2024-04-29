@@ -8,7 +8,7 @@ export default function UserRegisterCont(){
 
     return (
         <div className='container w-75 mt-5 mb-2 ContainersForm'>
-            <h1 className='Titulo text-center'>Selecciona el tipo de cuenta a crear</h1>
+            <h1 className='Titulo1 text-center'>Selecciona el tipo de cuenta a crear</h1>
             <div className='row p-2'>
                 <div className='col p-4 d-flex justify-content-center'>
                     <div className='container-fluid'>
