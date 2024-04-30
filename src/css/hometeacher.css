@@ -56,55 +56,11 @@
 .comments{
   height: 100px;
 }
-#card{
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  display: flex;
-  overflow-x: auto; /* Habilita el desplazamiento horizontal */
-  padding: 0; /* Elimina el relleno predeterminado de la lista */
-  list-style: none; /* Elimina los puntos de viñeta de la lista */
-}
-
-#card li{
-  width: 25%;
-  height: 80%;
-  padding: 5px;
-}
-
-#card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-#card img {
-  width: 100%; 
-  height: auto;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
 .scrollable-container {
   width: 100%; /* O el ancho deseado */
   overflow-x: auto; /* Habilita la barra de desplazamiento horizontal cuando sea necesario */
   display: inline-block;
-}
-#card p {
-  margin: 0; /* Elimina cualquier margen interno del párrafo */
-  max-width: 100%; /* Establece el ancho máximo del párrafo al 100% del tamaño del td */
-  font-size: 20px;
-  text-align: center;
-}
-#card .list-group-item {
-  flex: 0 0 auto; /* Establece el tamaño automático para cada elemento de la lista */
-  margin-right: 30px; /* Espacio entre elementos */
-}
-
-#card .list-group-item:last-child {
-  margin-right: 0; /* Elimina el margen derecho del último elemento */
-}
-#imgfondo{
-  background-color: #fff;
+  white-space: nowrap;
 }
 
 .welcomeContent{
@@ -124,20 +80,21 @@
   border-radius: 5px;
 }
 .custom-btn3 {
-  border-radius: 20px; /* Bordes redondeados */
+  border-radius: 5px; /* Bordes redondeados */
   background-color: #0C356A; /* Color de fondo personalizado */
   color: #fff; /* Color de texto */
   padding: 10px 20px; /* Espaciado interno */
-  font-size: 16px; /* Tamaño de fuente */
+  font-size: 2vh; /* Tamaño de fuente */
   border: none; /* Sin borde */
   cursor: pointer; /* Cambiar cursor al pasar el ratón */
   text-decoration: none;
   align-items: center;
+  font-weight: bold;
 }
 
 /* Estilos al pasar el ratón */
 .custom-btn3:hover {
-  background-color: #0056b3; /* Cambiar color de fondo al pasar el ratón */
+  background-color: #406eaa; /* Cambiar color de fondo al pasar el ratón */
 }
 
 .centered-container {
@@ -152,4 +109,41 @@
   align-items: center;
   justify-content: center;
   display: flex;
+}
+.card {
+  /* margin-bottom: 1rem;  */
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+  width: 320px;
+  height: auto;
+
+}
+
+
+.area{
+  text-align: center;
+  align-items: center;
+  background-color: #C7C8CC;
+  border-radius: 5px;
+}
+.area span{
+  font-weight: bold;
+  padding-bottom: 0 !important;
+
+}
+.slider-container {
+  display: flex;
+  overflow-x: auto; /* Activar desplazamiento horizontal */
+  width: 100%; /* Ajustar el ancho según sea necesario */
+  text-align: center;
+}
+
+.slider-item {
+  flex: 0 0 auto; /* Evitar que los elementos se ajusten */
+  margin-right: 10px; /* Espacio entre elementos */
+}
+.BGResume-profesor{
+  background-image: url('../img/proyec.svg');
+    background-size: cover; 
+    background-position: center;
+    border-radius: 5px;
 }

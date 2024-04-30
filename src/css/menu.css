@@ -1,10 +1,8 @@
 .opciones{
     color: white;
-    margin-right: 3%;
     text-decoration: none;
     font-weight: bold;
     font-style: Arial;
-    font-size: 18px;
 }
 .opciones:hover{
     color:#406eaa;
@@ -38,13 +36,37 @@
     color: white;
     text-decoration: none;
     background-color: #406eaa; 
-    border-radius: 20px;
+    border-radius: 5px;
     font-weight: bold;
     font-style: Arial;
-    font-size: 16px;
-    padding: 15px 20px;
+    padding: 10px 15px;
 }
 .opciones-btn:hover{
   color: black;
   background-color: white;
+}
+.ExpoIngLog{
+  display: block;
+}
+.navbar-nav {
+  text-align: center;
+
+}
+
+  .navbar-nav > li {
+    float: none;
+    display: inline-block;
+  }
+
+.ExpoIngLog{
+  margin-right: 20px;
+}
+.navbar-toggler{
+  color:white;
+}
+.navbar-toggler-icon{
+  color: white;
+}
+#NavBar{
+  width: 100vw !important;
 }

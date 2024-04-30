@@ -43,7 +43,7 @@
     right: 45%;
 }
 .boton-foto-main button{
-    font-size: 3vh; /* Tamaño del texto */
+    font-size: 20px; /* Tamaño del texto */
     padding: 20px 30px; 
 }
 .carrusel-main{
@@ -52,7 +52,7 @@
 }
 .carrusel-main img{
     width: 100%;
-    height: 100vh;   
+    height: auto;   
 }
 .carrusel-text{
     width: 30%;
@@ -67,11 +67,10 @@
 }
 
 .boton-carrusel{
-    border-radius: 20px; /* Bordes redondeados */
+    border-radius: 5px; /* Bordes redondeados */
     background-color: #0C356A; /* Color de fondo personalizado */
     color: #fff; /* Color de texto */
     padding: 10px 20px; /* Espaciado interno */
-    font-size: 40px; /* Tamaño de fuente */
     border: none; /* Sin borde */
     cursor: pointer; /* Cambiar cursor al pasar el ratón */
     font-weight: bold;
@@ -92,7 +91,6 @@
 .text-conoce h6{
     font-weight: bold;
     text-align: center;
-    font-size: 3vh;
 }
 .pie-foto{
     display: flex;
@@ -102,3 +100,104 @@
 .coment{
     height: 100%;
 }
+.participar{
+    width: 100vw;
+    padding: 8vh;
+    background-color: #406eaa;
+}
+.participar h2{
+    color: #0C356A;
+    font-weight: bold;
+    margin-bottom: 2vh;
+}
+.indicaciones li{
+    font-weight: bold;
+    margin-top: 2vh;
+}
+.participar h3{
+    font-weight: bold;
+    color: #0C356A;
+    font-size: 30px;
+    margin-top: 3vh;
+}
+.convocatoria-foto img{
+    width: 100%;
+    height: auto;
+}
+
+.participar .timer{
+    background-color: #0C356A;
+    color: white;
+    text-align: center;
+}
+@media only screen and (max-width: 600px) {
+    .portadaimg{
+        background-image: url('../img/portada_celular.svg') ;
+    }
+    .participar .timer {
+      font-size: 14px; /* Tamaño de texto más pequeño para pantallas pequeñas */
+    }
+    .participar h2{
+        font-size: 14px;
+    }
+    .indicaciones li{
+    font-size: 12px;
+    }
+    .text-conoce h6{
+        font-size: 12px;
+    }
+    .boton-carrusel{
+        font-size: 14px;
+    }
+    .carrusel-text h3{
+        font-size: 10px;
+    }
+  }
+  
+  /* Estilo para pantallas medianas */
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .participar .timer{
+      font-size: 18px; /* Tamaño de texto más grande para pantallas medianas */
+    }
+    .participar h2{
+        font-size: 18px;
+    }
+    .indicaciones li{
+        font-size: 15px;
+    }
+    .text-conoce h6{
+        font-size: 12px;
+    }
+    .boton-carrusel{
+        font-size: 18px;
+    }
+    .carrusel-text h3{
+        font-size: 15px;
+    }
+  }
+  
+  /* Estilo para pantallas grandes */
+  @media only screen and (min-width: 1025px) {
+    .participar .timer {
+      font-size: 50px; /* Tamaño de texto aún más grande para pantallas grandes */
+    }
+    .participar h2{
+        font-size: 50px;
+    }
+    .indicaciones li{
+        font-size: 25px;
+    }
+    .text-conoce h6{
+        font-size: 20px;
+    }
+    .boton-carrusel{
+        font-size: 40px;
+    }
+    .carrusel-text h3{
+        font-size: 25px;
+    }
+  }
+  .texto-participar{
+    background-color: white;
+    border-radius: 5px;
+  }
