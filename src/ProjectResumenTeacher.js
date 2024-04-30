@@ -1,14 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
+import React, { useState,useEffect } from "react";
+import { RadioButton, RadioButtonChangeEvent } from "primereact/radiobutton";
 
+import CardConcept from './img/CardConcept.png';
+import CardProto from './img/CardProto.png';
+import CardFinish from './img/CardFinish.png';
 import './css/ResumeTeacher.css'
-import Lienzo from './components/Lienzo.js';
+import ToggleBar from './components/togglebar.js';
 
 function InfoProj({lead,judge,status}){
   const diccionario = {
-    "aprobado": "green",
-    "rechazado": "red",
-    "en revision": "gold"
+    "aprobado": "bi bi-check-circle aceptado1 p-2",
+    "rechazado": "bi bi-x-circle rechazado1 p-2",
+    "en revision": "bi bi-hourglass-split espera1 p-2"
   };
   const colors = {
     "green": "white",
@@ -45,8 +50,8 @@ function InfoProj({lead,judge,status}){
           </div>
             <div className="row justify-content-between d-flex align-items-center">
                 <div className="col-md-1"></div>
-                <div className="col-md-auto" style={{ backgroundColor: diccionario[status], color: colors[diccionario[status]]}}>
-                    <span className ="Subtitulo">{status}</span>
+                <div className="col-md-auto">
+                    <i class={diccionario[status]}>{status}</i>
                     </div>
                     <div className="col-md-1"></div>
                 </div>
@@ -56,22 +61,26 @@ function InfoProj({lead,judge,status}){
   );
 }
 
-function ProjResume({type, area, descr, title}){
+function ProjResume({type, area, title}){
+  const imagenes = {
+    "idea": CardConcept,
+    "prototipo": CardProto,
+    "prototipo finalizado": CardFinish
+  };
   return(
-    <div className='col-md-7 pt-4 ps-4 pe-4 '>
+    <div className='col-12 col-md-7 pt-4 ps-4 pe-4 '>
         
-      <div className="container-fluid BGResume  w-100 ">
+        <div className="container-fluid BGResume w-100" style={{ backgroundImage: `url(${imagenes[type]})` }}>
           <div className ="row p-2 BGBar">
 
             <div className="col proj-sub-bold text-start" ><span className='gemelo'>Tipo de proyecto: {type}</span></div>
             <div className="col proj-sub-bold text-end"><span className='gemelo'>{area}</span></div>
 
           </div>                          
-        <div className='m-4 p-0'>
+        <div className='me-4 ms-4 mb-4 pb-3 pe-3 ps-3 mt-4'>
           <div className="container-fluid ">
-            <div className="row ">
-              <div className="col-xxl-5 proj-sub text-start" ><span className='text-break'>{descr}</span></div>
-              <div className="col-xxl-7 proj-tit text-end'wrap "><span className='text-break'>{title}</span></div>
+            <div className="row">
+              <div className="col-xxl-7 proj-tit text-end'wrap"><span className='text-break'>{title}</span></div>
             </div>
           </div>
         </div>
@@ -82,8 +91,8 @@ function ProjResume({type, area, descr, title}){
 
 function CommentCont({role}){
   return(
-    <div className ="col-12">
-      <h1 className ="Titulo text-break">Comentarios del {role} y aprobación </h1>
+    <div className ="col-md-12">
+      <h1 className ="Titulo text-break">Comentarios del {role} </h1>
 
       <div className ='container-fluid p-1'>
           <textarea class="form-control" rows="5" id="comentarioProfe"></textarea>
@@ -95,54 +104,113 @@ function CommentCont({role}){
 function BotonStatus(){
   return(
     <>
-    <div className="col-md-6 centered-container2">
-        <button className="custom-btn">Aceptar</button>
+    <div className='col-md-4'></div>
+    <div className="col-md-2 centered-container2">
+        <button type="submit" className="custom-btn">Guardar</button>
     </div>
-    <div className='col-md-6 centered-container3'>
-      <button className="custom-btn2">Rechazar</button>
-    </div>
+    <div className='col-md-4'></div>
     </>
 );
 }
 
 function CommenSec(){
   return(
-    <div className='col-md-5'>
-      <div className="Info m-auto p-4">
+    <>
+    <div className='col-12 col-md-10'>
+      <div className="Infologo m-auto p-4">
         <div className='container-fluid'>
-          <div className ='row pb-6 align-items-center'>
+          <div className ='row align-items-center'>
             <CommentCont role={"Profesor"}></CommentCont>
           </div>
         </div>
       </div>
     </div>
+    </>
   );
 }
 
-function ProjectFile(){
+function ProjectFile({descr}){
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [textoRecortado, setTextoRecortado] = useState(descr);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth <= 576 && descr.length > 50) {
+      setTextoRecortado(descr.substring(0, 50) + '...');
+    } else {
+      setTextoRecortado(descr);
+    }
+  }, [windowWidth, descr]);
   return(
-    <div className='col-md-5'>
-      <div className="Info m-4 p-4">
-
-        <h1 className ="Titulo text-break">Archivos del proyecto</h1>
-
-        <div className ='container-fluid p-1 m-2centered-FinalRescontainer '>
-          <div className ="row pb-3 align-items-center">
-            <div className ='col-md-6 d-flex justify-content-center align-items-center'>
-            <a href="" className="file d-flex justify-content-center align-items-center"><svg xmlns="http://www.w3.org/2000/svg" width= "40%" height="auto" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z"/>
-</svg></a>
-</div>
-<div className ='col-md-6 d-flex justify-content-center align-items-center'>
-<a href="" className="file d-flex justify-content-center align-items-center"><svg xmlns="http://www.w3.org/2000/svg" width= "40%" height="auto" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
-  <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
-</svg></a>
-            </div>   
-            <div className ='col-md-1'></div>           
+    <>
+   <div className='col-12 col-md-10'>
+   <div className="Infologo m-auto p-4">
+    <div className='row'>
+    <div className='col-12 col-md-8'>
+    <div className="row d-flex">
+    <h1 className="Titulologo text-break">Archivos del proyecto</h1>
+    </div>
+    <div className='container-fluid'>
+    <div className="row d-flex">
+        <div className='col-12 col-md-6 justify-content-center align-items-center'>
+          <a href="" className="file"><i className="bi bi-filetype-pdf icono" id="logo"></i></a>
+          <div className='row d-flex m-2 check'>
+          <div className='col-6  col-md-6 justify-content-center'>
+          <div className="form-check">
+            <input className="form-check-input" type="radio" name="pdfStatus" id="flexRadioDefault1"/>
+            <label className="form-check-label" for="flexRadioDefault1">Aprobado</label>
           </div>
         </div>
-      </div>
+        <div className='col-6  col-md-6 justify-content-center'>
+          <div className="form-check">
+            <input className="form-check-input" type="radio" name="pdfStatus" id="flexRadioDefault2" checked />
+            <label className="form-check-label" for="flexRadioDefault2">Rechazado</label>
+          </div>
+        </div>
+        </div>
+        </div>
+        <div className='col-12 col-md-6 justify-content-center align-items-center'>
+          <a href="" className="file"><i className="bi bi-youtube icono" id="logo"></i></a>
+          <div className='row d-flex m-2 check'>
+          <div className='col-6  col-md-6 justify-content-center'>
+          <div className="form-check">
+            <input className="form-check-input" type="radio" name="videoStatus" id="flexRadioDefault1"/>
+            <label className="form-check-label" for="flexRadioDefault1">Aprobado</label>
+          </div>
+        </div>
+        <div className='col-6 col-md-6 justify-content-center'>
+          <div className="form-check">
+            <input className="form-check-input" type="radio" name="videoStatus" id="flexRadioDefault1"/>
+            <label className="form-check-label" for="flexRadioDefault1">Rechazado</label>
+          </div>
+        </div>
+        </div>
+        </div>
     </div>
+    </div>
+    </div>
+    <div className='col-12 col-md-4'>
+    <div className="row d-flex">
+    <h1 className="Titulologo text-break">Descripcion del proyecto</h1>
+    </div>
+    <div className="row d-flex">
+    <span>{textoRecortado}</span>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+    </>
   );
 }
 
@@ -152,25 +220,33 @@ function ProjectFile(){
 export default function ProjResumeCont(){
   return(
     <>
-    <Lienzo></Lienzo>
-    <div className='container-fluid centered-container'>
+    <ToggleBar />
+    <div className='container-fluid'>
         <div className='row'>
             <div className="col-md-1"></div>
-          <ProjResume type={"Prototipo"} area={"Biotecnologia"} descr={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."} title={"Robot automata para automatizar automatas"}></ProjResume>        
+          <ProjResume type={'idea'} area={"Biotecnologia"} title={"Robot automata para automatizar automatas"}></ProjResume>        
           <InfoProj lead={"Gerardo Deustúa Hernández"} judge={"Marcela Dominguez Rosas"} status={"en revision"}></InfoProj>
           <div className="col-md-1"></div>
         </div>
 
-        <div className='row m-2 w-100 align-items-center'>
-          <div className="col-md-1"></div>
-          <CommenSec />       
-          <ProjectFile />
+      
+      <form className='forms'>
+        <div className='row m-2 align-items-center'>
+        <div className="col-md-1"></div>
+          <ProjectFile descr={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."} />      
           <div className="col-md-1"></div>
         </div>
-        <div className='row m-4 w-100 justify-content-between'>
+        <div className='row m-2 justify-content-between'>
+          <div className="col-md-1"></div>
+          <CommenSec /> 
+          <div className="col-md-1"></div>
+        </div>
+        <div className='row m-3 justify-content-between'>
           <BotonStatus />
         </div>
+        </form>
       </div>
+      
     </>
   );
 }

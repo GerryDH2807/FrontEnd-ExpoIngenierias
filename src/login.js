@@ -5,7 +5,6 @@ import tecLogo from "./img/teclogo.png";
 import expoLogo from "./img/logoei.svg";
 import backgroundImage from "./img/fondo1.png";
 import {Link} from 'react-router-dom'
-import { colors } from "@material-ui/core";
 
 export default function Login() {
   return (

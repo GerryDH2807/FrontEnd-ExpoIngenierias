@@ -1,43 +1,57 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import {Link} from 'react-router-dom'
 import Lienzo from './components/Lienzo.js';
-
+import ToggleBar from './components/togglebar.js';
+import CardConcept from './img/CardConcept.png';
+import CardProto from './img/CardProto.png';
+import CardFinish from './img/CardFinish.png';
 
 import { people } from './data.js';
 
 import './css/hometeacher.css';
-
-function SimpleImageList({ data }) {
+function HorizontalSlider ({data}){
+  const diccionario = {
+    "aprobado": "bi bi-check-circle aceptado",
+    "rechazado": "bi bi-x-circle rechazado",
+    "en revision": "bi bi-hourglass-split espera"
+  };
+  const imagenes = {
+    "idea": CardConcept,
+    "prototipo": CardProto,
+    "prototipo finalizado": CardFinish
+  };
   return (
-    <div className="scrollable-container">
-      <ul className="list-group list-group-horizontal" id="card">
-        {data.map((item) => (
-          <li key={item.id} className="list-group-item">
-            <img src={item.imageId} alt={item.name} />
-            <div className='container-fluid'>
-              <div className='row d-flex justify-content-between align-items-center'>
-                <div className='col-sm-6'>
-                <p className='NombreProyecto m-2'>{item.id}</p>
-                </div>
-                <div className='col-sm-6'>
-                <i class="bi bi-check-circle aceptado"> Aceptado</i>
-                 </div>
+    <div className="slider-container">
+      {data.map((item) => (
+        <div className='slider-item card m-3' key={item.id}>
+        <img src={imagenes[item.categoria]} alt={item.id}  className='card-img-top'/>
+      <div className='card-body'>
+          <h5 className=' card-title m-2'>{item.id}</h5>
+          <div className='container-fluid'>
+            <div className='row d-flex justify-content-evenly mb-4'>
+              <div className='col-md-auto area '>
+                <span>{item.area}</span>
               </div>
-              <div className='row p-3'>
-              <div className='container d-flex justify-content-center'>
-                <div className='col-dm-6'>
-                <Link to="/resumen-proyecto" className='custom-btn3'>Ver Proyecto</Link>
-                </div>
+              <div className='col-md-auto area'>
+                <span>{item.categoria}</span>
+              </div>
+              <div className='col-md-auto'>
+                <i class={diccionario[item.status]}>{item.status}</i>
               </div>
             </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+          </div>
+          <Link to="/resumen-proyecto" className='custom-btn3 mb-5'>Ver Proyecto</Link>
+          </div>
+    </div>
+      ))}
     </div>
   );
-}
+};
+
 function Resumeteacher({Total,revisados,faltantes,progreso}){
     return(
   
@@ -85,7 +99,7 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
     return(
       <div className='col-md-7 pt-4 ps-4 pe-4 '>
           
-        <div className="container-fluid BGResume  w-100 ">
+        <div className="container-fluid BGResume-profesor w-100 ">
             <div className ="row p-2 BGBar">
             <div className="col-md-12"><span style={{display: 'inline-block', width: '100%', height: 0}}></span></div>
             </div>                          
@@ -110,7 +124,7 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
 export default function Hometeacher(){
     return(
       <>
-      <Lienzo/>
+      <ToggleBar />
     <div className='container-fluid centered-container'>
       <div className='container-fluid'>
         <div className='row d-flex justify-content-between'>
@@ -123,7 +137,7 @@ export default function Hometeacher(){
           <div className="col-md-10 ">
           <div className='container-fluid'  id="imgfondo">
             <h3 className ="Titulo p-3">Proyectos Que faltan de revisar</h3>
-            <SimpleImageList data={people}/></div>
+            <HorizontalSlider data={people}/></div>
             </div>
           <div className="col-md-1"></div>
           </div>
@@ -132,7 +146,7 @@ export default function Hometeacher(){
           <div className="col-md-10 ">
           <div className='container-fluid' id="imgfondo">
             <h3 className ="Titulo p-3">Proyectos Revisados</h3>
-            <SimpleImageList data={people}/></div>
+            <HorizontalSlider data={people}/></div>
             </div>
           <div className="col-md-1"></div>
           </div>

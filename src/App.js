@@ -12,6 +12,9 @@ import Login from './login.js';
 import FormUser from './UserRegister.js';
 import FormStudent from './StudentRegister.js';
 import UserRegisterCont from './RegisterContent.js'
+import AnunciosTeacher from './anunciosTeacher.js';
+import ConstanciaTeacher from './constanciaTeacher.js';
+import Perfil from './perfils.js';
 function App() {
   return (
 <>
@@ -28,6 +31,9 @@ function App() {
         <Route path="/Registro-usuario" element={<FormUser />} />
         <Route path="/Registro-estudiante" element={<FormStudent />} />
         <Route path="/Registro-inicio" element={<UserRegisterCont />} />
+        <Route path="/anuncios-profesor" element={<AnunciosTeacher />} />
+        <Route path="/constancia-profesor" element={<ConstanciaTeacher />} />
+        <Route path="/perfil-usuario" element={<Perfil />} />
 </Routes>
 </div>
 </>
