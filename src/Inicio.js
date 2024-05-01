@@ -3,12 +3,11 @@ import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
 import './Page.css';
 import './Resume.css'
-import './ProjectResumenContent.js';
 
 
 import ProfPict from './img/descargar.jpeg'
 import logo from './img/logo.svg';
-import ProjResumeCont from './ProjectResumenContent.js';
+import ProjResumeCont from './ProjResume/ProjectResumenContent.js';
 
 import {Lienzo} from './components/Lienzo.js';
 

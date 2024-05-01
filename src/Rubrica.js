@@ -36,7 +36,7 @@ const Rubrica = () => {
     }).join('\n');
 
     // Display total score, criteria and comments in a pop-up
-    if (window.confirm(`¿Estás seguro de que deseas enviar tu rúbrica?\n\nPuntaje Total: ${totalScore}\n${criteriaMessage}\nComentarios: ${comments}`)) {
+    if (window.confirm(`¿Estás seguro de que deseas enviar tu rúbrica?\n\nPuntaje Total: ${totalScore/5}\n${criteriaMessage}\nComentarios: ${comments}`)) {
       window.location.href = './juez'; // Redirige al usuario a la página /juez
     }
   };
