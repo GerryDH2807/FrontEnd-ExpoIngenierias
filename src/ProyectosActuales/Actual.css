@@ -30,22 +30,50 @@
 }
 
 .scroll-container::-webkit-scrollbar-track {
-    background: #aeaeae; /* Color del fondo de la scrollbar */
+    background: #aeaeae;
     
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-    background: #555555e6; /* Color del thumb (barra deslizante) */
-    border-radius: 5px; /* Borde redondeado del thumb */
+    background: #555555e6;
+    border-radius: 5px; 
 }
 
 .scroll-container::-webkit-scrollbar-thumb:hover {
-    background: #000000; /* Cambio de color al pasar el mouse sobre la scrollbar */
+    background: #000000; 
 }
   
-/* Evita el desbordamiento de las tarjetas de la fila */
+
 .d-flex > .col {
     flex: 0 0 auto;
+}
+
+
+
+
+
+
+.scroll-container1 {
+    max-height: 60vh; 
+    overflow-y: auto;
+}
+
+.scroll-container1::-webkit-scrollbar {
+    width: 5px;
+}
+
+.scroll-container1::-webkit-scrollbar-track {
+    background: #aeaeae;
+    
+}
+
+.scroll-container1::-webkit-scrollbar-thumb {
+    background: #555555e6;
+    border-radius: 5px; 
+}
+
+.scroll-container1::-webkit-scrollbar-thumb:hover {
+    background: #000000; 
 }
 
 
@@ -68,6 +96,7 @@
 
     background-color: #e6e6e6e6;
 
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
 
 }
 
@@ -78,9 +107,59 @@
     font-weight: bold;
 }
 
-.scroll-container {
-    width: 100%;
-    overflow-x: auto;
+.ButtonColors123{
 
-  }
-  
+    background-color: #406eaa;
+    border-color: #406eaa;
+    font-weight: bold;
+}
+ 
+.ContDetails{
+    background-color: #e6e6e6;
+    border-radius: 5px;
+}
+
+
+
+.ModalIconsCurrent{
+    font-size: 70px;
+    color:#0C356A;
+}
+
+.ConceptDetailedImage{
+    background-image: url('../img/ConceptDetailed.png');
+    background-size: cover; 
+    background-position: center;
+
+    border-radius: 5px;
+
+    height: 240px;
+    
+}
+
+.ProtoDetailedImage{
+    background-image: url('../img/ProtoDetailed.png');
+    background-size: cover; 
+    background-position: center;
+
+    border-radius: 5px;
+
+    height: 240px;
+    
+}
+
+.FinishDetailedImage{
+    background-image: url('../img/FinishDetailed.png');
+    background-size: cover; 
+    background-position: center;
+
+    border-radius: 5px;
+
+    height: 240px;
+    
+}
+
+.FotoCard{
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+}
+

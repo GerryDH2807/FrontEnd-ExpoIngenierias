@@ -422,7 +422,6 @@ return (
       </Form.Group>
     </Row>
 
-
       <Row className="mb-3  ">
 
         <Form.Group as={Col} md="12" controlId="validationCustom06">
@@ -484,7 +483,7 @@ return (
         <div className='cotainer-fluid'>
             <div className='row'>
                 <div className='col'>
-                    <Form.Label className='Titulo'>Necestias materiales extra?</Form.Label>
+                    <Form.Label className='Titulo'>Necesitas materiales extra?</Form.Label>
                 </div>
             </div>
 

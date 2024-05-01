@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
+import { Link } from 'react-router-dom';
+
 import Row from 'react-bootstrap/Row';
 
 import './UserRegister.css';
@@ -82,6 +84,15 @@ export default function FormUser() {
 
                     <center><Button type="submit" className='mt-4 btn-lg ButtonRegister'>Registrar usuario</Button></center>
                 </Form>
+
+                <div className='container-fluid mb-4'>
+                    <div className='row'>
+                        <div className='col'>
+                            <Link to={'/extramaterial'} className='bi bi-arrow-left-circle IconBack'> Regresar</Link>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </>
 

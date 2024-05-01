@@ -3,37 +3,54 @@ import "./DetailedAnnoun.css";
 import {Link} from 'react-router-dom';
 
 
-function AnnounTitle(){
+function AnnounTitle({TituloDetailed}){
     return(
         <>
-            <div className="col-6 p-3  ">
+            <div className="col-12 p-3  ">
                 <i className="bi bi-megaphone-fill AnnounIcon"></i>
-                <span className="TituloAnnoun">Titulo del anuncio</span>
+                <span className="TituloAnnoun">{TituloDetailed}</span>
             </div>
         </>
     );
 }
 
-function AnnounBody(){
+function AnnounBody({Asunto, Fecha, Contenido}){
     return(
         <div className="container-fluid">
-            <div className="row p-3">
-                <div className="col-2 p-3 SubjectCont">
-                    <span className="Subtitulo">Asunto: </span><span>cuerpo del asunto</span>
+            <div className="row p-3 ">
+                <div className="col-5 p-3">
+
+                    <div className="container-fluid">
+                        <div className="row SubjectCont p-4">
+                            <div className="col-2">
+                                <span className="Subtitulo text-wrap">Asunto: </span>
+                            </div>
+
+                            <div className="col-10">
+                                <span className="text-wrap">{Asunto}</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div className="col-2 ms-3 p-3 SubjectCont">
-                    <span className="Subtitulo">Fecha: </span><span>24/04/19</span>
+                <div className="col-5 ms-3 p-3 ">
+                    <div className="container-fluid">
+                        <div className="row SubjectCont p-4">
+                            <div className="col-2">
+                                <span className="Subtitulo text-wrap">Asunto: </span>
+                            </div>
+
+                            <div className="col-10">
+                                <span className="text-wrap">{Fecha}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
             <div className="row">
                 <div className="col p-3">
-                    <span className="texto">          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.</span>
+                    <span className="texto"> {Contenido}</span>
                 </div>
             </div>
         </div>
@@ -44,7 +61,7 @@ export default function DetailedAnnounCont(){
     return(
         <div className="container-fluid mt-3 p-3">
             <div className="row p-3 ContainerAnnoun d-flex align-items-center">
-                <AnnounTitle></AnnounTitle>
+                <AnnounTitle TituloDetailed={"TItulo de los anuncio alv"}></AnnounTitle>
             </div>
 
             <div className="row mt-4 p-3 ContainerAnnoun d-flex align-items-center">

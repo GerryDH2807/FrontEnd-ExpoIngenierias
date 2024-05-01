@@ -42,6 +42,8 @@
     font-weight: bold;
 }
 
+
+
 .InputFormat{
 
     background-color: rgb(225, 225, 225);
@@ -51,9 +53,32 @@
 .InputDescrFormat{
 
     background-color: rgb(225, 225, 225);
-    height: 200px;
+    height: 150px;
   
 }
+
+
+.InputDescrFormat::-webkit-scrollbar {
+    width: 5px;
+}
+
+.InputDescrFormat::-webkit-scrollbar-track {
+    background: #aeaeae;
+    
+}
+
+.InputDescrFormat::-webkit-scrollbar-thumb {
+    background: #555555e6;
+    border-radius: 5px; 
+}
+
+.InputDescrFormat::-webkit-scrollbar-thumb:hover {
+    background:#000000;
+}
+
+
+
+
 
 .ButtonRegister{
     background-color: #406eaa;
