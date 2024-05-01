@@ -202,6 +202,8 @@ return (
       </Form.Group>
       </Row>
 
+      
+
       <Row className="mb-3">
         <Form.Group  controlId="exampleForm.ControlTextarea1">
           <div className='container-fluid'>
@@ -245,7 +247,7 @@ return (
                   <Form.Control
                     required
                     type="text"
-                    placeholder="Ingresa el nombre"
+                    placeholder="Ingresa el nombre(s)"
                     className='InputFormat'
                   />
                 </div>
@@ -257,6 +259,16 @@ return (
                     className='InputFormat'
                   />
                 </div>
+
+                <div className='col'>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="A01XXXXXx"
+                    className='InputFormat'
+                  />
+                </div>
+
               </div>
               <Form.Control.Feedback type='invalid'>No hay integrantes</Form.Control.Feedback>
             </div>
@@ -409,13 +421,13 @@ return (
 }
 
 export default function ProjRegisterCont(){
-return (
-    <div className='container w-50 mt-4 mb-4 bg-white'>
-        <div className='row p-2'>
-            <div className='col p-4'>
-                <FormExample />
-            </div>
-        </div>
-    </div>
-);
+  return (
+      <div className='container w-50 mt-4 mb-4 bg-white'>
+          <div className='row p-2'>
+              <div className='col p-4'>
+                  <FormExample />
+              </div>
+          </div>
+      </div>
+  );
 }

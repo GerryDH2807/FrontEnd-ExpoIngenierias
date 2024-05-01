@@ -38,6 +38,21 @@
     --bs-gutter-x: 0;
 }
 
+
+.ContainerAnnounBut:hover{
+    background-color: #0b5ed7;
+
+    font-weight: bold;
+
+    padding: 30px;
+
+    width: 20%;
+
+    border-radius: 5px;
+    --bs-gutter-x: 0;
+}
+
+
 .ButtReturn{
 
     color: #ffffff;

@@ -32,16 +32,28 @@
 
   background-color: #ffffff;
   border-radius: 5px;
+  
 
+}
+
+.Info2{
+
+  background-color: #ffffff;
+  border-radius: 5px;
+  height: 292px;
 }
 
 .BGResume{
 
-  background-image: url('../img/proyec.svg'); 
+  background-image: url('../img/CardProto.png'); 
   background-size: cover; 
   background-position: center;
 
   border-radius: 5px;
+
+  height: 292px;
+
+  overflow-y: auto;
 
 }
 
@@ -195,4 +207,51 @@
 .ContCommentIndiJudge{
   background-color: #e6e6e6e5;
   border-radius: 5px;
+}
+
+.ComentariosCOntenidoWrap{
+  white-space: wrap;
+}
+
+.SilderCont{
+  white-space: nowrap;
+
+  overflow-y: auto;
+  height: 300px;
+
+}
+
+
+.SilderCont::-webkit-scrollbar {
+  width: 5px;
+}
+
+.SilderCont::-webkit-scrollbar-track {
+  background: #aeaeae;
+  
+}
+
+.SilderCont::-webkit-scrollbar-thumb {
+  background: #555555e6;
+  border-radius: 5px; 
+}
+
+.SilderCont::-webkit-scrollbar-thumb:hover {
+  background: #000000; 
+}
+
+.TextoEdit{
+
+  font-weight: bolder;
+  color: #ffffff;
+  background-color: #0C356A;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.TextoEdit:hover{
+
+  background-color: #0b5ed7;
+
 }
