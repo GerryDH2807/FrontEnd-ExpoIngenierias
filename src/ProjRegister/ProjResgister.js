@@ -234,6 +234,8 @@ return (
       </Form.Group>
       </Row>
 
+      
+
       <Row className="mb-3">
         <Form.Group  controlId="exampleForm.ControlTextarea1">
           <div className='container-fluid'>
@@ -502,13 +504,13 @@ return (
 }
 
 export default function ProjRegisterCont(){
-return (
-    <div className='container w-50 mt-4 mb-4 bg-white'>
-        <div className='row p-2'>
-            <div className='col p-4'>
-                <FormExample />
-            </div>
-        </div>
-    </div>
-);
+  return (
+      <div className='container w-50 mt-4 mb-4 bg-white'>
+          <div className='row p-2'>
+              <div className='col p-4'>
+                  <FormExample />
+              </div>
+          </div>
+      </div>
+  );
 }

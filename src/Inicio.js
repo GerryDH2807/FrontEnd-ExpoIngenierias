@@ -23,6 +23,9 @@ import StudentRegister from './StudentRegister/StudentRegister.js';
 import DetailedAnnoun from './Announcement/DetailedAnnoun.js';
 
 import Actual from './ProyectosActuales/Actual.js';
+import ProjectEdition from './ProjEdition/ProjEdition.js';
+
+import ProjSelection from './ProjSelection/ProjSelection.js';
 
 import CompShowProjects from './ShowProject.js';
 
@@ -61,6 +64,16 @@ function ToggleBar() {
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
+          <hr />
+
+          <div className='container-fluid'>
+            <div className='row'>
+              <div className='col'>
+              <center><i className='bi bi-person-circle docu-icon2'></i><span className='Titulo'>Pedro Sanchez</span></center>
+              </div>
+            </div>
+          </div>
+          <hr />
           <nav>
             <div className='container'>
               <div className='row m-2'>
@@ -102,6 +115,14 @@ function ToggleBar() {
                 <div className ='col-md-auto '>
                   <Link to='/mapa' onClick={() => { handleClose(); setSection("Mapa"); }} class="bi bi-map-fill docu-icon2"></Link>
                   <Link to='/mapa' className ="TextoValid2" onClick={() => { handleClose(); setSection("Mapa"); }}>Mapa</Link> 
+                </div>  
+              </div>
+
+
+              <div className='row m-2 mt-5'>
+                <div className ='col-md-auto mt-5'>
+                  <Link to='/mapa' onClick={() => { handleClose(); setSection("Mapa"); }} class="bi bi-box-arrow-left docu-icon2"></Link>
+                  <Link to='/mapa' className ="TextoValid2" onClick={() => { handleClose(); setSection("Mapa"); }}>Cerrar sesión</Link> 
                 </div>  
               </div>
 
@@ -152,9 +173,10 @@ function App() {
         </div>
       </nav>
 
+
       <Routes>
         <Route path='/resumen' element={<ProjResumeCont></ProjResumeCont>}></Route>
-        <Route path='/projselection' element={<ProjRegisterCont></ProjRegisterCont>}></Route>
+        <Route path='/projselection' element={<ProjSelection></ProjSelection>}></Route>
         <Route path='/extramaterial' element={<RegisterCont></RegisterCont>}></Route>
         <Route path='/constancia' element={<Constancia></Constancia>}></Route>
         <Route path='/anuncios' element={<Announ></Announ>}></Route>
@@ -165,8 +187,10 @@ function App() {
 
         <Route path='/announ1' element ={<DetailedAnnoun></DetailedAnnoun>}></Route>
 
-  
-        <Route path='/projcat' element={<CompShowProjects></CompShowProjects>}></Route>
+        <Route path='/EditProject' element={<ProjectEdition></ProjectEdition>}></Route>
+
+
+        <Route path='/projcat' element ={<ProjRegisterCont></ProjRegisterCont>}></Route>
  
       </Routes>
 

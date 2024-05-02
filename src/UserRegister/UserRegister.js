@@ -55,11 +55,11 @@ export default function FormUser() {
 
                     <Row className="mb-3  ">
                         <Form.Group as={Col} md="12" controlId="validationMembers">
-                        <Form.Label className='Titulo'>Matricula</Form.Label>
+                        <Form.Label className='Titulo'>Nómina</Form.Label>
                         <Form.Control
                             required
                             type="text"
-                            placeholder="A01XXXXXX"
+                            placeholder="L01XXXXXX"
                             maxLength={9}
                             className='InputFormat'
                         />

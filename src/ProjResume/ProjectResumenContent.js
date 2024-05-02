@@ -12,6 +12,7 @@ import axios from 'axios';
 
 
 import Accordion from 'react-bootstrap/Accordion';
+import { Link } from 'react-router-dom';
 
 function RubricaCalf({Calf1, Calf2, Calf3, Calf4, Calf5, Rubri1, Rubri2, Rubri3, Rubri4, Rubri5}) {
   return (
@@ -50,10 +51,10 @@ function RubricaCalf({Calf1, Calf2, Calf3, Calf4, Calf5, Rubri1, Rubri2, Rubri3,
   );
 }
 
-function InfoProj({lead,profLead,judge}){
+function InfoProj({lead,profLead,memeber}){
   return(
 
-    <div className='col-md-3'>
+    <div className='col-md-3 '>
 
       <div className="Info m-2 p-4">
 
@@ -87,13 +88,13 @@ function InfoProj({lead,profLead,judge}){
 
           <div className ="row pb"> 
             <div className ='col-md pe-0'>
-              <span className ="Subtitulo">Juez:</span>
+              <span className ="Subtitulo">Miembros del proyecto:</span>
             </div>
           </div>
 
           <div className ="row pb-1">
             <div className ='col-md ps-0'>
-              <span className="Texto text-wrap ps-3"> {judge}</span>
+              <p className="Texto text-wrap ps-3"> {memeber}</p>
             </div>
           </div>
 
@@ -104,8 +105,16 @@ function InfoProj({lead,profLead,judge}){
 }
 
 function ProjResume({type, area, descr, title}){
+
+  const truncateText = (text, limit) => {
+    if (!text || typeof text !== 'string' || text.length <= limit) {
+      return text;
+    }
+    return text.slice(0, limit) + '...';
+  };
+
   return(
-    <div className='col-md-6 pt-4 ps-4 pe-4 '>
+    <div className='col-md-6 ps-4 pe-4 '>
         
       <div className="container-fluid BGResume  w-100 ">
           <div className ="row p-1 BGBar">
@@ -117,7 +126,7 @@ function ProjResume({type, area, descr, title}){
         <div className='m-4 p-0'>
           <div className="container-fluid">
             <div className="row">
-              <div className="col-xxl-5 proj-sub text-start" ><p className='text-break'>{descr}</p></div>
+              <div className="col-xxl-5 proj-sub text-start" ><p className='text-break'>{truncateText(descr, 207)}</p></div>
               <div className="col-xxl-7 proj-tit text-end'wrap "><p className='text-break'>{title}</p></div>
             </div>
           </div>
@@ -130,7 +139,7 @@ function ProjResume({type, area, descr, title}){
 function ProjVal({finalRes, postVal, vidVal}){
   return(
     <div className='col-md-3'>
-      <div className="Info m-2 p-4">
+      <div className="Info2 m-2 p-4">
 
         <h1 className ="Titulo text-wrap ps-0">Validación de documentos</h1>
 
@@ -197,128 +206,132 @@ function ProjVal({finalRes, postVal, vidVal}){
               <span className ="Subtitulo1">Resultado:</span>
             </div>
 
-            <div className ='col-md-auto'>
+            
 
 
               {finalRes === "aprobado" &&(
-                
-                <span className ="AceptadoCont">
-                  <i className='bi bi-check-circle'> Aceptado</i>
-                </span>
-
+                <div className ='col-md-auto'>
+                  <span className ="AceptadoCont">
+                    <i className='bi bi-check-circle'> Aceptado</i>
+                  </span>
+                </div>
               )}
 
               {finalRes === "rechazado" &&(
-                
-                <span className ="RechazadoCont">
-                  <i className='bi bi-x-circle'> Rechazado</i>
-                </span>
+                <>
+                    <div className ='col-md-auto'>
+                      <span className ="RechazadoCont">
+                        <i className='bi bi-x-circle'> Rechazado</i>
+                      </span>
+                    </div>
+
+                  <div className='row mt-4'>
+                    <div className='col'><center>
+                      <Link to={'/EditProject'} className='TextoEdit'>Editar tu proyecto</Link>
+                    </center></div>  
+                  </div>                
+                </>
 
               )}
 
               {finalRes === "en revision" &&(
-                
-                <span className ="EsperaCont">
-                  <i className='bi bi-hourglass-split'> En revisión</i>
-                </span>
-
+                <div className ='col-md-auto'>
+                  <span className ="EsperaCont">
+                    <i className='bi bi-hourglass-split'> En revisión</i>
+                  </span>
+                </div>
               )}
-
-
-
-            </div>
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function JuezContComment({comment,id_judge}){
+  return(
+    <div className ='container-fluid p-3 mt-3 mb-3 ContCommentIndiJudge'>
+      <div className ="row align-items-center">
+        <div className ='col-md-auto'>
+          <p className='text-wrap fw-bold'>Comentario del juez {id_judge}:</p>
+        </div>   
+      </div>
+
+      <div className ="row pb-3 align-items-center">
+        <div className ='col-md-auto '>
+          <p className='text-break ComentariosCOntenidoWrap'>{comment}</p>
+        </div>   
+      </div> 
+    </div> 
   );
 }
 
 function CommentCont({role, comment}){
   return(
-    <div className ="col-xxl-3 Slider-Test-Item">
-      <h1 className ="Titulo ps-0">Comentarios del {role}</h1>
-
-      {role === 'Profesor' && (     
-        <div className ='container-fluid p-1'>
-          <div className ="row pb-3 align-items-center">
-            <div className ='col-md-auto '>
-              <p className='text-break'>{comment}</p>
-            </div>   
+    <>
+      
+    
+      {role === 'Profesor' && (   
+        <>
+          <div className ="col-xxl-3 h-50">
+            <h1 className ="Titulo ps-0">Comentarios del {role}</h1>
+            <div className ='container-fluid p-1'>
+              <div className ="row pb-3 align-items-center">
+                <div className ='col-md-auto '>
+                  <p className='text-break ComentariosCOntenidoWrap'>{comment}</p>
+                </div>   
+              </div>
+            </div>  
           </div>
-        </div>
+      
+        </>  
+
       )}
 
       {role === 'Juez' && (     
-        <div className ='container-fluid p-3 ContCommentIndiJudge '>
+        <>
+          <div className ="col-xxl-3 SilderCont">
+            <h1 className ="Titulo ps-0">Comentarios de {role}</h1>
+            <JuezContComment comment={comment} id_judge={1}></JuezContComment>
+            <JuezContComment comment={comment} id_judge={1}></JuezContComment>
+            <JuezContComment comment={comment} id_judge={1}></JuezContComment>
+            <JuezContComment comment={comment} id_judge={1}></JuezContComment>
 
-          <div className ="row align-items-center">
-            <div className ='col-md-auto '>
-              <p className='text-wrap fw-bold'>Comentario del juez 1:</p>
-            </div>   
           </div>
-
-          <div className ="row pb-3 align-items-center">
-            <div className ='col-md-auto '>
-              <p className='text-break'>{comment}</p>
-            </div>   
-          </div>
-        </div>
+        </>
       )}
 
+    
+    </>
 
-    </div>
   );
 }
 
-function Rubrica(){
+function Rubrica({Calf11, Calf21, Calf31, Calf41, Calf51, Rubri11, Rubri21, Rubri31, Rubri41, Rubri51}){
   return(
-    <div className ="col-xxl-3">
+    <div className ="col-xxl-3 h-75">
       <h1 className ="Titulo ps-0">Desgloce de rubrica</h1>
 
       <div className ='container-fluid p-1 mb-3'>
-        <RubricaCalf Calf1={'10'} Calf2={'6'} Calf3={'8'} Calf4={'7'} Calf5={'9'} Rubri1={'Hola perro'} Rubri2={'Hello'} Rubri3={'ASIAPSFNAPSOFNAPSFN'} Rubri4={'slgnlsakdnglsdnglsng'} Rubri5={"s;kdgslknglsnglasnglsag"}/>
+        <RubricaCalf Calf1={Calf11} Calf2={Calf21} Calf3={Calf31} Calf4={Calf41} Calf5={Calf51} Rubri1={Rubri11} Rubri2={Rubri21} Rubri3={Rubri31} Rubri4={Rubri41} Rubri5={Rubri51}/>
       </div>
     </div>
   );
 }
 
 
-function CommenSec(){
-  return(
-    <div className='Info col-md-12'>
-      <div className="m-auto p-4">
-
-        <div className='container-fluid'>
-          <div className ='row'>
-
-            <CommentCont role={"Profesor"} comment ={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></CommentCont>
-            <CommentCont role={"Juez"} comment={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></CommentCont>
-            <Rubrica></Rubrica>
-            <FinalCalf finalCalf={"9"}></FinalCalf>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function FinalCalf({finalCalf}){
   return(
     <>
-      <div className='col-md-3'>
+      <div className='col-xxl-3 h-50'>
         <h1 className ="Titulo text-break">Calificación final</h1>
-        <div className="Info m-1 p-0 ">
-
           <div className ='container-fluid p-1 centered-FinalRescontainer '>
             <div className ="row pb-3 align-items-center">
               <div className ='col-md-auto ContFinalRes text-center p-3'>
                 <span className ="FinalResul text-center">{finalCalf}/10</span> 
               </div>              
             </div>
-
-          </div>
         </div>
     </div>
     </>
@@ -327,6 +340,7 @@ function FinalCalf({finalCalf}){
 
 
 
+/* ~*~*~*~*~*~ FUNCIÓN PRINCIPAL DE CONTROL ~*~*~*~*~*~  */
 
 export default function ProjResumeCont(){
   const [project, setProject] = useState({id_project: 0, title:"", description: "", linkVideo: "", linkPoster: "", statusGeneral: "", statusPoster: "", statusVideo:"", area:"", category:"", person:""});
@@ -342,7 +356,7 @@ export default function ProjResumeCont(){
 
 
   return(
-    <div className='container-fluid centered-container'>
+    <div className='container-fluid centered-container mt-3 '>
       <div className='container-fluid'>
         <div className='row justify-content-between d-flex align-items-center'>
           <InfoProj lead={"Gerardo Deustúa Hernández"} profLead={project.person.name + " " + project.person.lastName} judge={"Marcela Dominguez Rosas"}></InfoProj>
@@ -352,8 +366,22 @@ export default function ProjResumeCont(){
           <ProjVal postVal={project.statusPoster} vidVal={project.statusVideo} finalRes={project.statusGeneral}></ProjVal>
         </div>
 
-        <div className='row m-2 justify-content-between d-flex align-items-center w-100'>
-          <CommenSec />       
+        <div className='row m-2 justify-content-between d-flex align-items-center w-100 mb-4'>
+          <div className='Info col-md-12'>
+            <div className="m-auto p-4">
+
+              <div className='container-fluid'>
+                <div className ='row'>
+                    
+                  <CommentCont role={"Profesor"} comment ={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></CommentCont>
+                  <CommentCont role={"Juez"} comment={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></CommentCont>
+                  <Rubrica Calf11={"10"} Calf21={"6"} Calf31={"8"} Calf41={"9"} Calf51={"7"} Rubri11={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri21={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri31={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri41={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri51={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} ></Rubrica>
+                  <FinalCalf finalCalf={"9"}></FinalCalf>
+                  
+                </div>
+              </div>
+            </div>
+          </div>      
         </div>
       </div>
     </div>

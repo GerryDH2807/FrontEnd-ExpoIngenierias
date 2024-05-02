@@ -1,0 +1,25 @@
+.TituloProjSEL{
+
+    font-weight: bolder;
+    color: #0C356A;
+    font-size: 30px;
+
+}
+
+.TitleSelectContainer{
+
+    background-color: #ffffff;
+    border-radius: 5px;
+
+    width: 37%;
+}
+
+.centered-containerProjSelc {
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 75px;
+}
+
