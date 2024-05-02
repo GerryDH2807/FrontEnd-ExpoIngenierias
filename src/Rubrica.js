@@ -3,41 +3,51 @@ import { criteria } from './components/rubricadata.js';
 import { Lienzo } from './components/Lienzo.js';
 import { Link } from 'react-router-dom';
 import './Rubrica.css';
+import './components/rubricadata.js';
 
 const Rubrica = () => {
   const [selectedCriteria, setSelectedCriteria] = useState(Array(criteria.length).fill(0));
-  const [comments, setComments] = useState('');
+  const [comments, setComments] = useState(Array(criteria.length).fill(''));
+  const [additionalComment, setAdditionalComment] = useState('');
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-  const handleCheckboxChange = (index, levelIndex) => {
+  const handleSliderChange = (index, value) => {
     setSelectedCriteria(prevSelectedCriteria => {
       const newSelectedCriteria = [...prevSelectedCriteria];
-      newSelectedCriteria[index] = levelIndex;
+      newSelectedCriteria[index] = value;
       return newSelectedCriteria;
     });
   };
 
+  const handleCommentChange = (index, value) => {
+    setComments(prevComments => {
+      const newComments = [...prevComments];
+      newComments[index] = value;
+      return newComments;
+    });
+  };
+
+  const handleAdditionalCommentChange = (value) => {
+    setAdditionalComment(value);
+  };
+
   const handleSubmit = () => {
-    // Check if comments are empty or less than 100 characters
-    if (!comments.trim() || comments.trim().length < 100) {
+    // Check if the additional comment meets the minimum length requirement
+    if (additionalComment.trim().length < 100) {
       setShowErrorMessage(true);
       return;
     }
 
     // Calculate total score and message
-    const totalScore = selectedCriteria.reduce((acc, levelIndex, index) => {
-      const level = criteria[index].levels[levelIndex];
-      return acc + level.score;
-    }, 0);
+    const totalScore = selectedCriteria.reduce((acc, value) => acc + value, 0);
 
-    const criteriaMessage = selectedCriteria.map((levelIndex, index) => {
-      const level = criteria[index].levels[levelIndex];
-      return `Criteria ${index + 1}: ${level.name} - Score: ${level.score}`;
+    const criteriaMessage = selectedCriteria.map((value, index) => {
+      return `${criteria[index].name}: Score: ${value}\nComentario: ${comments[index]}`;
     }).join('\n');
 
-    // Display total score, criteria and comments in a pop-up
-    if (window.confirm(`¿Estás seguro de que deseas enviar tu rúbrica?\n\nPuntaje Total: ${totalScore/5}\n${criteriaMessage}\nComentarios: ${comments}`)) {
-      window.location.href = './juez'; // Redirige al usuario a la página /juez
+    // Display total score, criteria, and comments in a pop-up
+    if (window.confirm(`¿Estás seguro de que deseas enviar tu rúbrica?\n\nPuntaje Total: ${totalScore/5}\n${criteriaMessage}\nComentario adicional: ${additionalComment}`)) {
+      window.location.href = './juez'; // Redirect the user to the /judge page
     }
   };
 
@@ -48,32 +58,45 @@ const Rubrica = () => {
       <div className="rubrica-container">
         {criteria.map((criterion, index) => (
           <div className="criterion" key={index}>
-            <h3>Criterio {index + 1}</h3>
-            <div className="checkboxes-container">
-              {criterion.levels.map((level, levelIndex) => (
-                <div key={levelIndex}>
-                  <input
-                    type="checkbox"
-                    checked={selectedCriteria[index] === levelIndex}
-                    onChange={() => handleCheckboxChange(index, levelIndex)}
-                  />
-                  <label>{level.name}</label>
-                </div>
-              ))}
+            <h3>{criterion.name}</h3>
+            <p>Calificación: {selectedCriteria[index]}</p>
+
+            <div className="PB-range-slider-div">
+              
+              <p>0(Deficiente)</p>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                step="20"
+                value={selectedCriteria[index]}
+                onChange={(e) => handleSliderChange(index, parseInt(e.target.value))}
+                id={`myRange${index}`}
+              />
+              <p>100(Excelente)</p>
             </div>
+            {/* Caja de comentarios */}
+            <textarea
+              placeholder={`Comentarios adicionales sobre ${criterion.name}`}
+              className="comment-box"
+              value={comments[index]}
+              onChange={(e) => handleCommentChange(index, e.target.value)}
+            />
           </div>
         ))}
+        {/* Comentario adicional */}
         <textarea
-          placeholder="Comentarios adicionales..."
+          placeholder="Comentario adicional sobre el proyecto (mínimo 100 caracteres)"
           className="comment-box"
-          value={comments}
-          onChange={(e) => setComments(e.target.value)}
+          value={additionalComment}
+          onChange={(e) => handleAdditionalCommentChange(e.target.value)}
         />
-        {showErrorMessage && (comments.trim() === '' || comments.trim().length < 100) && <p className="error-message">Por favor, ingresa tus comentarios con al menos 100 caracteres.</p>}
+        {/* Mensaje de error si el comentario adicional es insuficiente */}
+        {showErrorMessage && additionalComment.trim().length < 100 && <p className="error-message">Por favor, ingresa un comentario adicional con al menos 100 caracteres.</p>}
         <div className="buttons-container2">
-      <Link to="/Juez" className="btn2">Cancelar</Link>
-      <button onClick={handleSubmit} className="btn3">Enviar</button>
-      </div>
+          <Link to="/Juez" className="btn2">Cancelar</Link>
+          <button onClick={handleSubmit} className="btn3">Enviar</button>
+        </div>
       </div>
     </div>
   );

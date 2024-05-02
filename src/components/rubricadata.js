@@ -1,6 +1,6 @@
 export const criteria = [
   {
-    name: 'Criteria 1',
+    name: 'Innovación',
     score: 100,
     levels: [
       { name: 'Excellent', score: 100 },
@@ -11,7 +11,7 @@ export const criteria = [
     ],
   },
   {
-    name: 'Criteria 2',
+    name: 'Desarrollo',
     score: 100,
     levels: [
       { name: 'Excellent', score: 100 },
@@ -22,7 +22,7 @@ export const criteria = [
     ],
   },
   {
-    name: 'Criteria 3',
+    name: 'Uso de técnologias',
     score: 100,
     levels: [
       { name: 'Excellent', score: 100 },
@@ -33,7 +33,7 @@ export const criteria = [
     ],
   },
   {
-    name: 'Criteria 4',
+    name: 'Relevancia',
     score: 100,
     levels: [
       { name: 'Excellent', score: 100 },
@@ -44,7 +44,7 @@ export const criteria = [
     ],
   },
   {
-    name: 'Criteria 5',
+    name: 'Impacto social',
     score: 100,
     levels: [
       { name: 'Excellent', score: 100 },

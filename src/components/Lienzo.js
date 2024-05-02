@@ -36,7 +36,7 @@ export function Lienzo() {
               <div className="col-2">
                 <div className = "ToggleButton">
                   <div className="ProfPictFrame">
-                    <img src = {ProfPict} alt=""></img>
+                    
                   </div>
                 </div>
               </div>          

@@ -37,6 +37,22 @@
   text-align: center; /* Añadido para centrar el texto */
   font-weight: bolder;
 }
+.badge3 {
+  width: 5vw;
+  margin-top: 0.1vh;
+  margin-right: 0.1vw;
+  margin-bottom: 0.1vh;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  background-color: #298033; /* verde */
+  color: white;
+  border-radius: 12px;
+  padding: 2px 2px;
+  font-size: 10px; /* Añadí "px" al tamaño de fuente */
+  text-align: center; /* Añadido para centrar el texto */
+  font-weight: bolder;
+}
 
 
 @media (max-width: 900px) {

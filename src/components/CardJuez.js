@@ -38,7 +38,7 @@ function CardCalif({ title, image, description, ubicacion, categoria, nivelDesar
     return text.slice(0, limit) + '...';
   };
 
-  const badgeClassName = status === "No calificado" ? "badge2" : "badge";
+  const badgeClassName = status === "No calificado" ? "badge2" : "badge3";
   const btnClassName = status === "No calificado" ? "btncalif" : "btncalifdisable";
   const btnText = status === "No calificado" ? "Calificar" : "Calificado";
   const btnAction = status === "No calificado" ? "/rubrica" : null;

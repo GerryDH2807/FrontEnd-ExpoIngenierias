@@ -255,3 +255,44 @@
   background-color: #0b5ed7;
 
 }
+
+.btn4 {
+  width: 100%;
+  min-height: 8.5vh;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #0C356A;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.4s;
+  
+  /* Aplicar flexbox para centrar texto verticalmente */
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  text-decoration: none;
+}
+.btn5 {
+  width: 100%;
+  min-height: 8.5vh;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #406eaa;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.4s;
+  
+  /* Aplicar flexbox para centrar texto verticalmente */
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  text-decoration: none;
+}

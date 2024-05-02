@@ -175,6 +175,8 @@ function ProjVal({finalRes, postVal, vidVal}){
                   </span>
                 </div>
               )}
+              <Link to="/Rubrica" className="btn4">CALIFICAR PROYECTO</Link>
+              <Link to="/Juez" className="btn5">Regresar a Mis Proyectos</Link>
           </div>
         </div>
       </div>
