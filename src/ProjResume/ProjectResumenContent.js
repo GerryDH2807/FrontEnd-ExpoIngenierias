@@ -51,7 +51,7 @@ function RubricaCalf({Calf1, Calf2, Calf3, Calf4, Calf5, Rubri1, Rubri2, Rubri3,
   );
 }
 
-function InfoProj({lead,profLead,memeber}){
+function InfoProj({lead,profLead,member}){
   return(
 
     <div className='col-md-3 '>
@@ -94,7 +94,7 @@ function InfoProj({lead,profLead,memeber}){
 
           <div className ="row pb-1">
             <div className ='col-md ps-0'>
-              <p className="Texto text-wrap ps-3"> {memeber}</p>
+              <p className="Texto text-wrap ps-3"> {member}</p>
             </div>
           </div>
 
@@ -343,8 +343,23 @@ function FinalCalf({finalCalf}){
 /* ~*~*~*~*~*~ FUNCIÓN PRINCIPAL DE CONTROL ~*~*~*~*~*~  */
 
 export default function ProjResumeCont(){
-  const [project, setProject] = useState({id_project: 0, title:"", description: "", linkVideo: "", linkPoster: "", statusGeneral: "", statusPoster: "", statusVideo:"", area:"", category:"", person:""});
+  const [project, setProject] = useState({
+    id_project: 0,
+    title: "",
+    description: "",
+    linkVideo: "",
+    linkPoster: "",
+    statusGeneral: "",
+    statusPoster: "",
+    statusVideo: "",
+    area: "",
+    category: "",
+    person: "",
+    student: ""
+  });
   const { id_project } = useParams();
+
+
 
   useEffect(()=>{
     //fetch('http://localhost:8000/projects/'+id_post)
@@ -353,18 +368,24 @@ export default function ProjResumeCont(){
     .then((data)=>setProject(data))
 },[id_project])
 
+  
+
+
 
 
   return(
     <div className='container-fluid centered-container mt-3 '>
       <div className='container-fluid'>
         <div className='row justify-content-between d-flex align-items-center'>
-          <InfoProj lead={"Gerardo Deustúa Hernández"} profLead={project.person.name + " " + project.person.lastName} judge={"Marcela Dominguez Rosas"}></InfoProj>
+          <InfoProj lead={project.student.name + " " + project.student.lastName} profLead={project.person.name + " " + project.person.lastName} member={project.student.lastName}></InfoProj>
 
           <ProjResume type={project.category.title} area={project.area.name} descr={project.description} title={project.title}></ProjResume>        
 
           <ProjVal postVal={project.statusPoster} vidVal={project.statusVideo} finalRes={project.statusGeneral}></ProjVal>
         </div>
+
+
+
 
         <div className='row m-2 justify-content-between d-flex align-items-center w-100 mb-4'>
           <div className='Info col-md-12'>
