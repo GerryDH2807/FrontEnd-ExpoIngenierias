@@ -140,7 +140,8 @@ export default function ProjSelection(){
                     </div>
 
                 <div className='row d-flex flex-col justify-content-evenly'>
-
+                <div className='row p-3 m-3 NoProjContainer'>
+                    
                     <CardCalif 
                         title={project.title}
                         description={project.description}
@@ -160,8 +161,8 @@ export default function ProjSelection(){
             */}
 
                 </div>
-            </div>        
-        </>
-
+            </div>   
+            </div>     
+            </>
     );
 }
