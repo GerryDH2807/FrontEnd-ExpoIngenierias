@@ -5,7 +5,7 @@ import ProjResumeCont from './pages/Teacher/TeacherProjectResumen/TeacherProject
 import Hometeacher from './pages/Teacher/TeacherHome/TeacherHome.js';
 import Main from './pages/Main/MainPage/main.js';
 import EdicionesPasadas from './pages/Main/PastEdition/EdicionesPasadas.js';
-import Catalogo from './pages/Main/Catalogue/Catalogue.js';
+import Catalogo from './pages/Main/Catalogue/Actual.js';
 import Login from './pages/Main/Login/login.js';
 import FormUser from './pages/Main/UserRegister/UserRegister.js';
 import FormStudent from './pages/Main/StudentRegister/StudentRegister.js';
@@ -14,6 +14,13 @@ import AnunciosTeacher from './pages/Teacher/TeacherAdvertisements/TeacherAdvert
 import ConstanciaTeacher from './pages/Teacher/TeacherCertificate/TeacherCertificate.js';
 import Perfil from './pages/Teacher/TeacherProfile/TeacherProfile.js';
 import TeacherAnoDet from './pages/Teacher/TeacherAdvertisements/DetailedAnnoun.js'
+import ProjectRegister from './pages/Student/ProjectRegister/ProjResgister.js';
+import ProjectResumen from './pages/Student/ProjectResumenContest/ProjectResumenContent.js';
+import AnunciosStudent from './pages/Student/Announcement/Announ.js'
+import StudentCertificate from './pages/Student/StudentCertificate/StudentCertificate.js'
+import MaterialExtra from './pages/Student/RegisterContent/RegisterContent.js';
+import StudentMap from './pages/Student/StudentMap/StudentMap.js';
+import ProjSelection from './pages/Student/ProjSelection/ProjSelection.js'
 function App() {
   return (
 <>
@@ -32,6 +39,13 @@ function App() {
         <Route path="/constancia-profesor" element={<ConstanciaTeacher />} />
         <Route path="/perfil-usuario" element={<Perfil />} />
         <Route path="/announ1" element={<TeacherAnoDet />} />
+        <Route path="/registro-proyecto" element={<ProjectRegister />} />
+        <Route path="/resumen-proyecto-estudiante" element={<ProjectResumen />} />
+        <Route path="/anuncio-estudiante" element={<AnunciosStudent />} />
+        <Route path="/constancia-estudiante" element={<StudentCertificate />} />
+        <Route path="/extramaterial" element={<MaterialExtra />} />
+        <Route path="/mapa" element={<StudentMap />} />
+        <Route path="/projselection" element={<ProjSelection />} />
 </Routes>
 </div>
 </>
