@@ -28,7 +28,6 @@ import ProjectEdition from './ProjEdition/ProjEdition.js';
 import ProjSelection from './ProjSelection/ProjSelection.js';
 
 
-
 import './Page.css';
 import './ProjResume/Resume.css';
 import './Announcement/DetailedAnnoun.css'
@@ -73,13 +72,6 @@ function ToggleBar() {
           <hr />
           <nav>
             <div className='container'>
-              <div className='row m-2'>
-                <div className ='col-md-auto '>
-                  <Link to='/resumen' onClick={() => { handleClose(); setSection("Resumen"); }} class="bi bi-book-fill docu-icon2"></Link>
-                  <Link to='/resumen' className ="TextoValid2" onClick={() => { handleClose(); setSection("Resumen");}}>Resumen</Link> 
-                </div>  
-              </div>
-
               <div className='row m-2'>
                 <div className ='col-md-auto '>
                   <Link to='/projselection' onClick={() => { handleClose(); setSection("Mis Proyectos"); }} class="bi bi-boxes docu-icon2"></Link>
@@ -166,8 +158,8 @@ function App() {
 
       <Routes>
         <Route path='/resumen' element={<ProjResumeCont></ProjResumeCont>}></Route>
-        <Route path='/projselection' element={<ProjSelection></ProjSelection>}></Route>
-        <Route path='/extramaterial' element={""}></Route>
+        <Route path='/projselection' element={<ProjSelection ProjCheck={"False"}></ProjSelection>}></Route>
+        <Route path='/extramaterial' element={<RegisterCont></RegisterCont>}></Route>
         <Route path='/constancia' element={<Constancia></Constancia>}></Route>
         <Route path='/anuncios' element={<Announ></Announ>}></Route>
         <Route path='/mapa' element={""}></Route>
@@ -181,6 +173,8 @@ function App() {
 
 
         <Route path='/ProjRegister' element ={<ProjRegisterCont></ProjRegisterCont>}></Route>
+        
+        <Route path='/Catalogo' element ={<Actual></Actual>}></Route>
  
       </Routes>
 

@@ -41,6 +41,13 @@
     border-color: #406eaa;
     font-weight: bold;
     font-size: 25px;
+    text-decoration: none;
+    color: #ffffff;
+
+    border-radius: 5px;
+
+    width: 250;
+    
 }
 
 .IconBack{
