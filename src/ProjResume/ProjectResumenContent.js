@@ -355,7 +355,8 @@ export default function ProjResumeCont(){
     area: "",
     category: "",
     person: "",
-    student: ""
+    student: "",
+    team: {students: []}
   });
   const { id_project } = useParams();
 
@@ -363,7 +364,7 @@ export default function ProjResumeCont(){
 
   useEffect(()=>{
     //fetch('http://localhost:8000/projects/'+id_post)
-    fetch('http://localhost:8000/projects/'+22)
+    fetch('http://localhost:8000/projects/'+3)
     .then((res)=> res.json())
     .then((data)=>setProject(data))
 },[id_project])
@@ -377,13 +378,22 @@ export default function ProjResumeCont(){
     <div className='container-fluid centered-container mt-3 '>
       <div className='container-fluid'>
         <div className='row justify-content-between d-flex align-items-center'>
-          <InfoProj lead={project.student.name + " " + project.student.lastName} profLead={project.person.name + " " + project.person.lastName} member={project.student.lastName}></InfoProj>
+          <InfoProj lead={project.student.name + " " + project.student.lastName} profLead={project.person.name + " " + project.person.lastName} member={project.team.id_leader}></InfoProj>
 
           <ProjResume type={project.category.title} area={project.area.name} descr={project.description} title={project.title}></ProjResume>        
 
           <ProjVal postVal={project.statusPoster} vidVal={project.statusVideo} finalRes={project.statusGeneral}></ProjVal>
         </div>
-
+        {project.team && project.team.students && (
+        <div>
+          <h3>Team Members:</h3>
+          <ul>
+            {project.team.students.map((student, index) => (
+              <li key={index}>{student.name} {student.lastName} ({student.enrollment})</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
 
 
