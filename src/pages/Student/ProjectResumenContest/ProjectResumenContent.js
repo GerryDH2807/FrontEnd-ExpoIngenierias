@@ -2,16 +2,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
 
+import './Resumen.css'
+
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 //Back
 import axios from 'axios';
 
-import './Resumen.css'
+
 
 import Accordion from 'react-bootstrap/Accordion';
 import { Link } from 'react-router-dom';
-import ToggleBarStudent from '../../../components/TogglebarStudent/togglebarStudent.js';
 
 function RubricaCalf({Calf1, Calf2, Calf3, Calf4, Calf5, Rubri1, Rubri2, Rubri3, Rubri4, Rubri5}) {
   return (
@@ -50,7 +51,13 @@ function RubricaCalf({Calf1, Calf2, Calf3, Calf4, Calf5, Rubri1, Rubri2, Rubri3,
   );
 }
 
-function InfoProj({lead,profLead,member}){
+function MemberCont({NombreMiembro}){
+  return(
+    <li className="Texto text-wrap ps-3 mb-0">{NombreMiembro}</li>
+  );
+}
+
+function InfoProj({lead,profLead,members}){
   return(
 
     <div className='col-md-3 '>
@@ -93,7 +100,10 @@ function InfoProj({lead,profLead,member}){
 
           <div className ="row pb-1">
             <div className ='col-md ps-0'>
-              <p className="Texto text-wrap ps-3"> {member}</p>
+            {members.map((student, index) => (
+              <MemberCont NombreMiembro={student.name + " " + student.lastName}></MemberCont>
+            ))}
+              
             </div>
           </div>
 
@@ -354,7 +364,8 @@ export default function ProjResumeCont(){
     area: "",
     category: "",
     person: "",
-    student: ""
+    student: "",
+    team: {students: []}
   });
   const { id_project } = useParams();
 
@@ -362,7 +373,7 @@ export default function ProjResumeCont(){
 
   useEffect(()=>{
     //fetch('http://localhost:8000/projects/'+id_post)
-    fetch('http://localhost:8000/projects/'+22)
+    fetch('http://localhost:8000/projects/'+11)
     .then((res)=> res.json())
     .then((data)=>setProject(data))
 },[id_project])
@@ -373,18 +384,15 @@ export default function ProjResumeCont(){
 
 
   return(
-    <>
-    <ToggleBarStudent />
     <div className='container-fluid centered-container mt-3 '>
       <div className='container-fluid'>
         <div className='row justify-content-between d-flex align-items-center'>
-          <InfoProj lead={project.student.name + " " + project.student.lastName} profLead={project.person.name + " " + project.person.lastName} member={""}></InfoProj>
+          <InfoProj lead={project.student.name + " " + project.student.lastName} profLead={project.person.name + " " + project.person.lastName} members={project.team.students}></InfoProj>
 
           <ProjResume type={project.category.title} area={project.area.name} descr={project.description} title={project.title}></ProjResume>        
 
           <ProjVal postVal={project.statusPoster} vidVal={project.statusVideo} finalRes={project.statusGeneral}></ProjVal>
         </div>
-
 
 
 
@@ -407,6 +415,5 @@ export default function ProjResumeCont(){
         </div>
       </div>
     </div>
-    </>
   );
 }
