@@ -78,7 +78,7 @@ function CardCalif({ title, description, categoria, id_Proyecto, status }) {
   }
   
 
-export default function ProjSelection(){
+export default function ProjSelection({ProjCheck}){
     return(
 
         <>
@@ -91,26 +91,52 @@ export default function ProjSelection(){
             </div>
 
             <div className='container-fluid'>
-                <div className='row d-flex flex-col justify-content-evenly'>
 
-                    <CardCalif 
-                        title={'Robot automata para automatizar automatas'}
-                        description="Robot Automata para Automatizar Autómatas  es un proyecto innovador para desarrollar un sistema robótico que automatiza tareas complejas en la industria. Utiliza algoritmos avanzados de inteligencia artificial y aprendizaje automático para aumentar la eficiencia y precisión en la producción, optimizando recursos."
-                        categoria={"Prototipo"}
-                        id_Proyecto={"NPF103"}
-                        status={"Aceptado"}
-                    />
-            
-                    <CardCalif 
-                        title={'Maquina perpetua que alimenta maquinas perpetuas'}
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                        categoria={"Concepto"}
-                        id_Proyecto={"CP543"}
-                        status={"Rechazado"}
-                    />
+                {ProjCheck === "False" && (
+                    <>
+                        <div className='container-fluid  p-3'>
+                            <center>
+                                <div className='row p-3 m-3 NoProjContainer'>
+                                    <div className='col p-3'>
+                                        <p className='mb-0 fw-bold'>Parece ser que aun no te encuentras registrado en ningun proyecto, puedes registrar un proyecto y así ser lider equipo o esperar a que el lider de tu equipo registre el proyecto.</p>
+                                    </div>
+                                </div>
+                            </center>
+
+                            <center>
+                                <div className='row p-3 m-3 NoProjContainer'>
+                                    <Link to={'/projregister'}className='col BotonRegistrar p-3'>
+                                        Registra un proyecto nuevo
+                                    </Link>
+                                </div>
+                            </center>
+                        </div>
+                    </>
+
+                )}
+
+                {ProjCheck === "True" && (
+                    <div className='row d-flex flex-col justify-content-evenly'>
+
+                        <CardCalif 
+                            title={'Robot automata para automatizar automatas'}
+                            description="Robot Automata para Automatizar Autómatas  es un proyecto innovador para desarrollar un sistema robótico que automatiza tareas complejas en la industria. Utiliza algoritmos avanzados de inteligencia artificial y aprendizaje automático para aumentar la eficiencia y precisión en la producción, optimizando recursos."
+                            categoria={"Prototipo"}
+                            id_Proyecto={"NPF103"}
+                            status={"Aceptado"}
+                        />
+                
+                        <CardCalif 
+                            title={'Maquina perpetua que alimenta maquinas perpetuas'}
+                            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                            categoria={"Concepto"}
+                            id_Proyecto={"CP543"}
+                            status={"Rechazado"}
+                        />
 
 
-                </div>
+                    </div>
+                )}
             </div>        
         </>
 

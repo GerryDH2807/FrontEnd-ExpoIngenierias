@@ -1,12 +1,15 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
 import { Link } from 'react-router-dom';
 
+import Usure from '../BotonConfirmacion/ConfBot'
+
 import "./ProjEdition.css"
+
+
 
 export default function ProjRegisterCont(){
     return (
@@ -135,7 +138,7 @@ function FormExample() {
                     </Form.Group>
                 </Row>
 
-                <center><Button type="submit" className='mt-4 btn-lg ButtonRegister'>Aceptar cambios</Button></center>
+                <center><Usure Path={'/resumen'}></Usure></center>
             </Form> 
             
             <div className='container-fluid mb-4'>

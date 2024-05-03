@@ -18,14 +18,24 @@ function AnnounSearch(){
     );
 }
 
-function AnnounInfo({Fecha, Titulo}){
+function AnnounInfo({Fecha, Titulo, Cuerpo}){
+
+    const truncatedText = (text, limit) => {
+        if (!text || typeof text !== 'string' || text.length <= limit) {
+          return text;
+        }
+        return text.slice(0, limit) + '...';
+    };    
 
     return(
         <Link to={'/announ1'} className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
-            <div className='col-10 d-flex align-items-center'>
+            <div className='col-auto d-flex align-items-center'>
                 <i className='bi bi-envelope-fill AnnounIcon'></i> <span className='Titulo'> {Titulo}</span>
             </div>
 
+            <div className='col-7 d-flex align-items-center'>
+                <span className='TextoAnnoun'>{truncatedText(Cuerpo, 100)}</span>
+            </div>
 
             <div className='col-2 text-end'>
                 <span className='Subtitulo text-wrap'>{Fecha}</span>
@@ -39,9 +49,9 @@ function AnnounInfoCont(){
         <div className='col-12 p-12'>
             
             <div className='container-fluid'>
-                <AnnounInfo Titulo={'Titulo del anuncio 1'} Fecha={'20/02/24'}></AnnounInfo>
-                <AnnounInfo Titulo={'Titulo del anuncio 2'} Fecha={'15/05/19'}></AnnounInfo>
-                <AnnounInfo Titulo={'Titulo del anuncio 3'} Fecha={'28/07/03'}></AnnounInfo>
+                <AnnounInfo Titulo={'Titulo del anuncio 1'} Fecha={'20/02/24'} Cuerpo={"sadgasgasgasgasdgasdgasdgaasdggasadgasdgasgasgasgasgsdgasdgsadgasdgasdgasdgasdgsagsdgasdgasgsagasgsgsgsdgsdsdyugsguinsighs8gshdghg8wb8g"}></AnnounInfo>
+                <AnnounInfo Titulo={'Titulo del anuncio 2'} Fecha={'15/05/19'} Cuerpo={"sadgasgasgasgasdgasdgasdgaasdggasadgasdgasgasgasgasgsdgasdgsadgasdgasdgasdgasdgsagsdgasdgasgsagasgsgsgsdgsdsdyugsguinsighs8gshdghg8wb8g"}></AnnounInfo>
+                <AnnounInfo Titulo={'Titulo del anuncio 3'} Fecha={'28/07/03'} Cuerpo={"sadgasgasgasgasdgasdgasdgaasdggasadgasdgasgasgasgasgsdgasdgsadgasdgasdgasdgasdgsagsdgasdgasgsagasgsgsgsdgsdsdyugsguinsighs8gshdghg8wb8g"}></AnnounInfo>
             </div>
 
         </div>

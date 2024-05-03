@@ -76,7 +76,7 @@ export default function FormStudent() {
                         </Form.Group>
                     </Row>
 
-                    <center><Button type="submit" className='mt-4 btn-lg ButtonRegister'>Registrar estudiante</Button></center>
+                    <center><Link to={'/projregister'} type="submit" className='mt-4 btn-lg ButtonRegister'>Registrar estudiante</Link></center>
                 </Form>
 
                 <div className='container-fluid mb-4'>

@@ -371,7 +371,7 @@ export default function ProjResumeCont(){
 
   useEffect(()=>{
     //fetch('http://localhost:8000/projects/'+id_post)
-    fetch('http://localhost:8000/projects/'+3)
+    fetch('http://localhost:8000/projects/'+7)
     .then((res)=> res.json())
     .then((data)=>setProject(data))
 },[id_project])

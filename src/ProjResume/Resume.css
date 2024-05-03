@@ -43,9 +43,9 @@
   height: 292px;
 }
 
-.BGResume{
+.BGResumeConcept{
 
-  background-image: url('../img/CardProto.png'); 
+  background-image: url('../img/CardResumeConcept.png'); 
   background-size: cover; 
   background-position: center;
 
@@ -53,8 +53,43 @@
 
   height: 292px;
 
-  overflow-y: auto;
+}
 
+.BGResumeProto{
+
+  background-image: url('../img/CardResumeProto.png'); 
+  background-size: cover; 
+  background-position: center;
+
+  border-radius: 5px;
+
+  height: 292px;
+
+
+}
+
+.BGResumeFinish{
+
+  background-image: url('../img/CardResumeFinish.png'); 
+  background-size: cover; 
+  background-position: center;
+
+  border-radius: 5px;
+
+  height: 292px;
+
+}
+
+.TesteoSlider{
+
+  overflow-y: auto;
+  height: 210px;
+
+  cursor: pointer;
+}
+
+.TesteoSlider::-webkit-scrollbar{
+  display: none;
 }
 
 .proj-sub-bold{
@@ -207,6 +242,7 @@
 .ContCommentIndiJudge{
   background-color: #e6e6e6e5;
   border-radius: 5px;
+  height: 75%;
 }
 
 .ComentariosCOntenidoWrap{
@@ -255,3 +291,4 @@
   background-color: #0b5ed7;
 
 }
+

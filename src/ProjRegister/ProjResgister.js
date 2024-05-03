@@ -16,11 +16,6 @@ const URI = 'http://localhost:8000/projects/register'
 
 function ButtonMaterials({extension, setExtension, table, setTable, screen, setScreen}) {
   const [show, setShow] = useState(false);
-  /*
-  const [extension, setExtension] = useState(0);
-  const [table, setTable] = useState(0);
-  const [screen, setScreen] = useState(0);
-  */
   return (
     <>
       <Button variant="primary" onClick={() => setShow(true)} className='ButtonMaterials'>

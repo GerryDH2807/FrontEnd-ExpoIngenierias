@@ -27,9 +27,6 @@ import ProjectEdition from './ProjEdition/ProjEdition.js';
 
 import ProjSelection from './ProjSelection/ProjSelection.js';
 
-import CompShowProjects from './ShowProject.js';
-
-
 
 import './Page.css';
 import './ProjResume/Resume.css';
@@ -64,25 +61,17 @@ function ToggleBar() {
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <hr />
-
+          <hr className='mt-0' />
           <div className='container-fluid'>
-            <div className='row'>
+            <div className='row m-2'>
               <div className='col'>
-              <center><i className='bi bi-person-circle docu-icon2'></i><span className='Titulo'>Pedro Sanchez</span></center>
+              <i className='bi bi-person-circle docu-icon2'></i><span className='Titulo'>Pedro Sanchez</span>
               </div>
             </div>
           </div>
           <hr />
           <nav>
             <div className='container'>
-              <div className='row m-2'>
-                <div className ='col-md-auto '>
-                  <Link to='/resumen' onClick={() => { handleClose(); setSection("Resumen"); }} class="bi bi-book-fill docu-icon2"></Link>
-                  <Link to='/resumen' className ="TextoValid2" onClick={() => { handleClose(); setSection("Resumen");}}>Resumen</Link> 
-                </div>  
-              </div>
-
               <div className='row m-2'>
                 <div className ='col-md-auto '>
                   <Link to='/projselection' onClick={() => { handleClose(); setSection("Mis Proyectos"); }} class="bi bi-boxes docu-icon2"></Link>
@@ -119,17 +108,10 @@ function ToggleBar() {
               </div>
 
 
-              <div className='row m-2 mt-5'>
+              <div className='row'>
                 <div className ='col-md-auto mt-5'>
                   <Link to='/mapa' onClick={() => { handleClose(); setSection("Mapa"); }} class="bi bi-box-arrow-left docu-icon2"></Link>
                   <Link to='/mapa' className ="TextoValid2" onClick={() => { handleClose(); setSection("Mapa"); }}>Cerrar sesión</Link> 
-                </div>  
-              </div>
-
-              <div className='row m-2'>
-                <div className ='col-md-auto '>
-                  <i class="bi bi-boxes docu-icon2"></i>
-                  <Link to='/projcat' className ="TextoValid2" onClick={() => { handleClose(); setSection("Proyectos"); }}>Proyectos</Link> 
                 </div>  
               </div>
 
@@ -176,11 +158,11 @@ function App() {
 
       <Routes>
         <Route path='/resumen' element={<ProjResumeCont></ProjResumeCont>}></Route>
-        <Route path='/projselection' element={<ProjSelection></ProjSelection>}></Route>
+        <Route path='/projselection' element={<ProjSelection ProjCheck={"True"}></ProjSelection>}></Route>
         <Route path='/extramaterial' element={<RegisterCont></RegisterCont>}></Route>
         <Route path='/constancia' element={<Constancia></Constancia>}></Route>
         <Route path='/anuncios' element={<Announ></Announ>}></Route>
-        <Route path='/mapa' element={<Actual></Actual>}></Route>
+        <Route path='/mapa' element={""}></Route>
 
         <Route path='/studentregister' element={<StudentRegister></StudentRegister>}></Route>
         <Route path='/userregister' element={<UserRegister></UserRegister>}></Route>
@@ -190,7 +172,9 @@ function App() {
         <Route path='/EditProject' element={<ProjectEdition></ProjectEdition>}></Route>
 
 
-        <Route path='/projcat' element ={<ProjRegisterCont></ProjRegisterCont>}></Route>
+        <Route path='/ProjRegister' element ={<ProjRegisterCont></ProjRegisterCont>}></Route>
+        
+        <Route path='/Catalogo' element ={<Actual></Actual>}></Route>
  
       </Routes>
 
