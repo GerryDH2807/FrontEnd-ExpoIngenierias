@@ -4,6 +4,18 @@ import logo from '../../img/logo.svg'
 import {Link} from 'react-router-dom'
 
 import './menu.css'
+
+import { useAuth0 } from "@auth0/auth0-react";
+
+const RegisterLink = () => {
+    const { loginWithRedirect } = useAuth0();
+  
+    return (
+      
+        <button onClick={() => loginWithRedirect()} className= "opciones-btn me-3" >Iniciar Sesión</button>
+      
+    );
+  };
 export default function Menu() {
   const [showMenu, setShowMenu] = useState(false);
 
@@ -50,7 +62,7 @@ export default function Menu() {
               <Link to="/Catalogo" className='nav-link opciones m-2'>Catalogo</Link>
             </li>
             <li className="nav-item">
-              <Link to="/login" className='nav-link opciones-btn m-2'>Iniciar Sesion</Link>
+              <RegisterLink/>
             </li>
           </ul>
         </div>

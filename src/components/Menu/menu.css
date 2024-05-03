@@ -36,6 +36,7 @@
     color: white;
     text-decoration: none;
     background-color: #406eaa; 
+    border: none;
     border-radius: 5px;
     font-weight: bold;
     font-style: Arial;
@@ -50,6 +51,7 @@
 }
 .navbar-nav {
   text-align: center;
+  align-items: center;
 
 }
 
