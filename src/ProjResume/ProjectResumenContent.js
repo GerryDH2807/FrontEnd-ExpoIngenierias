@@ -51,6 +51,12 @@ function RubricaCalf({Calf1, Calf2, Calf3, Calf4, Calf5, Rubri1, Rubri2, Rubri3,
   );
 }
 
+function MemberCont({NombreMiembro}){
+  return(
+    <li className="Texto text-wrap ps-3 mb-0">{NombreMiembro}</li>
+  );
+}
+
 function InfoProj({lead,profLead,member}){
   return(
 
@@ -94,7 +100,8 @@ function InfoProj({lead,profLead,member}){
 
           <div className ="row pb-1">
             <div className ='col-md ps-0'>
-              <p className="Texto text-wrap ps-3"> {member}</p>
+              <MemberCont NombreMiembro={"Saraí Santiago"}></MemberCont>
+              <MemberCont NombreMiembro={"Saraí Santiago"}></MemberCont>
             </div>
           </div>
 
