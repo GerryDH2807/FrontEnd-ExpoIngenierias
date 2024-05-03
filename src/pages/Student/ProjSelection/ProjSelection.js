@@ -81,9 +81,8 @@ function CardCalif({ title, description, categoria, id_Proyecto, status }) {
   
 
 export default function ProjSelection(){
-    return(
-
-        <>
+    return (
+            <>
             <ToggleBarStudent />
             <div className='container-fluid centered-containerProjSelc'>
                 <div className='row m-4 p-3 TitleSelectContainer'>
@@ -94,8 +93,16 @@ export default function ProjSelection(){
             </div>
 
             <div className='container-fluid'>
+            <div className='row justify-content-end me-5'>
+                <div className='col-md-3'>
+                <Link to={'/registro-proyecto'} className='col BotonRegistrar p-3'>
+                                        Registra un proyecto nuevo
+                    </Link>
+                    </div>
+                    </div>
                 <div className='row d-flex flex-col justify-content-evenly'>
-
+                <div className='row p-3 m-3 NoProjContainer'>
+                    
                     <CardCalif 
                         title={'Robot automata para automatizar automatas'}
                         description="Robot Automata para Automatizar Autómatas  es un proyecto innovador para desarrollar un sistema robótico que automatiza tareas complejas en la industria. Utiliza algoritmos avanzados de inteligencia artificial y aprendizaje automático para aumentar la eficiencia y precisión en la producción, optimizando recursos."
@@ -114,8 +121,8 @@ export default function ProjSelection(){
 
 
                 </div>
-            </div>        
-        </>
-
+            </div>   
+            </div>     
+            </>
     );
 }
