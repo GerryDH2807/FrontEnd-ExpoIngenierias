@@ -79,6 +79,16 @@
     width: 50%; /* Ancho del contenedor */
     margin: auto; /* Centrar horizontalmente */
   }
+  .badge3 {
+    width: 16vw;
+    margin-top: 0vh;
+    margin-bottom: 0vh;
+  }
+  .badge3-container {
+    /* Estilo adicional para centrar horizontalmente */
+    width: 50%; /* Ancho del contenedor */
+    margin: auto; /* Centrar horizontalmente */
+  }
   .btn{
     margin-bottom: 0vh;
     margin-top: 0vh;

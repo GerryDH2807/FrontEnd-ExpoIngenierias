@@ -67,13 +67,13 @@ const Rubrica = () => {
               <input
                 type="range"
                 min="0"
-                max="100"
-                step="20"
+                max="5"
+                step="1"
                 value={selectedCriteria[index]}
                 onChange={(e) => handleSliderChange(index, parseInt(e.target.value))}
                 id={`myRange${index}`}
               />
-              <p>100(Excelente)</p>
+              <p>5(Excelente)</p>
             </div>
             {/* Caja de comentarios */}
             <textarea
