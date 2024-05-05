@@ -1,7 +1,7 @@
 import ProfPict from '../img/descargar.jpeg'
 import logo from '../img/logo.svg';
 
-export function Lienzo() {
+export default function Lienzo() {
     return (
       <>
         <div className ="container-fluid">
