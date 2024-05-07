@@ -1,4 +1,5 @@
 import './Actual.css';
+import Menu from '../../../components/Menu/menu.js';
 
 import { useState } from 'react';
 
@@ -202,6 +203,7 @@ function CardProj({ CategoCheck, Title, Description }) {
 export default function Actual() {
     return (
       <>
+        <Menu />
         <div className='container-fluid'>
 
             <div className='row m-4 p-3 CardsContainer'>
