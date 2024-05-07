@@ -33,8 +33,8 @@ export default function Menu() {
             <div className='row'>
               <div className='col-md-12'>
           <nav className='navbar navbar-expand-lg fixed-top' id="NavBar">
-      <div className="navbar-brand ms-3">
-          <img className="ExpoIngLog img-fluid" src={logo} alt="buenas" />
+        <div className="navbar-brand">
+          <img className="ExpoIngLog img-fluid" src={logo} alt="" />
         </div>
         <button className="navbar-toggler"
         type="button"
