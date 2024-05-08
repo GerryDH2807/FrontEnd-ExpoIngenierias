@@ -53,7 +53,7 @@ export default function DetailedAnnounCont(){
                 <AnnounBody Fecha={"26/07/24"} Contenido ={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec purus ut nunc molestie rhoncus. Quisque et facilisis elit. Aliquam in ante rhoncus, fermentum diam vel, efficitur neque. Nam sapien nulla, sodales et massa sed, luctus tincidunt mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent eget egestas nibh, vel rhoncus mi. Mauris volutpat eu nisi nec molestie. Etiam non leo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla dolor augue, faucibus in ex a, vehicula rutrum tortor. Aenean tempus ligula eget sem tempus finibus. Duis sit amet velit interdum, vulputate sem et, vestibulum magna. Nullam suscipit enim sapien, at accumsan tellus gravida nec. Proin lectus dui, faucibus finibus metus quis, pulvinar dapibus mauris. Donec vehicula nisi vel viverra malesuada.'}></AnnounBody>
             </div>      
 
-            <Link to={'/anuncios'} className="row mt-4 p-3 ContainerAnnounBut ButtReturn d-flex justify-items-center">
+            <Link to={'/anuncios-profesor'} className="row mt-4 p-3 ContainerAnnounBut ButtReturn d-flex justify-items-center">
                 <Link to={'/anuncios-profesor'} className="text-center ButtReturn">Regresar a anuncios</Link>
             </Link>       
         </div>
