@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect,useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -17,6 +17,7 @@ const URI = 'http://localhost:8000/projects/register'
 
 function ButtonMaterials({extension, setExtension, table, setTable, screen, setScreen}) {
   const [show, setShow] = useState(false);
+  
   /*
   const [extension, setExtension] = useState(0);
   const [table, setTable] = useState(0);
@@ -107,39 +108,35 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
   );
 }
 
-function AreaButtons({setArea}) {
+function AreaButtons({setArea, areas}) {
   return (
     <ToggleButtonGroup type="radio" name="options" defaultValue={1} className='d-flex justify-content-between w-100'>
-      <ToggleButton id="tbg-radio-1" value={1} onChange={(e)=> setArea(e.target.value)} className='ButtonMaterials w-100'>
-        Área 1
-      </ToggleButton>
-      <ToggleButton id="tbg-radio-2" value={2} onChange={(e)=> setArea(e.target.value)} className='ButtonMaterials w-100'>
-        Área 2
-      </ToggleButton>
-      <ToggleButton id="tbg-radio-3" value={3} onChange={(e)=> setArea(e.target.value)} className='ButtonMaterials w-100'>
-        Área 3
-      </ToggleButton>
+      {areas.map(area => (
+          <ToggleButton id={"tbg-radio" + area.id} value={area.id} onChange={(e)=> setArea(e.target.value)} className='ButtonMaterials w-100'>
+                {area.name}
+          </ToggleButton>
+      ))}
     </ToggleButtonGroup>
   );
 }
 
-function CategoryButtons({setCategory}) {
+function CategoryButtons({setCategory, categories}) {
   return (
     <ToggleButtonGroup type="radio" name="options1" defaultValue={1} className='d-flex justify-content-between w-100'>
-      <ToggleButton id="tbg-radio-1.1" value={1} onChange={(e)=> setCategory(e.target.value)}  className='ButtonMaterials w-100'>
-        Cat 1
-      </ToggleButton>
-      <ToggleButton id="tbg-radio-2.1" value={2} onChange={(e)=> setCategory(e.target.value)}   className='ButtonMaterials w-100'>
-        Cat 2
-      </ToggleButton>
-      <ToggleButton id="tbg-radio-3.1" value={3} onChange={(e)=> setCategory(e.target.value)}  className='ButtonMaterials w-100'>
-        Cat 3
-      </ToggleButton>
+      {categories.map(category => (
+        <ToggleButton id={"tbg-radio-"+ category.id + ".1"} value={category.id} onChange={(e)=> setCategory(e.target.value)}  className='ButtonMaterials w-100'>
+          {category.title}
+        </ToggleButton>
+      ))}
     </ToggleButtonGroup>
   );
 }
 
 function FormExample() {
+
+    //Información areas y categorias
+    const [data, setData] = useState({categories: [], areas: []});
+
     const [validated, setValidated] = useState(false);
     const [memberNum, setMemberNum] = useState(1);
     const [teacherNum, setTeacherNum] = useState(1);
@@ -205,6 +202,13 @@ function FormExample() {
       setTeachers(teachers.filter(teacher => teacher.id !== id));
       setTeacherNum(teacherNum - 1);
     };  
+
+
+    useEffect(() => {
+      fetch('http://localhost:8000/projects/register')
+      .then((res)=> res.json())
+      .then((expoData) => setData(expoData));
+    },[]);
 
 return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -344,7 +348,7 @@ return (
 
               <div className='row'>
                 <div className='col'>
-                  <AreaButtons setArea={setArea}/>
+                  <AreaButtons setArea={setArea} areas={data.areas}/>
                 </div>
               </div>
           </div>
@@ -363,7 +367,7 @@ return (
 
               <div className='row'>
                   <div className='col'>
-                      <CategoryButtons setCategory={setCategory}/>
+                      <CategoryButtons setCategory={setCategory} categories={data.categories}/>
                   </div>
               </div>
           </div>

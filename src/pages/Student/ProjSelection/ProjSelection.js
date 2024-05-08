@@ -108,7 +108,7 @@ export default function ProjSelection(){
     
       useEffect(()=>{
         //fetch('http://localhost:8000/projects/'+id_post)
-        fetch('http://localhost:8000/projects/'+11)
+        fetch('http://localhost:8000/projects/resume/'+14)
         .then((res)=> res.json())
         .then((data)=>setProject(data))
     },[id_project])

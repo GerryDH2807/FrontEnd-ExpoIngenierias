@@ -21,6 +21,7 @@ import StudentCertificate from './pages/Student/StudentCertificate/StudentCertif
 import MaterialExtra from './pages/Student/RegisterContent/RegisterContent.js';
 import StudentMap from './pages/Student/StudentMap/StudentMap.js';
 import ProjSelection from './pages/Student/ProjSelection/ProjSelection.js'
+import ProjectEdition from './pages/Student/ProjEdition/ProjEdition.js'
 function App() {
   return (
 <>
@@ -45,11 +46,12 @@ function App() {
         <Route path="/constancia-estudiante" element={<StudentCertificate />} />
         <Route path="/extramaterial" element={<MaterialExtra />} />
         <Route path="/mapa" element={<StudentMap />} />
-        <Route path="/projselection" element={<ProjSelection />} />
+        <Route path="/principal-estudiante" element={<ProjSelection />} />
+        <Route path='/EditProject' element={<ProjectEdition></ProjectEdition>}></Route>
 </Routes>
 </div>
 </>
   );
 }
 
-export default App;
+export default App;

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 //Back
 import axios from 'axios';
+import ToggleBarStudent from '../../../components/TogglebarStudent/togglebarStudent.js';
 
 
 
@@ -373,7 +374,7 @@ export default function ProjResumeCont(){
 
   useEffect(()=>{
     //fetch('http://localhost:8000/projects/'+id_post)
-    fetch('http://localhost:8000/projects/'+11)
+    fetch('http://localhost:8000/projects/resume/'+14)
     .then((res)=> res.json())
     .then((data)=>setProject(data))
 },[id_project])
@@ -384,6 +385,8 @@ export default function ProjResumeCont(){
 
 
   return(
+    <>
+    <ToggleBarStudent></ToggleBarStudent>
     <div className='container-fluid centered-container mt-3 '>
       <div className='container-fluid'>
         <div className='row justify-content-between d-flex align-items-center'>
@@ -415,5 +418,6 @@ export default function ProjResumeCont(){
         </div>
       </div>
     </div>
+    </>
   );
 }
