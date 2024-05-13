@@ -7,25 +7,26 @@ import logo2 from '../../img/logo2.svg';
 
 import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import {Routes, Route, Link} from 'react-router-dom';
-function ToggleBar() {
+import { Link} from 'react-router-dom';
+
+
+function ToggleBar({SectionName}) {
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     
-    const [section,setSection] = useState("Expo Ingenierias")
   
     return (
       <>
         <div className ="ToggleButton">
           <i className='bi bi-list the_bars' onClick={handleShow}></i>
           <img className="ExpoIngLog2" src ={logo} alt="" onClick={handleShow}></img>
-          <span className="textm no-select" onClick={handleShow}><strong>{section}</strong></span>
+          <span className="textm no-select" onClick={handleShow}><strong>{SectionName}</strong></span>
         </div>
   
         <Offcanvas show={show} onHide={handleClose}>
-          <Offcanvas.Header>
+          <Offcanvas.Header className='pb-0'>
             <Offcanvas.Title>
   
             <div className='ExpoIngLog3' onClick={handleClose}>
@@ -34,14 +35,14 @@ function ToggleBar() {
   
             </Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body>
+          <Offcanvas.Body className='pt-0'>
           <hr />
 
       <div className='container-fluid'>
         <div className='row'>
           <div className='col'>
           <center><i className='bi bi-person-circle docu-icon2'>
-            </i><Link to='/perfil-usuario' className='Titulo-toggle'> Pedro Sanchez</Link></center>
+            </i><Link to='/perfil-profesor' className='Titulo-toggle'> Sarai Santiago Lozano</Link></center>
           </div>
         </div>
       </div>
@@ -50,22 +51,22 @@ function ToggleBar() {
               <div className='container'>
                 <div className='row m-2'>
                   <div className ='col-md-auto '>
-                    <Link to='/principal-profesor' onClick={() => { handleClose(); setSection("principal-profesor"); }} class="bi bi-book-fill docu-icon2"></Link>
-                    <Link to='/principal-profesor' className ="TextoValid2" onClick={() => { handleClose(); setSection("principal-profesor");}}>Resumen</Link> 
+                    <Link to='/principal-profesor' onClick={() => { handleClose();  }} class="bi bi-book-fill docu-icon2"></Link>
+                    <Link to='/principal-profesor' className ="TextoValid2" onClick={() => { handleClose(); }}>Resumen</Link> 
                   </div>  
                 </div>
   
                 <div className='row m-2'>
                   <div className ='col-md-auto '>
-                    <Link to='/constancia-profesor' onClick={() => { handleClose(); setSection("constancia-profesor");}} class="bi bi-trophy-fill docu-icon2"></Link>
-                    <Link to='/constancia-profesor' className ="TextoValid2" onClick={() => { handleClose(); setSection("constancia-profesor"); }}>Constancia</Link> 
+                    <Link to='/constancia-profesor' onClick={() => { handleClose(); }} class="bi bi-trophy-fill docu-icon2"></Link>
+                    <Link to='/constancia-profesor' className ="TextoValid2" onClick={() => { handleClose();  }}>Constancia</Link> 
                   </div>  
                 </div>
   
                 <div className='row m-2'>
                   <div className ='col-md-auto '>
-                    <Link to='/anuncios-profesors' onClick={() => { handleClose(); setSection("anuncios-profesor");}} class="bi bi-megaphone-fill docu-icon2"></Link>
-                    <Link to='/anuncios-profesor' className ="TextoValid2" onClick={() => { handleClose(); setSection("anuncios-profesor");}}>Anuncios</Link> 
+                    <Link to='/anuncios-profesors' onClick={() => { handleClose(); }} class="bi bi-megaphone-fill docu-icon2"></Link>
+                    <Link to='/anuncios-profesor' className ="TextoValid2" onClick={() => { handleClose(); }}>Anuncios</Link> 
                   </div>  
                 </div>
  
@@ -77,7 +78,7 @@ function ToggleBar() {
     );
   }
 
-export default function Menu(){
+export default function Menu({NameSecProf}){
   return (
     <>
   <div className ="container-fluid">
@@ -101,7 +102,7 @@ export default function Menu(){
 <div className ="container-fluid">
   <div className="row " id = "NavBar">
     <div className="col-5">
-      <ToggleBar />
+      <ToggleBar SectionName={NameSecProf} />
     </div>
  
   </div>

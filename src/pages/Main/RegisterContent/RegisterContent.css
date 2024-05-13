@@ -1,11 +1,11 @@
-.Titulo{
+.Titulo1{
 
     font-weight: bolder;
     color: #0C356A;
-    font-size: 20px;
-
+    font-size: 40px;
 
 }
+
 
 .Subtitulo{
 
@@ -38,4 +38,10 @@
     padding: 10px;
     border-radius: 5px;
     text-decoration: none;
+}
+
+.TextoValid3:hover{
+
+    background-color: #0b5ed7;
+
 }

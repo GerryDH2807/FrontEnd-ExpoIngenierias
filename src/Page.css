@@ -11,18 +11,16 @@
 .Subtitulo{
   
     font-weight: bolder;
-    font-size: 20px;
   
   }
 
   
 .Texto{
   
-    margin-left: 5px;
-    font-size: 20px;
-    text-align: center;
-  
-  }
+  padding-left: 10px;
+
+
+}
 
 .TextoValid{
   

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function Usure({Path}) {
+export default function Usure({Path, className, Texto}) {
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
@@ -13,8 +13,8 @@ export default function Usure({Path}) {
   
     return (
       <>
-        <Button variant="primary" onClick={handleShow} className='ButtonRegister mt-3 btn-lg'>
-          Aceptar cambios
+        <Button variant="primary" onClick={handleShow} className={className}>
+          {Texto}
         </Button>
   
         <Modal

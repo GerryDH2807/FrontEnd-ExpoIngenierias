@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+
+import { Link } from 'react-router-dom';
 
 import Row from 'react-bootstrap/Row';
 
@@ -25,6 +27,7 @@ export default function FormStudent() {
 
         <>
             <div className='container-fluid ContainersForm'>
+
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
                     <Row className="mb-3">
@@ -73,11 +76,20 @@ export default function FormStudent() {
                         </Form.Group>
                     </Row>
 
-                    <center><Button type="submit" className='mt-4 btn-lg ButtonRegister'>Registrar estudiante</Button></center>
+                    <center><Link to={'/projregister'} type="submit" className='mt-4 btn-lg ButtonRegister'>Registrar estudiante</Link></center>
                 </Form>
+
+                <div className='container-fluid mb-4'>
+                    <div className='row'>
+                        <div className='col'>
+                            <Link to={'/extramaterial'} className='bi bi-arrow-left-circle IconBack'> Regresar</Link>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </>
     );
 }
     
+

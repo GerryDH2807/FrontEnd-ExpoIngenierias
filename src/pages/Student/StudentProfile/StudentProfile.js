@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
-import Menu from '../../../components/Togglebar/togglebar.js';
-import './TeacherProfile.css';
+import Menu from '../../../components/TogglebarStudent/togglebarStudent.js';
+import './StudentProfile.css';
 
 
 function Datos({name,email,type,id}){
@@ -24,7 +24,14 @@ function Datos({name,email,type,id}){
                     <span className='text-break'>{email}</span>
                 </div>
             </div>
-
+            <div className='row p-2'>
+                <div className='col-6 col-md-6'>
+                <h3>Matricula: </h3>
+                </div>
+                <div className='col-6 col-md-6'>
+                    <span>{id}</span>
+                </div>
+            </div>
             <div className='row p-2'>
                 <div className='col-6 col-md-6'>
                 <h3>Usuario: </h3>
@@ -39,7 +46,7 @@ function Datos({name,email,type,id}){
 export default function Perfil(){
     return(
         <>
-        <Menu />
+        <Menu NameSection={"Perfil de usuario"} />
         <div className='container-fluid m-5 perfil cont-principal mx-auto'>
             <div className='row p-2'>
                 <i className="bi bi-person-circle icon-p"></i>
@@ -49,7 +56,7 @@ export default function Perfil(){
                     <h1>Perfil</h1>
                 </div>
             </div>
-            <Datos name={"Sarai Santiago Lozano"} type={"Profesor"}  email="saraí_sant_loz@tec.mx"/>
+            <Datos name={"Gerardo Deustúa Hernández"} type={"Estudiante"} id={"A01736455"}  email="A01736455@tec.mx"/>
             
         </div>
         </>

@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import {Link} from 'react-router-dom'
 
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
@@ -7,15 +9,12 @@ import CardConcept from '../../../img/CardConcept.png';
 import CardProto from '../../../img/CardProto.png';
 import CardFinish from '../../../img/CardFinish.png';
 
+import Badges from '../../Student/ProjectSelection/Badge.js'
+
 import { people } from './data.js';
 
 import './TeacherHome.css';
 function HorizontalSlider ({data}){
-  const diccionario = {
-    "aprobado": "bi bi-check-circle aceptado",
-    "rechazado": "bi bi-x-circle rechazado",
-    "en revision": "bi bi-hourglass-split espera"
-  };
   const imagenes = {
     "idea": CardConcept,
     "prototipo": CardProto,
@@ -24,20 +23,34 @@ function HorizontalSlider ({data}){
   return (
     <div className="slider-container">
       {data.map((item) => (
-        <div className='slider-item card m-3' key={item.id}>
-        <img src={imagenes[item.categoria]} alt={item.id}  className='card-img-top'/>
-      <div className='card-body'>
+        <div className='slider-item cardProf m-3' key={item.id}>
+        <img src={imagenes[item.categoria]} alt={item.id}  className='card-img-top ImagProfe'/>
+      <div className='card-body '>
           <h5 className=' card-title m-2'>{item.id}</h5>
           <div className='container-fluid'>
             <div className='row d-flex justify-content-evenly mb-4'>
-              <div className='col-md-auto area '>
-                <span>{item.area}</span>
-              </div>
-              <div className='col-md-auto area'>
-                <span>{item.categoria}</span>
-              </div>
-              <div className='col-md-auto'>
-                <i class={diccionario[item.status]}>{item.status}</i>
+              <div className='badge-container mb-3'>
+                <Badges className={"badge p-2"} data={item.area}></Badges>
+
+                <Badges className={"badge p-2 text-wrap"} data={item.categoria}></Badges>
+
+                {item.status === "Rechazado" && (
+                    <div className="badge-container">
+                        <div className="badge2 p-2">{item.status}</div>
+                    </div>
+                )}
+
+                {item.status === "Aceptado" && (
+                    <div className="badge-container">
+                        <div className="badge3 p-2">{item.status}</div>
+                    </div>
+                )}
+
+                {item.status === "En revisión" && (
+                  <div className="badge-container">
+                    <div className="badge p-2">{item.status}</div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -66,7 +79,7 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
             </div>
             <div  className="row">
             <div className ='col-md-auto pe-0'>
-            <h6 className="Texto text-break">{faltantes}/{Total}</h6>
+            <h6 className="Texto text-break Titulo1">{faltantes}/{Total}</h6>
             </div>
             </div>
             <div className ="row pb-3"> 
@@ -76,7 +89,7 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
             </div> 
             <div  className="row ">
             <div className ='col-md-auto pe-0'>
-            <h6 className="Texto text-break">{revisados}/{Total}</h6>
+            <h6 className="Texto text-break Titulo1">{revisados}/{Total}</h6>
             </div>
             </div>
               <div className="row justify-content-between d-flex align-items-center">
@@ -94,7 +107,7 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
   
   function ProjResume({horas, profesor}){
     return(
-      <div className='col-md-7 pt-4 ps-4 pe-4 '>
+      <div className='col-md-7 pt-5 ps-4 pe-4'>
           
         <div className="container-fluid BGResume-profesor w-100 ">
             <div className ="row p-2 BGBar">
@@ -121,7 +134,7 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
 export default function Hometeacher(){
     return(
       <>
-      <ToggleBar />
+      <ToggleBar NameSecProf={"Inicio"} />
     <div className='container-fluid centered-container'>
       <div className='container-fluid'>
         <div className='row d-flex justify-content-between'>

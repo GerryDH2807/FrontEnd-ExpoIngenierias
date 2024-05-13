@@ -1,13 +1,12 @@
 
+
+
 import './RegisterContent.css';
 import { Link } from 'react-router-dom';
-import ToggleBarStudent from '../../../components/TogglebarStudent/togglebarStudent.js';
 
 export default function UserRegisterCont(){
 
     return (
-        <>
-        <ToggleBarStudent />
         <div className='container w-75 mt-5 mb-2 ContainersForm'>
             <h1 className='Titulo1 text-center'>Selecciona el tipo de cuenta a crear</h1>
             <div className='row p-2'>
@@ -21,7 +20,7 @@ export default function UserRegisterCont(){
 
                         <div className='row'>
                             <div className='col d-flex justify-content-center'>
-                                <p className='text-center p-3'>Los estudiantes que participen en Expo-Ingenierias presentando algún proyecto, deberán utilizar este formulario de registro para poder continuar con el registro de tu proyecto</p>
+                                <p className='text-center p-3'>Participantes de Expo-Ingenierías: Accede al formulario de registro para inscribir tu proyecto y continuar con el proceso de participación en el evento.</p>
                             </div>
                         </div>
                     </div>
@@ -37,13 +36,12 @@ export default function UserRegisterCont(){
 
                         <div className='row'>
                             <div className='col d-flex justify-content-center'>
-                                <p className='text-center p-3'>sfasf</p>
+                                <p className='text-center p-3'>Profesores y jueces: Regístrate aquí para aprobar proyectos y desempeñar tu papel como evaluador en Expo-Ingenierías. ¡Tu contribución es esencial para el éxito del evento!</p>
                             </div>
                         </div>
                     </div>
                 </div>                
             </div>
         </div>
-        </>
     );
 }

@@ -1,4 +1,5 @@
 import './Actual.css';
+import Menu from '../../../components/Menu/menu.js';
 
 import { useState } from 'react';
 
@@ -10,8 +11,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 import Modal from 'react-bootstrap/Modal';
-
-import Menu from '../../../components/Menu/menu.js';
 
 function MyVerticallyCenteredModal({ TitleDetailed, DescriptionDetailed, TeacherDetailed, MemebersDetailed, DriveLink, YoutubeLink, ...props }) {
 const { CategoCheckModal } = props;
@@ -204,7 +203,7 @@ function CardProj({ CategoCheck, Title, Description }) {
 export default function Actual() {
     return (
       <>
-      <Menu />
+        <Menu />
         <div className='container-fluid'>
 
             <div className='row m-4 p-3 CardsContainer'>

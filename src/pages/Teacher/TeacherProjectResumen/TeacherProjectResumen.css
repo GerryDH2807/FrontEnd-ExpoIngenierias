@@ -33,6 +33,8 @@
   justify-content: center;
 }
 
+
+
 .custom-btn {
   border-radius: 5px; 
   background-color: #0C356A; 
@@ -157,6 +159,8 @@
 
 }
 .BGResume{
+  background-image: url("../../../img/CardResumeConcept.png");
+
   background-size: cover; 
   background-position: center;
   border-radius: 5px;
@@ -168,7 +172,7 @@
 .forms{
   width:100%;
   height: auto;
-  margin-top: 20px;
+  margin-top: 325px;
 }
 .check input{
   border: 2px solid #000;

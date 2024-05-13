@@ -110,11 +110,14 @@
   justify-content: center;
   display: flex;
 }
-.card {
+.cardProf {
   /* margin-bottom: 1rem;  */
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
-  width: 320px;
-  height: auto;
+  width: 307px;
+  height: 360px;
+
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 
 }
 
@@ -147,3 +150,9 @@
     background-position: center;
     border-radius: 5px;
 }
+
+.ImagProfe{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
