@@ -1,15 +1,27 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import React, { useState,useEffect } from "react";
-import { RadioButton, RadioButtonChangeEvent } from "primereact/radiobutton";
+import { useParams } from "react-router-dom";
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 import CardConcept from '../../../img/CardConcept.png';
 import CardProto from '../../../img/CardProto.png';
 import CardFinish from '../../../img/CardFinish.png';
 import './TeacherProjectResumen.css'
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
 
-function InfoProj({lead,judge,status}){
+const URI = 'http://localhost:8000/projects/14'
+
+function MemberCont({NombreMiembro}){
+  return(
+    <li className="Texto text-wrap ps-3 mb-0">{NombreMiembro}</li>
+  );
+}
+
+function InfoProj({lead,members,status}){
   const diccionario = {
     "aprobado": "bi bi-check-circle aceptado1 p-2",
     "rechazado": "bi bi-x-circle rechazado1 p-2",
@@ -45,7 +57,9 @@ function InfoProj({lead,judge,status}){
             </div>
 
             <div className ='col-md-auto ps-0'>
-              <span className="Texto text-break">{judge}</span>
+            {members.map((student, index) => (
+              <MemberCont NombreMiembro={student.name + " " + student.lastName}></MemberCont>
+            ))}
             </div>
           </div>
             <div className="row justify-content-between d-flex align-items-center">
@@ -65,7 +79,7 @@ function ProjResume({type, area, title}){
   const imagenes = {
     "idea": CardConcept,
     "prototipo": CardProto,
-    "prototipo finalizado": CardFinish
+    "Prototipo finalizado": CardFinish
   };
   return(
     <div className='col-12 col-md-7 pt-4 ps-4 pe-4 '>
@@ -129,30 +143,70 @@ function CommenSec(){
   );
 }
 
-function ProjectFile({descr}){
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [textoRecortado, setTextoRecortado] = useState(descr);
 
-  useEffect(() => {
-    function handleResize() {
-      setWindowWidth(window.innerWidth);
-    }
+export default function ProjResumeCont(){
+  const [project, setProject] = useState({
+    id_project: 0,
+    title: "",
+    description: "",
+    linkVideo: "",
+    linkPoster: "",
+    statusGeneral: "",
+    statusPoster: "",
+    statusVideo: "",
+    area: "",
+    category: "",
+    person: "",
+    student: "",
+    team: {students: []}
+  });
+  const { id_project } = useParams();
 
-    window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
-  useEffect(() => {
-    if (windowWidth <= 576 && descr.length > 50) {
-      setTextoRecortado(descr.substring(0, 50) + '...');
-    } else {
-      setTextoRecortado(descr);
-    }
-  }, [windowWidth, descr]);
+  useEffect(()=>{
+    //fetch('http://localhost:8000/projects/'+id_post)
+    fetch('http://localhost:8000/projects/resume/'+14)
+    .then((res)=> res.json())
+    .then((data)=>setProject(data))
+},[id_project])
+
+  const navigate = useNavigate();
+
+  const [validated, setValidated] = useState(false);
+
+  const [switchPdf, setSwitchPdf] = useState(false); // Estado para controlar el primer switch
+const [switchVideo, setSwitchVideo] = useState(false);
+
+  const handleSubmit = async (event) => {
+  const form = event.currentTarget;
+  if (form.checkValidity() === false) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+  }else{
+    await axios.post(URI, {statusPoster:switchPdf, statusVideo:switchVideo });
+    navigate('/')
+  }
+
+  setValidated(true);
+};
   return(
     <>
-   <div className='col-12 col-md-10'>
+    <ToggleBar />
+    <div className='container-fluid'>
+        <div className='row'>
+            <div className="col-md-1"></div>
+          <ProjResume type={project.category.title} area={project.area.name} title={project.title}></ProjResume>        
+          <InfoProj lead={project.student.name + " " + project.student.lastName} members={project.team.students} status={project.statusGeneral}></InfoProj>
+          <div className="col-md-1"></div>
+        </div>
+
+      
+      <Form className='forms' noValidate validated={validated}  onSubmit={handleSubmit}>
+        <div className='row m-2 align-items-center'>
+        <div className="col-md-1"></div>
+        <div className='col-12 col-md-10'>
    <div className="Infologo m-auto p-4">
     <div className='row'>
     <div className='col-12 col-md-8'>
@@ -160,80 +214,51 @@ function ProjectFile({descr}){
     <h1 className="Titulologo text-break">Archivos del proyecto</h1>
     </div>
     <div className='container-fluid'>
-    <div className="row d-flex">
-        <div className='col-12 col-md-6 justify-content-center align-items-center'>
-          <a href="https://drive.google.com/file/d/1yq3OXk85Qsl434ORIohYZnFV1FpU45VE/view?usp=sharing" className="file"><i className="bi bi-filetype-pdf icono" id="logo"></i></a>
-          <div className='row d-flex m-2 check'>
-          <div className='col-6  col-md-6 justify-content-center'>
-          <div className="form-check">
-            <input className="form-check-input" type="radio" name="pdfStatus" id="flexRadioDefault1"/>
-            <label className="form-check-label" for="flexRadioDefault1">Aprobado</label>
-          </div>
-        </div>
-        <div className='col-6  col-md-6 justify-content-center'>
-          <div className="form-check">
-            <input className="form-check-input" type="radio" name="pdfStatus" id="flexRadioDefault2" checked />
-            <label className="form-check-label" for="flexRadioDefault2">Rechazado</label>
-          </div>
-        </div>
-        </div>
-        </div>
-        <div className='col-12 col-md-6 justify-content-center align-items-center'>
-          <a href="https://youtu.be/Nka4JSBgf7I?si=RpcxX4lmPjYLNczd" className="file"><i className="bi bi-youtube icono" id="logo"></i></a>
-          <div className='row d-flex m-2 check'>
-          <div className='col-6  col-md-6 justify-content-center'>
-          <div className="form-check">
-            <input className="form-check-input" type="radio" name="videoStatus" id="flexRadioDefault1"/>
-            <label className="form-check-label" for="flexRadioDefault1">Aprobado</label>
-          </div>
-        </div>
-        <div className='col-6 col-md-6 justify-content-center'>
-          <div className="form-check">
-            <input className="form-check-input" type="radio" name="videoStatus" id="flexRadioDefault1"/>
-            <label className="form-check-label" for="flexRadioDefault1">Rechazado</label>
-          </div>
-        </div>
-        </div>
-        </div>
-    </div>
-    </div>
+                <div className="row d-flex">
+                  <div className='col-12 col-md-6 justify-content-center align-items-center'>
+                    <a href={project.linkPoster} className="file"><i className="bi bi-filetype-pdf icono" id="logo"></i></a>
+                    <div className='row d-flex m-2 check mt-5'>
+                      <div className='col-md-6'>
+                        <center>
+                          {/* Uso de una expresión ternaria para cambiar el placeholder del primer switch */}
+                          <Form.Group as={Col} md="12" controlId="validationCustom06" className='ChecksPosition'>
+                            <center>
+                              <Form.Check type="switch" id='switchExternos1' label={switchPdf ? "Aceptado" : "Rechazado"} onChange={() => setSwitchPdf(!switchPdf)}></Form.Check>
+                            </center>
+                          </Form.Group>
+                        </center>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='col-12 col-md-6 justify-content-center align-items-center'>
+                    <a href={project.linkVideo} className="file"><i className="bi bi-youtube icono" id="logo"></i></a>
+                    <div className='row d-flex m-2 check mt-5 '>
+                      <div className='col-6  col-md-6 justify-content-center'>
+                        <center>
+                          {/* Uso de una expresión ternaria para cambiar el placeholder del segundo switch */}
+                          <Form.Group as={Col} md="12" controlId="validationCustom04" className='ChecksPosition'>
+                            <center>
+                              <Form.Check type="switch" id='switchExternos2' label={switchVideo ? "Aceptado" : "Rechazado"} onChange={() => setSwitchVideo(!switchVideo)}></Form.Check>
+                            </center>
+                          </Form.Group>
+                        </center>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
     </div>
     <div className='col-12 col-md-4'>
     <div className="row d-flex">
     <h1 className="Titulologo text-break">Descripcion del proyecto</h1>
     </div>
     <div className="row d-flex">
-    <span>{textoRecortado}</span>
+    <span>{project.description}</span>
     </div>
     </div>
     </div>
     </div>
-  </div>
-
-    </>
-  );
-}
-
-
-
-
-export default function ProjResumeCont(){
-  return(
-    <>
-    <ToggleBar />
-    <div className='container-fluid'>
-        <div className='row'>
-            <div className="col-md-1"></div>
-          <ProjResume type={'idea'} area={"Biotecnologia"} title={"Robot automata para automatizar automatas"}></ProjResume>        
-          <InfoProj lead={"Gerardo Deustúa Hernández"} judge={"Marcela Dominguez Rosas"} status={"en revision"}></InfoProj>
-          <div className="col-md-1"></div>
-        </div>
-
-      
-      <form className='forms'>
-        <div className='row m-2 align-items-center'>
-        <div className="col-md-1"></div>
-          <ProjectFile descr={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."} />      
+  </div>     
           <div className="col-md-1"></div>
         </div>
         <div className='row m-2 justify-content-between'>
@@ -244,7 +269,7 @@ export default function ProjResumeCont(){
         <div className='row m-3 justify-content-between'>
           <BotonStatus />
         </div>
-        </form>
+        </Form>
       </div>
       
     </>

@@ -33,15 +33,6 @@
   justify-content: center;
 }
 
-.FinalResul{
-
-  color: gray;
-  font-weight: bolder;
-
-  font-size: 75px;
-
-}
-
 .custom-btn {
   border-radius: 5px; 
   background-color: #0C356A; 
@@ -151,9 +142,10 @@
   font-size: 40px;
 }
 .Infologo{
-  height: 35vh;
+  height: 41vh;
   background-color: #ffffff;
   border-radius: 5px;
+  margin-top: 3000px;
 }
 .Titulologo{
 
@@ -176,6 +168,7 @@
 .forms{
   width:100%;
   height: auto;
+  margin-top: 20px;
 }
 .check input{
   border: 2px solid #000;
@@ -194,4 +187,8 @@
   .col-8 {
     width: 100%; /* Cambia el ancho a 100% para pantallas pequeñas */
   }
+}
+
+.ChecksPosition{
+  margin-left: 90px;
 }
