@@ -44,9 +44,6 @@ function App() {
                 <Route path="/perfil-profesor" element={<Perfil />} />
                 <Route path="/announ1-teacher" element={<TeacherAnoDet />} />
 
-
-
-
                 <Route path='/announ1-estudiante' element={<StudentAnnounDet></StudentAnnounDet>}></Route>
                 <Route path="/registro-proyecto" element={<ProjectRegister />} />
                 <Route path="/resumen-proyecto-estudiante" element={<ProjectResumen />} />
