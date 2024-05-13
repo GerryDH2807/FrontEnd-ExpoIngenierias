@@ -80,7 +80,7 @@
 }
 
 .algoimagFinish {
-  background-image: url('../../../img/CardSelectConcept.png');
+  background-image: url('../../../img/CardSelectFinish.png');
   width: 100%;
   height: 100%;
   background-position: center;
@@ -109,9 +109,8 @@
 .button-container {
   position: absolute;
   top: 6%;
-  left: 19%;
+  left: 10%;
   transform: translate(-50%, -50%);
-  opacity: 0; /* Inicialmente oculto */
   transition: opacity 0.3s ease;
 }
 

@@ -43,7 +43,7 @@ function CardCalif({categoria}) {
             
                     <div className="text">
                 
-                        <Link to="/resumen" className="btn23">Descargar Constancia</Link>
+                        <Link to="" className="btn23">Descargar Constancia</Link>
                         
                     </div>
                 </div>

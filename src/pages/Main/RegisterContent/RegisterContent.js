@@ -1,14 +1,15 @@
 import './RegisterContent.css';
 import { Link } from 'react-router-dom';
 
-import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
+import Menu from '../../../components/Menu/menu.js';
 
 export default function UserRegisterCont(){
 
     return (
 
         <>
-            <StudentToggle NameSection={"Selección de rol"}></StudentToggle>
+
+            <Menu></Menu>
             <div className='container w-75 mt-5 mb-2 ContainersForm'>
                 <h1 className='Titulo1 text-center'>Selecciona el tipo de cuenta a crear</h1>
                 <div className='row p-2'>

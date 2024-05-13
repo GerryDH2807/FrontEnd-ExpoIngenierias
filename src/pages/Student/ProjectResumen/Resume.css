@@ -224,11 +224,15 @@
   font-weight: bolder;
   font-size: 100px;
 
+  margin-top: 300px !important;
+
 }
 
 .ContFinalRes{
   border-radius: 5px;
   width: 275px;
+
+  margin-top: 150px;
 }
 
 .Resultado{

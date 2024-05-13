@@ -134,7 +134,7 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
 export default function Hometeacher(){
     return(
       <>
-      <ToggleBar />
+      <ToggleBar NameSecProf={"Inicio"} />
     <div className='container-fluid centered-container'>
       <div className='container-fluid'>
         <div className='row d-flex justify-content-between'>

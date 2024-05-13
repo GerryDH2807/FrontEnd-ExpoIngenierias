@@ -57,7 +57,7 @@ export default function ProjSelection({ConstCheck}){
     return(
 
         <>
-            <ToggleBar></ToggleBar>
+            <ToggleBar NameSecProf={"Constancias"}></ToggleBar>
             <div className='container-fluid centered-containerProjSelc'>
                 <div className='row m-4 p-3 TitleSelectContainer'>
                     <div className='col '>

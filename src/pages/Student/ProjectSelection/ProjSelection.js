@@ -17,6 +17,9 @@ function CardCalif({ title, description, categoria, id_Proyecto, status }) {
         return text.slice(0, limit) + '...';
     };
 
+    const icono =<i className='bi bi-trash-fill'></i>
+
+
     return (
         <>
             <div className='col-auto p-3'>
@@ -52,7 +55,7 @@ function CardCalif({ title, description, categoria, id_Proyecto, status }) {
                     </div>
                     {/* Contenedor para BotonElim */}
                     <div className="button-container">
-                        <BotonElim Path={"/principal-estudiante"} className={"ButtonEliminar"} Texto={"Eliminar"}></BotonElim>
+                        <BotonElim Path={"/principal-estudiante"} className={"ButtonEliminar"} Texto={icono}></BotonElim>
                     </div>
                 </div>
             </div>
@@ -116,7 +119,7 @@ export default function ProjSelection({ProjCheck}){
                         <CardCalif 
                             title={'Maquina perpetua que alimenta maquinas perpetuas'}
                             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                            categoria={"Concepto"}
+                            categoria={"Prototipo finalizado"}
                             id_Proyecto={"CP543"}
                             status={"Rechazado"}
                         />

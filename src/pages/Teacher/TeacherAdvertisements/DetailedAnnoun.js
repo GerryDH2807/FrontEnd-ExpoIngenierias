@@ -43,7 +43,7 @@ function AnnounBody({Contenido}){
 export default function DetailedAnnounCont(){
     return(
         <>
-        <Menu/>
+        <Menu NameSecProf={"Anuncios"}/>
         <div className="container-fluid mt-3 p-3">
             <div className="row p-3 ContainerAnnoun d-flex align-items-center">
                 <AnnounTitle TituloDetailed={"TItulo de los anuncio"} Fecha={"26/07/24"}></AnnounTitle>

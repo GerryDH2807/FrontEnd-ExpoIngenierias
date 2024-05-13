@@ -34,7 +34,7 @@ function AnnounSearch({ handleSearch }) {
   
     return (
       <Link to={'/announ1-teacher'} className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
-        <div className='col-auto d-flex align-items-center'>
+        <div className='col-3 d-flex align-items-center'>
           <i className='bi bi-envelope-fill AnnounIcon'></i> <span className='Titulo'> {Titulo}</span>
         </div>
   
@@ -95,7 +95,7 @@ function AnnounSearch({ handleSearch }) {
   
     return (
       <>
-        <Menu></Menu>
+        <Menu NameSecProf={"Anuncios"}></Menu>
         <div className='container-fluid mt-3 p-3'>
           <div className='row p-3 ContainerAnnoun'>
             <AnnounSearch handleSearch={handleSearch} />

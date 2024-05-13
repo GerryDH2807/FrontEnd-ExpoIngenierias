@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
-
 import './TeacherProjectResumen.css'
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
 
@@ -155,7 +154,7 @@ function CommenSec(){
 
 function ProjectFile({ descr }) {
   const [switchState1, setSwitchState1] = useState(false); // Estado para controlar el primer switch
-  const [switchState2, setSwitchState2] = useState(false); // Estado para controlar el segundo switch
+  const [switchState2, setSwitchState2] = useState(false); // Estado para controlar el segundo switch\
 
   return (
     <>
@@ -169,7 +168,7 @@ function ProjectFile({ descr }) {
               <div className='container-fluid'>
                 <div className="row d-flex">
                   <div className='col-12 col-md-6 justify-content-center align-items-center'>
-                    <a href="https://drive.google.com/file/d/1yq3OXk85Qsl434ORIohYZnFV1FpU45VE/view?usp=sharing" className="file"><i className="bi bi-filetype-pdf icono" id="logo"></i></a>
+                    <a href="https://drive.google.com/file/d/1yq3OXk85Qsl434ORIohYZnFV1FpU45VE/view?usp=sharing" target="_blank" rel="noreferrer" className="file"><i className="bi bi-filetype-pdf icono" id="logo"></i></a>
                     <div className='row d-flex m-2 check mt-5'>
                       <div className='col-md-6'>
                         <center>
@@ -184,7 +183,7 @@ function ProjectFile({ descr }) {
                     </div>
                   </div>
                   <div className='col-12 col-md-6 justify-content-center align-items-center'>
-                    <a href="https://youtu.be/Nka4JSBgf7I?si=RpcxX4lmPjYLNczd" className="file"><i className="bi bi-youtube icono" id="logo"></i></a>
+                    <a href="https://youtu.be/Nka4JSBgf7I?si=RpcxX4lmPjYLNczd" target="_blank" rel="noreferrer" className="file"><i className="bi bi-youtube icono" id="logo"></i></a>
                     <div className='row d-flex m-2 check mt-5 '>
                       <div className='col-6  col-md-6 justify-content-center'>
                         <center>
@@ -222,8 +221,8 @@ function ProjectFile({ descr }) {
 export default function ProjResumeCont(){
   return(
     <>
-    <ToggleBar />
-    <div className='container-fluid'>
+    <ToggleBar NameSecProf={"Resumen de proyecto"}/>
+    <div className='container-fluid'> 
         <div className='row centered-container'>
           <div className="col-md-1"></div>
             <ProjResume type={'idea'} area={"Biotecnologia"} title={"Robot automata para automatizar automatas"}></ProjResume>        

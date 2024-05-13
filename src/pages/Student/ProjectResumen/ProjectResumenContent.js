@@ -388,7 +388,7 @@ function FinalCalf({finalCalf}){
         <h1 className ="Titulo text-break">Calificación final</h1>
           <div className ='container-fluid p-1 centered-FinalRescontainer '>
             <div className ="row pb-3 align-items-center">
-              <div className ='col-md-auto ContFinalRes text-center p-3 mt-5'>
+              <div className ='col-md-auto ContFinalRes text-center p-3'>
                 <span className ="FinalResul text-center">{finalCalf}/10</span> 
               </div>              
             </div>
@@ -414,7 +414,7 @@ export default function ProjResumeCont(){
           <div className='row justify-content-between d-flex align-items-center'>
             <InfoProj lead={"Gerardo Deustúa Hernández"} profLead={"Michel Lara Wainstein"} memeber={"Marcela Dominguez"}></InfoProj>
 
-            <ProjResume type={"Prototipo Finalizado"} area={"Biotecnologia"} descr={"Robot Automata para Automatizar Autómatas  es un proyecto innovador para desarrollar un sistema robótico que automatiza tareas complejas en la industria. Utiliza algoritmos avanzados de inteligencia artificial y aprendizaje automático para aumentar la eficiencia y precisión en la producción, optimizando recursos."} title={"Robot automata para automatizar automatas"}></ProjResume>        
+            <ProjResume type={"Concepto"} area={"Biotecnologia"} descr={"Robot Automata para Automatizar Autómatas  es un proyecto innovador para desarrollar un sistema robótico que automatiza tareas complejas en la industria. Utiliza algoritmos avanzados de inteligencia artificial y aprendizaje automático para aumentar la eficiencia y precisión en la producción, optimizando recursos."} title={"Robot automata para automatizar automatas"}></ProjResume>        
 
             <ProjVal postVal={"Aceptado"} vidVal={"Rechazado"} finalRes={"Rechazado"}></ProjVal>
           </div>
