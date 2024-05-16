@@ -8,6 +8,26 @@ import logo2 from '../../img/logo2.svg';
 import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import {Link} from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+
+
+const LogoutButton = () => {
+  const { logout } = useAuth0();
+
+  const handleLogout = () => {
+    logout({
+      returnTo: "http://localhost:3000", 
+    });
+  };
+
+  
+  return (
+    <Link to='/' className="TextoValid2" onClick={handleLogout}>Cerrar sesión</Link>
+  );
+};
+
+
+
 function ToggleBarStudent({SectionName}) {
     const [show, setShow] = useState(false);
   
@@ -85,7 +105,7 @@ function ToggleBarStudent({SectionName}) {
               <div className='row m-2 mt-5'>
                 <div className ='col-md-auto mt-5'>
                   <Link to='/mapa' onClick={() => { handleClose(); }} class="bi bi-box-arrow-left docu-icon2"></Link>
-                  <Link to='/mapa' className ="TextoValid2" onClick={() => { handleClose(); }}>Cerrar sesión</Link> 
+                  <LogoutButton/>
                 </div>  
               </div>
 

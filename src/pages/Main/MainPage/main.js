@@ -14,7 +14,14 @@ import CardProto from '../../../img/CardProto.png';
 import CardFinish from '../../../img/CardFinish.png';
 import './main.css';
 
+import { useAuth0 } from '@auth0/auth0-react';
+import Callback from '../../../auth0/callback.js';
+import '../../../auth0/callback.css';
+import LoadingSpinner from '../../../auth0/loading.js';
+
 export default function Main() {
+  const { isAuthenticated, isLoading } = useAuth0();
+
   const Ref = useRef(null);
 
   // The state for our timer
@@ -60,6 +67,15 @@ export default function Main() {
     const endTime = new Date("2024-06-17T00:00:00");
     clearTimer(endTime);
   }, [clearTimer]);
+  
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (!isLoading && isAuthenticated) {
+    return <Callback />;  // Redirigir al Callback si está autenticado
+  }
 
   return (
     <>
