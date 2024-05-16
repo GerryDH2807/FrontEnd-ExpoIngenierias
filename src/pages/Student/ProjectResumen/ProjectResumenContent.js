@@ -412,7 +412,7 @@ export default function ProjResumeCont(){
       <div className='container-fluid centered-container mt-3 '>
         <div className='container-fluid'>
           <div className='row justify-content-between d-flex align-items-center'>
-            <InfoProj lead={"Gerardo Deustúa Hernández"} profLead={"Michel Lara Wainstein"} memeber={"Marcela Dominguez"}></InfoProj>
+            <InfoProj lead={"Prueba"} profLead={"Michel Lara Wainstein"} memeber={"Marcela Dominguez"}></InfoProj>
 
             <ProjResume type={"Concepto"} area={"Biotecnologia"} descr={"Robot Automata para Automatizar Autómatas  es un proyecto innovador para desarrollar un sistema robótico que automatiza tareas complejas en la industria. Utiliza algoritmos avanzados de inteligencia artificial y aprendizaje automático para aumentar la eficiencia y precisión en la producción, optimizando recursos."} title={"Robot automata para automatizar automatas"}></ProjResume>        
 
