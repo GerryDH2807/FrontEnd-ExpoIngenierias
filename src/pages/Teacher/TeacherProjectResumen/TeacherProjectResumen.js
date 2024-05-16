@@ -13,7 +13,7 @@ import CardFinish from '../../../img/CardFinish.png';
 import './TeacherProjectResumen.css'
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
 
-const URI = 'http://localhost:8000/projects/14'
+const URI = 'http://localhost:8000/projects/22'
 
 function MemberCont({NombreMiembro}){
   return(
@@ -163,10 +163,11 @@ const [switchVideo, setSwitchVideo] = useState(false);
 
 const handleUpdate = async () => {
   try {
-    // Realiza la solicitud PUT con el ID del proyecto
+    const statusPosterValue = switchPdf ? 'aprobado' : 'rechazado';
+    const statusVideoValue = switchVideo ? 'aprobado' : 'rechazado';
     axios.put(URI, {
-      statusPoster: switchPdf,
-      statusVideo: switchVideo,
+      statusPoster: statusPosterValue,
+      statusVideo: statusVideoValue,
     })
     .then(response => {
       console.log('Proyecto actualizado:', response.data); })
