@@ -146,13 +146,52 @@
 }
 .BGResume-profesor{
   background-image: url('../../../img/proyec.svg');
-    background-size: cover; 
-    background-position: center;
-    border-radius: 5px;
+  background-size: cover; 
+  background-position: center;
+  border-radius: 5px;
+  height: 93%;
 }
 
 .ImagProfe{
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
+.prof-titulo-h1{
+  font-size: 45px;
+}
+.prof-titulo-h3-1{
+  font-size: 30px;
+  font-weight: bolder;
+}
+.prof-titulo-h3-2{
+  font-size: 55px;
+  background-color: #0C356A;
+  padding: 5px;
 
+  border-radius: 15px;
+}
+
+.divisor{
+  height: 15px;
+  background-color: #ffffff;
+  border: none;
+  opacity: .65;
+}
+
+.slider-container::-webkit-scrollbar {
+  height: 5px;
+}
+
+.slider-container::-webkit-scrollbar-track {
+  background: #aeaeae;
+  
+}
+
+.slider-container::-webkit-scrollbar-thumb {
+  background: #555555e6;
+  border-radius: 5px; 
+}
+
+.slider-container::-webkit-scrollbar-thumb:hover {
+  background: #000000; 
+}

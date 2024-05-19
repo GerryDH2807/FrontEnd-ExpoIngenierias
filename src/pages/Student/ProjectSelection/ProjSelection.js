@@ -6,10 +6,12 @@ import './Badge.css';
 
 import './ProjSelection.css';
 
+import { projects } from './data.js';
+
 import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
 import BotonElim from '../../../components/BotonConfirmacion/ConfBot.js';
 
-function CardCalif({ title, description, categoria, id_Proyecto, status }) {
+function CardCalif({projects}) {
     const truncateText = (text, limit) => {
         if (!text || typeof text !== 'string' || text.length <= limit) {
             return text;
@@ -22,42 +24,51 @@ function CardCalif({ title, description, categoria, id_Proyecto, status }) {
 
     return (
         <>
-            <div className='col-auto p-3'>
-                <div className="card mb-1 me-0 card-container">
-                    {/* Contenido de la tarjeta */}
-                    {categoria === 'Concepto' && (
-                        <div className="imag algoimagConcept"></div>
-                    )}
-                    {categoria === 'Prototipo' && (
-                        <div className="imag algoimagProto"></div>
-                    )}
-                    {categoria === 'Prototipo finalizado' && (
-                        <div className="imag algoimagFinish"></div>
-                    )}
-                    <div className="text">
-                        <p className="h3">{truncateText(title, 50)}</p>
-                        <p className="p">{truncateText(description, 100)}</p>
-                        <div className="badge-container">
-                            <Badge data={categoria} className="badge text-wrap" />
-                            <Badge data={id_Proyecto} className="badge" />
-                            {status === "Rechazado" && (
-                                <div className="badge-container">
-                                    <div className="badge2">{status}</div>
-                                </div>
-                            )}
-                            {status === "Aceptado" && (
-                                <div className="badge-container">
-                                    <div className="badge3">{status}</div>
-                                </div>
-                            )}
+            <div className='col-12 p-3 d-flex flex-col justify-items-center'>
+                {projects.map((item) => (
+
+                    <div className="card card-container m-5 w-100">
+                        {/* Contenido de la tarjeta */}
+                        {item.categoria === 'Concepto' && (
+                            <div className="imag algoimagConcept"></div>
+                        )}
+                        {item.categoria === 'Prototipo' && (
+                            <div className="imag algoimagProto"></div>
+                        )}
+                        {item.categoria === 'Prototipo finalizado' && (
+                            <div className="imag algoimagFinish"></div>
+                        )}
+                        <div className="text">
+                            <p className="h3">{truncateText(item.title, 50)}</p>
+                            <p className="p">{truncateText(item.description, 100)}</p>
+                            <div className="badge-container">
+                                <Badge data={item.categoria} className="badge text-wrap" />
+                                <Badge data={item.id_Proyecto} className="badge" />
+                                {item.status === "En revisión" && (
+                                    <div className="badge-container">
+                                        <div className="badge">{item.status}</div>
+                                    </div>
+                                )}
+                                {item.status === "Rechazado" && (
+                                    <div className="badge-container">
+                                        <div className="badge2">{item.status}</div>
+                                    </div>
+                                )}
+                                {item.status === "Aceptado" && (
+                                    <div className="badge-container">
+                                        <div className="badge3">{item.status}</div>
+                                    </div>
+                                )}
+                            </div>
+                            <Link to="/resumen-proyecto-estudiante" className="btn23">Ver Proyecto</Link>
                         </div>
-                        <Link to="/resumen-proyecto-estudiante" className="btn23">Ver Proyecto</Link>
+                        {/* Contenedor para BotonElim */}
+                        <div className="button-container">
+                            <BotonElim Path={"/principal-estudiante"} className={"ButtonEliminar"} Texto={icono}></BotonElim>
+                        </div>
                     </div>
-                    {/* Contenedor para BotonElim */}
-                    <div className="button-container">
-                        <BotonElim Path={"/principal-estudiante"} className={"ButtonEliminar"} Texto={icono}></BotonElim>
-                    </div>
-                </div>
+
+                ))}
             </div>
         </>
     );
@@ -108,21 +119,9 @@ export default function ProjSelection({ProjCheck}){
                 {ProjCheck === "True" && (
                     <div className='row d-flex flex-col justify-content-evenly'>
 
-                        <CardCalif 
-                            title={'Robot automata para automatizar automatas'}
-                            description="Robot Automata para Automatizar Autómatas  es un proyecto innovador para desarrollar un sistema robótico que automatiza tareas complejas en la industria. Utiliza algoritmos avanzados de inteligencia artificial y aprendizaje automático para aumentar la eficiencia y precisión en la producción, optimizando recursos."
-                            categoria={"Prototipo"}
-                            id_Proyecto={"NPF103"}
-                            status={"Aceptado"}
-                        />
+                        
+                        <CardCalif projects={projects}/>
                 
-                        <CardCalif 
-                            title={'Maquina perpetua que alimenta maquinas perpetuas'}
-                            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                            categoria={"Prototipo finalizado"}
-                            id_Proyecto={"CP543"}
-                            status={"Rechazado"}
-                        />
 
 
                     </div>

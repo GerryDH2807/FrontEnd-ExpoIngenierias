@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
-import React, { useState,useEffect,setState} from "react";
+import React, { useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -10,7 +10,8 @@ import {useNavigate} from 'react-router-dom'
 import CardConcept from '../../../img/CardConcept.png';
 import CardProto from '../../../img/CardProto.png';
 import CardFinish from '../../../img/CardFinish.png';
-import './TeacherProjectResumen.css'
+import './TeacherProjectResumen.css';
+import ConfBot from "../../../components/BotonConfirmacion/ConfBot.js";
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
 
 const URI = 'http://localhost:8000/projects/22'
@@ -60,7 +61,7 @@ function InfoProj({lead,members,status}){
             <div className="row justify-content-between d-flex align-items-center">
                 <div className="col-md-1"></div>
                 <div className="col-md-auto">
-                    <i class={diccionario[status]}>{status}</i>
+                    <i class={diccionario[status]}> {status}</i>
                     </div>
                     <div className="col-md-1"></div>
                 </div>
@@ -151,7 +152,7 @@ export default function ProjResumeCont(){
     fetch('http://localhost:8000/projects/resume/'+14)
     .then((res)=> res.json())
     .then((data)=>setProject(data))
-},[id_project])
+  },[id_project])
 
   const navigate = useNavigate();
 
@@ -159,37 +160,37 @@ export default function ProjResumeCont(){
 
 
   const [switchPdf, setSwitchPdf] = useState(false); // Estado para controlar el primer switch
-const [switchVideo, setSwitchVideo] = useState(false);
+  const [switchVideo, setSwitchVideo] = useState(false);
 
-const handleUpdate = async () => {
-  try {
-    const statusPosterValue = switchPdf ? 'aprobado' : 'rechazado';
-    const statusVideoValue = switchVideo ? 'aprobado' : 'rechazado';
-    axios.put(URI, {
-      statusPoster: statusPosterValue,
-      statusVideo: statusVideoValue,
-    })
-    .then(response => {
-      console.log('Proyecto actualizado:', response.data); })
-    navigate('/');
-    
-  } catch (error) {
-    // Maneja cualquier error que ocurra durante la actualización
-    console.error('Error al actualizar:', error);
-  }
-};
+  const handleUpdate = async () => {
+    try {
+      const statusPosterValue = switchPdf ? 'aprobado' : ' rechazado';
+      const statusVideoValue = switchVideo ? 'aprobado' : ' rechazado';
+      axios.put(URI, {
+        statusPoster: statusPosterValue,
+        statusVideo: statusVideoValue,
+      })
+      .then(response => {
+        console.log('Proyecto actualizado:', response.data); })
+      navigate('/');
+      
+    } catch (error) {
+      // Maneja cualquier error que ocurra durante la actualización
+      console.error('Error al actualizar:', error);
+    }
+  };
 
-const handleSubmit = (event) => {
-  const form = event.currentTarget;
-  if (form.checkValidity() === false) {
-    event.preventDefault();
-    event.stopPropagation();
-  } else {
-    // Llama a handleUpdate con el ID del proyecto
-    handleUpdate();
-  }
-  setValidated(true);
-};
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      // Llama a handleUpdate con el ID del proyecto
+      handleUpdate();
+    }
+    setValidated(true);
+  };
 
 
   return(
@@ -270,7 +271,7 @@ const handleSubmit = (event) => {
         <div className='row m-3 justify-content-between'>
         <div className='col-md-4'></div>
           <div className="col-md-2 centered-container2">
-            <button type="submit" className="custom-btn">Guardar</button>
+            <ConfBot Path={"/principal-profesor"} className={"custom-btn"} Texto={"Guardar"}></ConfBot>
           </div>
         <div className='col-md-4'></div>
         </div>

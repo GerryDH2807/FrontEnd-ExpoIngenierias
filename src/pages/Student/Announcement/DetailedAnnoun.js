@@ -2,17 +2,18 @@ import "./DetailedAnnoun.css";
 import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
 
 import {Link} from 'react-router-dom';
+import { useState, useEffect } from "react";
 
 
 function AnnounTitle({TituloDetailed,Fecha}){
     return(
         <>
-            <div className="col-11 p-3  ">
+            <div className="col-10 p-3  ">
                 <i className="bi bi-megaphone-fill AnnounIcon"></i>
                 <span className="TituloAnnoun">{TituloDetailed}</span>
             </div>
 
-            <div className="col-1 ">
+            <div className="col-2 ">
                     <div className="container-fluid">
                         <div className="row SubjectCont p-4">
                             <div className="col-2">
@@ -20,7 +21,7 @@ function AnnounTitle({TituloDetailed,Fecha}){
                             </div>
 
                             <div>
-                                <span className="text-wrap"> {Fecha}</span>
+                                <span className="text-wrap"> {Fecha && Fecha.substring(0,10)}</span>
                             </div>
                         </div>
                     </div>
@@ -42,17 +43,32 @@ function AnnounBody({Contenido}){
 }
 
 export default function DetailedAnnounCont(){
+
+    const [announDet, setAnnounDet] = useState({
+        title: "",
+        description: "",
+        createdAt: ""
+      });
+
+    useEffect(() => {
+        fetch('http://localhost:8000/announ/' + 9)
+          .then((res) => res.json())
+          .then((data) => {
+            setAnnounDet(data);
+          });
+      }, []); // Lista de dependencias vacía para ejecutar solo una vez
+   
     return(
 
         <>
             <StudentToggle NameSection={"Anuncios"}></StudentToggle>
             <div className="container-fluid mt-3 p-3">
                 <div className="row p-3 ContainerAnnoun d-flex align-items-center">
-                    <AnnounTitle TituloDetailed={"TItulo de los anuncio"} Fecha={"26/07/24"}></AnnounTitle>
+                    <AnnounTitle TituloDetailed={announDet.title} Fecha={announDet.createdAt}></AnnounTitle>
                 </div>
 
                 <div className="row mt-4 p-3 ContainerAnnoun d-flex align-items-center">
-                    <AnnounBody Fecha={"26/07/24"} Contenido ={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec purus ut nunc molestie rhoncus. Quisque et facilisis elit. Aliquam in ante rhoncus, fermentum diam vel, efficitur neque. Nam sapien nulla, sodales et massa sed, luctus tincidunt mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent eget egestas nibh, vel rhoncus mi. Mauris volutpat eu nisi nec molestie. Etiam non leo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla dolor augue, faucibus in ex a, vehicula rutrum tortor. Aenean tempus ligula eget sem tempus finibus. Duis sit amet velit interdum, vulputate sem et, vestibulum magna. Nullam suscipit enim sapien, at accumsan tellus gravida nec. Proin lectus dui, faucibus finibus metus quis, pulvinar dapibus mauris. Donec vehicula nisi vel viverra malesuada.'}></AnnounBody>
+                    <AnnounBody Contenido ={announDet.description}></AnnounBody>
                 </div>      
 
                 <Link to={'/anuncio-estudiante'} className="row mt-4 p-3 ContainerAnnounBut ButtReturn d-flex justify-items-center">
