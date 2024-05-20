@@ -26,7 +26,7 @@
   font-size: 1.1em;
   font-weight: bold;
   cursor: pointer;
-  background-color: #0C356A;
+  background-color: #0C356A !important;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -116,4 +116,14 @@
 
 .card-container:hover .button-container {
   opacity: 1; /* Mostrar en hover */
+}
+
+.imag{
+
+  height: 225px ;
+  background-color: #999999;
+
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
 }

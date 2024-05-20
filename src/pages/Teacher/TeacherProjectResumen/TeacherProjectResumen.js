@@ -73,8 +73,8 @@ function InfoProj({lead,members,status}){
 
 function ProjResume({type, area, title}){
   const imagenes = {
-    "idea": CardConcept,
-    "prototipo": CardProto,
+    "Concepto": CardConcept,
+    "Prototipo": CardProto,
     "Prototipo finalizado": CardFinish
   };
   return(

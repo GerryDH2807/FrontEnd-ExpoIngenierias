@@ -75,7 +75,7 @@ function AnnounInfoCont({ announcements, isLoading }) {
     <div className='col-12 p-12'>
       <div className='container-fluid'>
         {isLoading
-          ? Array.from({ length: 3 }).map((_, index) => <AnnounInfo key={index} isLoading={true} />)
+          ? Array.from({ length: 5 }).map((_, index) => <AnnounInfo key={index} isLoading={true} />)
           : announcements.map((announcement, index) => (
               <AnnounInfo key={index} announ={announcement} isLoading={false} />
             ))}
