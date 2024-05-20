@@ -137,7 +137,7 @@ export default function ProjSelection(){
                                         Registra un proyecto nuevo
                     </Link>
                     </div>
-                    </div>
+                </div>
 
                 <div className='row d-flex flex-col justify-content-evenly'>
                 <div className='row p-3 m-3 NoProjContainer'>

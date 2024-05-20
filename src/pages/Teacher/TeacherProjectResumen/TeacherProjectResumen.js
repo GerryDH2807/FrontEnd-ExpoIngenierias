@@ -13,7 +13,7 @@ import CardFinish from '../../../img/CardFinish.png';
 import './TeacherProjectResumen.css'
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
 
-const URI = 'http://localhost:8000/projects/22'
+const URI = 'http://localhost:8000/projects/42'
 
 function MemberCont({NombreMiembro}){
   return(
@@ -72,8 +72,8 @@ function InfoProj({lead,members,status}){
 
 function ProjResume({type, area, title}){
   const imagenes = {
-    "idea": CardConcept,
-    "prototipo": CardProto,
+    "Concepto": CardConcept,
+    "Prototipo": CardProto,
     "Prototipo finalizado": CardFinish
   };
   return(
@@ -104,7 +104,7 @@ function CommentCont({role}){
       <h1 className ="Titulo text-break">Comentarios del {role} </h1>
 
       <div className ='container-fluid p-1'>
-          <textarea class="form-control" rows="5" id="comentarioProfe"></textarea>
+          <Form.Control as="textarea" rows="5" id="comentarioProfe"/>
       </div>
     </div>
   );
@@ -148,11 +148,11 @@ export default function ProjResumeCont(){
 
   useEffect(()=>{
     //fetch('http://localhost:8000/projects/'+${id_project})
-    fetch('http://localhost:8000/projects/resume/'+14)
+    fetch(`http://localhost:8000/projects/resume/${id_project}`)
     .then((res)=> res.json())
     .then((data)=>setProject(data))
 },[id_project])
-
+  console.log(project);
   const navigate = useNavigate();
 
   const [validated, setValidated] = useState(false);
@@ -163,15 +163,21 @@ const [switchVideo, setSwitchVideo] = useState(false);
 
 const handleUpdate = async () => {
   try {
+    const dynamicURI = `http://localhost:8000/projects/${id_project}`;
+    console.log(dynamicURI);
     const statusPosterValue = switchPdf ? 'aprobado' : 'rechazado';
     const statusVideoValue = switchVideo ? 'aprobado' : 'rechazado';
-    axios.put(URI, {
+    let statusTotal = '';
+    if(switchPdf && switchVideo) statusTotal = 'aprobado';
+    else statusTotal = 'rechazado';
+    axios.put(dynamicURI, {
       statusPoster: statusPosterValue,
       statusVideo: statusVideoValue,
+      statusGeneral: statusTotal
     })
     .then(response => {
       console.log('Proyecto actualizado:', response.data); })
-    navigate('/');
+    navigate('/principal-profesor');
     
   } catch (error) {
     // Maneja cualquier error que ocurra durante la actualización

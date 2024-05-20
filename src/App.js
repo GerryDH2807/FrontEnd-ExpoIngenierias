@@ -36,7 +36,7 @@ function App() {
               <Route path="/Ediciones-pasadas" element={<EdicionesPasadas />} />
               <Route path="/Catalogo" element={<Catalogo />} />
               <Route path="/principal-profesor" element={<ProtectedRoute><Hometeacher /></ProtectedRoute>} />
-              <Route path="/resumen-proyecto" element={<ProtectedRoute><ProjResumeCont /></ProtectedRoute>} />
+              <Route path="/profesor/projects/:id_project" element={<ProtectedRoute><ProjResumeCont /></ProtectedRoute>} />
               <Route path="/login" element={<Login />} />
               <Route path="/Registro-usuario" element={<ProtectedRoute><FormUser /></ProtectedRoute>} />
               <Route path="/Registro-inicio" element={<ProtectedRoute><UserRegisterCont /></ProtectedRoute>} />
@@ -63,4 +63,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;
