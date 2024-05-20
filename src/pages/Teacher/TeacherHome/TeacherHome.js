@@ -3,6 +3,8 @@ import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import {Link} from 'react-router-dom'
+import React, { useState,useEffect,useRef} from "react";
+import { useParams } from "react-router-dom";
 
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
 import CardConcept from '../../../img/CardConcept.png';
@@ -10,21 +12,20 @@ import CardProto from '../../../img/CardProto.png';
 import CardFinish from '../../../img/CardFinish.png';
 
 import Badges from '../../Student/ProjectSelection/Badge.js'
-
-import { people } from './data.js';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import './TeacherHome.css';
 function HorizontalSlider ({data}){
   const imagenes = {
-    "idea": CardConcept,
-    "prototipo": CardProto,
-    "prototipo finalizado": CardFinish
+    "Concepto": CardConcept,
+    "Prototipo": CardProto,
+    "Prototipo finalizado": CardFinish
   };
   return (
     <div className="slider-container">
       {data.map((item) => (
         <div className='slider-item cardProf m-3' key={item.id}>
-        <img src={imagenes[item.categoria]} alt={item.id}  className='card-img-top ImagProfe'/>
+        <img src={imagenes[item.category]} alt={item.id}  className='card-img-top ImagProfe'/>
       <div className='card-body '>
           <h5 className=' card-title m-2'>{item.id}</h5>
           <div className='container-fluid'>
@@ -32,29 +33,41 @@ function HorizontalSlider ({data}){
               <div className='badge-container mb-3'>
                 <Badges className={"badge p-2"} data={item.area}></Badges>
 
-                <Badges className={"badge p-2 text-wrap"} data={item.categoria}></Badges>
+                <Badges className={"badge p-2 text-wrap"} data={item.category}></Badges>
 
-                {item.status === "Rechazado" && (
+<<<<<<< HEAD
+                {item.statusGeneral === "rechazado" && (
+=======
+                {item.status === "rechazado" && (
+>>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
                     <div className="badge-container">
-                        <div className="badge2 p-2">{item.status}</div>
+                        <div className="badge2 p-2">{item.statusGeneral}</div>
                     </div>
                 )}
 
-                {item.status === "Aceptado" && (
+<<<<<<< HEAD
+                {item.statusGeneral === "aprobado" && (
+=======
+                {item.status === "aprobado" && (
+>>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
                     <div className="badge-container">
-                        <div className="badge3 p-2">{item.status}</div>
+                        <div className="badge3 p-2">{item.statusGeneral}</div>
                     </div>
                 )}
 
-                {item.status === "En revisión" && (
+<<<<<<< HEAD
+                {item.statusGeneral === "en revision" && (
+=======
+                {item.status === "en revisión" && (
+>>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
                   <div className="badge-container">
-                    <div className="badge p-2">{item.status}</div>
+                    <div className="badge p-2">{item.statusGeneral}</div>
                   </div>
                 )}
               </div>
             </div>
           </div>
-          <Link to="/resumen-proyecto" className='custom-btn3 mb-5'>Ver Proyecto</Link>
+          <Link to={`/profesor/projects/${item.id}`} className='custom-btn3 mb-5'>Ver Proyecto</Link>
           </div>
     </div>
       ))}
@@ -107,7 +120,7 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
   
   function ProjResume({horas, profesor}){
     return(
-      <div className='col-md-7 pt-5 ps-4 pe-4'>
+      <div className='col-md-7 pt-4 ps-4 pe-4'>
           
         <div className="container-fluid BGResume-profesor w-100 ">
             <div className ="row p-2 BGBar">
@@ -116,13 +129,16 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
           <div className='m-4 p-0'>
             <div className="container-fluid welcomeContent">
               <div className="row">
-                <div className="col-md-5 proj-sub text-start" ><h3 className='text-break'>Cierre de Registro</h3></div>
+                <div className="col-md proj-sub text-start" ><h3 className='text-break prof-titulo-h3-1'>Cierre de Registro:</h3></div>
               </div>
               <div className="row">
-                <div className="col-md-6 proj-sub text-start" ><h3 className='text-break'>{horas}</h3></div>
+                <div className="col-md proj-sub text-start" ><center><h3 className='text-break prof-titulo-h3-2'>{horas}</h3></center></div>
               </div>
+              
+              <hr className='divisor'></hr>
+
               <div className="row">
-                <div className="col-md-10 proj-sub text-start" ><h1 className='text-break'>Bienvenido {profesor}</h1></div>
+                <div className="col-md proj-sub text-start" ><h1 className='text-break prof-titulo-h1'>Bienvenido {profesor}</h1></div>
               </div>
             </div>
           </div>
@@ -132,6 +148,72 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
   }
   
 export default function Hometeacher(){
+  const [projects, setProjects] = useState([]);
+  const { id_responsable } = useParams(); // Asumiendo que este es el parámetro que obtienes desde la URL
+  const { isAuthenticated, isLoading, error, user } = useAuth0();
+  console.log(user.sub);
+  const Ref = useRef(null);
+  
+// The state for our timer
+const [timer, setTimer] = useState('00:00:00');
+
+
+const getTimeRemaining = (endTime) => {
+  const countdownDateTime = new Date(endTime).getTime();
+  const currentTime = new Date().getTime();
+  const remainingDayTime = countdownDateTime - currentTime;
+  
+  const totalDays = Math.floor(remainingDayTime / (1000 * 60 * 60 * 24));
+  const totalHours = Math.floor((remainingDayTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const totalMinutes = Math.floor((remainingDayTime % (1000 * 60 * 60)) / (1000 * 60));
+  const totalSeconds = Math.floor((remainingDayTime % (1000 * 60)) / 1000);
+
+  return {
+    totalDays, totalHours, totalMinutes, totalSeconds
+  };
+}
+
+const startTimer = (endTime) => {
+  const { totalDays, totalHours, totalMinutes, totalSeconds } = getTimeRemaining(endTime);
+
+  // update the timer
+  setTimer(
+    (totalDays > 9 ? totalDays : '0' + totalDays) + ':' +
+    (totalHours > 9 ? totalHours : '0' + totalHours) + ':' +
+    (totalMinutes > 9 ? totalMinutes : '0' + totalMinutes) + ':' +
+    (totalSeconds > 9 ? totalSeconds : '0' + totalSeconds)
+  );
+}
+
+const clearTimer = (endTime) => {
+  setTimer('00:00:00');
+  if (Ref.current) clearInterval(Ref.current);
+  const id = setInterval(() => {
+    startTimer(endTime);
+  }, 1000);
+  Ref.current = id;
+}
+
+  useEffect(() => {
+    //nuevodescr120T
+    //http://localhost:8000/projects/responsable/${user.sub}
+    fetch(`http://localhost:8000/projects/responsable/nuevodescr120T`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .then((data) => setProjects(data))
+      .catch((error) => console.error('Error al obtener los proyectos:', error));
+      const endTime = new Date("2024-06-10T00:00:00");
+      clearTimer(endTime);
+  }, [id_responsable]);
+  console.log(projects);
+  const falt = projects.filter(project => project.statusGeneral === "en revision");
+  const rev = projects.filter(project => project.statusGeneral === "rechazado" || project.statusGeneral === "aprobado");
+  const porcentaje = (rev.length*100)/projects.length;
+  
     return(
       <>
       <ToggleBar NameSecProf={"Inicio"} />
@@ -139,15 +221,16 @@ export default function Hometeacher(){
       <div className='container-fluid'>
         <div className='row d-flex justify-content-between'>
             <div className="col-md-1"></div>
-          <ProjResume horas={"20 dias, 12 horas, 4 min "} profesor={"Sarai Santiago"}></ProjResume>        
-          <Resumeteacher Total={"10"} revisados={"4"} faltantes={"6"} progreso={"40%"}></Resumeteacher>
+          <ProjResume horas={timer} profesor={"Sarai Santiago"}></ProjResume>        
+          <Resumeteacher Total={projects.length} revisados={rev.length} faltantes={falt.length} progreso={porcentaje+'%'}></Resumeteacher>
           <div className="col-md-1"></div>
           <div className='row d-flex justify-content-between align-items-center'>
           <div className="col-md-1"></div>
           <div className="col-md-10 ">
           <div className='container-fluid'  id="imgfondo">
             <h3 className ="Titulo p-3">Proyectos Que faltan de revisar</h3>
-            <HorizontalSlider data={people}/></div>
+            <HorizontalSlider data={falt} />
+            </div>
             </div>
           <div className="col-md-1"></div>
           </div>
@@ -156,7 +239,8 @@ export default function Hometeacher(){
           <div className="col-md-10 ">
           <div className='container-fluid' id="imgfondo">
             <h3 className ="Titulo p-3">Proyectos Revisados</h3>
-            <HorizontalSlider data={people}/></div>
+            <HorizontalSlider data={rev} />
+            </div>
             </div>
           <div className="col-md-1"></div>
           </div>

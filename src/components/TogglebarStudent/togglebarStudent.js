@@ -47,8 +47,16 @@ function ToggleBarStudent({SectionName}) {
           <Offcanvas.Header className='pb-0'>
             <Offcanvas.Title >
   
-            <div className='ExpoIngLog3' onClick={handleClose}>
-            <center><img className="ExpoIngLog3 w-50 h-50" src ={logo2} alt=""></img></center>  
+            <div className='container ExpoIngLog3' onClick={handleClose}>
+              <div className='row'>
+                <div className='col-10'>
+                  <center><img className="ExpoIngLog3 w-50 h-50" src ={logo2} alt=""></img></center>  
+                </div>
+
+                <div className='col'>
+                  <center> <i className='bi bi-x-circle'></i></center>  
+                </div>
+              </div>
             </div>
   
             </Offcanvas.Title>

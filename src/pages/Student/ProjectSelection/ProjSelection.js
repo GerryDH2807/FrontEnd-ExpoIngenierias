@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 import Badge from './Badge';
 import './Juez.css';
 import './Badge.css';
+import Placeholder from 'react-bootstrap/Placeholder';
 
 import './ProjSelection.css';
+import Button from 'react-bootstrap/esm/Button.js';
+import { projects } from './data.js';
 
 import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
 import BotonElim from '../../../components/BotonConfirmacion/ConfBot.js';
+import Spinner from 'react-bootstrap/Spinner';
 
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
@@ -16,7 +20,7 @@ import axios from 'axios';
 
 const URL = 'http://localhost:8000/projects/resumeProject/';
 
-function CardCalif({ title, description, categoria, id_Proyecto, status }) {
+function CardCalif({projects, IsLoaded}) {
     const [validated, setValidated] = useState(false);
     const handleSubmit = async (event) => {
 
@@ -31,7 +35,6 @@ function CardCalif({ title, description, categoria, id_Proyecto, status }) {
         } else {
           try {
             await axios.delete(URL + id_Proyecto);
-            setProjects(projects.filter(project => project.id !== id));
           } catch (e) {
             console.log(e);
           }
@@ -52,46 +55,104 @@ function CardCalif({ title, description, categoria, id_Proyecto, status }) {
 
     const icono =<i className='bi bi-trash-fill'></i>
 
+    const PlaceBadge = <center><Spinner animation="grow" size="sm"/></center>
+
 
     return (
         <>
-            <div className='col-auto p-3'>
-                <div className="card mb-1 me-0 card-container">
-                    {/* Contenido de la tarjeta */}
-                    {categoria === 'Concepto' && (
-                        <div className="imag algoimagConcept"></div>
-                    )}
-                    {categoria === 'Prototipo' && (
-                        <div className="imag algoimagProto"></div>
-                    )}
-                    {categoria === 'Prototipo finalizado' && (
-                        <div className="imag algoimagFinish"></div>
-                    )}
-                    <div className="text">
-                        <p className="h3">{truncateText(title, 50)}</p>
-                        <p className="p">{truncateText(description, 100)}</p>
-                        <div className="badge-container">
-                            <Badge data={categoria} className="badge text-wrap" />
-                            <Badge data={id_Proyecto} className="badge" />
-                            {status === "rechazado" && (
-                                <div className="badge-container">
-                                    <div className="badge2">Rechazado</div>
+            {IsLoaded === 'True' && (
+                <>
+                    <div className='col-12 d-flex flex-col justify-items-center'>
+                        {projects.map((item) => (
+
+                            <div className="card card-container m-4 w-100">
+                                {/* Contenido de la tarjeta */}
+                                {item.categoria === 'Concepto' && (
+                                    <div className="imag algoimagConcept"></div>
+                                )}
+                                {item.categoria === 'Prototipo' && (
+                                    <div className="imag algoimagProto"></div>
+                                )}
+                                {item.categoria === 'Prototipo finalizado' && (
+                                    <div className="imag algoimagFinish"></div>
+                                )}
+                                <div className="text">
+                                    <p className="h3">{truncateText(item.title, 50)}</p>
+                                    <p className="p">{truncateText(item.description, 100)}</p>
+                                    <div className="badge-container">
+                                        <Badge data={item.categoria} className="badge text-wrap" />
+                                        <Badge data={item.id_Proyecto} className="badge" />
+                                        {item.status === "en revision" && (
+                                            <div className="badge-container">
+                                                <div className="badge">En revisión</div>
+                                            </div>
+                                        )}
+                                        {item.status === "rechazado" && (
+                                            <div className="badge-container">
+                                                <div className="badge2">Rechazado</div>
+                                            </div>
+                                        )}
+                                        {item.status === "aprobado" && (
+                                            <div className="badge-container">
+                                                <div className="badge3">Aceptado</div>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <Link to="/resumen-proyecto-estudiante" className="btn23">Ver Proyecto</Link>
                                 </div>
-                            )}
-                            {status === "aprobado" && (
-                                <div className="badge-container">
-                                    <div className="badge3">Aceptado</div>
+                                {/* Contenedor para BotonElim */}
+                                <div className="button-container">
+                                    <BotonElim Path={"/principal-estudiante"} className={"ButtonEliminar"} Texto={icono} onConfirm={handleSubmit} recharge={true}></BotonElim>
                                 </div>
-                            )}
-                        </div>
-                        <Link to={"/resumen-proyecto-estudiante/" + id_Proyecto } className="btn23">Ver Proyecto</Link>
+                            </div>
+
+                        ))}
                     </div>
-                    {/* Contenedor para BotonElim */}
-                    <div className="button-container">
-                        <BotonElim Path={"/principal-estudiante"} className={"ButtonEliminar"} Texto={icono} onConfirm={handleSubmit} recharge={true}></BotonElim>
+                </>
+            )}
+            
+            {IsLoaded === 'False' && (
+                <>
+                    <div className='col-12 d-flex flex-col justify-items-center'>
+                        {projects.map((item) => (
+
+                            <div className="card card-container m-4 w-100">
+
+                                <div className="imag d-flex align-items-center justify-content-center">
+                                     <center><Spinner animation="border"/></center>
+                                </div>
+
+                                <div className="text">
+                                    <p className="h3">
+                                        <Placeholder animation="glow" className="w-100">
+                                            <Placeholder xs={12} bg="Dark" size="lg" />
+                                        </Placeholder>
+                                    </p>
+                                    <p className="p">                                        
+                                        <Placeholder animation="glow" className="w-100">
+                                            <Placeholder xs={12}  size="xs" />
+                                            <Placeholder xs={12}  size="xs" />
+                                            <Placeholder xs={12}  size="xs" />
+                                        </Placeholder>
+                                    </p>
+                                    <div className="badge-container">
+                                        <Badge data={PlaceBadge} className="badge text-wrap" />
+                                        <Badge data={PlaceBadge} className="badge" />
+                                        <div className="badge">{PlaceBadge}</div>
+                
+                                    </div>
+                                    <Button className="btn23" disabled> <Spinner animation="border" size='sm' className='me-2'/> Ver Proyecto</Button>
+                                </div>
+                                {/* Contenedor para BotonElim */}
+                                <div className="button-container">
+                                    <BotonElim Path={"/principal-estudiante"} className={"ButtonEliminar"} Texto={icono}></BotonElim>
+                                </div>
+                            </div>
+
+                        ))}
                     </div>
-                </div>
-            </div>
+                </>
+            )}            
         </>
     );
 }
@@ -129,18 +190,18 @@ export default function ProjSelection({ProjCheck}){
 
             <StudentToggle NameSection={"Mis proyectos"}></StudentToggle>
 
-            <div className='container-fluid centered-containerProjSelc'>
-                <div className='row m-4 p-3 TitleSelectContainer'>
-                    <div className='col '>
-                        <h1 className='TituloProjSEL text-center'>Proyectos en los que participas</h1>
-                    </div>
-                </div>
-            </div>
             <div className='container-fluid'>
-
 
                 {ProjCheck === "False" && (
                     <>
+                        <div className='container-fluid centered-containerProjSelc'>
+                            <div className='row m-4 p-3 TitleSelectContainer'>
+                                <div className='col '>
+                                    <h1 className='TituloProjSEL text-center'>Proyectos en los que participas</h1>
+                                </div>
+                            </div>
+                        </div>
+
                         <div className='container-fluid  p-3'>
                             <center>
                                 <div className='row p-3 m-3 NoProjContainer'>
@@ -163,18 +224,25 @@ export default function ProjSelection({ProjCheck}){
                 )}
 
                 {ProjCheck === "True" && (
-                    <div className='row d-flex flex-col justify-content-evenly'>
-                    
-                    {projects.map((project, index) => (
-                        <CardCalif 
-                            title={project.title}
-                            description={project.description}
-                            categoria={project.category.title}
-                            id_Proyecto={project.id}
-                            status={project.statusGeneral}
-                        />
-                    ))}
-                    </div>
+
+                    <>
+                        <div className='container-fluid '>
+                            <div className='row'>
+                                <div className='col-2 mt-2 p-3'>
+                                    <Link to={'/registro-proyecto'} className='bi bi-plus-square-fill NuevoRegister'></Link>
+                                </div>
+                                <div className='col-10 mt-2 p-3'>
+                                   <center><h1 className='TituloProjSEL p-3 text-center TitleSelectContainerVF'>Proyectos en los que participas</h1></center>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='row d-flex flex-col justify-content-evenly'>          
+                            <CardCalif projects={projects} IsLoaded={"True"}/>
+                        </div>                  
+                    </>
+
+
                 )}
             </div>        
         </>

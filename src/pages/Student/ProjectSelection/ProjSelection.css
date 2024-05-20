@@ -6,12 +6,13 @@
 
 }
 
-.TitleSelectContainer{
+.TitleSelectContainerVF{
 
     background-color: #ffffff;
     border-radius: 5px;
+    width: 50%;
 
-    width: 37%;
+    margin-right: 254px;
 }
 
 .centered-containerProjSelc {
@@ -53,4 +54,43 @@
 
     height: 36px;
     
+}
+
+.NuevoRegister {
+    background-color: #0C356A;
+    color: #ffffff;
+    font-weight: bolder;
+    border-radius: 5px;
+    font-size: 28px;
+    padding: 9px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: width 0.3s ease-in-out;
+    width: 47px; /* Ancho inicial del botón, ajustado para que solo se vea el icono */
+    height: 46px;
+    white-space: nowrap;
+}
+
+.NuevoRegister:hover {
+    background-color: #0C356A;
+    width: 235px; /* Ancho del botón al hacer hover para mostrar el texto */
+}
+
+.NuevoRegister::after {
+    content: "Registrar nuevo proyecto";
+    color: #ffffff;
+    font-weight: normal;
+    font-size: 16px;
+    padding-left: 10px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.NuevoRegister:hover::after {
+    opacity: 1;
+    transform: translateX(0);
 }

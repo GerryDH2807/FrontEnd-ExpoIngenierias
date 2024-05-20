@@ -23,50 +23,51 @@ export default function Main() {
   const { isAuthenticated, isLoading } = useAuth0();
 
   const Ref = useRef(null);
+  
+// The state for our timer
+const [timer, setTimer] = useState('00:00:00');
 
-  // The state for our timer
-  const [timer, setTimer] = useState('00:00:00');
 
-  const getTimeRemaining = (endTime) => {
-    const countdownDateTime = new Date(endTime).getTime();
-    const currentTime = new Date().getTime();
-    const remainingDayTime = countdownDateTime - currentTime;
+const getTimeRemaining = (endTime) => {
+  const countdownDateTime = new Date(endTime).getTime();
+  const currentTime = new Date().getTime();
+  const remainingDayTime = countdownDateTime - currentTime;
+  
+  const totalDays = Math.floor(remainingDayTime / (1000 * 60 * 60 * 24));
+  const totalHours = Math.floor((remainingDayTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const totalMinutes = Math.floor((remainingDayTime % (1000 * 60 * 60)) / (1000 * 60));
+  const totalSeconds = Math.floor((remainingDayTime % (1000 * 60)) / 1000);
 
-    const totalDays = Math.floor(remainingDayTime / (1000 * 60 * 60 * 24));
-    const totalHours = Math.floor((remainingDayTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const totalMinutes = Math.floor((remainingDayTime % (1000 * 60 * 60)) / (1000 * 60));
-    const totalSeconds = Math.floor((remainingDayTime % (1000 * 60)) / 1000);
+  return {
+    totalDays, totalHours, totalMinutes, totalSeconds
+  };
+}
 
-    return {
-      totalDays, totalHours, totalMinutes, totalSeconds
-    };
-  }
+const startTimer = (endTime) => {
+  const { totalDays, totalHours, totalMinutes, totalSeconds } = getTimeRemaining(endTime);
 
-  const startTimer = (endTime) => {
-    const { totalDays, totalHours, totalMinutes, totalSeconds } = getTimeRemaining(endTime);
+  // update the timer
+  setTimer(
+    (totalDays > 9 ? totalDays : '0' + totalDays) + ':' +
+    (totalHours > 9 ? totalHours : '0' + totalHours) + ':' +
+    (totalMinutes > 9 ? totalMinutes : '0' + totalMinutes) + ':' +
+    (totalSeconds > 9 ? totalSeconds : '0' + totalSeconds)
+  );
+}
 
-    // update the timer
-    setTimer(
-      (totalDays > 9 ? totalDays : '0' + totalDays) + ':' +
-      (totalHours > 9 ? totalHours : '0' + totalHours) + ':' +
-      (totalMinutes > 9 ? totalMinutes : '0' + totalMinutes) + ':' +
-      (totalSeconds > 9 ? totalSeconds : '0' + totalSeconds)
-    );
-  }
+const clearTimer = (endTime) => {
+  setTimer('00:00:00');
+  if (Ref.current) clearInterval(Ref.current);
+  const id = setInterval(() => {
+    startTimer(endTime);
+  }, 1000);
+  Ref.current = id;
+}
 
-  const clearTimer = (endTime) => {
-    setTimer('00:00:00');
-    if (Ref.current) clearInterval(Ref.current);
-    const id = setInterval(() => {
-      startTimer(endTime);
-    }, 1000);
-    Ref.current = id;
-  }
-
-  useEffect(() => {
-    const endTime = new Date("2024-06-17T00:00:00");
-    clearTimer(endTime);
-  }, [clearTimer]);
+useEffect(() => {
+  const endTime = new Date("2024-06-17T00:00:00");
+  clearTimer(endTime);
+}, []);
   
 
   if (isLoading) {
