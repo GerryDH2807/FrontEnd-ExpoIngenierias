@@ -21,7 +21,9 @@ root.render(
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      redirectUri={window.location.origin}
+      authorizationParams={{
+        redirect_uri: "http://localhost:3000/Callback"
+  }}
     >
       <BrowserRouter>
         <App />

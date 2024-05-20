@@ -18,11 +18,6 @@ const URI = 'http://localhost:8000/projects/register'
 function ButtonMaterials({extension, setExtension, table, setTable, screen, setScreen}) {
   const [show, setShow] = useState(false);
   
-  /*
-  const [extension, setExtension] = useState(0);
-  const [table, setTable] = useState(0);
-  const [screen, setScreen] = useState(0);
-  */
   return (
     <>
       <Button variant="primary" onClick={() => setShow(true)} className='ButtonMaterials'>
@@ -172,7 +167,6 @@ function FormExample() {
           members: members.map(member => ({ name: member.nameMember, lastName: member.lastNameMember, enrollment: member.enrollment })),
           teachers: teachers.map(teacher => ({ name: teacher.nameTeacher, lastName: teacher.lastNameTeacher, email: teacher.email }))
         });
-        navigate('/')
       }
   
       setValidated(true);

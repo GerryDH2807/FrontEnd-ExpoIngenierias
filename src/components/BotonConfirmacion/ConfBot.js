@@ -2,38 +2,56 @@ import './ConfBot.css'
 
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function Usure({Path, className, Texto}) {
+import { useNavigate } from 'react-router-dom';
+
+export default function Usure({ Path, className, Texto, onConfirm, recharge=false }) {
+    const navigate = useNavigate()
     const [show, setShow] = useState(false);
-  
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-  
+
+    const handleConfirm = async () => {
+        await onConfirm(); // Esperar a que se complete la función onConfirm
+
+        // Después de confirmar los cambios, redirigir a la ruta especificada en Path
+        handleClose(); // Cierra el modal después de confirmar los cambios
+        if(recharge){
+            window.location.reload();
+        }
+        else{
+            navigate(Path); // Redirige a la ruta especificada en Path
+        }
+        
+    };
+
     return (
-      <>
-        <Button variant="primary" onClick={handleShow} className={className}>
-          {Texto}
-        </Button>
-  
-        <Modal
-          show={show}
-          onHide={handleClose}
-          backdrop="static"
-          keyboard={false}
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Estas seguro de continuar?</Modal.Title>
-          </Modal.Header>
-          <Modal.Body className='centered-container h-100 d-flex justify-content-evenly'>
-              <Button  className='fw-bold' variant="secondary" onClick={handleClose}>
-                  Regresar
-              </Button>
-              <Link to={Path}><Button className='ButtonContinue' variant="primary">Continuar</Button></Link>
-          </Modal.Body>
-        </Modal>
-      </>
+        <>
+            <Button variant="primary" onClick={handleShow} className={className}>
+                {Texto}
+            </Button>
+
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>¿Estás seguro de continuar?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className='centered-container h-100 d-flex justify-content-evenly'>
+                    <Button className='fw-bold' variant="secondary" onClick={handleClose}>
+                        Regresar
+                    </Button>
+                    <Button className='ButtonContinue' variant="primary" onClick={handleConfirm}>
+                        Continuar
+                    </Button>
+                </Modal.Body>
+            </Modal>
+        </>
     );
-  }
+}

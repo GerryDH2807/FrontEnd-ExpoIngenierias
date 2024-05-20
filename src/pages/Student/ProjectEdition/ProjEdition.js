@@ -1,7 +1,11 @@
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 
 import { Link } from 'react-router-dom';
 
@@ -10,6 +14,10 @@ import Usure from '../../../components/BotonConfirmacion/ConfBot'
 import "./ProjEdition.css"
 
 import ToggleBarStudent from '../../../components/TogglebarStudent/togglebarStudent.js';
+
+
+const URI = 'http://localhost:8000/projects/editionProject/'
+
 
 
 export default function ProjRegisterCont(){
@@ -29,18 +37,54 @@ export default function ProjRegisterCont(){
 
 function FormExample() {
     const [validated, setValidated] = useState(false);
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [linkPoster, setLinkPoster] = useState("");
+    const [linkVideo, setLinkVideo] = useState("")
+
+    const {id_project} = useParams();
 
   
-    const handleSubmit = (event) => {
-      const form = event.currentTarget;
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-  
-      setValidated(true);
-    };
+    const handleSubmit = async (event) => {
+        if (event) {
+          event.preventDefault(); // Evita que el formulario se envíe automáticamente
+        }
+        
+        const form = event ? event.target : null;
+        if (form && form.checkValidity() === false) {
+          event.stopPropagation();
+        } else {
+          console.log(title, description, linkPoster, linkVideo);
+          try {
+            await axios.put(URI + id_project, {
+              title: title,
+              description: description,
+              linkVideo: linkVideo,
+              linkPoster: linkPoster
+            });
+          } catch (e) {
+            console.log(e);
+          }
+        }
+        
+        setValidated(true);
+      };
+      
+      
    
+    useEffect(()=>{
+        //fetch('http://localhost:8000/projects/'+id_post)
+        fetch(URI+id_project)
+        .then((res)=> res.json())
+        .then((data)=>{
+            setTitle(data.title);
+            setDescription(data.description);
+            setLinkPoster(data.linkPoster);
+            setLinkVideo(data.linkVideo);   
+        })
+    },[id_project])
+    
+
 
     return (
         <>
@@ -61,6 +105,8 @@ function FormExample() {
                                 <div className='col'>
                                     <Form.Control
                                         required
+                                        value={title}
+                                        onChange={(e)=> setTitle(e.target.value)}
                                         type="text"
                                         placeholder="Ingresa un titulo para tu proyecto"
                                         className='InputFormat'
@@ -77,12 +123,15 @@ function FormExample() {
                             <div className='row'>
                                 <div className='col p-0'>
                                     <Form.Label className='Titulo'>Descripción del proyecto</Form.Label>
+
                                 </div>
                             </div>
 
                             <div className='row '>
                                 <div className='col '>
-                                    <Form.Control as="textarea" className='InputDescrFormat' rows={5} required />
+                                    <Form.Control as="textarea" className='InputDescrFormat' rows={5} required 
+                                    value={description}
+                                    onChange={(e)=> setDescription(e.target.value)} />
                                 </div>
                             </div>
                         </div>
@@ -105,6 +154,8 @@ function FormExample() {
                                 <div className='col'>
                                     <Form.Control
                                     required
+                                    value={linkPoster}
+                                    onChange={(e)=> setLinkPoster(e.target.value)}
                                     type="text"
                                     placeholder="Link de tu carpeta de drive"
                                     className='InputFormat'
@@ -132,6 +183,8 @@ function FormExample() {
                                 <div className='col'>
                                     <Form.Control
                                     required
+                                    value={linkVideo}
+                                    onChange={(e)=> setLinkVideo(e.target.value)}
                                     type="text"
                                     placeholder="Link de youtube"
                                     className='InputFormat'
@@ -142,13 +195,17 @@ function FormExample() {
                     </Form.Group>
                 </Row>
 
-                <center><Usure Path={'/resumen-proyecto-estudiante'} className={"ButtonRegister mt-3 btn-lg"} Texto={"Aceptar cambios"}></Usure></center>
+
+                <center><Usure Path={'/resumen-proyecto-estudiante/' + id_project} className={"ButtonRegister mt-3 btn-lg"} Texto={"Aceptar cambios"} onConfirm={handleSubmit}/></center>
+
+                {/*<center><Button type="submit" className='mt-4 btn-lg ButtonRegister'>Registrar proyecto</Button></center> */}
+
             </Form> 
             
             <div className='container-fluid mb-4'>
                     <div className='row'>
                         <div className='col'>
-                            <Link to={'/resumen-proyecto-estudiante'} className='bi bi-arrow-left-circle IconBack'> Regresar</Link>
+                            <Link to={'/resumen-proyecto-estudiante' + id_project} className='bi bi-arrow-left-circle IconBack'> Regresar</Link>
                         </div>
                     </div>
             </div>      

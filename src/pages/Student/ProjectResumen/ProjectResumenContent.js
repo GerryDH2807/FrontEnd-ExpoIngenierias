@@ -8,7 +8,8 @@ import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent
 
 import Accordion from 'react-bootstrap/Accordion';
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 
 function RubricaCalf({Calf1, Calf2, Calf3, Calf4, Calf5, Rubri1, Rubri2, Rubri3, Rubri4, Rubri5}) {
   return (
@@ -53,7 +54,7 @@ function MemberCont({NombreMiembro}){
   );
 }
 
-function InfoProj({lead, profLead}){
+function InfoProj({lead, profLead,members}){
   return(
 
     <div className='col-md-3 '>
@@ -96,10 +97,13 @@ function InfoProj({lead, profLead}){
 
           <div className ="row pb-1">
             <div className ='col-md ps-0'>
-              <MemberCont NombreMiembro={"Saraí Santiago"}></MemberCont>
-              <MemberCont NombreMiembro={"Saraí Santiago"}></MemberCont>
+            {members.map((student, index) => (
+              <MemberCont NombreMiembro={student.name + " " + student.lastName}></MemberCont>
+            ))}
+              
             </div>
           </div>
+
         </div>
       </div>
     </div>  
@@ -108,7 +112,7 @@ function InfoProj({lead, profLead}){
 
 function ProjResume({ type, area, descr, title }) {
   const [showFullText, setShowFullText] = useState(false);
-
+  
   const toggleShowFullText = () => {
     setShowFullText(!showFullText);
   };
@@ -172,7 +176,7 @@ function ProjResume({ type, area, descr, title }) {
         </div>
       )}
 
-      {type === "Prototipo Finalizado" && (
+      {type === "Prototipo finalizado" && (
 
         <div className="container-fluid BGResumeFinish  w-100 ">
           <div className ="row p-1 BGBar">
@@ -200,7 +204,7 @@ function ProjResume({ type, area, descr, title }) {
   );
 }
 
-function ProjVal({finalRes, postVal, vidVal}){
+function ProjVal({finalRes, postVal, vidVal,id_project}){
   return(
     <div className='col-md-3'>
       <div className="Info2 m-2 p-4">
@@ -216,21 +220,21 @@ function ProjVal({finalRes, postVal, vidVal}){
 
             <div className ='col-md-auto'> 
 
-              {postVal === "Aceptado" &&(
+              {postVal === "aprobado" &&(
                 
-                <i class="bi bi-check-circle Aceptado"> {postVal}</i>
+                <i class="bi bi-check-circle Aceptado"> Aceptado</i>
 
               )}
 
-              {postVal === "Rechazado" &&(
+              {postVal === "rechazado" &&(
                 
-                <i class="bi bi-x-circle Rechazado"> {postVal}</i>
+                <i class="bi bi-x-circle Rechazado"> Rechazado</i>
 
               )}
 
-              {postVal === "En revisión" &&(
+              {postVal === "en revision" &&(
                 
-                <i class="bi bi-hourglass-split Espera"> {postVal}</i>
+                <i class="bi bi-hourglass-split Espera"> En revisión</i>
 
               )}
               
@@ -244,21 +248,21 @@ function ProjVal({finalRes, postVal, vidVal}){
             </div>   
 
             <div className ='col-md-auto'> 
-              {vidVal === "Aceptado" &&(
+              {vidVal === "aprobado" &&(
                   
-                <i class="bi bi-check-circle Aceptado"> {vidVal}</i>
+                <i class="bi bi-check-circle Aceptado"> Aceptado</i>
 
               )}
 
-              {vidVal === "Rechazado" &&(
+              {vidVal === "rechazado" &&(
                 
-                <i class="bi bi-x-circle Rechazado"> {vidVal}</i>
+                <i class="bi bi-x-circle Rechazado"> Rechazado</i>
 
               )}
 
-              {vidVal === "En revisión" &&(
+              {vidVal === "en revision" &&(
                 
-                <i class="bi bi-hourglass-split Espera"> {vidVal}</i>
+                <i class="bi bi-hourglass-split Espera"> En revisión</i>
 
               )}
 
@@ -273,35 +277,35 @@ function ProjVal({finalRes, postVal, vidVal}){
             
 
 
-              {finalRes === "Aceptado" &&(
+              {finalRes === "aprobado" &&(
                 <div className ='col-md-auto'>
                   <span className ="AceptadoCont">
-                    <i className='bi bi-check-circle'> {finalRes}</i>
+                    <i className='bi bi-check-circle'> Aceptado</i>
                   </span>
                 </div>
               )}
 
-              {finalRes === "Rechazado" &&(
+              {finalRes === "rechazado" &&(
                 <>
                     <div className ='col-md-auto'>
                       <span className ="RechazadoCont">
-                        <i className='bi bi-x-circle'> {finalRes}</i>
+                        <i className='bi bi-x-circle'> Rechazado</i>
                       </span>
                     </div>
 
                   <div className='row mt-4'>
                     <div className='col'><center>
-                      <Link to={'/EditProject'} className='TextoEdit'>Editar tu proyecto</Link>
+                      <Link to={'/EditProject/'+id_project} className='TextoEdit'>Editar tu proyecto</Link>
                     </center></div>  
                   </div>                
                 </>
 
               )}
 
-              {finalRes === "En revisión" &&(
+              {finalRes === "en revision" &&(
                 <div className ='col-md-auto'>
                   <span className ="EsperaCont">
-                    <i className='bi bi-hourglass-split'> {finalRes}</i>
+                    <i className='bi bi-hourglass-split'> En revisión</i>
                   </span>
                 </div>
               )}
@@ -405,18 +409,50 @@ function FinalCalf({finalCalf}){
 /* ~*~*~*~*~*~ FUNCIÓN PRINCIPAL DE CONTROL ~*~*~*~*~*~  */
 
 export default function ProjResumeCont(){
-  return(
 
+
+  const [project, setProject] = useState({
+    id_project: 0,
+    title: "",
+    description: "",
+    linkVideo: "",
+    linkPoster: "",
+    statusGeneral: "",
+    statusPoster: "",
+    statusVideo: "",
+    area: "",
+    category: "",
+    person: "",
+    student: "",
+    team: {students: []}
+  });
+  const { id_project } = useParams();
+
+
+
+  useEffect(()=>{
+    //fetch('http://localhost:8000/projects/'+id_post)
+    fetch('http://localhost:8000/projects/resume/'+id_project)
+    .then((res)=> res.json())
+    .then((data)=>setProject(data))
+  },[id_project])
+
+  
+
+
+  return(
     <>
       <StudentToggle NameSection={"Resumen de proyecto"}></StudentToggle>
       <div className='container-fluid centered-container mt-3 '>
         <div className='container-fluid'>
           <div className='row justify-content-between d-flex align-items-center'>
-            <InfoProj lead={"Prueba"} profLead={"Michel Lara Wainstein"} memeber={"Marcela Dominguez"}></InfoProj>
+            <InfoProj lead={project.student.name + " " + project.student.lastName} profLead={project.person.name + " " + project.person.lastName} members={project.team.students}></InfoProj>
 
-            <ProjResume type={"Concepto"} area={"Biotecnologia"} descr={"Robot Automata para Automatizar Autómatas  es un proyecto innovador para desarrollar un sistema robótico que automatiza tareas complejas en la industria. Utiliza algoritmos avanzados de inteligencia artificial y aprendizaje automático para aumentar la eficiencia y precisión en la producción, optimizando recursos."} title={"Robot automata para automatizar automatas"}></ProjResume>        
+            {/*<ProjResume type={project.category.title} area={project.area.name} descr={project.description} title={project.title}></ProjResume>   */} 
+            <ProjResume type={project.category.title} area={project.area.name} descr={project.description} title={project.title}></ProjResume>        
+   
 
-            <ProjVal postVal={"Aceptado"} vidVal={"Rechazado"} finalRes={"Rechazado"}></ProjVal>
+            <ProjVal postVal={project.statusPoster} vidVal={project.statusVideo} finalRes={project.statusGeneral} id_project={id_project}></ProjVal>
           </div>
 
           <div className='row m-2 justify-content-between d-flex align-items-center w-100 mb-4'>
