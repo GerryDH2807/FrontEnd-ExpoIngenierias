@@ -35,19 +35,31 @@ function HorizontalSlider ({data}){
 
                 <Badges className={"badge p-2 text-wrap"} data={item.category}></Badges>
 
+<<<<<<< HEAD
                 {item.statusGeneral === "rechazado" && (
+=======
+                {item.status === "rechazado" && (
+>>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
                     <div className="badge-container">
                         <div className="badge2 p-2">{item.statusGeneral}</div>
                     </div>
                 )}
 
+<<<<<<< HEAD
                 {item.statusGeneral === "aprobado" && (
+=======
+                {item.status === "aprobado" && (
+>>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
                     <div className="badge-container">
                         <div className="badge3 p-2">{item.statusGeneral}</div>
                     </div>
                 )}
 
+<<<<<<< HEAD
                 {item.statusGeneral === "en revision" && (
+=======
+                {item.status === "en revisión" && (
+>>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
                   <div className="badge-container">
                     <div className="badge p-2">{item.statusGeneral}</div>
                   </div>
@@ -108,7 +120,7 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
   
   function ProjResume({horas, profesor}){
     return(
-      <div className='col-md-7 pt-5 ps-4 pe-4'>
+      <div className='col-md-7 pt-4 ps-4 pe-4'>
           
         <div className="container-fluid BGResume-profesor w-100 ">
             <div className ="row p-2 BGBar">
@@ -117,13 +129,16 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
           <div className='m-4 p-0'>
             <div className="container-fluid welcomeContent">
               <div className="row">
-                <div className="col-md-5 proj-sub text-start" ><h3 className='text-break'>Cierre de Registro</h3></div>
+                <div className="col-md proj-sub text-start" ><h3 className='text-break prof-titulo-h3-1'>Cierre de Registro:</h3></div>
               </div>
               <div className="row">
-                <div className="col-md-6 proj-sub text-start" ><h3 className='text-break'>{horas}</h3></div>
+                <div className="col-md proj-sub text-start" ><center><h3 className='text-break prof-titulo-h3-2'>{horas}</h3></center></div>
               </div>
+              
+              <hr className='divisor'></hr>
+
               <div className="row">
-                <div className="col-md-10 proj-sub text-start" ><h1 className='text-break'>Bienvenido {profesor}</h1></div>
+                <div className="col-md proj-sub text-start" ><h1 className='text-break prof-titulo-h1'>Bienvenido {profesor}</h1></div>
               </div>
             </div>
           </div>
