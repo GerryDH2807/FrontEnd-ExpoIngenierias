@@ -152,8 +152,13 @@ export default function ProjResumeCont(){
     fetch(`http://localhost:8000/projects/resume/${id_project}`)
     .then((res)=> res.json())
     .then((data)=>setProject(data))
+<<<<<<< HEAD
+},[id_project])
+  console.log(project);
+=======
   },[id_project])
 
+>>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
   const navigate = useNavigate();
 
   const [validated, setValidated] = useState(false);
@@ -162,6 +167,31 @@ export default function ProjResumeCont(){
   const [switchPdf, setSwitchPdf] = useState(false); // Estado para controlar el primer switch
   const [switchVideo, setSwitchVideo] = useState(false);
 
+<<<<<<< HEAD
+const handleUpdate = async () => {
+  try {
+    const dynamicURI = `http://localhost:8000/projects/${id_project}`;
+    console.log(dynamicURI);
+    const statusPosterValue = switchPdf ? 'aprobado' : 'rechazado';
+    const statusVideoValue = switchVideo ? 'aprobado' : 'rechazado';
+    let statusTotal = '';
+    if(switchPdf && switchVideo) statusTotal = 'aprobado';
+    else statusTotal = 'rechazado';
+    axios.put(dynamicURI, {
+      statusPoster: statusPosterValue,
+      statusVideo: statusVideoValue,
+      statusGeneral: statusTotal
+    })
+    .then(response => {
+      console.log('Proyecto actualizado:', response.data); })
+    navigate('/principal-profesor');
+    
+  } catch (error) {
+    // Maneja cualquier error que ocurra durante la actualización
+    console.error('Error al actualizar:', error);
+  }
+};
+=======
   const handleUpdate = async () => {
     try {
       const statusPosterValue = switchPdf ? 'aprobado' : ' rechazado';
@@ -179,6 +209,7 @@ export default function ProjResumeCont(){
       console.error('Error al actualizar:', error);
     }
   };
+>>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
