@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-export default function Usure({ Path, className, Texto, onConfirm, recharge=false }) {
+export default function Usure({ Path, className, Texto, MensajeTitle, BotonA, BotonB, onConfirm, recharge=false }) {
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
 
@@ -41,14 +41,14 @@ export default function Usure({ Path, className, Texto, onConfirm, recharge=fals
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>¿Estás seguro de continuar?</Modal.Title>
+                    <Modal.Title>{MensajeTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className='centered-container h-100 d-flex justify-content-evenly'>
-                    <Button className='fw-bold' variant="secondary" onClick={handleClose}>
-                        Regresar
+                    <Button className='ButtonContinue' variant="secondary" onClick={handleClose}>
+                        {BotonA}
                     </Button>
-                    <Button className='ButtonContinue' variant="primary" onClick={handleConfirm}>
-                        Continuar
+                    <Button className='fw-bold ' variant="secondary" onClick={handleConfirm}>
+                        {BotonB}
                     </Button>
                 </Modal.Body>
             </Modal>
