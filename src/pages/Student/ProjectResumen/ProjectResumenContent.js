@@ -18,31 +18,31 @@ function RubricaCalf({Calf1, Calf2, Calf3, Calf4, Calf5, Rubri1, Rubri2, Rubri3,
   return (
     <Accordion>
       <Accordion.Item eventKey="0">
-        <Accordion.Header><span className='Subtitulo'>Calificación rubro 1: </span> <span className='Texto Resultado'>{!hasData(Calf1) && (<Spinner animation="grow" size="sm" />)}{hasData(Calf1) && (Calf1 + " pts")}</span></Accordion.Header>
+        <Accordion.Header><span className='Subtitulo'>Calificación rubro 1: </span> <span className='Texto Resultado'>{!IsLoaded && (<Spinner animation="grow" size="sm" />)}{IsLoaded && (Calf1 + " pts")}</span></Accordion.Header>
         <Accordion.Body>
           {Rubri1}
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="1">
-        <Accordion.Header><span className='Subtitulo'>Calificación rubro 2: </span> <span className='Texto Resultado'> {!hasData(Calf2) && (<Spinner animation="grow" size="sm" />)}{hasData(Calf2) && (Calf2 + " pts")}</span></Accordion.Header>
+        <Accordion.Header><span className='Subtitulo'>Calificación rubro 2: </span> <span className='Texto Resultado'> {!IsLoaded && (<Spinner animation="grow" size="sm" />)}{IsLoaded && (Calf2 + " pts")}</span></Accordion.Header>
         <Accordion.Body>
           {Rubri2}
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="2">
-        <Accordion.Header><span className='Subtitulo'>Calificación rubro 3: </span> <span className='Texto Resultado'>{!hasData(Calf3) && (<Spinner animation="grow" size="sm" />)}{hasData(Calf3) && (Calf3 + " pts")}</span></Accordion.Header>
+        <Accordion.Header><span className='Subtitulo'>Calificación rubro 3: </span> <span className='Texto Resultado'>{!IsLoaded && (<Spinner animation="grow" size="sm" />)}{IsLoaded && (Calf3 + " pts")}</span></Accordion.Header>
         <Accordion.Body>
           {Rubri3}
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="3">
-        <Accordion.Header><span className='Subtitulo'>Calificación rubro 4: </span> <span className='Texto Resultado'> {!hasData(Calf4) && (<Spinner animation="grow" size="sm" />)}{hasData(Calf4) && (Calf4 + " pts")}</span></Accordion.Header>
+        <Accordion.Header><span className='Subtitulo'>Calificación rubro 4: </span> <span className='Texto Resultado'> {!IsLoaded && (<Spinner animation="grow" size="sm" />)}{IsLoaded && (Calf4 + " pts")}</span></Accordion.Header>
         <Accordion.Body>
           {Rubri4}
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="4">
-        <Accordion.Header><span className='Subtitulo'>Calificación rubro 5: </span> <span className='Texto Resultado'> {!hasData(Calf5) && (<Spinner animation="grow" size="sm" />)}{hasData(Calf5) && (Calf5 + " pts")}</span></Accordion.Header>
+        <Accordion.Header><span className='Subtitulo'>Calificación rubro 5: </span> <span className='Texto Resultado'> {!IsLoaded && (<Spinner animation="grow" size="sm" />)}{IsLoaded && (Calf5 + " pts")}</span></Accordion.Header>
         <Accordion.Body>
           {Rubri5}
         </Accordion.Body>

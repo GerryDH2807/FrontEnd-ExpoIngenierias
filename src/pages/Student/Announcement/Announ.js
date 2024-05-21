@@ -32,28 +32,31 @@ function AnnounInfo({ announ, isLoading }) {
   };
 
   return (
-    <Link to={'/announ' + 1 + '-estudiante'} className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
+    <>
       {isLoading ? (
         <>
-          <div className='col-3 d-flex align-items-center'>
-            <i className='bi bi-envelope-fill AnnounIcon'></i>
-            <Placeholder animation="glow" className="w-75">
-              <Placeholder xs={12} bg="primary" className="ms-4" size="lg" />
-            </Placeholder>
-          </div>
-          <div className='col-7 d-flex align-items-center'>
-            <Placeholder animation="glow" className="w-100">
-              <Placeholder xs={12} bg="secondary" className="ms-4" size="lg" />
-            </Placeholder>
-          </div>
-          <div className='col-2 text-end'>
-            <Placeholder animation="glow" className="w-100">
-              <Placeholder xs={10} bg="dark" className="ms-4" size="lg" />
-            </Placeholder>
+          <div className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
+            <div className='col-3 d-flex align-items-center'>
+              <i className='bi bi-envelope-fill AnnounIcon'></i>
+              <Placeholder animation="glow" className="w-75">
+                <Placeholder xs={12} bg="primary" className="ms-4" size="lg" />
+              </Placeholder>
+            </div>
+            <div className='col-7 d-flex align-items-center'>
+              <Placeholder animation="glow" className="w-100">
+                <Placeholder xs={12} bg="secondary" className="ms-4" size="lg" />
+              </Placeholder>
+            </div>
+            <div className='col-2 text-end'>
+              <Placeholder animation="glow" className="w-100">
+                <Placeholder xs={10} bg="dark" className="ms-4" size="lg" />
+              </Placeholder>
+            </div>
           </div>
         </>
       ) : (
         <>
+        <Link to={'/announ' + 1 + '-estudiante'} className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
           <div className='col-3 d-flex align-items-center'>
             <i className='bi bi-envelope-fill AnnounIcon'></i>
             <span className='Titulo'> {announ.title}</span>
@@ -64,9 +67,10 @@ function AnnounInfo({ announ, isLoading }) {
           <div className='col-2 text-end'>
             <span className='Subtitulo text-wrap'>{announ.createdAt && announ.createdAt.substring(0, 10)}</span>
           </div>
+        </Link>
         </>
       )}
-    </Link>
+    </>
   );
 }
 

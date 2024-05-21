@@ -2,12 +2,9 @@ import { Link } from 'react-router-dom';
 import Badge from './Badge';
 import './Juez.css';
 import './Badge.css';
-import Placeholder from 'react-bootstrap/Placeholder';
 import './ProjSelection.css';
-import Button from 'react-bootstrap/esm/Button.js';
 import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
 import BotonElim from '../../../components/BotonConfirmacion/ConfBot.js';
-import Spinner from 'react-bootstrap/Spinner';
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
@@ -44,45 +41,33 @@ function CardCalif({ projects, isLoading }) {
     };
 
     const icono = <i className='bi bi-trash-fill'></i>
-    const PlaceBadge = <center><Spinner animation="grow" size="sm" /></center>
 
     return (
         <>
-            {isLoading && (
-                <div className='col-12 d-flex flex-col justify-items-center'>
-                    {Array.from({ length: 2 }).map((_, index) => (
-                        <div className="card card-container m-4 w-100" key={index}>
-                            <div className="imag d-flex align-items-center justify-content-center">
-                                <center><Spinner animation="border" /></center>
-                            </div>
-                            <div className="text">
-                                <p className="h3">
-                                    <Placeholder animation="glow" className="w-100">
-                                        <Placeholder xs={12} bg="Dark" size="lg" />
-                                    </Placeholder>
-                                </p>
-                                <p className="p">
-                                    <Placeholder animation="glow" className="w-100">
-                                        <Placeholder xs={12} size="xs" />
-                                        <Placeholder xs={12} size="xs" />
-                                        <Placeholder xs={12} size="xs" />
-                                    </Placeholder>
-                                </p>
-                                <div className="badge-container">
-                                    <Badge data={PlaceBadge} className="badge text-wrap" />
-                                    <Badge data={PlaceBadge} className="badge" />
-                                    <div className="badge">{PlaceBadge}</div>
+            {!isLoading && (
+                <div className='col-12 mt-5 d-flex align-items-center justify-content-center'>
+                    <div class="semicircle">
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <div>
+                                                    <div>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <Button className="btn23" disabled> <Spinner animation="border" size='sm' className='me-2' /> Ver Proyecto</Button>
-                            </div>
-                            <div className="button-container">
-                                <BotonElim Path={"/principal-estudiante/placeholder"} className={"ButtonEliminar"} Texto={icono}></BotonElim>
                             </div>
                         </div>
-                    ))}
+                    </div>
                 </div>
             )}
-            {!isLoading && (
+            {isLoading && (
                 <div className='col-12 d-flex flex-col justify-items-center'>
                     {projects.map((item) => (
                         <div className="card card-container m-4 w-100" key={item.id}>
@@ -120,7 +105,7 @@ function CardCalif({ projects, isLoading }) {
                                 <Link to={"/resumen-proyecto-estudiante/" + item.id} className="btn23">Ver Proyecto</Link>
                             </div>
                             <div className="button-container">
-                                <BotonElim Path={"/principal-estudiante/" + item.id} className={"ButtonEliminar"} Texto={icono} onConfirm={(event) => handleSubmit(event, item.id)} recharge={true}></BotonElim>
+                                <BotonElim MensajeTitle={"¿Deseas eliminar este proyecto?"} BotonA={'Cancelar'} BotonB={'Eliminar'} Path={"/principal-estudiante/" + item.id} className={"ButtonEliminar"} Texto={icono} onConfirm={(event) => handleSubmit(event, item.id)} recharge={true}></BotonElim>
                             </div>
                         </div>
                     ))}

@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 import { Link } from 'react-router-dom';
@@ -196,7 +195,7 @@ function FormExample() {
                 </Row>
 
 
-                <center><Usure Path={'/resumen-proyecto-estudiante/' + id_project} className={"ButtonRegister mt-3 btn-lg"} Texto={"Aceptar cambios"} onConfirm={handleSubmit}/></center>
+                <center><Usure MensajeTitle={"¿Estas de acuerdo con los cambios?"} BotonA={"Regresar"} BotonB={"Aceptar cambios"} Path={'/resumen-proyecto-estudiante/' + id_project} className={"ButtonRegister mt-3 btn-lg"} Texto={"Aceptar cambios"} onConfirm={handleSubmit}/></center>
 
                 {/*<center><Button type="submit" className='mt-4 btn-lg ButtonRegister'>Registrar proyecto</Button></center> */}
 
