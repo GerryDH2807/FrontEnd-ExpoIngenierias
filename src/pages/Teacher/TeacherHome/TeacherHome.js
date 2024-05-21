@@ -35,31 +35,19 @@ function HorizontalSlider ({data}){
 
                 <Badges className={"badge p-2 text-wrap"} data={item.category}></Badges>
 
-<<<<<<< HEAD
-                {item.statusGeneral === "rechazado" && (
-=======
                 {item.status === "rechazado" && (
->>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
                     <div className="badge-container">
                         <div className="badge2 p-2">{item.statusGeneral}</div>
                     </div>
                 )}
 
-<<<<<<< HEAD
-                {item.statusGeneral === "aprobado" && (
-=======
                 {item.status === "aprobado" && (
->>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
                     <div className="badge-container">
                         <div className="badge3 p-2">{item.statusGeneral}</div>
                     </div>
                 )}
 
-<<<<<<< HEAD
-                {item.statusGeneral === "en revision" && (
-=======
                 {item.status === "en revisión" && (
->>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
                   <div className="badge-container">
                     <div className="badge p-2">{item.statusGeneral}</div>
                   </div>

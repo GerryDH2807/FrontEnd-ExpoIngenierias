@@ -205,7 +205,7 @@ function FormExample() {
             <div className='container-fluid mb-4'>
                     <div className='row'>
                         <div className='col'>
-                            <Link to={'/resumen-proyecto-estudiante' + id_project} className='bi bi-arrow-left-circle IconBack'> Regresar</Link>
+                            <Link to={'/resumen-proyecto-estudiante/' + id_project} className='bi bi-arrow-left-circle IconBack'> Regresar</Link>
                         </div>
                     </div>
             </div>      

@@ -7,7 +7,6 @@ import Placeholder from 'react-bootstrap/Placeholder';
 
 import './ProjSelection.css';
 import Button from 'react-bootstrap/esm/Button.js';
-import { projects } from './data.js';
 
 import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
 import BotonElim from '../../../components/BotonConfirmacion/ConfBot.js';
@@ -22,7 +21,8 @@ const URL = 'http://localhost:8000/projects/resumeProject/';
 
 function CardCalif({projects, IsLoaded}) {
     const [validated, setValidated] = useState(false);
-    const handleSubmit = async (event) => {
+
+    const handleSubmit = async (event,id) => {
 
 
         if (event) {
@@ -34,7 +34,7 @@ function CardCalif({projects, IsLoaded}) {
           event.stopPropagation();
         } else {
           try {
-            await axios.delete(URL + id_Proyecto);
+            await axios.delete(URL + id);
           } catch (e) {
             console.log(e);
           }
@@ -63,24 +63,24 @@ function CardCalif({projects, IsLoaded}) {
             {IsLoaded === 'True' && (
                 <>
                     <div className='col-12 d-flex flex-col justify-items-center'>
-                        {projects.map((item) => (
+                        {projects.map((item,index) => (
 
                             <div className="card card-container m-4 w-100">
                                 {/* Contenido de la tarjeta */}
-                                {item.categoria === 'Concepto' && (
+                                {item.category.title === 'Concepto' && (
                                     <div className="imag algoimagConcept"></div>
                                 )}
-                                {item.categoria === 'Prototipo' && (
+                                {item.category.title === 'Prototipo' && (
                                     <div className="imag algoimagProto"></div>
                                 )}
-                                {item.categoria === 'Prototipo finalizado' && (
+                                {item.category.title === 'Prototipo finalizado' && (
                                     <div className="imag algoimagFinish"></div>
                                 )}
                                 <div className="text">
                                     <p className="h3">{truncateText(item.title, 50)}</p>
                                     <p className="p">{truncateText(item.description, 100)}</p>
                                     <div className="badge-container">
-                                        <Badge data={item.categoria} className="badge text-wrap" />
+                                        <Badge data={item.category.title} className="badge text-wrap" />
                                         <Badge data={item.id_Proyecto} className="badge" />
                                         {item.status === "en revision" && (
                                             <div className="badge-container">
@@ -98,11 +98,11 @@ function CardCalif({projects, IsLoaded}) {
                                             </div>
                                         )}
                                     </div>
-                                    <Link to="/resumen-proyecto-estudiante" className="btn23">Ver Proyecto</Link>
+                                    <Link to={"/resumen-proyecto-estudiante/" + item.id} className="btn23">Ver Proyecto</Link>
                                 </div>
                                 {/* Contenedor para BotonElim */}
                                 <div className="button-container">
-                                    <BotonElim Path={"/principal-estudiante"} className={"ButtonEliminar"} Texto={icono} onConfirm={handleSubmit} recharge={true}></BotonElim>
+                                    <BotonElim Path={"/principal-estudiante/"+ item.id} className={"ButtonEliminar"} Texto={icono} onConfirm={(event) => handleSubmit(event, item.id)} recharge={true}></BotonElim>
                                 </div>
                             </div>
 
@@ -145,7 +145,7 @@ function CardCalif({projects, IsLoaded}) {
                                 </div>
                                 {/* Contenedor para BotonElim */}
                                 <div className="button-container">
-                                    <BotonElim Path={"/principal-estudiante"} className={"ButtonEliminar"} Texto={icono}></BotonElim>
+                                    <BotonElim Path={"/principal-estudiante/" + projects.id_project} className={"ButtonEliminar"} Texto={icono}></BotonElim>
                                 </div>
                             </div>
 
@@ -162,7 +162,7 @@ function CardCalif({projects, IsLoaded}) {
 export default function ProjSelection({ProjCheck}){
 
     const [projects, setProjects] = useState([{
-        id_project: 0,
+        id: 0,
         title: "",
         description: "",
         linkVideo: "",
@@ -175,9 +175,11 @@ export default function ProjSelection({ProjCheck}){
         person: "",
         student: "",
       }]);
+
     const { id_student } = useParams();
+
       useEffect(()=>{
-        fetch(URL+'nuevodescr121S')
+        fetch(URL+'auth0|66340f38cfd75a371a1b532b')
         .then((res)=> res.json())
         .then((data)=>setProjects(data))
     },[id_student])
