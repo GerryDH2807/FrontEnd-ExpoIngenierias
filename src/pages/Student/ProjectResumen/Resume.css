@@ -296,3 +296,29 @@
 
 }
 
+.BolitaDeCarga{
+  --bs-spinner-width: 13rem;
+  --bs-spinner-height: 13rem;
+
+  margin-left: 140px;
+}
+
+.BolitaDeCargaJuez{
+  --bs-spinner-width: 9rem;
+  --bs-spinner-height: 9rem;
+  
+  margin-top: 40px;
+
+  color: #0C356A;
+
+}
+
+.BolitaDeCargaCalFin{
+  --bs-spinner-width: 9rem;
+  --bs-spinner-height: 9rem;
+  
+  margin-top: 125px;
+
+  color: #0C356A;
+
+}

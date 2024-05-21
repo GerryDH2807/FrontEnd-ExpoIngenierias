@@ -13,7 +13,7 @@ const URL = 'http://localhost:8000/students/'
 function Datos({name,email,type,id,IsLoaded}){
     return(
         <>
-            {IsLoaded === "True" && (
+            {IsLoaded && (
                 <>
                     <div className='row p-2'>
                         <div className='col-6 col-md-6'>
@@ -50,7 +50,7 @@ function Datos({name,email,type,id,IsLoaded}){
                 </>
             )}
 
-            {IsLoaded === "False" && (
+            {!IsLoaded && (
                 <>
                     <div className='row p-2'>
                         <div className='col-6 col-md-6'>
@@ -99,6 +99,7 @@ function Datos({name,email,type,id,IsLoaded}){
     );
 }
 export default function Perfil(){
+    const [IsLoaded, setIsLoaded] = useState(false);
 
     const [student, setStudent] = useState({
         id_student: 0,
@@ -111,12 +112,19 @@ export default function Perfil(){
     
     
     
-      useEffect(()=>{
+      useEffect(() => {
         //fetch(URL+id_student)
         fetch(URL+'RobotEl pr230S')
-        .then((res)=> res.json())
-        .then((data)=>setStudent(data))
-      },[id_student])
+          .then((res) => res.json())
+          .then((data) => {
+            setStudent(data);
+            setIsLoaded(true); // Cambiamos IsLoaded a true cuando los datos están cargados
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+            setIsLoaded(true); // En caso de error, también cambiamos IsLoaded a true para evitar bucles infinitos de carga
+          });
+      }, [id_student]);
     
       
 
@@ -133,7 +141,7 @@ export default function Perfil(){
                     <h1>Perfil</h1>
                 </div>
             </div>
-            <Datos IsLoaded={"True"} name={student.name + " " + student.lastName} type={"Estudiante"} id={student.enrollment}  email={student.enrollment + "@tec.mx"}/>
+            <Datos IsLoaded={IsLoaded} name={student.name + " " + student.lastName} type={"Estudiante"} id={student.enrollment}  email={student.enrollment + "@tec.mx"}/>
             
         </div>
         </>
