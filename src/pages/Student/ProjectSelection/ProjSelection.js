@@ -16,22 +16,25 @@ function CardCalif({ projects, isLoading }) {
 
     const handleSubmit = async (event, id) => {
         if (event) {
-            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+        event.preventDefault(); // Evita que el formulario se envíe automáticamente
         }
 
         const form = event ? event.target : null;
         if (form && form.checkValidity() === false) {
-            event.stopPropagation();
+        event.stopPropagation();
         } else {
-            try {
-                await axios.delete(URL + id);
-            } catch (e) {
-                console.log(e);
-            }
+        try {
+            await axios.delete(URL + id);
+        } catch (e) {
+            console.log(e);
+        }
         }
 
         setValidated(true);
     };
+    
+
+
 
     const truncateText = (text, limit) => {
         if (!text || typeof text !== 'string' || text.length <= limit) {
@@ -67,6 +70,7 @@ function CardCalif({ projects, isLoading }) {
                     </div>
                 </div>
             )}
+
             {isLoading && (
                 <div className='col-12 d-flex flex-col justify-items-center'>
                     {projects.map((item) => (
@@ -86,17 +90,18 @@ function CardCalif({ projects, isLoading }) {
                                 <div className="badge-container">
                                     <Badge data={item.category.title} className="badge text-wrap" />
                                     <Badge data={item.id_Proyecto} className="badge" />
-                                    {item.status === "en revision" && (
+                                        
+                                    {item.statusGeneral === "en revision" && (
                                         <div className="badge-container">
                                             <div className="badge">En revisión</div>
                                         </div>
                                     )}
-                                    {item.status === "rechazado" && (
+                                    {item.statusGeneral === "rechazado" && (
                                         <div className="badge-container">
                                             <div className="badge2">Rechazado</div>
                                         </div>
                                     )}
-                                    {item.status === "aprobado" && (
+                                    {item.statusGeneral === "aprobado" && (
                                         <div className="badge-container">
                                             <div className="badge3">Aceptado</div>
                                         </div>
@@ -110,14 +115,31 @@ function CardCalif({ projects, isLoading }) {
                         </div>
                     ))}
                 </div>
-            )}
+            )}     
         </>
     );
 }
 
 export default function ProjSelection({ ProjCheck }) {
-    const [projects, setProjects] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+
+
+    const [projects, setProjects] = useState([{
+        id: 0,
+        title: "",
+        description: "",
+        linkVideo: "",
+        linkPoster: "",
+        statusGeneral: "",
+        statusPoster: "",
+        statusVideo: "",
+        area: "",
+        category: "",
+        person: "",
+        student: "",
+    }]);
+
     const { id_student } = useParams();
 
     useEffect(() => {
