@@ -12,7 +12,13 @@ import Card from 'react-bootstrap/Card';
 
 import Modal from 'react-bootstrap/Modal';
 
-function MyVerticallyCenteredModal({ TitleDetailed, DescriptionDetailed, TeacherDetailed, MemebersDetailed, DriveLink, YoutubeLink, ...props }) {
+function MemberCont({NombreMiembro}){
+    return(
+      <li className="Texto text-wrap mb-0">{NombreMiembro}</li>
+    );
+  }
+
+function MyVerticallyCenteredModal({ TitleDetailed, DescriptionDetailed, TeacherDetailed, MemebersDetailed, DriveLink, YoutubeLink,members, ...props }) {
 const { CategoCheckModal } = props;
 
 return (
@@ -49,10 +55,32 @@ return (
                 )}
 
                 <div className='col-3 p-3 m-2 ContDetails'>
-                    <p className='Titulo123'>Miembros del equipo: </p> <span>{MemebersDetailed}</span>
+                    <div className='container-fluid'>
+                        < div className='row'>
+                            <div className='col'>
+                                <p className='Titulo123'>Lider del equipo: </p> <span>{MemebersDetailed}</span>
+                            </div>
+                        </div>
+                        < div className='row mt-3'>
+                            <div className='col'>
+                                <p className='Titulo123'>Miembros del equipo: </p> <span><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='col-3 p-3 m-2 ContDetails'>
-                    <p className='Titulo123'>Profesor(es):</p> <span>{TeacherDetailed}</span> 
+                <div className='container-fluid'>
+                        < div className='row'>
+                            <div className='col'>
+                                <p className='Titulo123'>Profesor lider: </p> <span>{MemebersDetailed}</span>
+                            </div>
+                        </div>
+                        < div className='row mt-3'>
+                            <div className='col'>
+                                <p className='Titulo123'>Profesores asesores: </p> <span><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -153,14 +181,21 @@ function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed }) 
 
 
 function CardProj({ CategoCheck, Title, Description }) {
+    const truncatedText = (text, limit) => {
+        if (!text || typeof text !== 'string' || text.length <= limit) {
+          return text;
+        }
+        return text.slice(0, limit) + '...';
+      };
+    
     return (
     <div className='col p-3'>
         {CategoCheck === "Concepto" && (
             <Card style={{ width: '18rem', height: '90%' }} className='CardsInfoContainer'>
                 <Card.Img variant="top" src={CardConcept} className='FotoCard' />
                 <Card.Body>
-                <Card.Title className='Titulo123'>{Title}</Card.Title>
-                <Card.Text className='TextoCardWrap'>{Description}</Card.Text>
+                <Card.Title className='Titulo123 text-wrap'>{Title}</Card.Title>
+                <Card.Text className='TextoCardWrap'>{truncatedText(Description,125)}</Card.Text>
                 <center>
                     <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description}>Ver proyecto</ButtonModal>
                 </center>

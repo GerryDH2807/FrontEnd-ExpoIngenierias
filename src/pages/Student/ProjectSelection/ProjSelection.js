@@ -89,7 +89,6 @@ function CardCalif({ projects, isLoading }) {
                                 <div className="badge-container">
                                     <Badge data={item.area.name} className="badge text-wrap" />
                                     <Badge data={item.id} className="badge" />
-                                        
                                     {item.statusGeneral === "en revision" && (
                                         <div className="badge-container">
                                             <div className="badge">En revisión</div>
@@ -124,20 +123,9 @@ export default function ProjSelection({ ProjCheck }) {
 
 
 
-    const [projects, setProjects] = useState([{
-        id: 0,
-        title: "",
-        description: "",
-        linkVideo: "",
-        linkPoster: "",
-        statusGeneral: "",
-        statusPoster: "",
-        statusVideo: "",
-        area: "",
-        category: "",
-        person: "",
-        student: "",
-    }]);
+    const [projects, setProjects] = useState([
+
+    ]);
 
     const { id_student } = useParams();
 
@@ -147,7 +135,7 @@ export default function ProjSelection({ ProjCheck }) {
             .then((res) => res.json())
             .then((data) => {
                 setProjects(data);
-                setIsLoading(true);
+                setIsLoading(false);
             })
             .catch((error) => {
                 console.error("Error fetching projects:", error);
