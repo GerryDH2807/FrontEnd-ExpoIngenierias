@@ -16,21 +16,21 @@ function CardCalif({ projects, isLoading }) {
 
     const handleSubmit = async (event, id) => {
         if (event) {
-        event.preventDefault(); // Evita que el formulario se envíe automáticamente
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
         }
 
         const form = event ? event.target : null;
         if (form && form.checkValidity() === false) {
-        event.stopPropagation();
+            event.stopPropagation();
         } else {
-        try {
-            await axios.delete(URL + id);
-        } catch (e) {
-            console.log(e);
+            try {
+                await axios.delete(URL + id);
+            } catch (e) {
+                console.log(e);
+            }
         }
-        }
-
         setValidated(true);
+    
     };
     
 
