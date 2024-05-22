@@ -50,7 +50,7 @@ function ToggleBar({SectionName}) {
         <div className='row'>
           <div className='col'>
           <center><i className='bi bi-person-circle docu-icon2'>
-            </i><Link to='/perfil-profesor' className='Titulo-toggle'> Sarai Santiago Lozano</Link></center>
+            </i><Link to='/perfil-profesor/MaquiEl%20pr320T' className='Titulo-toggle'> Sarai Santiago Lozano</Link></center>
           </div>
         </div>
       </div>
