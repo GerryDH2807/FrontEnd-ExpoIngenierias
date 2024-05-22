@@ -46,13 +46,13 @@ function App() {
               <Route path="/announ1-teacher" element={<ProtectedRoute requiredRole="teacher"><TeacherAnoDet /></ProtectedRoute>} />
               <Route path='/announ1-estudiante' element={<ProtectedRoute requiredRole="student"><StudentAnnounDet /></ProtectedRoute>} />
               <Route path="/registro-proyecto" element={<ProtectedRoute requiredRole="student"><ProjectRegister /></ProtectedRoute>} />
-              <Route path="/resumen-proyecto-estudiante" element={<ProtectedRoute requiredRole="student"><ProjectResumen /></ProtectedRoute>} />
+              <Route path="/resumen-proyecto-estudiante/:id_project" element={<ProtectedRoute requiredRole="student"><ProjectResumen /></ProtectedRoute>} />
               <Route path="/anuncio-estudiante" element={<ProtectedRoute requiredRole="student"><AnunciosStudent /></ProtectedRoute>} />
               <Route path="/constancia-estudiante" element={<ProtectedRoute requiredRole="student"><StudentCertificate ConstCheck={"True"} /></ProtectedRoute>} />
               <Route path="/extramaterial" element={<ProtectedRoute requiredRole="student"><MaterialExtra /></ProtectedRoute>} />
               <Route path="/mapa" element={<ProtectedRoute requiredRole="student"><StudentMap /></ProtectedRoute>} />
               <Route path="/principal-estudiante" element={<ProtectedRoute requiredRole="student"><ProjSelection ProjCheck={"True"} /></ProtectedRoute>} />
-              <Route path='/EditProject' element={<ProtectedRoute requiredRole="student"><ProjectEdition /></ProtectedRoute>} />
+              <Route path='/EditProject/:id_project' element={<ProtectedRoute requiredRole="student"><ProjectEdition /></ProtectedRoute>} />
               <Route path='/student-profile' element={<ProtectedRoute requiredRole="student"><StudentProfile /></ProtectedRoute>} />
               <Route path="/Callback" element={<Callback />} />
             </Routes>
