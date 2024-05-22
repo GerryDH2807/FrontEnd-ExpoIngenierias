@@ -5,11 +5,15 @@ import Placeholder from 'react-bootstrap/Placeholder';
 import Menu from '../../../components/TogglebarStudent/togglebarStudent.js';
 import './StudentProfile.css';
 
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
+
+const URL = 'http://localhost:8000/students/'
 
 function Datos({name,email,type,id,IsLoaded}){
     return(
         <>
-            {IsLoaded === "True" && (
+            {IsLoaded && (
                 <>
                     <div className='row p-2'>
                         <div className='col-6 col-md-6'>
@@ -46,7 +50,7 @@ function Datos({name,email,type,id,IsLoaded}){
                 </>
             )}
 
-            {IsLoaded === "False" && (
+            {!IsLoaded && (
                 <>
                     <div className='row p-2'>
                         <div className='col-6 col-md-6'>
@@ -95,6 +99,36 @@ function Datos({name,email,type,id,IsLoaded}){
     );
 }
 export default function Perfil(){
+    const [IsLoaded, setIsLoaded] = useState(false);
+
+    const [student, setStudent] = useState({
+        id_student: 0,
+        name: "",
+        lastName: "",
+        enrollment: "",
+      });
+
+      const { id_student } = useParams();
+    
+    
+    
+      useEffect(() => {
+        //fetch(URL+id_student)
+        fetch(URL+'RobotEl pr230S')
+          .then((res) => res.json())
+          .then((data) => {
+            setStudent(data);
+            setIsLoaded(true); // Cambiamos IsLoaded a true cuando los datos están cargados
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+            setIsLoaded(true); // En caso de error, también cambiamos IsLoaded a true para evitar bucles infinitos de carga
+          });
+      }, [id_student]);
+    
+      
+
+
     return(
         <>
         <Menu NameSection={"Perfil de usuario"} />
@@ -107,7 +141,7 @@ export default function Perfil(){
                     <h1>Perfil</h1>
                 </div>
             </div>
-            <Datos IsLoaded={"True"} name={"Gerardo Deustúa Hernández"} type={"Estudiante"} id={"A01736455"}  email={"A01736455@tec.mx"}/>
+            <Datos IsLoaded={IsLoaded} name={student.name + " " + student.lastName} type={"Estudiante"} id={student.enrollment}  email={student.enrollment + "@tec.mx"}/>
             
         </div>
         </>

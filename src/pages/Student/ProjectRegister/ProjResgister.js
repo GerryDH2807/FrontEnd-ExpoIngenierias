@@ -17,19 +17,14 @@
 
   const URI = 'http://localhost:8000/projects/register'
 
-  function ButtonMaterials({extension, setExtension, table, setTable, screen, setScreen}) {
-    const [show, setShow] = useState(false);
-    
-    /*
-    const [extension, setExtension] = useState(0);
-    const [table, setTable] = useState(0);
-    const [screen, setScreen] = useState(0);
-    */
-    return (
-      <>
-        <Button variant="primary" onClick={() => setShow(true)} className='ButtonMaterials'>
-          Abrir lista de materiales
-        </Button>
+function ButtonMaterials({extension, setExtension, table, setTable, screen, setScreen}) {
+  const [show, setShow] = useState(false);
+  
+  return (
+    <>
+      <Button variant="primary" onClick={() => setShow(true)} className='ButtonMaterials'>
+        Abrir lista de materiales
+      </Button>
 
         <Modal
           show={show}
@@ -160,25 +155,24 @@
       const [table, setTable] = useState(0);
       const [screen, setScreen] = useState(0);  
 
-      const handleSubmit = async (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-          
-        }else{
-          await axios.post(URI, {title: title, description: description, linkVideo: linkVideo, 
-            linkPoster: linkPoster, area: area, 
-            category: category,
-            materials: [{id_material: 1, amount: extension}, {id_material: 2, amount: screen}, { id_material: 3, amount: table }],
-            members: members.map(member => ({ name: member.nameMember, lastName: member.lastNameMember, enrollment: member.enrollment })),
-            teachers: teachers.map(teacher => ({ name: teacher.nameTeacher, lastName: teacher.lastNameTeacher, email: teacher.email }))
-          });
-          navigate('/')
-        }
-    
-        setValidated(true);
-      };
+    const handleSubmit = async (event) => {
+      const form = event.currentTarget;
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+      }else{
+        await axios.post(URI, {title: title, description: description, linkVideo: linkVideo, 
+          linkPoster: linkPoster, area: area, 
+          category: category,
+          materials: [{id_material: 1, amount: extension}, {id_material: 2, amount: screen}, { id_material: 3, amount: table }],
+          members: members.map(member => ({ name: member.nameMember, lastName: member.lastNameMember, enrollment: member.enrollment })),
+          teachers: teachers.map(teacher => ({ name: teacher.nameTeacher, lastName: teacher.lastNameTeacher, email: teacher.email }))
+        });
+      }
+  
+      setValidated(true);
+    };
 
       const handleAddMember = () => {
         const newMemberId = memberNum + 1;
