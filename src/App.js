@@ -32,33 +32,29 @@ function App() {
     <>
       <div>
           <Routes>
-              {/* Rutas de Profesor */}
               <Route path="/" element={<Main />} />
               <Route path="/Ediciones-pasadas" element={<EdicionesPasadas />} />
               <Route path="/Catalogo" element={<Catalogo />} />
-              <Route path="/principal-profesor" element={<ProtectedRoute><Hometeacher /></ProtectedRoute>} />
-              <Route path="/profesor/projects/:id_project" element={<ProtectedRoute><ProjResumeCont /></ProtectedRoute>} />
+              <Route path="/principal-profesor" element={<ProtectedRoute requiredRole="teacher"><Hometeacher /></ProtectedRoute>} />
+              <Route path="/profesor/:id_person/:id_project" element={<ProtectedRoute  requiredRole="teacher"><ProjResumeCont /></ProtectedRoute>} />
               <Route path="/login" element={<Login />} />
-              <Route path="/Registro-usuario" element={<ProtectedRoute><FormUser /></ProtectedRoute>} />
-              <Route path="/Registro-inicio" element={<ProtectedRoute><UserRegisterCont /></ProtectedRoute>} />
-              <Route path="/anuncios-profesor" element={<ProtectedRoute><AnunciosTeacher /></ProtectedRoute>} />
-              <Route path="/constancia-profesor" element={<ProtectedRoute><ConstanciaTeacher ConstCheck={"True"} /></ProtectedRoute>} />
-              <Route path="/perfil-profesor" element={<ProtectedRoute><Perfil /></ProtectedRoute>} />
-              <Route path="/announ1-teacher" element={<ProtectedRoute><TeacherAnoDet /></ProtectedRoute>} />
-
-              {/* Rutas de Alumno */}
-              <Route path='/announ1-estudiante' element={<ProtectedRoute><StudentAnnounDet /></ProtectedRoute>} />
-              <Route path="/registro-proyecto" element={<ProtectedRoute><ProjectRegister /></ProtectedRoute>} />
-              <Route path="/resumen-proyecto-estudiante/:id_project" element={<ProtectedRoute><ProjectResumen /></ProtectedRoute>} />
-              <Route path="/anuncio-estudiante" element={<ProtectedRoute><AnunciosStudent /></ProtectedRoute>} />
-              <Route path="/constancia-estudiante" element={<ProtectedRoute><StudentCertificate ConstCheck={"True"} /></ProtectedRoute>} />
-              <Route path="/extramaterial" element={<ProtectedRoute><MaterialExtra /></ProtectedRoute>} />
-              <Route path="/mapa" element={<ProtectedRoute><StudentMap /></ProtectedRoute>} />
-              <Route path="/principal-estudiante" element={<ProtectedRoute><ProjSelection ProjCheck={"True"} /></ProtectedRoute>} />
-              <Route path='/EditProject/:id_project' element={<ProtectedRoute><ProjectEdition /></ProtectedRoute>} />
-              <Route path='/student-profile' element ={<ProtectedRoute><StudentProfile /></ProtectedRoute>} />
-
-              <Route path="/Callback" element={<ProtectedRoute><Callback /></ProtectedRoute>} />
+              <Route path="/Registro-usuario" element={<ProtectedRoute requiredRole="student"><FormUser /></ProtectedRoute>} />
+              <Route path="/Registro-inicio" element={<ProtectedRoute requiredRole="student"><UserRegisterCont /></ProtectedRoute>} />
+              <Route path="/anuncios-profesor" element={<ProtectedRoute requiredRole="teacher"><AnunciosTeacher /></ProtectedRoute>} />
+              <Route path="/constancia-profesor" element={<ProtectedRoute requiredRole="teacher"><ConstanciaTeacher ConstCheck={"True"} /></ProtectedRoute>} />
+              <Route path="/perfil-profesor/:id_user" element={<ProtectedRoute requiredRole="teacher"><Perfil /></ProtectedRoute>} />
+              <Route path="/announ1-teacher" element={<ProtectedRoute requiredRole="teacher"><TeacherAnoDet /></ProtectedRoute>} />
+              <Route path='/announ1-estudiante' element={<ProtectedRoute requiredRole="student"><StudentAnnounDet /></ProtectedRoute>} />
+              <Route path="/registro-proyecto" element={<ProtectedRoute requiredRole="student"><ProjectRegister /></ProtectedRoute>} />
+              <Route path="/resumen-proyecto-estudiante/:id_project" element={<ProtectedRoute requiredRole="student"><ProjectResumen /></ProtectedRoute>} />
+              <Route path="/anuncio-estudiante" element={<ProtectedRoute requiredRole="student"><AnunciosStudent /></ProtectedRoute>} />
+              <Route path="/constancia-estudiante" element={<ProtectedRoute requiredRole="student"><StudentCertificate ConstCheck={"True"} /></ProtectedRoute>} />
+              <Route path="/extramaterial" element={<ProtectedRoute requiredRole="student"><MaterialExtra /></ProtectedRoute>} />
+              <Route path="/mapa" element={<ProtectedRoute requiredRole="student"><StudentMap /></ProtectedRoute>} />
+              <Route path="/principal-estudiante" element={<ProtectedRoute requiredRole="student"><ProjSelection ProjCheck={"True"} /></ProtectedRoute>} />
+              <Route path='/EditProject/:id_project' element={<ProtectedRoute requiredRole="student"><ProjectEdition /></ProtectedRoute>} />
+              <Route path='/student-profile' element={<ProtectedRoute requiredRole="student"><StudentProfile /></ProtectedRoute>} />
+              <Route path="/Callback" element={<Callback />} />
           </Routes>
       </div>
     </>
