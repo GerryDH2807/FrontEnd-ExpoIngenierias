@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function Usure({Path, className, Texto}) {
+export default function Usure({Path, className, Texto }) {
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);

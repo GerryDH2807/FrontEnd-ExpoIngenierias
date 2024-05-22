@@ -35,31 +35,19 @@ function HorizontalSlider ({data}){
 
                 <Badges className={"badge p-2 text-wrap"} data={item.category}></Badges>
 
-<<<<<<< HEAD
                 {item.statusGeneral === "rechazado" && (
-=======
-                {item.status === "rechazado" && (
->>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
                     <div className="badge-container">
                         <div className="badge2 p-2">{item.statusGeneral}</div>
                     </div>
                 )}
 
-<<<<<<< HEAD
                 {item.statusGeneral === "aprobado" && (
-=======
-                {item.status === "aprobado" && (
->>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
                     <div className="badge-container">
                         <div className="badge3 p-2">{item.statusGeneral}</div>
                     </div>
                 )}
 
-<<<<<<< HEAD
                 {item.statusGeneral === "en revision" && (
-=======
-                {item.status === "en revisión" && (
->>>>>>> a9b2639bc79578c0092dcd4580c5868507588ffc
                   <div className="badge-container">
                     <div className="badge p-2">{item.statusGeneral}</div>
                   </div>
@@ -67,7 +55,7 @@ function HorizontalSlider ({data}){
               </div>
             </div>
           </div>
-          <Link to={`/profesor/projects/${item.id}`} className='custom-btn3 mb-5'>Ver Proyecto</Link>
+          <Link to={`/profesor/SisteEste 210T/${item.id}`} className='custom-btn3 mb-5'>Ver Proyecto</Link>
           </div>
     </div>
       ))}
@@ -197,7 +185,7 @@ const clearTimer = (endTime) => {
   useEffect(() => {
     //nuevodescr120T
     //http://localhost:8000/projects/responsable/${user.sub}
-    fetch(`http://localhost:8000/projects/responsable/nuevodescr120T`)
+    fetch(`http://localhost:8000/projects/responsable/SisteEste 210T`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('Network response was not ok');

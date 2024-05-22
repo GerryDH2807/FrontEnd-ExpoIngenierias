@@ -36,13 +36,13 @@ function App() {
               <Route path="/Ediciones-pasadas" element={<EdicionesPasadas />} />
               <Route path="/Catalogo" element={<Catalogo />} />
               <Route path="/principal-profesor" element={<ProtectedRoute><Hometeacher /></ProtectedRoute>} />
-              <Route path="/profesor/projects/:id_project" element={<ProtectedRoute><ProjResumeCont /></ProtectedRoute>} />
+              <Route path="/profesor/:id_person/:id_project" element={<ProtectedRoute><ProjResumeCont /></ProtectedRoute>} />
               <Route path="/login" element={<Login />} />
               <Route path="/Registro-usuario" element={<ProtectedRoute><FormUser /></ProtectedRoute>} />
               <Route path="/Registro-inicio" element={<ProtectedRoute><UserRegisterCont /></ProtectedRoute>} />
               <Route path="/anuncios-profesor" element={<ProtectedRoute><AnunciosTeacher /></ProtectedRoute>} />
               <Route path="/constancia-profesor" element={<ProtectedRoute><ConstanciaTeacher ConstCheck={"True"} /></ProtectedRoute>} />
-              <Route path="/perfil-profesor" element={<ProtectedRoute><Perfil /></ProtectedRoute>} />
+              <Route path="/perfil-profesor/:id_user" element={<ProtectedRoute><Perfil /></ProtectedRoute>} />
               <Route path="/announ1-teacher" element={<ProtectedRoute><TeacherAnoDet /></ProtectedRoute>} />
 
               <Route path='/announ1-estudiante' element={<ProtectedRoute><StudentAnnounDet /></ProtectedRoute>} />
