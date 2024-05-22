@@ -14,7 +14,7 @@ import './TeacherProjectResumen.css';
 import ConfBot from "../../../components/BotonConfirmacion/ConfBot.js";
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
 
-const URI = 'http://localhost:8000/projects/42'
+const URI = 'http://localhost:8000/projects/43'
 
 function MemberCont({NombreMiembro}){
   return(

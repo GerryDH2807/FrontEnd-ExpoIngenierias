@@ -1,7 +1,7 @@
 import './Actual.css';
 import Menu from '../../../components/Menu/menu.js';
 
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 import CardConcept from '../../../img/CardConcept.png';
 import CardProto from '../../../img/CardProto.png';
@@ -181,7 +181,7 @@ function CardProj({ CategoCheck, Title, Description }) {
             </Card>
         )}
 
-        {CategoCheck === "Finalizado" && (
+        {CategoCheck === "Prototipo finalizado" && (
             <Card style={{ width: '18rem', height: '90%' }} className='CardsInfoContainer'>
                 <Card.Img variant="top" src={CardFinish} className='FotoCard' />
                 <Card.Body>
@@ -201,11 +201,53 @@ function CardProj({ CategoCheck, Title, Description }) {
 }
 
 export default function Actual() {
+
+    const [nexusProjects, setNexusProjects] = useState([]);
+    const [nanoProjects, setNanoProjects] = useState([]);
+    const [bioProjects, setBioProjects] = useState([]);
+    const [cyberProjects, setCyberProjects] = useState([]);
+
+    
+    
+      useEffect(()=>{
+        fetch('http://localhost:8000/projects/catalogue')
+        .then((res)=> res.json())
+        .then((data) => {
+
+            //Nexus
+            const nexusArea = data.find((area) => area.name === 'Nexus');
+            const projectsNexus = nexusArea ? nexusArea.projects : [];
+            setNexusProjects(projectsNexus);
+
+            //Nano
+            const nanoArea = data.find((area) => area.name === 'Nano');
+            const projectsNano = nanoArea ? nanoArea.projects : [];
+            setNanoProjects(projectsNano);
+
+            //Bio
+            const bioArea = data.find((area) => area.name === 'Bio');
+            const projectsBio = bioArea ? bioArea.projects : [];
+            setBioProjects(projectsBio);
+
+            //Cyber
+            const cyberArea = data.find((area) => area.name === 'Cyber');
+            const projectsCyber = cyberArea ? cyberArea.projects : [];
+            setCyberProjects(projectsCyber);
+
+
+
+        })
+      },[])
+    
+
     return (
       <>
         <Menu />
-        <div className='container-fluid'>
 
+        {nexusProjects.map((item,index) => (
+            <h1>{item.title}</h1>
+        ))}
+        <div className='container-fluid'>
             <div className='row m-4 p-3 CardsContainer'>
                 <div className='container'>
                     <div className='row'>
@@ -227,25 +269,16 @@ export default function Actual() {
                 <div className='container-fluid'>
                     <div className='row'>
                         <div className='col'>
-                            <h3 className='Titulo123'>Concepto</h3>
+                            <h3 className='Titulo123'>Nano</h3>
                         </div>
                     </div>
 
                     <div className='row scroll-container'>
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
-                                <CardProj CategoCheck={'Finalizado'} Title={"Titulo del proyecto1"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Finalizado'} Title={"Titulo del proyecto2"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Prototipo'} Title={"Titulo del proyecto3"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Concepto'} Title={"Titulo del proyecto4"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Prototipo'} Title={"Titulo del proyecto5"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Concepto'} Title={"Titulo del proyecto6"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Concepto'} Title={"Titulo del proyecto7"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Prototipo'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Prototipo'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Concepto'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Finalizado'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Finalizado'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>  
+                                {nanoProjects.map((item,index) => (
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description}/>
+                                ))}
                             </div>                  
                         </div>
                     </div>
@@ -258,17 +291,16 @@ export default function Actual() {
                 <div className='container-fluid'>
                     <div className='row'>
                         <div className='col'>
-                            <h3 className='Titulo123'>Prototipo</h3>
+                            <h3 className='Titulo123'>Nexus</h3>
                         </div>
                     </div>
 
                     <div className='row scroll-container'>
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
-                                <CardProj CategoCheck={'Prototipo'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Concepto'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Finalizado'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Finalizado'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
+                                {nexusProjects.map((item,index) => (
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description}/>
+                                ))}
                             </div>                  
                         </div>
                     </div>
@@ -281,18 +313,38 @@ export default function Actual() {
                 <div className='container-fluid'>
                     <div className='row'>
                         <div className='col'>
-                            <h3 className='Titulo123'>Prototipo terminado</h3>
+                            <h3 className='Titulo123'>Bio</h3>
                         </div>
                     </div>
 
                     <div className='row scroll-container'>
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
-                                <CardProj CategoCheck={'Finalizado'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Prototipo'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Concepto'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
-                                <CardProj CategoCheck={'Finalizado'} Title={"Titulo del proyecto"} Description={"asafasfafafaaskfbaksfbaksbfaksbfsaskfbakfbakfbaskfaskfbaskfasbkfasbfkbkfasbfiasbfkasbfksbfkasfbaskfbaskfbskfbkfbaskfbaskfbskfbsfk"}/>
+                                {bioProjects.map((item,index) => (
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description}/>
+                                ))}
+                            </div>                  
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+
+            <div className='row m-4 p-3 CardsContainer'>
+
+                <div className='container-fluid'>
+                    <div className='row'>
+                        <div className='col'>
+                            <h3 className='Titulo123'>Cyber</h3>
+                        </div>
+                    </div>
+
+                    <div className='row scroll-container'>
+                        <div className='col'>
+                            <div className="d-flex flex-nowrap">
+                                {cyberProjects.map((item,index) => (
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description}/>
+                                ))}
                             </div>                  
                         </div>
                     </div>

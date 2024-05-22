@@ -26,23 +26,23 @@ function CardCalif({projects, IsLoaded}) {
 
 
         if (event) {
-          event.preventDefault(); // Evita que el formulario se envíe automáticamente
+        event.preventDefault(); // Evita que el formulario se envíe automáticamente
         }
         
         const form = event ? event.target : null;
         if (form && form.checkValidity() === false) {
-          event.stopPropagation();
+        event.stopPropagation();
         } else {
-          try {
+        try {
             await axios.delete(URL + id);
-          } catch (e) {
+        } catch (e) {
             console.log(e);
-          }
+        }
         }
         
         setValidated(true);
-      };
-      
+    };
+    
 
 
 
@@ -82,17 +82,18 @@ function CardCalif({projects, IsLoaded}) {
                                     <div className="badge-container">
                                         <Badge data={item.category.title} className="badge text-wrap" />
                                         <Badge data={item.id_Proyecto} className="badge" />
-                                        {item.status === "en revision" && (
+                                        
+                                        {item.statusGeneral === "en revision" && (
                                             <div className="badge-container">
                                                 <div className="badge">En revisión</div>
                                             </div>
                                         )}
-                                        {item.status === "rechazado" && (
+                                        {item.statusGeneral === "rechazado" && (
                                             <div className="badge-container">
                                                 <div className="badge2">Rechazado</div>
                                             </div>
                                         )}
-                                        {item.status === "aprobado" && (
+                                        {item.statusGeneral === "aprobado" && (
                                             <div className="badge-container">
                                                 <div className="badge3">Aceptado</div>
                                             </div>
@@ -119,7 +120,7 @@ function CardCalif({projects, IsLoaded}) {
                             <div className="card card-container m-4 w-100">
 
                                 <div className="imag d-flex align-items-center justify-content-center">
-                                     <center><Spinner animation="border"/></center>
+                                    <center><Spinner animation="border"/></center>
                                 </div>
 
                                 <div className="text">
@@ -157,7 +158,7 @@ function CardCalif({projects, IsLoaded}) {
     );
 }
 
-  
+
 
 export default function ProjSelection({ProjCheck}){
 
@@ -174,11 +175,11 @@ export default function ProjSelection({ProjCheck}){
         category: "",
         person: "",
         student: "",
-      }]);
+    }]);
 
     const { id_student } = useParams();
 
-      useEffect(()=>{
+    useEffect(()=>{
         fetch(URL+'auth0|66340f38cfd75a371a1b532b')
         .then((res)=> res.json())
         .then((data)=>setProjects(data))
@@ -234,7 +235,7 @@ export default function ProjSelection({ProjCheck}){
                                     <Link to={'/registro-proyecto'} className='bi bi-plus-square-fill NuevoRegister'></Link>
                                 </div>
                                 <div className='col-10 mt-2 p-3'>
-                                   <center><h1 className='TituloProjSEL p-3 text-center TitleSelectContainerVF'>Proyectos en los que participas</h1></center>
+                                <center><h1 className='TituloProjSEL p-3 text-center TitleSelectContainerVF'>Proyectos en los que participas</h1></center>
                                 </div>
                             </div>
                         </div>
