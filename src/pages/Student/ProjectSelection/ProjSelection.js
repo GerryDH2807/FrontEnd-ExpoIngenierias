@@ -29,9 +29,12 @@ function CardCalif({ projects, isLoading }) {
                 console.log(e);
             }
         }
-
         setValidated(true);
+    
     };
+    
+
+
 
     const truncateText = (text, limit) => {
         if (!text || typeof text !== 'string' || text.length <= limit) {
@@ -44,7 +47,7 @@ function CardCalif({ projects, isLoading }) {
 
     return (
         <>
-            {!isLoading && (
+            {isLoading && (
                 <div className='col-12 mt-5 d-flex align-items-center justify-content-center'>
                     <div class="semicircle">
                         <div>
@@ -67,7 +70,7 @@ function CardCalif({ projects, isLoading }) {
                     </div>
                 </div>
             )}
-            {isLoading && (
+            {!isLoading && (
                 <div className='col-12 d-flex flex-col justify-items-center'>
                     {projects.map((item) => (
                         <div className="card card-container m-4 w-100" key={item.id}>
@@ -84,19 +87,20 @@ function CardCalif({ projects, isLoading }) {
                                 <p className="h3">{truncateText(item.title, 50)}</p>
                                 <p className="p">{truncateText(item.description, 100)}</p>
                                 <div className="badge-container">
-                                    <Badge data={item.category.title} className="badge text-wrap" />
-                                    <Badge data={item.id_Proyecto} className="badge" />
-                                    {item.status === "en revision" && (
+                                    <Badge data={item.area.name} className="badge text-wrap" />
+                                    <Badge data={item.id} className="badge" />
+                                        
+                                    {item.statusGeneral === "en revision" && (
                                         <div className="badge-container">
                                             <div className="badge">En revisión</div>
                                         </div>
                                     )}
-                                    {item.status === "rechazado" && (
+                                    {item.statusGeneral === "rechazado" && (
                                         <div className="badge-container">
                                             <div className="badge2">Rechazado</div>
                                         </div>
                                     )}
-                                    {item.status === "aprobado" && (
+                                    {item.statusGeneral === "aprobado" && (
                                         <div className="badge-container">
                                             <div className="badge3">Aceptado</div>
                                         </div>
@@ -110,14 +114,31 @@ function CardCalif({ projects, isLoading }) {
                         </div>
                     ))}
                 </div>
-            )}
+            )}     
         </>
     );
 }
 
 export default function ProjSelection({ ProjCheck }) {
-    const [projects, setProjects] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+
+
+    const [projects, setProjects] = useState([{
+        id: 0,
+        title: "",
+        description: "",
+        linkVideo: "",
+        linkPoster: "",
+        statusGeneral: "",
+        statusPoster: "",
+        statusVideo: "",
+        area: "",
+        category: "",
+        person: "",
+        student: "",
+    }]);
+
     const { id_student } = useParams();
 
     useEffect(() => {
@@ -126,7 +147,7 @@ export default function ProjSelection({ ProjCheck }) {
             .then((res) => res.json())
             .then((data) => {
                 setProjects(data);
-                setIsLoading(false);
+                setIsLoading(true);
             })
             .catch((error) => {
                 console.error("Error fetching projects:", error);

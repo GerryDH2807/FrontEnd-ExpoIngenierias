@@ -35,19 +35,19 @@ function HorizontalSlider ({data}){
 
                 <Badges className={"badge p-2 text-wrap"} data={item.category}></Badges>
 
-                {item.status === "rechazado" && (
+                {item.statusGeneral === "rechazado" && (
                     <div className="badge-container">
                         <div className="badge2 p-2">{item.statusGeneral}</div>
                     </div>
                 )}
 
-                {item.status === "aprobado" && (
+                {item.statusGeneral === "aprobado" && (
                     <div className="badge-container">
                         <div className="badge3 p-2">{item.statusGeneral}</div>
                     </div>
                 )}
 
-                {item.status === "en revisión" && (
+                {item.statusGeneral === "en revision" && (
                   <div className="badge-container">
                     <div className="badge p-2">{item.statusGeneral}</div>
                   </div>
@@ -55,7 +55,7 @@ function HorizontalSlider ({data}){
               </div>
             </div>
           </div>
-          <Link to={`/profesor/projects/${item.id}`} className='custom-btn3 mb-5'>Ver Proyecto</Link>
+          <Link to={`/profesor/SisteEste 210T/${item.id}`} className='custom-btn3 mb-5'>Ver Proyecto</Link>
           </div>
     </div>
       ))}
@@ -185,7 +185,7 @@ const clearTimer = (endTime) => {
   useEffect(() => {
     //nuevodescr120T
     //http://localhost:8000/projects/responsable/${user.sub}
-    fetch(`http://localhost:8000/projects/responsable/nuevodescr120T`)
+    fetch(`http://localhost:8000/projects/responsable/SisteEste 210T`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('Network response was not ok');

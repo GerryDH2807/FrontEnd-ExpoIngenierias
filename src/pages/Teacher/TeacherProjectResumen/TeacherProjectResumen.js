@@ -14,7 +14,7 @@ import './TeacherProjectResumen.css';
 import ConfBot from "../../../components/BotonConfirmacion/ConfBot.js";
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
 
-const URI = 'http://localhost:8000/projects/42'
+const URI = 'http://localhost:8000/projects/43'
 
 function MemberCont({NombreMiembro}){
   return(
@@ -99,33 +99,8 @@ function ProjResume({type, area, title}){
   );
 }
 
-function CommentCont({role}){
-  return(
-    <div className ="col-md-12">
-      <h1 className ="Titulo text-break">Comentarios del {role} </h1>
 
-      <div className ='container-fluid p-1'>
-          <Form.Control as="textarea" rows="5" id="comentarioProfe"/>
-      </div>
-    </div>
-  );
-}
 
-function CommenSec(){
-  return(
-    <>
-    <div className='col-12 col-md-10'>
-      <div className="Infologo m-auto p-4">
-        <div className='container-fluid'>
-          <div className ='row align-items-center'>
-            <CommentCont role={"Profesor"}></CommentCont>
-          </div>
-        </div>
-      </div>
-    </div>
-    </>
-  );
-}
 
 
 export default function ProjResumeCont(){
@@ -144,7 +119,7 @@ export default function ProjResumeCont(){
     student: "",
     team: {students: []}
   });
-  const { id_project } = useParams();
+  const { id_person,id_project } = useParams();
 
 
   useEffect(()=>{
@@ -152,33 +127,55 @@ export default function ProjResumeCont(){
     fetch(`http://localhost:8000/projects/resume/${id_project}`)
     .then((res)=> res.json())
     .then((data)=>setProject(data))
-  },[id_project])
+},[id_project])
+
 
   const navigate = useNavigate();
 
   const [validated, setValidated] = useState(false);
 
-
+  const [comment, setComment] = useState('');
   const [switchPdf, setSwitchPdf] = useState(false); // Estado para controlar el primer switch
   const [switchVideo, setSwitchVideo] = useState(false);
 
-  const handleUpdate = async () => {
+  const handleComment = async () => {
     try {
-      const statusPosterValue = switchPdf ? 'aprobado' : ' rechazado';
-      const statusVideoValue = switchVideo ? 'aprobado' : ' rechazado';
-      axios.put(URI, {
-        statusPoster: statusPosterValue,
-        statusVideo: statusVideoValue,
-      })
-      .then(response => {
-        console.log('Proyecto actualizado:', response.data); })
-      navigate('/');
-      
+      await axios.post(`http://localhost:8000/comments/responsable/${id_person}/${id_project}`, {
+        id_person,
+        id_project,
+        comment
+      });
     } catch (error) {
-      // Maneja cualquier error que ocurra durante la actualización
-      console.error('Error al actualizar:', error);
+      console.error('Full error object:', error);
+      const errorMessage = error.response ? error.response.data.message : error.message;
+      throw new Error(`An error has occurred: ${errorMessage}`);
     }
   };
+  
+  
+const handleUpdate = async () => {
+  try {
+    const dynamicURI = `http://localhost:8000/projects/${id_project}`;
+    console.log(dynamicURI);
+    const statusPosterValue = switchPdf ? 'aprobado' : 'rechazado';
+    const statusVideoValue = switchVideo ? 'aprobado' : 'rechazado';
+    let statusTotal = '';
+    if(switchPdf && switchVideo) statusTotal = 'aprobado';
+    else statusTotal = 'rechazado';
+    axios.put(dynamicURI, {
+      statusPoster: statusPosterValue,
+      statusVideo: statusVideoValue,
+      statusGeneral: statusTotal
+    })
+    .then(response => {
+      console.log('Proyecto actualizado:', response.data); })
+    navigate('/principal-profesor');
+    
+  } catch (error) {
+    // Maneja cualquier error que ocurra durante la actualización
+    console.error('Error al actualizar:', error);
+  }
+};
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -187,6 +184,7 @@ export default function ProjResumeCont(){
       event.stopPropagation();
     } else {
       // Llama a handleUpdate con el ID del proyecto
+      handleComment();
       handleUpdate();
     }
     setValidated(true);
@@ -265,13 +263,27 @@ export default function ProjResumeCont(){
         </div>
         <div className='row m-2 justify-content-between'>
           <div className="col-md-1"></div>
-          <CommenSec /> 
+          <div className='col-12 col-md-10'>
+      <div className="Infologo m-auto p-4">
+        <div className='container-fluid'>
+          <div className ='row align-items-center'>
+          <div className ="col-md-12">
+      <h1 className ="Titulo text-break">Comentarios del profesor </h1>
+
+      <div className ='container-fluid p-1'>
+          <Form.Control as="textarea" rows="5" id="comentarioProfe" value={comment} onChange={(e) => setComment(e.target.value)}/>
+      </div>
+    </div>
+          </div>
+        </div>
+      </div>
+    </div>
           <div className="col-md-1"></div>
         </div>
         <div className='row m-3 justify-content-between'>
         <div className='col-md-4'></div>
           <div className="col-md-2 centered-container2">
-            <ConfBot Path={"/principal-profesor"} className={"custom-btn"} Texto={"Guardar"}></ConfBot>
+            <button type='submit' className={"custom-btn"}> Guardar</button>
           </div>
         <div className='col-md-4'></div>
         </div>
