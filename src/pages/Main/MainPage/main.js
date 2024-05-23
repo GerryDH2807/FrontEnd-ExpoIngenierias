@@ -74,10 +74,6 @@ useEffect(() => {
     return <LoadingSpinner />;
   }
 
-  if (!isLoading && isAuthenticated) {
-    return <Callback />;  // Redirigir al Callback si está autenticado
-  }
-
   return (
     <>
       <Menu />

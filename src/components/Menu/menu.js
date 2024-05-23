@@ -2,6 +2,9 @@ import logo from '../../img/logo.svg';
 import { Link } from 'react-router-dom';
 import './menu.css';
 import { useAuth0 } from "@auth0/auth0-react";
+import Callback from '../../auth0/callback.js';
+import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
 
 const RegisterLink = () => {
   const { loginWithRedirect } = useAuth0();
@@ -11,7 +14,35 @@ const RegisterLink = () => {
   );
 };
 
+
+const PlatformLink = () => {
+  const { isAuthenticated, isLoading, user } = useAuth0();
+  const navigate = useNavigate();
+
+  const handlePlatformClick = () => {
+    if (!isLoading && isAuthenticated && user) {
+      const username = user.email.split('@')[0];
+      const isStudent = /^[aA]\d{8}$/.test(username);
+
+      if (isStudent) {
+        localStorage.setItem('userRole', 'student');
+        navigate('/principal-estudiante'); // Redirigir a la página de estudiante
+      } else {
+        localStorage.setItem('userRole', 'teacher');
+        navigate('/principal-profesor'); // Redirigir a la página de profesor
+      }
+    }
+  };
+
+  return (
+    <button onClick={handlePlatformClick} className="opciones-btn me-3">Ir a la Plataforma</button>
+  );
+};
+
+
 export default function Menu() {
+  const { isAuthenticated } = useAuth0();
+
 
   return (
     <>  
@@ -43,7 +74,7 @@ export default function Menu() {
                     <Link to="/Catalogo" className='nav-link opciones m-2'>Catalogo</Link>
                   </li>
                   <li className="nav-item">
-                    <RegisterLink/>
+                    {isAuthenticated ? <PlatformLink /> : <RegisterLink />}
                   </li>
                 </ul>
               </div>
