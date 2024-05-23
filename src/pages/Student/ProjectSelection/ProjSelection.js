@@ -126,20 +126,7 @@ export default function ProjSelection({ ProjCheck }) {
 
 
 
-    const [projects, setProjects] = useState([{
-        id: 0,
-        title: "",
-        description: "",
-        linkVideo: "",
-        linkPoster: "",
-        statusGeneral: "",
-        statusPoster: "",
-        statusVideo: "",
-        area: "",
-        category: "",
-        person: "",
-        student: "",
-    }]);
+    const [projects, setProjects] = useState([]);
 
     const { id_student } = useParams();
 

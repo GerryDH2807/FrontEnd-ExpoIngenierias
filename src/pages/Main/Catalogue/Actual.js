@@ -124,7 +124,7 @@ return (
 );
 }
 
-function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed }) {
+function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed, Students, Teacher }) {
     const [modalShow, setModalShow] = useState(false);
   
     return (
@@ -139,9 +139,9 @@ function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed }) 
           CategoCheckModal={CategoCheckButton}
           TitleDetailed={TitleDetailed}
           DescriptionDetailed={DescriptionDetailed}
-          TeacherDetailed={'Daniela Lozada Bracamontes'}
+          TeacherDetailed={Teacher.name + " " + Teacher.lastName}
 
-          MemebersDetailed={'Gerardo Deustúa Hernández' }
+          MemebersDetailed={Students.name + " " + Students.lastName }
 
           DriveLink={'http://google.com'}
           YoutubeLink={'http://youtube.com'}
@@ -152,17 +152,25 @@ function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed }) 
   
 
 
-function CardProj({ CategoCheck, Title, Description }) {
+function CardProj({ CategoCheck, Title, Description, Students,Teacher }) {
+    const truncatedText = (text, limit) => {
+        if (!text || typeof text !== 'string' || text.length <= limit) {
+          return text;
+        }
+        return text.slice(0, limit) + '...';
+      };
+    
+    
     return (
     <div className='col p-3'>
         {CategoCheck === "Concepto" && (
             <Card style={{ width: '18rem', height: '90%' }} className='CardsInfoContainer'>
                 <Card.Img variant="top" src={CardConcept} className='FotoCard' />
                 <Card.Body>
-                <Card.Title className='Titulo123'>{Title}</Card.Title>
-                <Card.Text className='TextoCardWrap'>{Description}</Card.Text>
+                <Card.Title className='Titulo123 text-wrap'>{Title}</Card.Title>
+                <Card.Text className='TextoCardWrap'>{truncatedText(Description,125)}</Card.Text>
                 <center>
-                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description}>Ver proyecto</ButtonModal>
+                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Students={Students} Teacher={Teacher}>Ver proyecto</ButtonModal>
                 </center>
                 </Card.Body>
             </Card>
@@ -175,7 +183,7 @@ function CardProj({ CategoCheck, Title, Description }) {
                 <Card.Title className='Titulo123'>{Title}</Card.Title>
                 <Card.Text className='TextoCardWrap'>{Description}</Card.Text>
                 <center>
-                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description}>Ver proyecto</ButtonModal>
+                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Students={Students} Teacher={Teacher}>Ver proyecto</ButtonModal>
                 </center>
                 </Card.Body>
             </Card>
@@ -189,7 +197,7 @@ function CardProj({ CategoCheck, Title, Description }) {
                 <Card.Text className='TextoCardWrap'>{Description}</Card.Text>
                 
                 <center>
-                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description}>Ver proyecto</ButtonModal>
+                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Students={Students} Teacher={Teacher}>Ver proyecto</ButtonModal>
                 </center>
                 </Card.Body>
             </Card>
@@ -277,7 +285,7 @@ export default function Actual() {
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
                                 {nanoProjects.map((item,index) => (
-                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description}/>
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Students={item.student} Teacher={item.person}/>
                                 ))}
                             </div>                  
                         </div>
@@ -299,7 +307,7 @@ export default function Actual() {
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
                                 {nexusProjects.map((item,index) => (
-                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description}/>
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Students={item.student} Teacher={item.person}/>
                                 ))}
                             </div>                  
                         </div>
@@ -321,7 +329,7 @@ export default function Actual() {
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
                                 {bioProjects.map((item,index) => (
-                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description}/>
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Students={item.student} Teacher={item.person}/>
                                 ))}
                             </div>                  
                         </div>
@@ -343,7 +351,7 @@ export default function Actual() {
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
                                 {cyberProjects.map((item,index) => (
-                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description}/>
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Students={item.student} Teacher={item.person}/>
                                 ))}
                             </div>                  
                         </div>

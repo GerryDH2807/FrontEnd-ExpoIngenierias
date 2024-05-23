@@ -17,6 +17,14 @@
 
   const URI = 'http://localhost:8000/projects/register'
 
+
+function MemberCont({NombreMiembro}){
+    return(
+      <li className="Texto text-wrap mb-0">{NombreMiembro}</li>
+    );
+  }
+  
+
 function ButtonMaterials({extension, setExtension, table, setTable, screen, setScreen}) {
   const [show, setShow] = useState(false);
   
@@ -132,7 +140,7 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
   function FormExample() {
 
       //Información areas y categorias
-      const [data, setData] = useState({categories: [], areas: []});
+      const [data, setData] = useState({students: [], teachers: [], categories: [], areas: []});
 
       const [validated, setValidated] = useState(false);
       const [memberNum, setMemberNum] = useState(1);
@@ -323,6 +331,10 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
                         />
                     </div>
 
+                  {data.students.map((student, index) => (
+                  <MemberCont NombreMiembro={student.name + " " + student.lastName}></MemberCont>
+                  ))}
+
                         
 
 
@@ -421,6 +433,12 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
                     placeholder="Ingresa los apellidos" required className='InputFormat' />
                   </div>
                 </div>
+
+                {data.teachers.map((teacher, index) => (
+                  <MemberCont NombreMiembro={teacher.name + " " + teacher.lastName}></MemberCont>
+                ))}
+
+
               </div>
             ))}
           </Form.Group>
