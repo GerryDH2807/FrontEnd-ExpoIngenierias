@@ -56,3 +56,36 @@
     color: #6da0e2;
 
 }
+
+.contenedorimagenredireccionprincipal{
+    padding: 8px;
+
+    cursor: pointer;
+}
+
+.contenedorimagenredireccionprincipal:hover{
+    background-color: #e0e0e0;
+    border-radius: 5px;
+
+    padding: 8px;
+
+    cursor: pointer;
+}
+
+.CerrrarMadreEsta{
+    color: #0C356A;
+
+    cursor: pointer;
+
+    font-weight: bolder;
+
+}
+
+.CerrrarMadreEsta:hover{
+    color: #406eaa;
+
+    cursor: pointer;
+
+    font-weight: bolder;
+
+}
