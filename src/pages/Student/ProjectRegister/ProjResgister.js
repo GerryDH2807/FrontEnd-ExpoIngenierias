@@ -538,7 +538,7 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
   export default function ProjRegisterCont(){
     return (
       <>
-        <ToggleBarStudent />
+        <ToggleBarStudent NameSection={"Registro de nuevo proyecto"} />
         <div className='container w-50 mt-4 mb-4 bg-white'>
             <div className='row p-2'>
                 <div className='col p-4'>
