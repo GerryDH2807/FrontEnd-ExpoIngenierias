@@ -47,14 +47,14 @@ function ToggleBarStudent({SectionName}) {
           <Offcanvas.Header className='pb-0'>
             <Offcanvas.Title >
   
-            <div className='container ExpoIngLog3' onClick={handleClose}>
+            <div className='container'>
               <div className='row'>
-                <div className='col-10'>
-                  <center><img className="ExpoIngLog3 w-50 h-50" src ={logo2} alt=""></img></center>  
+                <div className='col-10 contenedorimagenredireccionprincipal'>
+                  <Link to={"/"}><center><img className="ExpoIngLog3 w-50 h-50" src ={logo2} alt=""></img></center></Link>  
                 </div>
 
                 <div className='col'>
-                  <center> <i className='bi bi-x-circle'></i></center>  
+                  <center> <i className='bi bi-x-circle-fill CerrrarMadreEsta' onClick={handleClose}></i></center>  
                 </div>
               </div>
             </div>
@@ -66,8 +66,8 @@ function ToggleBarStudent({SectionName}) {
             <div className='container-fluid'>
               <div className='row'>
                 <div className='col'>
-                <center><i className='bi bi-person-circle docu-icon2'>
-                  </i><Link to='/student-profile' className='Titulo-toggle'> Gerardo Deustúa Hernández</Link></center>
+                <center><Link to='/student-profile'><i className='bi bi-person-circle docu-icon2'>
+                  </i></Link><Link to='/student-profile' className='Titulo-toggle'> Gerardo Deustúa Hernández</Link></center>
                 </div>
               </div>
             </div>

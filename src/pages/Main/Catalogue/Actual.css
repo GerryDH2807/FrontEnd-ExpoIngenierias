@@ -117,6 +117,10 @@
 .ContDetails{
     background-color: #e6e6e6;
     border-radius: 5px;
+
+    height: 243px;
+
+    overflow-y: auto;
 }
 
 
@@ -163,3 +167,20 @@
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
 }
 
+.ContDetails::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .ContDetails::-webkit-scrollbar-track {
+    background: #0C356A;
+    
+  }
+  
+  .ContDetails::-webkit-scrollbar-thumb {
+    background: #406eaa; 
+  }
+  
+  .ContDetails::-webkit-scrollbar-thumb:hover {
+    background: #000000; 
+  }
+  

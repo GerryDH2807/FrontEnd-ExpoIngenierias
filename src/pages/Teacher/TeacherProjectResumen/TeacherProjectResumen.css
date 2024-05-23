@@ -171,14 +171,24 @@
   
 
 }
-.BGResume{
+.BGResumeTeacher{
   background-image: url("../../../img/CardResumeConcept.png");
 
   background-size: cover; 
   background-position: center;
   border-radius: 5px;
-  height: auto;
+  height: 256px;
 }
+
+.BGResumeTeacherPlaceHolder{
+  background-color: #999999;
+
+  background-size: cover; 
+  background-position: center;
+  border-radius: 5px;
+  height: 256px;
+}
+
 .circulos{
   size: 20px;
 }
@@ -208,4 +218,18 @@
 
 .ChecksPosition{
   margin-left: 90px;
+}
+
+.BolitaProfesorResumenCarga{
+
+  color: #fff;
+
+  width: 145px;
+  height: 145px;
+
+}
+
+.BolitasIconos{
+  width: 90px;
+  height: 90px;
 }
