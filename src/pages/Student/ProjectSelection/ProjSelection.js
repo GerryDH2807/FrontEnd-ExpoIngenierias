@@ -47,8 +47,7 @@ function CardCalif({ projects, isLoading }) {
 
     return (
         <>
-        {/*}
-            {!isLoading && (
+            {isLoading && (
                 <div className='col-12 mt-5 d-flex align-items-center justify-content-center'>
                     <div class="semicircle">
                         <div>
@@ -71,8 +70,7 @@ function CardCalif({ projects, isLoading }) {
                     </div>
                 </div>
             )}
-        */}
-            {isLoading && (
+            {!isLoading && (
                 <div className='col-12 d-flex flex-col justify-items-center'>
                     {projects.map((item) => (
                         <div className="card card-container m-4 w-100" key={item.id}>
@@ -91,7 +89,6 @@ function CardCalif({ projects, isLoading }) {
                                 <div className="badge-container">
                                     <Badge data={item.area.name} className="badge text-wrap" />
                                     <Badge data={item.id} className="badge" />
-                                        
                                     {item.statusGeneral === "en revision" && (
                                         <div className="badge-container">
                                             <div className="badge">En revisión</div>
@@ -136,7 +133,7 @@ export default function ProjSelection({ ProjCheck }) {
             .then((res) => res.json())
             .then((data) => {
                 setProjects(data);
-                setIsLoading(true);
+                setIsLoading(false);
             })
             .catch((error) => {
                 console.error("Error fetching projects:", error);

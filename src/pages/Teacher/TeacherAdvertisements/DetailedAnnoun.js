@@ -1,46 +1,105 @@
 import "./DetailedAnnoun.css";
 
-import {Link} from 'react-router-dom';
+import Placeholder from 'react-bootstrap/Placeholder';
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
 
 import Menu from '../../../components/Togglebar/togglebar.js';
-function AnnounTitle({TituloDetailed,Fecha}){
-    return(
-        <>
-            <div className="col-11 p-3  ">
-                <i className="bi bi-megaphone-fill AnnounIcon"></i>
-                <span className="TituloAnnoun">{TituloDetailed}</span>
+
+function AnnounTitle({ TituloDetailed, Fecha, isLoaded }) {
+    return (
+      <>
+        {isLoaded ? (
+          <>
+            <div className="col-10 p-3">
+              <i className="bi bi-envelope-fill AnnounIcon"></i>
+              <span className="TituloAnnoun">{TituloDetailed}</span>
             </div>
-
-            <div className="col-1 ">
-                    <div className="container-fluid">
-                        <div className="row SubjectCont p-4">
-                            <div className="col-2">
-                                <span className="Subtitulo text-wrap">Fecha: </span>
-                            </div>
-
-                            <div>
-                                <span className="text-wrap"> {Fecha}</span>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </>
-    );
-}
-
-function AnnounBody({Contenido}){
-    return(
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col p-3">
-                    <span className="texto"> {Contenido}</span>
+            <div className="col-2">
+              <div className="container-fluid">
+                <div className="row SubjectCont p-4">
+                  <div className="col-2">
+                    <span className="Subtitulo text-wrap">Fecha: </span>
+                  </div>
+                  <div>
+                    <span className="text-wrap">{Fecha && Fecha.substring(0, 10)}</span>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
+          </>
+        ) : (
+          <>
+            <div className="col-10 p-3 d-flex align-items-center">
+              <i className="bi bi-envelope-fill AnnounIcon"></i>
+              <Placeholder animation="glow" className="w-75">
+                <Placeholder xs={12} bg="primary" className="ms-4" size="lg" />
+              </Placeholder>
+            </div>
+            <div className="col-2">
+              <div className="container-fluid">
+                <div className="row SubjectCont p-4">
+                  <div className="col-2">
+                    <span className="Subtitulo text-wrap">Fecha: </span>
+                  </div>
+                  <div>
+                    <Placeholder animation="glow" className="w-100">
+                      <Placeholder xs={10} bg="dark" size="lg" />
+                    </Placeholder>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </>
     );
-}
-
-export default function DetailedAnnounCont(){
+  }
+  
+  function AnnounBody({ Contenido, isLoaded }) {
+    return (
+      <>
+        {isLoaded ? (
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col p-3">
+                <span className="texto">{Contenido}</span>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col p-3">
+                <Placeholder animation="glow" className="w-75">
+                  {Array.from({ length: 7 }).map((_, index) => (
+                    <Placeholder key={index} xs={12} bg="secondary" size="xs" />
+                  ))}
+                </Placeholder>
+              </div>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
+  
+  export default function DetailedAnnounCont() {
+    const [announDet, setAnnounDet] = useState({
+      title: "",
+      description: "",
+      createdAt: ""
+    });
+    const [isLoading, setIsLoading] = useState(true);
+  
+    useEffect(() => {
+      fetch('http://localhost:8000/announ/' + 9)
+        .then((res) => res.json())
+        .then((data) => {
+          setAnnounDet(data);
+          setIsLoading(false); // Datos obtenidos, desactivar estado de carga
+        });
+    }, []);
     return(
         <>
         <Menu NameSecProf={"Anuncios"}/>

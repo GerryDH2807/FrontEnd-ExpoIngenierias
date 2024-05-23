@@ -1,5 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
+import Placeholder from 'react-bootstrap/Placeholder';
 import { Link } from 'react-router-dom';
 
 import './TeacherAdvertisements.css'
@@ -7,91 +8,113 @@ import Menu from '../../../components/Togglebar/togglebar.js';
 
 
 function AnnounSearch({ handleSearch }) {
-    const handleChange = (e) => {
-      handleSearch(e.target.value); // Pasar el texto de búsqueda al componente padre
-    };
-  
-    return (
-      <div className='col-12 p-2'>
-        <Form.Control
-          required
-          type="text"
-          placeholder="Ingresa el título de un anuncio para buscar"
-          className='InputFormat'
-          onChange={handleChange}
-        ></Form.Control>
+  const handleChange = (e) => {
+    handleSearch(e.target.value);
+  };
+
+  return (
+    <div className='col-12 p-2'>
+      <Form.Control
+        required
+        type="text"
+        placeholder="Ingresa el título de un anuncio para buscar"
+        className='InputFormat'
+        onChange={handleChange}
+      ></Form.Control>
+    </div>
+  );
+}
+
+function AnnounInfo({ announ, isLoading }) {
+  const truncatedText = (text, limit) => {
+    if (!text || typeof text !== 'string' || text.length <= limit) {
+      return text;
+    }
+    return text.slice(0, limit) + '...';
+  };
+
+  return (
+    <>
+      {isLoading ? (
+        <>
+          <div className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
+            <div className='col-3 d-flex align-items-center'>
+              <i className='bi bi-envelope-fill AnnounIcon'></i>
+              <Placeholder animation="glow" className="w-75">
+                <Placeholder xs={12} bg="primary" className="ms-4" size="lg" />
+              </Placeholder>
+            </div>
+            <div className='col-7 d-flex align-items-center'>
+              <Placeholder animation="glow" className="w-100">
+                <Placeholder xs={12} bg="secondary" className="ms-4" size="lg" />
+              </Placeholder>
+            </div>
+            <div className='col-2 text-end'>
+              <Placeholder animation="glow" className="w-100">
+                <Placeholder xs={10} bg="dark" className="ms-4" size="lg" />
+              </Placeholder>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+        <Link to={'/announ' + 1 + '-teacher'} className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
+          <div className='col-3 d-flex align-items-center'>
+            <i className='bi bi-envelope-fill AnnounIcon'></i>
+            <span className='Titulo'> {announ.title}</span>
+          </div>
+          <div className='col-7 d-flex align-items-center'>
+            <span className='TextoAnnoun'>{truncatedText(announ.description, 100)}</span>
+          </div>
+          <div className='col-2 text-end'>
+            <span className='Subtitulo text-wrap'>{announ.createdAt && announ.createdAt.substring(0, 10)}</span>
+          </div>
+        </Link>
+        </>
+      )}
+    </>
+  );
+}
+
+function AnnounInfoCont({ announcements, isLoading }) {
+  return (
+    <div className='col-12 p-12'>
+      <div className='container-fluid'>
+        {isLoading
+          ? Array.from({ length: 5 }).map((_, index) => <AnnounInfo key={index} isLoading={true} />)
+          : announcements.map((announcement, index) => (
+              <AnnounInfo key={index} announ={announcement} isLoading={false} />
+            ))}
       </div>
-    );
-  }
-  
-  function AnnounInfo({ Fecha, Titulo, Cuerpo }) {
-    const truncatedText = (text, limit) => {
-      if (!text || typeof text !== 'string' || text.length <= limit) {
-        return text;
-      }
-      return text.slice(0, limit) + '...';
-    };
-  
-    return (
-      <Link to={'/announ1-teacher'} className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
-        <div className='col-3 d-flex align-items-center'>
-          <i className='bi bi-envelope-fill AnnounIcon'></i> <span className='Titulo'> {Titulo}</span>
-        </div>
-  
-        <div className='col-7 d-flex align-items-center'>
-          <span className='TextoAnnoun'>{truncatedText(Cuerpo, 100)}</span>
-        </div>
-  
-        <div className='col-2 text-end'>
-          <span className='Subtitulo text-wrap'>{Fecha}</span>
-        </div>
-      </Link>
-    );
-  }
-  
-  function AnnounInfoCont({ announcements }) {
-    return (
-      <div className='col-12 p-12'>
-        <div className='container-fluid'>
-          {announcements.map((announcement, index) => (
-            <AnnounInfo
-              key={index}
-              Titulo={announcement.Titulo}
-              Fecha={announcement.Fecha}
-              Cuerpo={announcement.Cuerpo}
-            />
-          ))}
-        </div>
-      </div>
-    );
-  }
-  
-  export default function AnnounCont() {
-    const [allAnnouncements, setAllAnnouncements] = useState([]);
-    const [filteredAnnouncements, setFilteredAnnouncements] = useState([]);
-  
-    const handleSearch = (searchText) => {
-      if (searchText.trim() === "") {
-        setFilteredAnnouncements(allAnnouncements);
-      } else {
-        const filtered = allAnnouncements.filter(announcement =>
-          announcement.Titulo.toLowerCase().includes(searchText.toLowerCase())
-        );
-        setFilteredAnnouncements(filtered);
-      }
-    };
-  
-    // Simulación de datos iniciales de anuncios
-    const initialAnnouncements = [
-      { Titulo: 'Aguila Roja', Fecha: '20/02/24', Cuerpo: "Contenido del anuncio 1" },
-      { Titulo: 'Barco Morado', Fecha: '15/05/19', Cuerpo: "Contenido del anuncio 2" },
-      { Titulo: 'Carro rapido', Fecha: '28/07/03', Cuerpo: "Contenido del anuncio 3" }
-    ];
-  
-    useState(() => {
-      setAllAnnouncements(initialAnnouncements);
-      setFilteredAnnouncements(initialAnnouncements);
-    }, []);
+    </div>
+  );
+}
+
+export default function AnnounCont() {
+  const [allAnnouncements, setAllAnnouncements] = useState([]);
+  const [filteredAnnouncements, setFilteredAnnouncements] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://localhost:8000/announ/')
+      .then((res) => res.json())
+      .then((data) => {
+        setAllAnnouncements(data);
+        setFilteredAnnouncements(data);
+        setIsLoading(false); // Datos obtenidos, desactivar estado de carga
+      });
+  }, []);
+
+  const handleSearch = (searchText) => {
+    if (searchText.trim() === '') {
+      setFilteredAnnouncements(allAnnouncements);
+    } else {
+      const filtered = allAnnouncements.filter((announcement) =>
+        announcement.title.toLowerCase().includes(searchText.toLowerCase())
+      );
+      setFilteredAnnouncements(filtered);
+    }
+  };
   
     return (
       <>

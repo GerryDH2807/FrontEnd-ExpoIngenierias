@@ -2,10 +2,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
 import Menu from '../../../components/Togglebar/togglebar.js';
+import React, { useState,useEffect,useRef} from "react";
+import { useParams } from "react-router-dom";
 import './TeacherProfile.css';
 
 
 function Datos({name,email,type,id}){
+
     return(
         <>
             <div className='row p-2'>
@@ -37,6 +40,21 @@ function Datos({name,email,type,id}){
     );
 }
 export default function Perfil(){
+    const [user, setUser] = useState({
+        id: "",
+        name: "",
+        lastName: "",
+        email: "",
+    })
+    const {id_user} = useParams();
+    useEffect(() => {
+        //nuevodescr120T
+        //http://localhost:8000/projects/responsable/${user.sub}
+        fetch(`http://localhost:8000/person/resume/${id_user}`)
+          .then((res) => res.json())
+          .then((data)=>setUser(data))
+        
+        },[id_user])
     return(
         <>
         <Menu />
@@ -49,7 +67,7 @@ export default function Perfil(){
                     <h1>Perfil</h1>
                 </div>
             </div>
-            <Datos name={"Sarai Santiago Lozano"} type={"Profesor"}  email="saraí_sant_loz@tec.mx"/>
+            <Datos name={user.name+' '+user.lastName} type={"Profesor"}  email={user.email}/>
             
         </div>
         </>

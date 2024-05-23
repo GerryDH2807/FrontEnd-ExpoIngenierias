@@ -12,7 +12,13 @@ import Card from 'react-bootstrap/Card';
 
 import Modal from 'react-bootstrap/Modal';
 
-function MyVerticallyCenteredModal({ TitleDetailed, DescriptionDetailed, TeacherDetailed, MemebersDetailed, DriveLink, YoutubeLink, ...props }) {
+function MemberCont({NombreMiembro}){
+    return(
+      <li className="Texto text-wrap mb-0">{NombreMiembro}</li>
+    );
+  }
+
+function MyVerticallyCenteredModal({ TitleDetailed, DescriptionDetailed, TeacherDetailed, MemebersDetailed, DriveLink, YoutubeLink,members, ...props }) {
 const { CategoCheckModal } = props;
 
 return (
@@ -49,10 +55,32 @@ return (
                 )}
 
                 <div className='col-3 p-3 m-2 ContDetails'>
-                    <p className='Titulo123'>Miembros del equipo: </p> <span>{MemebersDetailed}</span>
+                    <div className='container-fluid'>
+                        < div className='row'>
+                            <div className='col'>
+                                <p className='Titulo123'>Lider del equipo: </p> <span>{MemebersDetailed}</span>
+                            </div>
+                        </div>
+                        < div className='row mt-3'>
+                            <div className='col'>
+                                <p className='Titulo123'>Miembros del equipo: </p> <span><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='col-3 p-3 m-2 ContDetails'>
-                    <p className='Titulo123'>Profesor(es):</p> <span>{TeacherDetailed}</span> 
+                <div className='container-fluid'>
+                        < div className='row'>
+                            <div className='col'>
+                                <p className='Titulo123'>Profesor lider: </p> <span>{MemebersDetailed}</span>
+                            </div>
+                        </div>
+                        < div className='row mt-3'>
+                            <div className='col'>
+                                <p className='Titulo123'>Profesores asesores: </p> <span><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
