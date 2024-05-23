@@ -5,7 +5,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import {Link} from 'react-router-dom'
 import React, { useState,useEffect,useRef} from "react";
 import { useParams } from "react-router-dom";
-
+import Placeholder from 'react-bootstrap/Placeholder';
+import Spinner from 'react-bootstrap/Spinner';
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
 import CardConcept from '../../../img/CardConcept.png';
 import CardProto from '../../../img/CardProto.png';
@@ -15,55 +16,89 @@ import Badges from '../../Student/ProjectSelection/Badge.js'
 import { useAuth0 } from '@auth0/auth0-react';
 
 import './TeacherHome.css';
-function HorizontalSlider ({data}){
+function HorizontalSlider ({data, IsLoaded}){
   const imagenes = {
     "Concepto": CardConcept,
     "Prototipo": CardProto,
     "Prototipo finalizado": CardFinish
   };
   return (
-    <div className="slider-container">
-      {data.map((item) => (
-        <div className='slider-item cardProf m-3' key={item.id}>
-        <img src={imagenes[item.category]} alt={item.id}  className='card-img-top ImagProfe'/>
-      <div className='card-body '>
-          <h5 className=' card-title m-2'>{item.id}</h5>
-          <div className='container-fluid'>
-            <div className='row d-flex justify-content-evenly mb-4'>
-              <div className='badge-container mb-3'>
-                <Badges className={"badge p-2"} data={item.area}></Badges>
-
-                <Badges className={"badge p-2 text-wrap"} data={item.category}></Badges>
-
-                {item.statusGeneral === "rechazado" && (
-                    <div className="badge-container">
-                        <div className="badge2 p-2">{item.statusGeneral}</div>
+    <>
+      {!IsLoaded && (
+        <div className="containerPlaceholderTeach d-flex alig-items-center justify-content-center">
+          <div class="semicircleteacher mb-5">
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <div>
+                      <div>
+                        <div>
+                          <div>
+                          
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                )}
-
-                {item.statusGeneral === "aprobado" && (
-                    <div className="badge-container">
-                        <div className="badge3 p-2">{item.statusGeneral}</div>
-                    </div>
-                )}
-
-                {item.statusGeneral === "en revision" && (
-                  <div className="badge-container">
-                    <div className="badge p-2">{item.statusGeneral}</div>
                   </div>
-                )}
+                </div>
               </div>
             </div>
           </div>
-          <Link to={`/profesor/SisteEste 210T/${item.id}`} className='custom-btn3 mb-5'>Ver Proyecto</Link>
-          </div>
-    </div>
-      ))}
-    </div>
+        </div>
+        
+      )}
+
+
+
+      {IsLoaded && (
+        <div className="slider-container">
+        {data.map((item) => (
+          <div className='slider-item cardProf m-3' key={item.id}>
+          <img src={imagenes[item.category]} alt={item.id}  className='card-img-top ImagProfe'/>
+        <div className='card-body '>
+            <h5 className=' card-title m-2'>{item.id}</h5>
+            <div className='container-fluid'>
+              <div className='row d-flex justify-content-evenly mb-4'>
+                <div className='badge-container mb-3'>
+                  <Badges className={"badge p-2"} data={item.area}></Badges>
+
+                  <Badges className={"badge p-2 text-wrap"} data={item.category}></Badges>
+
+                  {item.statusGeneral === "rechazado" && (
+                      <div className="badge-container">
+                          <div className="badge2 p-2">{item.statusGeneral}</div>
+                      </div>
+                  )}
+
+                  {item.statusGeneral === "aprobado" && (
+                      <div className="badge-container">
+                          <div className="badge3 p-2">{item.statusGeneral}</div>
+                      </div>
+                  )}
+
+                  {item.statusGeneral === "en revision" && (
+                    <div className="badge-container">
+                      <div className="badge p-2">{item.statusGeneral}</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            <Link to={`/profesor/SisteEste 210T/${item.id}`} className='custom-btn3 mb-5'>Ver Proyecto</Link>
+            </div>
+      </div>
+        ))}
+      </div>
+        
+      )}
+
+    </>
+
   );
 };
 
-function Resumeteacher({Total,revisados,faltantes,progreso}){
+function Resumeteacher({Total,revisados,faltantes,progreso, IsLoaded}){
     return(
   
       <div className='col-md-3'>
@@ -80,7 +115,13 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
             </div>
             <div  className="row">
             <div className ='col-md-auto pe-0'>
-            <h6 className="Texto text-break Titulo1">{faltantes}/{Total}</h6>
+              {!IsLoaded && (
+                <Spinner animation="grow" className='BolitaProfesorCarga' />
+              )}
+
+              {IsLoaded && (
+                <h6 className="Texto text-break Titulo1">{faltantes}/{Total}</h6>
+              )}
             </div>
             </div>
             <div className ="row pb-3"> 
@@ -90,13 +131,19 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
             </div> 
             <div  className="row ">
             <div className ='col-md-auto pe-0'>
-            <h6 className="Texto text-break Titulo1">{revisados}/{Total}</h6>
+              {!IsLoaded && (
+                <Spinner animation="grow" className='BolitaProfesorCarga' />
+              )}
+
+              {IsLoaded && (
+                <h6 className="Texto text-break Titulo1">{revisados}/{Total}</h6>
+              )}
             </div>
             </div>
               <div className="row justify-content-between d-flex align-items-center">
                   <div className="col-md-1"></div>
                   <div className="col-md-auto">
-                      <span className ="Subtitulo">Progreso: {progreso}</span>
+                      <span className ="Subtitulo">{!IsLoaded && (<Spinner animation="grow" className='BolitaProfesorCarga' />)}{IsLoaded && (<h6 className="Texto text-break fw-bolder mt-3">Progreso: {progreso}</h6>)}</span>
                       </div>
                       <div className="col-md-1"></div>
                   </div>
@@ -106,7 +153,7 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
     );
   }
   
-  function ProjResume({horas, profesor}){
+  function ProjResume({horas, profesor, IsLoaded}){
     return(
       <div className='col-md-7 pt-4 ps-4 pe-4'>
           
@@ -120,13 +167,13 @@ function Resumeteacher({Total,revisados,faltantes,progreso}){
                 <div className="col-md proj-sub text-start" ><h3 className='text-break prof-titulo-h3-1'>Cierre de Registro:</h3></div>
               </div>
               <div className="row">
-                <div className="col-md proj-sub text-start" ><center><h3 className='text-break prof-titulo-h3-2'>{horas}</h3></center></div>
+                <div className="col-md proj-sub text-start" ><center><h3 className='text-break prof-titulo-h3-2'>{IsLoaded && (horas)} {!IsLoaded && (<Placeholder animation="glow" className="w-100"><Placeholder xs={9} bg="light" className="mb-2"  /></Placeholder>)}</h3></center></div>
               </div>
               
               <hr className='divisor'></hr>
 
               <div className="row">
-                <div className="col-md proj-sub text-start" ><h1 className='text-break prof-titulo-h1'>Bienvenido {profesor}</h1></div>
+                <div className="col-md proj-sub text-start" ><h1 className='text-break prof-titulo-h1'>{IsLoaded && ("Bienvenido " + profesor)} {IsLoaded==="True" && (<Placeholder animation="glow" className="w-100"><Placeholder xs={12} bg="light" className="mb-2"  /></Placeholder>)}</h1></div>
               </div>
             </div>
           </div>
@@ -181,22 +228,26 @@ const clearTimer = (endTime) => {
   }, 1000);
   Ref.current = id;
 }
+const [IsLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
-    //nuevodescr120T
-    //http://localhost:8000/projects/responsable/${user.sub}
-    fetch(`http://localhost:8000/projects/responsable/SisteEste 210T`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return res.json();
-      })
-      .then((data) => setProjects(data))
-      .catch((error) => console.error('Error al obtener los proyectos:', error));
-      const endTime = new Date("2024-06-10T00:00:00");
-      clearTimer(endTime);
-  }, [id_responsable]);
+useEffect(() => {
+  //nuevodescr120T
+  //http://localhost:8000/projects/responsable/${user.sub}
+  fetch(`http://localhost:8000/projects/responsable/SisteEste 210T`)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res.json();
+    })
+    .then((data) => {setProjects(data); setIsLoaded(true); })
+    .catch((error) => {console.error('Error al obtener los proyectos:', error); setIsLoaded(true);});
+    const endTime = new Date("2024-06-10T00:00:00");
+    clearTimer(endTime);
+
+}, [id_responsable]);
+
+
   console.log(projects);
   const falt = projects.filter(project => project.statusGeneral === "en revision");
   const rev = projects.filter(project => project.statusGeneral === "rechazado" || project.statusGeneral === "aprobado");
@@ -209,15 +260,15 @@ const clearTimer = (endTime) => {
       <div className='container-fluid'>
         <div className='row d-flex justify-content-between'>
             <div className="col-md-1"></div>
-          <ProjResume horas={timer} profesor={"Sarai Santiago"}></ProjResume>        
-          <Resumeteacher Total={projects.length} revisados={rev.length} faltantes={falt.length} progreso={porcentaje+'%'}></Resumeteacher>
+          <ProjResume IsLoaded={IsLoaded} horas={timer} profesor={"Sarai Santiago"}></ProjResume>        
+          <Resumeteacher IsLoaded={IsLoaded} Total={projects.length} revisados={rev.length} faltantes={falt.length} progreso={porcentaje+'%'}></Resumeteacher>
           <div className="col-md-1"></div>
           <div className='row d-flex justify-content-between align-items-center'>
           <div className="col-md-1"></div>
           <div className="col-md-10 ">
           <div className='container-fluid'  id="imgfondo">
             <h3 className ="Titulo p-3">Proyectos Que faltan de revisar</h3>
-            <HorizontalSlider data={falt} />
+            <HorizontalSlider data={falt} IsLoaded={IsLoaded} />
             </div>
             </div>
           <div className="col-md-1"></div>
@@ -227,7 +278,7 @@ const clearTimer = (endTime) => {
           <div className="col-md-10 ">
           <div className='container-fluid' id="imgfondo">
             <h3 className ="Titulo p-3">Proyectos Revisados</h3>
-            <HorizontalSlider data={rev} />
+            <HorizontalSlider data={rev} IsLoaded={IsLoaded} />
             </div>
             </div>
           <div className="col-md-1"></div>

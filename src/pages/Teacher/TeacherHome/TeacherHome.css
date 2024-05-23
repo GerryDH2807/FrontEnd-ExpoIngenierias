@@ -138,6 +138,14 @@
   overflow-x: auto; /* Activar desplazamiento horizontal */
   width: 100%; /* Ajustar el ancho según sea necesario */
   text-align: center;
+
+}
+
+.containerPlaceholderTeach {
+  display: flex;
+  width: 100%; /* Ajustar el ancho según sea necesario */
+  text-align: center;
+
 }
 
 .slider-item {
@@ -194,4 +202,52 @@
 
 .slider-container::-webkit-scrollbar-thumb:hover {
   background: #000000; 
+}
+
+
+.semicircleteacher,
+.semicircleteacher div {
+  /*  Adjust the size of the entire animation here.
+      (Remove max size below to go above 300px.) */
+  width: 350px;
+  height: 350px;
+  /* Adjust the speed or timing function of the animation here. */
+  animation: 6s rotate141 infinite linear;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.semicircleteacher div {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+}
+
+.semicircleteacher:before,
+.semicircleteacher div:before {
+  content: '';
+  width: 100%;
+  height: 50%;
+  display: block;
+  background: radial-gradient(transparent, transparent 65%, #0C356A 65%, #000);
+  background-size: 100% 200%;
+}
+
+@keyframes rotate141 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.BolitaProfesorCarga{
+
+  color: #0C356A;
+
+  width: 40px ;
+  height: 40px;
+
 }
