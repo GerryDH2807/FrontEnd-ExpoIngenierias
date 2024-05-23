@@ -1,17 +1,16 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const ProtectedRoute = ({ children, requiredRole }) => {
+const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, isLoading } = useAuth0();
-  const userRole = localStorage.getItem('userRole');
 
   if (isLoading) {
-    return null; 
+    return null;  //revisar
   }
 
-  if (!isAuthenticated || userRole !== requiredRole) {
-    window.location.href = "http://localhost:3000";
-    return null; 
+  if (!isAuthenticated) {
+    window.location.href = "http://localhost:3000"
+    return null;  // Return null to render nothing while redirection occurs
   }
 
   return children;

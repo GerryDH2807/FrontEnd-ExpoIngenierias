@@ -13,6 +13,9 @@ import CardFinish from '../../../img/CardFinish.png';
 import './TeacherProjectResumen.css';
 import ConfBot from "../../../components/BotonConfirmacion/ConfBot.js";
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
+import Usure from '../../../components/BotonConfirmacion/ConfBot'
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 const URI = 'http://localhost:8000/projects/43'
 
@@ -155,7 +158,7 @@ export default function ProjResumeCont(){
   
 const handleUpdate = async () => {
   try {
-    const dynamicURI = `http://localhost:8000/projects/${id_project}`;
+    const dynamicURI = `http://localhost:8000/projects/update/${id_project}`;
     console.log(dynamicURI);
     const statusPosterValue = switchPdf ? 'aprobado' : 'rechazado';
     const statusVideoValue = switchVideo ? 'aprobado' : 'rechazado';
@@ -178,8 +181,12 @@ const handleUpdate = async () => {
 };
 
   const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    if (event) {
+      event.preventDefault(); // Evita que el formulario se envíe automáticamente
+    }
+    
+    const form = event ? event.target : null;
+    if (form && form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     } else {
@@ -203,7 +210,7 @@ const handleUpdate = async () => {
         </div>
 
       
-      <Form noValidate validated={validated}  onSubmit={handleSubmit}>
+      <Form noValidate validated={validated}>
         <div className='row m-2 align-items-center'>
         <div className="col-md-1"></div>
         <div className='col-12 col-md-10'>
@@ -283,7 +290,12 @@ const handleUpdate = async () => {
         <div className='row m-3 justify-content-between'>
         <div className='col-md-4'></div>
           <div className="col-md-2 centered-container2">
-            <button type='submit' className={"custom-btn"}> Guardar</button>
+            <Usure Path={'/principal-profesor'} className={"custom-btn"} Texto={"Guardar"}
+            MensajeTitle = {'¿Estás seguro que quieres confirmar la autorización del proyecto?'}
+            BotonA = {'Cancelar'}
+            BotonB= {'Aceptar'}
+            onConfirm = {handleSubmit}/>
+            
           </div>
         <div className='col-md-4'></div>
         </div>
