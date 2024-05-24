@@ -10,6 +10,8 @@
 
   import { Link } from 'react-router-dom';
 
+  import Usure from '../../../components/BotonConfirmacion/ConfBot'
+
   //Back
   import axios from 'axios';
   import {useNavigate} from 'react-router-dom'
@@ -164,9 +166,11 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
       const [screen, setScreen] = useState(0);  
 
     const handleSubmit = async (event) => {
-      const form = event.currentTarget;
-      if (form.checkValidity() === false) {
+      if(event){
         event.preventDefault();
+      }
+      const form = event ? event.target : null;
+      if (form && form.checkValidity() === false) {
         event.stopPropagation();
         
       }else{
@@ -331,9 +335,11 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
                         />
                     </div>
 
+                  {/*
                   {data.students.map((student, index) => (
                   <MemberCont NombreMiembro={student.name + " " + student.lastName}></MemberCont>
                   ))}
+                  */}  
 
                         
 
@@ -434,10 +440,11 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
                   </div>
                 </div>
 
+                {/*    
                 {data.teachers.map((teacher, index) => (
                   <MemberCont NombreMiembro={teacher.name + " " + teacher.lastName}></MemberCont>
                 ))}
-
+                */}  
 
               </div>
             ))}
@@ -518,7 +525,10 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
               </Form.Group>
 
           </Row>
-          <center><Button type="submit" className='mt-4 btn-lg ButtonRegister'>Registrar proyecto</Button></center>
+
+
+          {/*<center><Button type="submit" className='mt-4 btn-lg ButtonRegister'>Registrar proyecto</Button></center>*/}
+          <center><Usure MensajeTitle={"¿Deseas registrar este proyecto?"} BotonA={"Regresar"} BotonB={"Confirmar registro"} Path={'/principal-estudiante/'} className={"mt-4 btn-lg ButtonRegister"} Texto={"Registrar proyecto"} onConfirm={handleSubmit}/></center>
         </Form>   
 
         <div className='container-fluid mb-4'>

@@ -529,7 +529,7 @@ export default function ProjResumeCont(){
     statusVideo: "",
     area: "",
     category: "",
-    person: "",
+    Lider: "",
     student: "",
     team: {students: []}
   });
@@ -555,7 +555,7 @@ export default function ProjResumeCont(){
     <div className='container-fluid centered-container mt-3 '>
       <div className='container-fluid'>
         <div className='row justify-content-between d-flex align-items-center'>
-          <InfoProj IsLoaded={IsLoaded} lead={project.student.name + " " + project.student.lastName} profLead={project.person.name + " " + project.person.lastName} members={project.team.students}></InfoProj>
+          <InfoProj IsLoaded={IsLoaded} lead={project.student.name + " " + project.student.lastName} profLead={project.Lider.name + " " + project.Lider.lastName} members={project.team.students}></InfoProj>
           <ProjResume IsLoaded={IsLoaded} type={project.category.title} area={project.area.name} descr={project.description} title={project.title}></ProjResume>
           <ProjVal postVal={project.statusPoster} vidVal={project.statusVideo} finalRes={project.statusGeneral} id_project={id_project}></ProjVal>
         </div>
