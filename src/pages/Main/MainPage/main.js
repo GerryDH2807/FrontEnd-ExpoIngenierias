@@ -69,14 +69,14 @@ useEffect(() => {
   clearTimer(endTime);
 }, []);
   
-
+/*
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
   if (!isLoading && isAuthenticated) {
     return <Callback />;  // Redirigir al Callback si está autenticado
-  }
+  }*/
 
   return (
     <>

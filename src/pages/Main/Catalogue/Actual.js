@@ -18,7 +18,7 @@ function MemberCont({NombreMiembro}){
     );
   }
 
-function MyVerticallyCenteredModal({ TitleDetailed, DescriptionDetailed, TeacherDetailed, MemebersDetailed, DriveLink, YoutubeLink,members, ...props }) {
+function MyVerticallyCenteredModal({ TitleDetailed, DescriptionDetailed, StudentDetailed,TeacherDetailed, MembersDetailed, DriveLink, YoutubeLink,members, ...props }) {
 const { CategoCheckModal } = props;
 
 return (
@@ -48,7 +48,7 @@ return (
                     </div>
                 )}
 
-                {CategoCheckModal === "Finalizado" && (
+                {CategoCheckModal === "Prototipo finalizado" && (
                     <div className='col p-3 m-2 FinishDetailedImage'>
 
                     </div>
@@ -58,12 +58,18 @@ return (
                     <div className='container-fluid'>
                         < div className='row'>
                             <div className='col'>
-                                <p className='Titulo123'>Lider del equipo: </p> <span>{MemebersDetailed}</span>
+                                <p className='Titulo123'>Lider del equipo: </p> <span>{StudentDetailed}</span>
                             </div>
                         </div>
                         < div className='row mt-3'>
                             <div className='col'>
-                                <p className='Titulo123'>Miembros del equipo: </p> <span><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /></span>
+                                <p className='Titulo123'>Miembros del equipo: </p> <span>
+                            
+                                    {MembersDetailed.map((member,index) => (
+                                        <MemberCont NombreMiembro={member.name + " " + member.lastName} />
+                                    ))}
+
+                                    </span>
                             </div>
                         </div>
                     </div>
@@ -72,12 +78,14 @@ return (
                 <div className='container-fluid'>
                         < div className='row'>
                             <div className='col'>
-                                <p className='Titulo123'>Profesor lider: </p> <span>{MemebersDetailed}</span>
+                                <p className='Titulo123'>Profesor lider: </p> <span>{TeacherDetailed}</span>
                             </div>
                         </div>
                         < div className='row mt-3'>
                             <div className='col'>
-                                <p className='Titulo123'>Profesores asesores: </p> <span><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /></span>
+                                <p className='Titulo123'>Profesores asesores: </p> <span>
+                                    <MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} />
+                                    </span>
                             </div>
                         </div>
                     </div>
@@ -152,7 +160,7 @@ return (
 );
 }
 
-function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed, Students, Teacher }) {
+function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed, Student, Teacher, Members }) {
     const [modalShow, setModalShow] = useState(false);
   
     return (
@@ -167,9 +175,10 @@ function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed, St
           CategoCheckModal={CategoCheckButton}
           TitleDetailed={TitleDetailed}
           DescriptionDetailed={DescriptionDetailed}
+          StudentDetailed={Student.name + " " + Student.lastName}
           TeacherDetailed={Teacher.name + " " + Teacher.lastName}
 
-          MemebersDetailed={Students.name + " " + Students.lastName }
+          MembersDetailed={Members}
 
           DriveLink={'http://google.com'}
           YoutubeLink={'http://youtube.com'}
@@ -180,7 +189,7 @@ function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed, St
   
 
 
-function CardProj({ CategoCheck, Title, Description, Students,Teacher }) {
+function CardProj({ CategoCheck, Title, Description, Student,Teacher, Members }) {
     const truncatedText = (text, limit) => {
         if (!text || typeof text !== 'string' || text.length <= limit) {
           return text;
@@ -198,7 +207,7 @@ function CardProj({ CategoCheck, Title, Description, Students,Teacher }) {
                 <Card.Title className='Titulo123 text-wrap'>{Title}</Card.Title>
                 <Card.Text className='TextoCardWrap'>{truncatedText(Description,125)}</Card.Text>
                 <center>
-                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Students={Students} Teacher={Teacher}>Ver proyecto</ButtonModal>
+                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Student={Student} Teacher={Teacher} Members={Members}>Ver proyecto</ButtonModal>
                 </center>
                 </Card.Body>
             </Card>
@@ -208,10 +217,10 @@ function CardProj({ CategoCheck, Title, Description, Students,Teacher }) {
             <Card style={{ width: '18rem' , height: '90%' }} className='CardsInfoContainer'>
                 <Card.Img variant="top" src={CardProto} className='FotoCard' />
                 <Card.Body>
-                <Card.Title className='Titulo123'>{Title}</Card.Title>
+                <Card.Title className='Titulo123 text-wrap'>{Title}</Card.Title>
                 <Card.Text className='TextoCardWrap'>{Description}</Card.Text>
                 <center>
-                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Students={Students} Teacher={Teacher}>Ver proyecto</ButtonModal>
+                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Student={Student} Teacher={Teacher} Members={Members}>Ver proyecto</ButtonModal>
                 </center>
                 </Card.Body>
             </Card>
@@ -221,11 +230,11 @@ function CardProj({ CategoCheck, Title, Description, Students,Teacher }) {
             <Card style={{ width: '18rem', height: '90%' }} className='CardsInfoContainer'>
                 <Card.Img variant="top" src={CardFinish} className='FotoCard' />
                 <Card.Body>
-                <Card.Title className='Titulo123'>{Title}</Card.Title>
+                <Card.Title className='Titulo123 text-wrap'>{Title}</Card.Title>
                 <Card.Text className='TextoCardWrap'>{Description}</Card.Text>
                 
                 <center>
-                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Students={Students} Teacher={Teacher}>Ver proyecto</ButtonModal>
+                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Student={Student} Teacher={Teacher} Members={Members}>Ver proyecto</ButtonModal>
                 </center>
                 </Card.Body>
             </Card>
@@ -279,10 +288,6 @@ export default function Actual() {
     return (
       <>
         <Menu />
-
-        {nexusProjects.map((item,index) => (
-            <h1>{item.title}</h1>
-        ))}
         <div className='container-fluid'>
             <div className='row m-4 p-3 CardsContainer'>
                 <div className='container'>
@@ -313,7 +318,7 @@ export default function Actual() {
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
                                 {nanoProjects.map((item,index) => (
-                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Students={item.student} Teacher={item.person}/>
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Student={item.student} Teacher={item.Lider} Members={item.team.students}/>
                                 ))}
                             </div>                  
                         </div>
@@ -335,7 +340,7 @@ export default function Actual() {
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
                                 {nexusProjects.map((item,index) => (
-                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Students={item.student} Teacher={item.person}/>
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Student={item.student} Teacher={item.Lider} Members={item.team.students}/>
                                 ))}
                             </div>                  
                         </div>
@@ -357,7 +362,7 @@ export default function Actual() {
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
                                 {bioProjects.map((item,index) => (
-                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Students={item.student} Teacher={item.person}/>
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Student={item.student} Teacher={item.Lider} Members={item.team.students}/>
                                 ))}
                             </div>                  
                         </div>
@@ -379,7 +384,7 @@ export default function Actual() {
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
                                 {cyberProjects.map((item,index) => (
-                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Students={item.student} Teacher={item.person}/>
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Student={item.student} Teacher={item.Lider} Members={item.team.students}/>
                                 ))}
                             </div>                  
                         </div>

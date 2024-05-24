@@ -154,9 +154,18 @@
 }
 .Titulo-toggle{
   font-weight: bolder;
-    color: #0C356A;
-    font-size: 20px;
-    padding-bottom: 10px;
-    text-decoration: none;
-    padding-left: 5px;
+  color: #0C356A;
+  font-size: 20px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  padding-left: 5px;
+}
+
+.Titulo-toggle:hover{
+  font-weight: bolder;
+  color: #6da0e2;
+  font-size: 20px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  padding-left: 5px;
 }

@@ -8,6 +8,9 @@
   import Modal from 'react-bootstrap/Modal';
   import './ProjRegister.css';
 
+
+  import Usure from '../../../components/BotonConfirmacion/ConfBot'
+
   import { Link } from 'react-router-dom';
 
   //Back
@@ -164,9 +167,12 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
       const [screen, setScreen] = useState(0);  
 
     const handleSubmit = async (event) => {
-      const form = event.currentTarget;
-      if (form.checkValidity() === false) {
-        event.preventDefault();
+      if (event) {
+        event.preventDefault(); // Evita que el formulario se envíe automáticamente
+      }
+      
+      const form = event ? event.target : null;
+      if (form && form.checkValidity() === false) {
         event.stopPropagation();
         
       }else{
@@ -518,7 +524,12 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
               </Form.Group>
 
           </Row>
-          <center><Button type="submit" className='mt-4 btn-lg ButtonRegister'>Registrar proyecto</Button></center>
+
+          <center><Usure MensajeTitle={"¿Deseas registrar este proyecto?"} BotonA={"Regresar"} BotonB={"Confirmar registro"} Path={'/principal-estudiante/'} className={"mt-4 btn-lg ButtonRegister"} Texto={"Registrar proyecto"} onConfirm={handleSubmit}/></center>
+
+          {/*<center><Button type="submit" className='mt-4 btn-lg ButtonRegister'>Registrar proyecto</Button></center> */}
+
+
         </Form>   
 
         <div className='container-fluid mb-4'>
@@ -538,7 +549,7 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
   export default function ProjRegisterCont(){
     return (
       <>
-        <ToggleBarStudent NameSection={"Registro de nuevo proyecto"} />
+        <ToggleBarStudent NameSection={"Registro de nuevo proyecto"}/>
         <div className='container w-50 mt-4 mb-4 bg-white'>
             <div className='row p-2'>
                 <div className='col p-4'>
