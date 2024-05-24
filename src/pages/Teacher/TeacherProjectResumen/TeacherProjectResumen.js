@@ -1,26 +1,26 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
-import React, { useState, useEffect } from "react";
+import React, { useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
-import Placeholder from 'react-bootstrap/Placeholder';
-import Spinner from 'react-bootstrap/Spinner';
-
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom'
 import CardConcept from '../../../img/CardConcept.png';
 import CardProto from '../../../img/CardProto.png';
 import CardFinish from '../../../img/CardFinish.png';
 import './TeacherProjectResumen.css';
-import ConfBot from "../../../components/BotonConfirmacion/ConfBot.js";
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
+import Usure from '../../../components/BotonConfirmacion/ConfBot'
+import Placeholder from 'react-bootstrap/Placeholder';
+import Spinner from 'react-bootstrap/Spinner';
 
-const URI = 'http://localhost:8000/projects/43';
 
-function MemberCont({ NombreMiembro }) {
-  return (
+const URI = 'http://localhost:8000/projects/43'
+
+function MemberCont({NombreMiembro}){
+  return(
     <li className="Texto text-wrap ps-3 mb-0">{NombreMiembro}</li>
   );
 }
@@ -125,7 +125,11 @@ function ProjResume({ type, area, title, IsLoaded }) {
   );
 }
 
-export default function ProjResumeCont() {
+
+
+
+
+export default function ProjResumeCont(){
   const [project, setProject] = useState({
     id_project: 0,
     title: "",
@@ -139,10 +143,9 @@ export default function ProjResumeCont() {
     category: "",
     person: "",
     student: "",
-    team: { students: [] }
+    team: {students: []}
   });
-  const { id_person, id_project } = useParams();
-
+  const { id_person,id_project } = useParams();
   const [IsLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -154,6 +157,7 @@ export default function ProjResumeCont() {
         setIsLoaded(true); // Set IsLoaded to true after receiving data
       });
   }, [id_project]);
+
 
   const navigate = useNavigate();
 
@@ -176,64 +180,76 @@ export default function ProjResumeCont() {
       throw new Error(`An error has occurred: ${errorMessage}`);
     }
   };
-
-  const handleUpdate = async () => {
-    try {
-      const dynamicURI = `http://localhost:8000/projects/${id_project}`;
-      console.log(dynamicURI);
-      const statusPosterValue = switchPdf ? 'aprobado' : 'rechazado';
-      const statusVideoValue = switchVideo ? 'aprobado' : 'rechazado';
-      let statusTotal = '';
-      if (switchPdf && switchVideo) statusTotal = 'aprobado';
-      else statusTotal = 'rechazado';
-      await axios.put(dynamicURI, {
-        statusPoster: statusPosterValue,
-        statusVideo: statusVideoValue,
-        statusGeneral: statusTotal
-      });
-      navigate('/principal-profesor');
-    } catch (error) {
-      console.error('Error al actualizar:', error);
-    }
-  };
+  
+  
+const handleUpdate = async () => {
+  try {
+    const dynamicURI = `http://localhost:8000/projects/update/${id_project}`;
+    console.log(dynamicURI);
+    const statusPosterValue = switchPdf ? 'aprobado' : 'rechazado';
+    const statusVideoValue = switchVideo ? 'aprobado' : 'rechazado';
+    let statusTotal = '';
+    if(switchPdf && switchVideo) statusTotal = 'aprobado';
+    else statusTotal = 'rechazado';
+    axios.put(dynamicURI, {
+      statusPoster: statusPosterValue,
+      statusVideo: statusVideoValue,
+      statusGeneral: statusTotal
+    })
+    .then(response => {
+      console.log('Proyecto actualizado:', response.data); })
+    navigate('/principal-profesor');
+    
+  } catch (error) {
+    // Maneja cualquier error que ocurra durante la actualización
+    console.error('Error al actualizar:', error);
+  }
+};
 
   const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    if (event) {
+      event.preventDefault(); // Evita que el formulario se envíe automáticamente
+    }
+    
+    const form = event ? event.target : null;
+    if (form && form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     } else {
+      // Llama a handleUpdate con el ID del proyecto
       handleComment();
       handleUpdate();
     }
     setValidated(true);
   };
 
-  return (
+
+  return(
     <>
-      <ToggleBar />
-      <div className='container-fluid'>
+    <ToggleBar />
+    <div className='container-fluid'>
         <div className='row'>
-          <div className="col-md-1"></div>
-          <ProjResume IsLoaded={IsLoaded} type={project.category.title} area={project.area.name} title={project.title} />
-          <InfoProj IsLoaded={IsLoaded} lead={project.student.name + " " + project.student.lastName} members={project.team.students} status={project.statusGeneral} />
+            <div className="col-md-1"></div>
+          <ProjResume type={project.category.title} area={project.area.name} title={project.title} IsLoaded={IsLoaded}></ProjResume>        
+          <InfoProj lead={project.student.name + " " + project.student.lastName} members={project.team.students} IsLoaded={IsLoaded} status={project.statusGeneral}></InfoProj>
           <div className="col-md-1"></div>
         </div>
 
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <div className='row m-2 align-items-center'>
-            <div className="col-md-1"></div>
-            <div className='col-12 col-md-10'>
-              <div className="Infologo m-auto p-4">
-                <div className='row'>
-                  <div className='col-12 col-md-8'>
-                    <div className="row d-flex">
-                      <h1 className="Titulologo text-break">Archivos del proyecto</h1>
-                    </div>
-                    <div className='container-fluid'>
-                      <div className="row d-flex">
-                        <div className='col-12 col-md-6 justify-content-center align-items-center'>
-                          {IsLoaded && (
+      
+      <Form noValidate validated={validated}>
+        <div className='row m-2 align-items-center'>
+        <div className="col-md-1"></div>
+        <div className='col-12 col-md-10'>
+   <div className="Infologo m-auto p-4">
+    <div className='row'>
+    <div className='col-12 col-md-8'>
+    <div className="row d-flex">
+    <h1 className="Titulologo text-break">Archivos del proyecto</h1>
+    </div>
+    <div className='container-fluid'>
+                <div className="row d-flex">
+                  <div className='col-12 col-md-6 justify-content-center align-items-center'>
+                  {IsLoaded && (
                             <a href={project.linkPoster} className="file"><i className="bi bi-filetype-pdf icono" id="logo"></i></a>
                           )}
                           {!IsLoaded && (
@@ -241,20 +257,21 @@ export default function ProjResumeCont() {
                               <Spinner animation="grow" size="xl" className='BolitasIconos' />
                             </div>
                           )}
-                          <div className='row d-flex m-2 check mt-5'>
-                            <div className='col-md-6'>
-                              <center>
-                                <Form.Group as={Col} md="12" controlId="validationCustom06" className='ChecksPosition'>
-                                  <center>
-                                    <Form.Check type="switch" id='switchExternos1' label={switchPdf ? "Aceptado" : "Rechazado"} onChange={() => setSwitchPdf(!switchPdf)} />
-                                  </center>
-                                </Form.Group>
-                              </center>
-                            </div>
-                          </div>
-                        </div>
-                        <div className='col-12 col-md-6 justify-content-center align-items-center'>
-                          {IsLoaded && (
+                    <div className='row d-flex m-2 check mt-5'>
+                      <div className='col-md-6'>
+                        <center>
+                          {/* Uso de una expresión ternaria para cambiar el placeholder del primer switch */}
+                          <Form.Group as={Col} md="12" controlId="validationCustom06" className='ChecksPosition'>
+                            <center>
+                              <Form.Check type="switch" id='switchExternos1' label={switchPdf ? "Aceptado" : "Rechazado"} onChange={() => setSwitchPdf(!switchPdf)}></Form.Check>
+                            </center>
+                          </Form.Group>
+                        </center>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='col-12 col-md-6 justify-content-center align-items-center'>
+                  {IsLoaded && (
                             <a href={project.linkVideo} className="file"><i className="bi bi-youtube icono" id="logo"></i></a>
                           )}
                           {!IsLoaded && (
@@ -262,26 +279,27 @@ export default function ProjResumeCont() {
                               <Spinner animation="grow" size="xl" className='BolitasIconos' />
                             </div>
                           )}
-                          <div className='row d-flex m-2 check mt-5 '>
-                            <div className='col-6  col-md-6 justify-content-center'>
-                              <center>
-                                <Form.Group as={Col} md="12" controlId="validationCustom04" className='ChecksPosition'>
-                                  <center>
-                                    <Form.Check type="switch" id='switchExternos2' label={switchVideo ? "Aceptado" : "Rechazado"} onChange={() => setSwitchVideo(!switchVideo)} />
-                                  </center>
-                                </Form.Group>
-                              </center>
-                            </div>
-                          </div>
-                        </div>
+                    <div className='row d-flex m-2 check mt-5 '>
+                      <div className='col-6  col-md-6 justify-content-center'>
+                        <center>
+                          {/* Uso de una expresión ternaria para cambiar el placeholder del segundo switch */}
+                          <Form.Group as={Col} md="12" controlId="validationCustom04" className='ChecksPosition'>
+                            <center>
+                              <Form.Check type="switch" id='switchExternos2' label={switchVideo ? "Aceptado" : "Rechazado"} onChange={() => setSwitchVideo(!switchVideo)}></Form.Check>
+                            </center>
+                          </Form.Group>
+                        </center>
                       </div>
                     </div>
                   </div>
-                  <div className='col-12 col-md-4'>
-                    <div className="row d-flex">
-                      <h1 className="Titulologo text-break">Descripción del proyecto</h1>
-                    </div>
-                    {IsLoaded && (
+                </div>
+              </div>
+    </div>
+    <div className='col-12 col-md-4'>
+    <div className="row d-flex">
+    <h1 className="Titulologo text-break">Descripcion del proyecto</h1>
+    </div>
+    {IsLoaded && (
                       <div className="row d-flex">
                         <span>{project.description}</span>
                       </div>
@@ -300,40 +318,49 @@ export default function ProjResumeCont() {
                         </Placeholder>
                       </div>
                     )}
+    <div className="row d-flex">
+    <span>{project.description}</span>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>     
+          <div className="col-md-1"></div>
+        </div>
+        <div className='row m-2 justify-content-between'>
+          <div className="col-md-1"></div>
+          <div className='col-12 col-md-10'>
+      <div className="Infologo m-auto p-4">
+        <div className='container-fluid'>
+          <div className ='row align-items-center'>
+          <div className ="col-md-12">
+      <h1 className ="Titulo text-break">Comentarios del profesor </h1>
 
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-1"></div>
+      <div className ='container-fluid p-1'>
+          <Form.Control as="textarea" rows="5" id="comentarioProfe" value={comment} onChange={(e) => setComment(e.target.value)}/>
+      </div>
+    </div>
           </div>
-          <div className='row m-2 justify-content-between'>
-            <div className="col-md-1"></div>
-            <div className='col-12 col-md-10'>
-              <div className="Infologo m-auto p-4">
-                <div className='container-fluid'>
-                  <div className='row align-items-center'>
-                    <div className="col-md-12">
-                      <h1 className="Titulo text-break">Comentarios del profesor</h1>
-                      <div className='container-fluid p-1'>
-                        <Form.Control as="textarea" rows="5" id="comentarioProfe" value={comment} onChange={(e) => setComment(e.target.value)} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-1"></div>
+        </div>
+      </div>
+    </div>
+          <div className="col-md-1"></div>
+        </div>
+        <div className='row m-3 justify-content-between'>
+        <div className='col-md-4'></div>
+          <div className="col-md-2 centered-container2">
+            <Usure Path={'/principal-profesor'} className={"custom-btn"} Texto={"Guardar"}
+            MensajeTitle = {'¿Estás seguro que quieres confirmar la autorización del proyecto?'}
+            BotonA = {'Cancelar'}
+            BotonB= {'Aceptar'}
+            onConfirm = {handleSubmit}/>
+            
           </div>
-          <div className='row m-3 justify-content-between'>
-            <div className='col-md-4'></div>
-            <div className="col-md-2 centered-container2">
-              <button type='submit' className={"custom-btn"}>Guardar</button>
-            </div>
-            <div className='col-md-4'></div>
-          </div>
+        <div className='col-md-4'></div>
+        </div>
         </Form>
       </div>
+      
     </>
   );
 }
