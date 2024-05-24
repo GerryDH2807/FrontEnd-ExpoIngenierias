@@ -35,7 +35,7 @@ const PlatformLink = () => {
   };
 
   return (
-    <button onClick={handlePlatformClick} className="opciones-btn me-3">Ir a la Plataforma</button>
+    <button onClick={handlePlatformClick} className="opciones-btn me-3">Iniciar Sesión</button>
   );
 };
 
