@@ -11,11 +11,11 @@ import CardConcept from '../../../img/CardConcept.png';
 import CardProto from '../../../img/CardProto.png';
 import CardFinish from '../../../img/CardFinish.png';
 import './TeacherProjectResumen.css';
-import ConfBot from "../../../components/BotonConfirmacion/ConfBot.js";
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
 import Usure from '../../../components/BotonConfirmacion/ConfBot'
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import Placeholder from 'react-bootstrap/Placeholder';
+import Spinner from 'react-bootstrap/Spinner';
+
 
 const URI = 'http://localhost:8000/projects/43'
 
@@ -146,7 +146,7 @@ export default function ProjResumeCont(){
     team: {students: []}
   });
   const { id_person,id_project } = useParams();
-
+  const [IsLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setIsLoaded(false); // Set IsLoaded to false before fetching data
