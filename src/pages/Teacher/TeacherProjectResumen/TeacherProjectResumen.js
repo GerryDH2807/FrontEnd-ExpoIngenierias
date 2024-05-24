@@ -230,8 +230,8 @@ const handleUpdate = async () => {
     <div className='container-fluid'>
         <div className='row'>
             <div className="col-md-1"></div>
-          <ProjResume type={project.category.title} area={project.area.name} title={project.title}></ProjResume>        
-          <InfoProj lead={project.student.name + " " + project.student.lastName} members={project.team.students} status={project.statusGeneral}></InfoProj>
+          <ProjResume type={project.category.title} area={project.area.name} title={project.title} IsLoaded={IsLoaded}></ProjResume>        
+          <InfoProj lead={project.student.name + " " + project.student.lastName} members={project.team.students} IsLoaded={IsLoaded} status={project.statusGeneral}></InfoProj>
           <div className="col-md-1"></div>
         </div>
 

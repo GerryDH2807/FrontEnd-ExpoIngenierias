@@ -12,8 +12,6 @@ import ToggleBar from '../../../components/Togglebar/togglebar.js';
 import firma from '../../../img/firma-ejemplo.jpg'
 
 function CardCalif({categoria}) {
-    const { isAuthenticated, isLoading, error, user } = useAuth0();
-    console.log(user.sub);
     const [user_bs, setUser_bs] = useState({
         id: "",
         name: "",
