@@ -610,8 +610,8 @@ export default function ProjResumeCont(){
             <div className="m-auto p-4">
               <div className='container-fluid'>
                 <div className ='row'>
-                  <CommentCont IsLoaded={IsLoaded} role={"Profesor"} comment={"Popo"}></CommentCont>
-                  <CommentCont IsLoaded={IsLoaded} role={"Juez"} comment={"Caca"}></CommentCont>
+                  <CommentCont IsLoaded={IsLoaded} role={"Profesor"} comment={""}></CommentCont>
+                  <CommentCont IsLoaded={IsLoaded} role={"Juez"} comment={""}></CommentCont>
                   <Rubrica IsLoaded={IsLoaded} Calf11={"10"} Calf21={"6"} Calf31={"8"} Calf41={"9"} Calf51={"7"} Rubri11={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri21={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri31={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri41={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri51={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></Rubrica>
                   <FinalCalf IsLoaded={IsLoaded} finalCalf={"9"}></FinalCalf>
                 </div>

@@ -108,8 +108,8 @@
 
 .button-container {
   position: absolute;
-  top: 6%;
-  left: 10%;
+  top: 7%;
+  left: 15%;
   transform: translate(-50%, -50%);
   transition: opacity 0.3s ease;
 }

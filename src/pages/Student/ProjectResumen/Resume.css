@@ -330,7 +330,7 @@
 
 .colornohaycomment{
 
-  color: #fff;
+  color: #999999;
   font-weight: bolder;
 
   padding: 5px;
@@ -339,7 +339,7 @@
 }
 
 .ContNoComment{
-  background-color: #999999;
+  background-color: #fff;
 
   height: 150px;
 
