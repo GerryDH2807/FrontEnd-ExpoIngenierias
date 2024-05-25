@@ -23,6 +23,8 @@
     transition: 0.2s ease-in-out;
     margin: 0.5vw;
     margin-bottom: 2vh;
+
+    --bs-card-border-radius: 16px;
   }
   .imag {
     width: 100%;
@@ -90,6 +92,7 @@
   .card:hover {
     cursor: pointer;
     box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+    --bs-card-border-radius: 16px;
   }
   
   .save:hover {
@@ -134,6 +137,8 @@
         transition: 0.2s ease-in-out;
         margin: 0.5vw;
         margin-bottom: 2vh;
+
+        --bs-card-border-radius: 16px;
         
       }
   }
