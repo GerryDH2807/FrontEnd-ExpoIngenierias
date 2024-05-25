@@ -1,6 +1,6 @@
 .text .h3 {
   font-family: 'Lucida Sans' sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   color: black;
 }
@@ -8,7 +8,7 @@
 .text .p {
   font-family: 'Lucida Sans' sans-serif;
   color: #999999;
-  font-size: 13px;
+  font-size: 15px;
 }
 
   
@@ -39,9 +39,9 @@
   text-decoration: none;
 }
 
-.card {
-  width: 20vw;
-  height: 63vh;
+.cardSelect {
+  width: 30%;
+  height: 69vh;
   background: white;
   border-radius: 15px;
   box-shadow: 15px 15px 30px #bebebe,

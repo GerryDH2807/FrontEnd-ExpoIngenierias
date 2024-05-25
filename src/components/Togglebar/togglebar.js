@@ -29,38 +29,38 @@ const LogoutButton = () => {
 
 
 function ToggleBar({SectionName}) {
-    const [show, setShow] = useState(false);
-  
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    
-  
-    return (
-      <>
-        <div className ="ToggleButton">
-          <i className='bi bi-list the_bars' onClick={handleShow}></i>
-          <img className="ExpoIngLog2" src ={logo} alt="" onClick={handleShow}></img>
-          <span className="textm no-select" onClick={handleShow}><strong>{SectionName}</strong></span>
-        </div>
-  
-        <Offcanvas show={show} onHide={handleClose}>
-          <Offcanvas.Header className='pb-0'>
-            <Offcanvas.Title>
-  
-            <div className='container ExpoIngLog3' onClick={handleClose}>
-              <div className='row'>
-                <div className='col-10'>
-                  <center><img className="ExpoIngLog3 w-50 h-50" src ={logo2} alt=""></img></center>  
-                </div>
+  const [show, setShow] = useState(false);
 
-                <div className='col'>
-                  <center> <i className='bi bi-x-circle'></i></center>  
-                </div>
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  
+
+  return (
+    <>
+      <div className ="ToggleButton">
+        <i className='bi bi-list the_bars' onClick={handleShow}></i>
+        <img className="ExpoIngLog2" src ={logo} alt="" onClick={handleShow}></img>
+        <span className="textm no-select" onClick={handleShow}><strong>{SectionName}</strong></span>
+      </div>
+
+      <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas.Header className='pb-0'>
+          <Offcanvas.Title >
+
+          <div className='container'>
+            <div className='row'>
+              <div className='col-10 contenedorimagenredireccionprincipal'>
+                <Link to={"/"}><center><img className="ExpoIngLog3 w-50 h-50" src ={logo2} alt=""></img></center></Link>  
+              </div>
+
+              <div className='col'>
+                <center> <i className='bi bi-x-circle-fill CerrrarMadreEsta' onClick={handleClose}></i></center>  
               </div>
             </div>
-  
-            </Offcanvas.Title>
-          </Offcanvas.Header>
+          </div>
+
+          </Offcanvas.Title>
+        </Offcanvas.Header>
           <Offcanvas.Body className='pt-0'>
           <hr />
 
@@ -97,11 +97,11 @@ function ToggleBar({SectionName}) {
                 </div>
 
                 <div className='row m-2 mt-5'>
-                <div className ='col-md-auto mt-5'>
-                  <Link to='/mapa' onClick={() => { handleClose(); }} class="bi bi-box-arrow-left docu-icon2"></Link>
+                  <div className='col-md-auto mt-5'>
+                  <Link onClick={() => { handleClose(); }} class="bi bi-box-arrow-left docu-icon2"></Link>
                   <LogoutButton/>
-                </div>  
-              </div>
+                  </div>
+                </div>
  
               </div>
             </nav>

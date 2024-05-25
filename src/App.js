@@ -18,7 +18,7 @@ import ProjectRegister from './pages/Student/ProjectRegister/ProjResgister.js';
 import ProjectResumen from './pages/Student/ProjectResumen/ProjectResumenContent.js';
 import AnunciosStudent from './pages/Student/Announcement/Announ.js'
 import StudentCertificate from './pages/Student/StudentCertificate/Constancia.js'
-import MaterialExtra from './pages/Student/RegisterContent/RegisterContent.js';
+import MaterialExtra from './pages/Student/ExtraMaterials/materiales.js';
 import StudentMap from './pages/Student/StudentMap/StudentMap.js';
 import ProjSelection from './pages/Student/ProjectSelection/ProjSelection.js';
 import ProjectEdition from './pages/Student/ProjectEdition/ProjEdition.js';
@@ -54,7 +54,7 @@ function App() {
               <Route path="/resumen-proyecto-estudiante/:id_project" element={<ProtectedRoute requiredRole="student"><ProjectResumen /></ProtectedRoute>} />
               <Route path="/anuncio-estudiante" element={<ProtectedRoute requiredRole="student"><AnunciosStudent /></ProtectedRoute>} />
               <Route path="/constancia-estudiante" element={<ProtectedRoute requiredRole="student"><StudentCertificate ConstCheck={"True"} /></ProtectedRoute>} />
-              <Route path="/extramaterial" element={<ProtectedRoute requiredRole="student"><MaterialExtra /></ProtectedRoute>} />
+              <Route path="/extramaterial" element={<ProtectedRoute requiredRole="student"><MaterialExtra ProjCheck={"True"}/></ProtectedRoute>} />
               <Route path="/mapa" element={<ProtectedRoute requiredRole="student"><StudentMap /></ProtectedRoute>} />
               <Route path="/principal-estudiante" element={<ProtectedRoute requiredRole="student"><ProjSelection ProjCheck={"True"} /></ProtectedRoute>} />
               <Route path='/EditProject/:id_project' element={<ProtectedRoute requiredRole="student"><ProjectEdition /></ProtectedRoute>} />

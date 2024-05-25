@@ -57,7 +57,7 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
 
                 <div className='row align-items-center m-2'>
                     <div className='col-4'>
-                        <span className='Subtitulo'>Extensión</span>
+                        <span className='Subtitulo'>Contacto de 220v</span>
                     </div>
 
                     <div className='col-auto'>
@@ -75,7 +75,7 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
 
                 <div className='row align-items-center m-2'>
                     <div className='col-4'>
-                        <span className='Subtitulo'>Televisión</span>
+                        <span className='Subtitulo'>Mampara para poster</span>
                     </div>
 
                     <div className='col-auto'>
@@ -93,7 +93,7 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
 
                 <div className='row align-items-center m-2  '>
                     <div className='col-4'>
-                        <span className='Subtitulo'>Mesa</span>
+                        <span className='Subtitulo'>Pantalla</span>
                     </div>
 
                     <div className='col-auto'>

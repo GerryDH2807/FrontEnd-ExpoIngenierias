@@ -222,12 +222,24 @@ const handleUpdate = async () => {
     }
     setValidated(true);
   };
+  
+  const [showFullText, setShowFullText] = useState(false);
 
+  const toggleShowFullText = () => {
+    setShowFullText(!showFullText);
+  };
 
-  return(
+  const truncatedText = (text, limit) => {
+    if (!text || typeof text !== 'string' || text.length <= limit) {
+      return text;
+    }
+    return text.slice(0, limit) + '...';
+  };
+
+  return (
     <>
-    <ToggleBar />
-    <div className='container-fluid'>
+      <ToggleBar NameSecProf={"Revisión de proyecto"}/>
+      <div className='container-fluid'>
         <div className='row'>
             <div className="col-md-1"></div>
           <ProjResume type={project.category.title} area={project.area.name} title={project.title} IsLoaded={IsLoaded}></ProjResume>        
@@ -279,30 +291,35 @@ const handleUpdate = async () => {
                               <Spinner animation="grow" size="xl" className='BolitasIconos' />
                             </div>
                           )}
-                    <div className='row d-flex m-2 check mt-5 '>
-                      <div className='col-6  col-md-6 justify-content-center'>
-                        <center>
-                          {/* Uso de una expresión ternaria para cambiar el placeholder del segundo switch */}
-                          <Form.Group as={Col} md="12" controlId="validationCustom04" className='ChecksPosition'>
-                            <center>
-                              <Form.Check type="switch" id='switchExternos2' label={switchVideo ? "Aceptado" : "Rechazado"} onChange={() => setSwitchVideo(!switchVideo)}></Form.Check>
-                            </center>
-                          </Form.Group>
-                        </center>
+                          <div className='row d-flex m-2 check mt-5 '>
+                            <div className='col-6  col-md-6 justify-content-center'>
+                              <center>
+                                <Form.Group as={Col} md="12" controlId="validationCustom04" className='ChecksPosition'>
+                                  <center>
+                                    <Form.Check type="switch" id='switchExternos2' label={switchVideo ? "Aceptado" : "Rechazado"} onChange={() => setSwitchVideo(!switchVideo)} />
+                                  </center>
+                                </Form.Group>
+                              </center>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-    </div>
-    <div className='col-12 col-md-4'>
-    <div className="row d-flex">
-    <h1 className="Titulologo text-break">Descripcion del proyecto</h1>
-    </div>
-    {IsLoaded && (
-                      <div className="row d-flex">
-                        <span>{project.description}</span>
-                      </div>
+                  <div className='col-12 col-md-4'>
+                    <div className="row d-flex">
+                      <h1 className="Titulologo text-break">Descripción del proyecto</h1>
+                    </div>
+                    {IsLoaded && (
+                      <>
+                        <div className='container containerdescrprof'>
+                          <div className="row d-flex text-break" onClick={toggleShowFullText}>
+                            <span className='TextoDescrProf'>
+                              {showFullText ? project.description : truncatedText(project.description,365)}
+                            </span>
+                          </div>
+                        </div>
+                      </>
                     )}
                     {!IsLoaded && (
                       <div className="row d-flex">
