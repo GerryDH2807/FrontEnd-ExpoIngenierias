@@ -14,6 +14,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
 
+const URL = 'http://localhost:8000/projects/resume/';
+
 function RubricaCalf({Calf1, Calf2, Calf3, Calf4, Calf5, Rubri1, Rubri2, Rubri3, Rubri4, Rubri5, IsLoaded}) {
   return (
     <Accordion>
@@ -513,10 +515,13 @@ function FinalCalf({finalCalf, IsLoaded}){
 
 
 
+
+
 /* ~*~*~*~*~*~ FUNCIÓN PRINCIPAL DE CONTROL ~*~*~*~*~*~  */
 
 export default function ProjResumeCont(){
   const [IsLoaded, setIsLoaded] = useState(false);
+
 
   const [project, setProject] = useState({
     id_project: 0,
@@ -531,13 +536,15 @@ export default function ProjResumeCont(){
     category: "",
     Lider: "",
     student: "",
-    team: {students: []}
+    team: {students: []},
+    comment: "",
+    criterias: []
   });
   const { id_project } = useParams();
 
   useEffect(() => {
-    //fetch('http://localhost:8000/projects/'+id_post)
-    fetch('http://localhost:8000/projects/resume/'+id_project)
+
+    fetch(URL+id_project)
       .then((res) => res.json())
       .then((data) => {
         setProject(data);
@@ -565,12 +572,24 @@ export default function ProjResumeCont(){
             <div className="m-auto p-4">
               <div className='container-fluid'>
                 <div className ='row'>
-                  <CommentCont IsLoaded={IsLoaded} role={"Profesor"} comment={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></CommentCont>
+                {project.comment !== null ? (
+                      <CommentCont IsLoaded={IsLoaded} role={"Profesor"} comment={project.comment.comment} />
+                    ) : (
+                      <CommentCont IsLoaded={IsLoaded} role={"Profesor"} comment={"No hay comentarios"} />
+                    )}                  
+                  {
+
+          
+
+
+                  }
+                  
                   <CommentCont IsLoaded={IsLoaded} role={"Juez"} comment={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></CommentCont>
-                  <Rubrica IsLoaded={IsLoaded} Calf11={"10"} Calf21={"6"} Calf31={"8"} Calf41={"9"} Calf51={"7"} Rubri11={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri21={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri31={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri41={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri51={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></Rubrica>
+                  
+                  <Rubrica IsLoaded={IsLoaded} Calf11={"10"} Calf21={"6"} Calf31={"8"} Calf41={"9"} Calf51={"7"} Rubri11={"fsaf"} Rubri21={"fas"} Rubri31={"fas"} Rubri41={"fas"} Rubri51={"fsa"}></Rubrica>
                   <FinalCalf IsLoaded={IsLoaded} finalCalf={"9"}></FinalCalf>
                 </div>
-              </div>
+              </div>  
             </div>
           </div>
         </div>

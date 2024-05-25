@@ -32,9 +32,12 @@ function App() {
     <>
       <div>
           <Routes>
+              {/*Main Routes */}
               <Route path="/" element={<Main />} />
               <Route path="/Ediciones-pasadas" element={<EdicionesPasadas />} />
               <Route path="/Catalogo" element={<Catalogo />} />
+
+              {/*Teacher Routes */}
               <Route path="/principal-profesor" element={<ProtectedRoute requiredRole="student"><Hometeacher /></ProtectedRoute>} />
               <Route path="/profesor/:id_person/:id_project" element={<ProtectedRoute requiredRole="student"><ProjResumeCont /></ProtectedRoute>} />
               <Route path="/login" element={<Login />} />
@@ -44,7 +47,9 @@ function App() {
               <Route path="/constancia-profesor" element={<ProtectedRoute requiredRole="student"><ConstanciaTeacher ConstCheck={"True"} /></ProtectedRoute>} />
               <Route path="/perfil-profesor/:id_user" element={<ProtectedRoute requiredRole="student"><Perfil /></ProtectedRoute>} />
               <Route path="/announ1-teacher" element={<ProtectedRoute requiredRole="student"><TeacherAnoDet /></ProtectedRoute>} />
-              <Route path='/announ1-estudiante' element={<ProtectedRoute requiredRole="student"><StudentAnnounDet /></ProtectedRoute>} />
+
+              {/*Student Routes */}
+              <Route path='/announ-estudiante/:id_announ' element={<ProtectedRoute requiredRole="student"><StudentAnnounDet /></ProtectedRoute>} />
               <Route path="/registro-proyecto" element={<ProtectedRoute requiredRole="student"><ProjectRegister /></ProtectedRoute>} />
               <Route path="/resumen-proyecto-estudiante/:id_project" element={<ProtectedRoute requiredRole="student"><ProjectResumen /></ProtectedRoute>} />
               <Route path="/anuncio-estudiante" element={<ProtectedRoute requiredRole="student"><AnunciosStudent /></ProtectedRoute>} />
@@ -53,7 +58,7 @@ function App() {
               <Route path="/mapa" element={<ProtectedRoute requiredRole="student"><StudentMap /></ProtectedRoute>} />
               <Route path="/principal-estudiante" element={<ProtectedRoute requiredRole="student"><ProjSelection ProjCheck={"True"} /></ProtectedRoute>} />
               <Route path='/EditProject/:id_project' element={<ProtectedRoute requiredRole="student"><ProjectEdition /></ProtectedRoute>} />
-              <Route path='/student-profile' element={<ProtectedRoute requiredRole="student"><StudentProfile /></ProtectedRoute>} />
+              <Route path='/student-profile/:id_student' element={<ProtectedRoute requiredRole="student"><StudentProfile /></ProtectedRoute>} />
               <Route path="/Callback" element={<Callback />} />
           </Routes>
       </div>

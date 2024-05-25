@@ -12,6 +12,8 @@ import Card from 'react-bootstrap/Card';
 
 import Modal from 'react-bootstrap/Modal';
 
+const URL = 'http://localhost:8000/projects/catalogue';
+
 function MemberCont({NombreMiembro}){
     return(
       <li className="Texto text-wrap mb-0">{NombreMiembro}</li>
@@ -257,7 +259,7 @@ export default function Actual() {
     
     
       useEffect(()=>{
-        fetch('http://localhost:8000/projects/catalogue')
+        fetch(URL)
         .then((res)=> res.json())
         .then((data) => {
 

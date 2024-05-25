@@ -114,7 +114,7 @@ export default function Perfil(){
     
       useEffect(() => {
         //fetch(URL+id_student)
-        fetch(URL+'RobotEl pr230S')
+        fetch(URL+ id_student)
           .then((res) => res.json())
           .then((data) => {
             setStudent(data);
