@@ -8,10 +8,13 @@ import BotonElim from '../../../components/BotonConfirmacion/ConfBot.js';
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const URL = 'http://localhost:8000/projects/resumeProject/';
 
-function CardCalif({ projects, isLoading }) {
+function MenuProyectos({id_path}) {
+    const icono = <i className='bi bi-trash-fill'> Eliminar proyecto</i>
+
     const [validated, setValidated] = useState(false);
 
     const handleSubmit = async (event, id) => {
@@ -32,9 +35,20 @@ function CardCalif({ projects, isLoading }) {
         setValidated(true);
     
     };
-    
+  return (
+    <Dropdown data-bs-theme="dark">
+      <Dropdown.Toggle className='BotonDropDownSelect fw-bolder' id="dropdown-basic">
+        Opciones
+      </Dropdown.Toggle>
 
-
+      <Dropdown.Menu className='MenuDropPersonali'>
+        <Dropdown.Item href="#/action-1" className='m-2'><BotonElim MensajeTitle={"¿Deseas eliminar este proyecto?"} BotonA={'Cancelar'} BotonB={'Eliminar'} Path={"/principal-estudiante/" + {id_path}} className={"ButtonEliminar"} Texto={icono} onConfirm={(event) => handleSubmit(event, id_path)} recharge={true}></BotonElim></Dropdown.Item>
+        <Dropdown.Item href="#/action-2" className='m-2'><Link to={'/extramaterial'} className='ButtonAddMaterial bi-wrench-adjustable-circle'> Añadir materiales extra</Link></Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+}
+function CardCalif({ projects, isLoading }) {
 
     const truncateText = (text, limit) => {
         if (!text || typeof text !== 'string' || text.length <= limit) {
@@ -42,8 +56,6 @@ function CardCalif({ projects, isLoading }) {
         }
         return text.slice(0, limit) + '...';
     };
-
-    const icono = <i className='bi bi-trash-fill'></i>
 
     return (
         <>
@@ -108,7 +120,7 @@ function CardCalif({ projects, isLoading }) {
                                 <Link to={"/resumen-proyecto-estudiante/" + item.id} className="btn23">Ver Proyecto</Link>
                             </div>
                             <div className="button-container">
-                                <BotonElim MensajeTitle={"¿Deseas eliminar este proyecto?"} BotonA={'Cancelar'} BotonB={'Eliminar'} Path={"/principal-estudiante/" + item.id} className={"ButtonEliminar"} Texto={icono} onConfirm={(event) => handleSubmit(event, item.id)} recharge={true}></BotonElim>
+                                <MenuProyectos id_path={item.id}></MenuProyectos>
                             </div>
                         </div>
                     ))}

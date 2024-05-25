@@ -110,13 +110,6 @@ function ToggleBarStudent({SectionName}) {
 
               <div className='row m-2'>
                 <div className ='col-md-auto '>
-                  <Link to ='/extramaterial'onClick={() => { handleClose(); }} class="bi bi-wrench-adjustable-circle docu-icon2"></Link>
-                  <Link to='/extramaterial' className ="TextoValid2" onClick={() => { handleClose(); }}>Solicitar material extra</Link> 
-                </div>  
-              </div>
-
-              <div className='row m-2'>
-                <div className ='col-md-auto '>
                   <Link to='/constancia-estudiante' onClick={() => { handleClose(); }} class="bi bi-trophy-fill docu-icon2"></Link>
                   <Link to='/constancia-estudiante' className ="TextoValid2" onClick={() => { handleClose();  }}>Constancia</Link> 
                 </div>  
