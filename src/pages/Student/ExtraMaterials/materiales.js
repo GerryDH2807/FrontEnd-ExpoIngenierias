@@ -6,16 +6,12 @@ import '../ProjectSelection/Juez.css';
 import '../ProjectSelection/Badge.css';
 import '../ProjectSelection/ProjSelection.css';
 import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
-import BotonElim from '../../../components/BotonConfirmacion/ConfBot.js';
+import Usure from '../../../components/BotonConfirmacion/ConfBot.js';
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 
-
-
-
-
-const URL = 'http://localhost:8000/projects/resumeProject/';
+const URL = 'http://localhost:8000/projects/materials/';
 
 function CardCalif({ title, quantity, onIncrease, onDecrease, className }) {
     const truncateText = (text, limit) => {
@@ -48,25 +44,60 @@ function CardCalif({ title, quantity, onIncrease, onDecrease, className }) {
 
 export default function ProjSelection({ ProjCheck }) {
     const [isLoading, setIsLoading] = useState(true);
-    const [projects, setProjects] = useState([]);
-    const { id_student } = useParams();
+    const [validated, setValidated] = useState(false);
+
+    
     
     const initialQuantities = { contacto: 0, mampara: 0, pantalla: 0 };
     const [quantities, setQuantities] = useState(initialQuantities);
 
+
+    const handleSubmit = async (event) => {
+        if (event) {
+          event.preventDefault(); // Evita que el formulario se envíe automáticamente
+        }
+        
+        const form = event ? event.target : null;
+        if (form && form.checkValidity() === false) {
+          event.stopPropagation();
+        } else {
+          try {
+            await axios.put(URL + id_project, [
+                {id_material: 1, amount: quantities.contacto},
+                {id_material: 2, amount: quantities.mampara},
+                {id_material: 3, amount: quantities.pantalla}
+            ]);
+          } catch (e) {
+            console.log(e);
+          }
+        }
+        
+        setValidated(true);
+      };
+      
+
+    const { id_project } = useParams();
     useEffect(() => {
+        
         setIsLoading(true);
-        fetch(URL + 'auth0|66340f38cfd75a371a1b532b')
+        fetch(URL +  id_project)
             .then((res) => res.json())
             .then((data) => {
-                setProjects(data);
+                var contactoAmount = data.find((material) => material.id_material === 1)?.amount || 0;
+                var mamparaAmount = data.find((material) => material.id_material === 2)?.amount || 0;
+                var pantallaAmount = data.find((material) => material.id_material === 3)?.amount || 0;
+
+                setQuantities({contacto:contactoAmount, mampara: mamparaAmount, pantalla:pantallaAmount});
                 setIsLoading(false);
             })
             .catch((error) => {
                 console.error("Error fetching projects:", error);
                 setIsLoading(false); // Set to false even if there's an error to avoid infinite loading
             });
-    }, [id_student]);
+    }, [id_project]);
+
+
+
 
     const handleIncrease = (item) => {
         setQuantities(prevQuantities => ({
@@ -141,13 +172,22 @@ export default function ProjSelection({ ProjCheck }) {
                             </div>
                         </div>
 
+                        {/*}
                         <center>
                             <div className='row BotonMaterialExtraContinuarContainer p-3 m-3'>
                                 <Link to={'/principal-estudiante'} className='col BotonRegistrarMaterialesExtra p-3'>
                                     Realizar pedido de materiales
                                 </Link>
+                            
+                                </div>
+                </center>*/}
+
+                        <center>
+                            <div className='row BotonMaterialExtraContinuarContainer p-3 m-3'>
+                                <Usure MensajeTitle={"¿Estas de acuerdo con la solicitud?"} BotonA={"Regresar"} BotonB={"Confirmar solicitud"} Path={'/principal-estudiante/'} className={"rcol BotonRegistrarMaterialesExtra p-3"} Texto={"Realizar pedido de materiales"} onConfirm={handleSubmit}/>
                             </div>
                         </center>
+
                     </>
                 )}
             </div>
