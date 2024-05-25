@@ -42,7 +42,7 @@ function MenuProyectos({id_path}) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu className='MenuDropPersonali'>
-        <Dropdown.Item href="#/action-1" className='m-2'><BotonElim MensajeTitle={"¿Deseas eliminar este proyecto?"} BotonA={'Cancelar'} BotonB={'Eliminar'} Path={"/principal-estudiante/" + {id_path}} className={"ButtonEliminar"} Texto={icono} onConfirm={(event) => handleSubmit(event, id_path)} recharge={true}></BotonElim></Dropdown.Item>
+        <Dropdown.Item href="#/action-1" className='m-2'><BotonElim MensajeTitle={"¿Deseas eliminar este proyecto?"} BotonA={'Cancelar'} BotonB={'Eliminar'} Path={"/principal-estudiante/"} className={"ButtonEliminar"} Texto={icono} onConfirm={(event) => handleSubmit(event, id_path)} recharge={true}></BotonElim></Dropdown.Item>
         <Dropdown.Item href="#/action-2" className='m-2'><Link to={'/extramaterial'} className='ButtonAddMaterial bi-wrench-adjustable-circle'> Añadir materiales extra</Link></Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
