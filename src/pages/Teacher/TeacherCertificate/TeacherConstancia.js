@@ -2,13 +2,70 @@ import { Link } from 'react-router-dom';
 
 import '../../Student/ProjectSelection/Juez.css';
 import '../../Student/ProjectSelection/Badge.css';
-
+import { jsPDF } from "jspdf";
+import { useAuth0 } from '@auth0/auth0-react';
+import React, { useState,useEffect,useRef} from "react";
+import { useParams } from "react-router-dom";
 import './TeacherConstancia.css';
-
+import logo from '../../../img/logo-certificado.png';
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
+import firma from '../../../img/firma-ejemplo.jpg'
 
 function CardCalif({categoria}) {
-  
+    const [user_bs, setUser_bs] = useState({
+        id: "",
+        name: "",
+        lastName: "",
+        email: "",
+    })
+    const {id_user} = useParams();
+    useEffect(() => {
+        //nuevodescr120T
+        //http://localhost:8000/projects/responsable/${user.sub}
+        fetch(`http://localhost:8000/person/resume/${id_user}`)
+          .then((res) => res.json())
+          .then((data)=>setUser_bs(data))
+        
+        },[id_user])
+      const doc = new jsPDF();
+      const handleOnClick = async () => {
+        doc.setFontSize(22);
+        doc.setFont('times', 'bold');
+        doc.text('Certificado de Participación en Expoingenieria', 20, 70);
+        doc.setFontSize(16);
+        doc.setFont('times', 'normal');
+        doc.text(`Se otorga el presente certificado a`, 20, 80);
+        doc.setFontSize(20);
+        doc.setFont('times', 'bold');
+        doc.text(user_bs.name, 20, 95);
+        doc.setFontSize(14);
+        doc.setFont('times', 'normal');
+        doc.text(`por su destacada participación y valioso aporte como Profesor Encargado en el`, 20, 110);
+        doc.text('evento Expoingeniería - Edición Junio 2024.Durante el evento, celebrado en el',20,120);
+        doc.text('mes de junio de 2024, su liderazgo, dedicación y compromiso fueron fundamentales',20,130);
+        doc.text('para el desarrollo exitoso del proyecto. Su capacidad para guiar y motivar al ',20,140)
+        doc.text('equipo de estudiantes ha dejado una huella imborrable en sus carreras académicas', 20,150);
+        doc.text('y profesionales. Su habilidad para fomentar un ambiente de aprendizaje colaborativo ',20,160);
+        doc.text('y su constante disposición para compartir su sabiduría han sido clave para el ',20,170);
+        doc.text('logro de los objetivos planteados.',20,180);
+        doc.text('Dado en Puebla, el 17 de junio de 2024.', 20, 190);
+        doc.text('Jose Manuel Medina Pozos',20,260);
+        const img = new Image();
+        img.src = logo;
+        const img1 = new Image();
+        img1.src = firma;
+        img.onload = function() {
+            doc.addImage(img, 'PNG', 70, 10, 70, 50); // x, y, width, height
+            doc.addImage(img1,'JPG',20,220,30,30);
+            doc.save(`${user_bs.name}-certificate.pdf`);
+        }
+        img.onerror = function() {
+            console.error('Error loading image');
+          };
+        
+
+      }
+      
 
     return (
         <>
@@ -43,7 +100,7 @@ function CardCalif({categoria}) {
             
                     <div className="text">
                 
-                        <Link to="/resumen" className="btn23">Descargar Constancia</Link>
+                        <button className="btn23" onClick={handleOnClick}>Descargar Constancia</button>
                         
                     </div>
                 </div>

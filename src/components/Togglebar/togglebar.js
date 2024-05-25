@@ -10,6 +10,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link} from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
+
 const LogoutButton = () => {
   const { logout } = useAuth0();
 
@@ -24,6 +25,8 @@ const LogoutButton = () => {
     <Link to='/' className="TextoValid2" onClick={handleLogout}>Cerrar sesión</Link>
   );
 };
+
+
 
 function ToggleBar({SectionName}) {
   const [show, setShow] = useState(false);

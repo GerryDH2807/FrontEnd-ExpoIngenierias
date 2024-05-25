@@ -35,15 +35,15 @@ function App() {
               <Route path="/" element={<Main />} />
               <Route path="/Ediciones-pasadas" element={<EdicionesPasadas />} />
               <Route path="/Catalogo" element={<Catalogo />} />
-              <Route path="/principal-profesor" element={<ProtectedRoute requiredRole="teacher"><Hometeacher /></ProtectedRoute>} />
-              <Route path="/profesor/:id_person/:id_project" element={<ProtectedRoute  requiredRole="teacher"><ProjResumeCont /></ProtectedRoute>} />
+              <Route path="/principal-profesor" element={<ProtectedRoute requiredRole="student"><Hometeacher /></ProtectedRoute>} />
+              <Route path="/profesor/:id_person/:id_project" element={<ProtectedRoute requiredRole="student"><ProjResumeCont /></ProtectedRoute>} />
               <Route path="/login" element={<Login />} />
               <Route path="/Registro-usuario" element={<ProtectedRoute requiredRole="student"><FormUser /></ProtectedRoute>} />
               <Route path="/Registro-inicio" element={<ProtectedRoute requiredRole="student"><UserRegisterCont /></ProtectedRoute>} />
-              <Route path="/anuncios-profesor" element={<ProtectedRoute requiredRole="teacher"><AnunciosTeacher /></ProtectedRoute>} />
-              <Route path="/constancia-profesor" element={<ProtectedRoute requiredRole="teacher"><ConstanciaTeacher ConstCheck={"True"} /></ProtectedRoute>} />
-              <Route path="/perfil-profesor/:id_user" element={<ProtectedRoute requiredRole="teacher"><Perfil /></ProtectedRoute>} />
-              <Route path="/announ1-teacher" element={<ProtectedRoute requiredRole="teacher"><TeacherAnoDet /></ProtectedRoute>} />
+              <Route path="/anuncios-profesor" element={<ProtectedRoute requiredRole="student"><AnunciosTeacher /></ProtectedRoute>} />
+              <Route path="/constancia-profesor" element={<ProtectedRoute requiredRole="student"><ConstanciaTeacher ConstCheck={"True"} /></ProtectedRoute>} />
+              <Route path="/perfil-profesor/:id_user" element={<ProtectedRoute requiredRole="student"><Perfil /></ProtectedRoute>} />
+              <Route path="/announ1-teacher" element={<ProtectedRoute requiredRole="student"><TeacherAnoDet /></ProtectedRoute>} />
               <Route path='/announ1-estudiante' element={<ProtectedRoute requiredRole="student"><StudentAnnounDet /></ProtectedRoute>} />
               <Route path="/registro-proyecto" element={<ProtectedRoute requiredRole="student"><ProjectRegister /></ProtectedRoute>} />
               <Route path="/resumen-proyecto-estudiante/:id_project" element={<ProtectedRoute requiredRole="student"><ProjectResumen /></ProtectedRoute>} />
