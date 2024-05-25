@@ -208,10 +208,23 @@ export default function ProjResumeCont() {
     }
     setValidated(true);
   };
+  
+  const [showFullText, setShowFullText] = useState(false);
+
+  const toggleShowFullText = () => {
+    setShowFullText(!showFullText);
+  };
+
+  const truncatedText = (text, limit) => {
+    if (!text || typeof text !== 'string' || text.length <= limit) {
+      return text;
+    }
+    return text.slice(0, limit) + '...';
+  };
 
   return (
     <>
-      <ToggleBar />
+      <ToggleBar NameSecProf={"Revisión de proyecto"}/>
       <div className='container-fluid'>
         <div className='row'>
           <div className="col-md-1"></div>
@@ -282,9 +295,15 @@ export default function ProjResumeCont() {
                       <h1 className="Titulologo text-break">Descripción del proyecto</h1>
                     </div>
                     {IsLoaded && (
-                      <div className="row d-flex">
-                        <span>{project.description}</span>
-                      </div>
+                      <>
+                        <div className='container containerdescrprof'>
+                          <div className="row d-flex text-break" onClick={toggleShowFullText}>
+                            <span className='TextoDescrProf'>
+                              {showFullText ? project.description : truncatedText(project.description,365)}
+                            </span>
+                          </div>
+                        </div>
+                      </>
                     )}
                     {!IsLoaded && (
                       <div className="row d-flex">

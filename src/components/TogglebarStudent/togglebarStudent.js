@@ -112,7 +112,7 @@ function ToggleBarStudent({SectionName}) {
 
               <div className='row m-2 mt-5'>
                 <div className ='col-md-auto mt-5'>
-                  <Link to='/mapa' onClick={() => { handleClose(); }} class="bi bi-box-arrow-left docu-icon2"></Link>
+                  <Link onClick={() => { handleClose(); }} class="bi bi-box-arrow-left docu-icon2"></Link>
                   <LogoutButton/>
                 </div>  
               </div>
