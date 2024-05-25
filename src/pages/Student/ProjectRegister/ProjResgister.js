@@ -27,7 +27,7 @@ function MemberCont({NombreMiembro}){
   }
   
 
-function ButtonMaterials({extension, setExtension, table, setTable, screen, setScreen}) {
+function ButtonMaterials({material1, setMaterial1, material2, setMaterial2, material3, setMaterial3}) {
   const [show, setShow] = useState(false);
   
   return (
@@ -61,15 +61,15 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
                     </div>
 
                     <div className='col-auto'>
-                        <Button className='ButtonAddLessMaterials' onClick={()=>extension!==0 && setExtension(extension-1)}>-</Button>
+                        <Button className='ButtonAddLessMaterials' onClick={()=>material1!==0 && setMaterial1(material1-1)}>-</Button>
                     </div>
 
                     <div className='col-auto'>
-                        <span>{extension}</span>
+                        <span>{material1}</span>
                     </div>
 
                     <div className='col-auto'>
-                        <Button className='ButtonAddLessMaterials' onClick={()=>extension !== 3 && setExtension(extension+1)}>+</Button>
+                        <Button className='ButtonAddLessMaterials' onClick={()=>material1 !== 3 && setMaterial1(material1+1)}>+</Button>
                     </div>
                 </div>
 
@@ -79,15 +79,15 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
                     </div>
 
                     <div className='col-auto'>
-                        <Button className='ButtonAddLessMaterials' onClick={()=>screen !== 0 && setScreen(screen-1)} >-</Button>
+                        <Button className='ButtonAddLessMaterials' onClick={()=>material2 !== 0 && setMaterial2(material2-1)} >-</Button>
                     </div>
 
                     <div className='col-auto'>
-                        <span>{screen}</span>
+                        <span>{material2}</span>
                     </div>
 
                     <div className='col-auto'>
-                        <Button className='ButtonAddLessMaterials' onClick={()=>screen !== 3 && setScreen(screen+1)}>+</Button>
+                        <Button className='ButtonAddLessMaterials' onClick={()=>material2 !== 3 && setMaterial2(material2+1)}>+</Button>
                     </div>
                 </div>
 
@@ -97,15 +97,15 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
                     </div>
 
                     <div className='col-auto'>
-                        <Button className='ButtonAddLessMaterials' onClick={()=>table !== 0 && setTable(table-1)}>-</Button>
+                        <Button className='ButtonAddLessMaterials' onClick={()=>material3 !== 0 && setMaterial3(material3-1)}>-</Button>
                     </div>
 
                     <div className='col-auto text-center'>
-                        <span>{table}</span>
+                        <span>{material3}</span>
                     </div>
 
                     <div className='col-auto'>
-                        <Button className='ButtonAddLessMaterials' onClick={()=>table !== 3 && setTable(table+1)}>+</Button>
+                        <Button className='ButtonAddLessMaterials' onClick={()=>material3 !== 3 && setMaterial3(material3+1)}>+</Button>
                     </div>
                 </div>
             </div>
@@ -161,9 +161,9 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
 
       const navigate = useNavigate();
 
-      const [extension, setExtension] = useState(0);
-      const [table, setTable] = useState(0);
-      const [screen, setScreen] = useState(0);  
+      const [contacto, setContacto] = useState(0);
+      const [mampara, setMampara] = useState(0);
+      const [pantalla, setPantalla] = useState(0);  
 
     const handleSubmit = async (event) => {
       if(event){
@@ -177,7 +177,7 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
         await axios.post(URI, {title: title, description: description, linkVideo: linkVideo, 
           linkPoster: linkPoster, area: area, 
           category: category,
-          materials: [{id_material: 1, amount: extension}, {id_material: 2, amount: screen}, { id_material: 3, amount: table }],
+          materials: [{id_material: 1, amount: contacto}, {id_material: 2, amount: mampara}, { id_material: 3, amount: pantalla}],
           members: members.map(member => ({ name: member.nameMember, lastName: member.lastNameMember, enrollment: member.enrollment })),
           teachers: teachers.map(teacher => ({ name: teacher.nameTeacher, lastName: teacher.lastNameTeacher, email: teacher.email }))
         });
@@ -518,7 +518,7 @@ function ButtonMaterials({extension, setExtension, table, setTable, screen, setS
 
                   <div className='row d-flex justify-content-center'>
                       <div className='d-flex justify-content-center p-3 BckGrnd'>
-                          <ButtonMaterials extension={extension} setExtension={setExtension} screen={screen} setScreen={setScreen} table={table} setTable={setTable}/>
+                          <ButtonMaterials material1={contacto} setMaterial1={setContacto} material2={mampara} setMaterial2={setMampara} material3={pantalla} setMaterial3={setPantalla}/>
                       </div>
                   </div>
               </div>

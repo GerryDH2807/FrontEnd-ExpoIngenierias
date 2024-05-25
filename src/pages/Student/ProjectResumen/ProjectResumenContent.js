@@ -461,7 +461,7 @@ function CommentCont({role, comment,IsLoaded}){
               <div className ='container-fluid p-1'>
                 <div className ="row pb-3 align-items-center">
                   <div className ='col-md-auto '>
-                    <p className='text-break ComentariosCOntenidoWrap'>{tieneInformacion(comment) ? comment : <div className='container mt-3 ContNoComment'><center> <div className='row'><div className='col'> <i className='bi bi-chat-square-text-fill IconoNohayComentarios colornohaycomment'></i> </div></div> <div className='row'><div className='col colornohaycomment'> El profesor aun no ha dejado comentarios</div></div> </center></div>}</p>
+                    <p className='text-break ComentariosCOntenidoWrap'>{tieneInformacion(comment) ? comment.comment : <div className='container mt-3 ContNoComment'><center> <div className='row'><div className='col'> <i className='bi bi-chat-square-text-fill IconoNohayComentarios colornohaycomment'></i> </div></div> <div className='row'><div className='col colornohaycomment'> El profesor aun no ha dejado comentarios</div></div> </center></div>}</p>
                   </div>   
                 </div>
               </div>  
@@ -561,7 +561,6 @@ function FinalCalf({finalCalf, IsLoaded}){
 
 
 
-
 /* ~*~*~*~*~*~ FUNCIÓN PRINCIPAL DE CONTROL ~*~*~*~*~*~  */
 
 export default function ProjResumeCont(){
@@ -583,9 +582,20 @@ export default function ProjResumeCont(){
     student: "",
     team: {students: []},
     comment: "",
-    criterias: []
+    criterias: [
+      { id: 1, description: "", weight: 0 },
+      { id: 2, description: "", weight: 0 },
+      { id: 3, description: "", weight: 0 },
+      { id: 4, description: "", weight: 0 },
+      { id: 5, description: "", weight: 0 }
+    ]
   });
   const { id_project } = useParams();
+
+  const findCriteriaById = (id) => {
+    return project.criterias.find(criteria => criteria.id === id);
+  };
+  
 
   useEffect(() => {
 
@@ -617,9 +627,9 @@ export default function ProjResumeCont(){
             <div className="m-auto p-4">
               <div className='container-fluid'>
                 <div className ='row'>
-                  <CommentCont IsLoaded={IsLoaded} role={"Profesor"} comment={"Popo"}></CommentCont>
-                  <CommentCont IsLoaded={IsLoaded} role={"Juez"} comment={"Caca"}></CommentCont>
-                  <Rubrica IsLoaded={IsLoaded} Calf11={"10"} Calf21={"6"} Calf31={"8"} Calf41={"9"} Calf51={"7"} Rubri11={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri21={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri31={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri41={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri51={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></Rubrica>
+                  <CommentCont IsLoaded={IsLoaded} role={"Profesor"} comment={project.comment}></CommentCont>
+                  <CommentCont IsLoaded={IsLoaded} role={"Juez"} comment={"Comentario"}></CommentCont>
+                  <Rubrica IsLoaded={IsLoaded} Calf11={"10"} Calf21={"6"} Calf31={"8"} Calf41={"9"} Calf51={"7"} Rubri11={findCriteriaById(1).description} Rubri21={findCriteriaById(2).description} Rubri31={findCriteriaById(3).description} Rubri41={findCriteriaById(4).description} Rubri51={findCriteriaById(5).description}></Rubrica>
                   <FinalCalf IsLoaded={IsLoaded} finalCalf={"9"}></FinalCalf>
                 </div>
               </div>  
