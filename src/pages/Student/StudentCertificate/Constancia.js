@@ -69,7 +69,21 @@ function CardCalif({categoria,student_name,project}) {
   
 
 export default function ProjSelection({ConstCheck}){
-    const [projects, setProjects] = useState([]);
+    const [projects, setProjects] = useState([{
+        id_project: 0,
+    title: "",
+    description: "",
+    linkVideo: "",
+    linkPoster: "",
+    statusGeneral: "",
+    statusPoster: "",
+    statusVideo: "",
+    area: "",
+    category: "",
+    Lider: "",
+    student: "",
+    team: {students: []},
+}]);
     const { isAuthenticated, isLoading, error, user } = useAuth0();
     const id_student = user.sub;
     useEffect(() => {
