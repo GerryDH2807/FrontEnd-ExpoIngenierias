@@ -12,23 +12,9 @@ import './Constancia.css';
 
 import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
 
-function CardCalif({categoria}) {
-    const { isAuthenticated, isLoading, error, user } = useAuth0();
-    console.log(user.sub);
-
-    const [user_bs, setUser_bs] = useState({
-        id: "",
-        name: "",
-        lastName: "",
-        email: "",
-    })   
-    useEffect(() => {
-        //nuevodescr120T
-        //http://localhost:8000/projects/responsable/${user.sub}
-        fetch(`http://localhost:8000/students/auth0|66340f38cfd75a371a1b532b`)
-          .then((res) => res.json())
-          .then((data)=>setUser_bs(data))
-        }, [user]) 
+const URL = 'http://localhost:8000/projects/resumeProject/';
+function CardCalif({categoria,student_name}) {
+    
 
         const doc = new jsPDF();
       const handleOnClick = async () => {
@@ -40,7 +26,7 @@ function CardCalif({categoria}) {
         doc.text(`Se otorga el presente certificado a`, 20, 80);
         doc.setFontSize(20);
         doc.setFont('times', 'bold');
-        doc.text(user_bs.name, 20, 95);
+        doc.text(student_name, 20, 95);
         doc.setFontSize(14);
         doc.setFont('times', 'normal');
         doc.text(`Por su destacada participación y contribución en la ExpoIngeniería 2024, `, 20, 110);
@@ -60,7 +46,7 @@ function CardCalif({categoria}) {
         img.onload = function() {
             doc.addImage(img, 'PNG', 70, 10, 70, 50); // x, y, width, height
             doc.addImage(img1,'JPG',20,220,30,30);
-            doc.save(`${user_bs.name}-certificate.pdf`);
+            doc.save(`${student_name}-certificate.pdf`);
         }
         img.onerror = function() {
             console.error('Error loading image');
@@ -110,6 +96,21 @@ function CardCalif({categoria}) {
   
 
 export default function ProjSelection({ConstCheck}){
+    const [projects, setProjects] = useState([]);
+    const { isAuthenticated, isLoading, error, user } = useAuth0();
+    const id_student = user.sub;
+    useEffect(() => {
+        fetch(URL + 'auth0|66340f38cfd75a371a1b532b')
+            .then((res) => res.json())
+            .then((data) => {
+                setProjects(data);
+            })
+            .catch((error) => {
+                console.error("Error fetching projects:", error);
+            });
+    }, [id_student]);
+    console.log(projects);
+
     return(
 
         <>
@@ -140,17 +141,20 @@ export default function ProjSelection({ConstCheck}){
 
                 )}
 
-                {ConstCheck === "True" && (
-                    <div className='row d-flex flex-col justify-content-evenly'>
+        {ConstCheck === "True" && (
+            projects.map((item) => (
+                item.team.students.map((student,index) =>(
+                <div className='row d-flex flex-col justify-content-evenly' key={item.id}>
+                <CardCalif 
+                categoria={"Concepto"}
+                student_name={student.name + " " + student.lastName}
+            />
 
-                
-                        <CardCalif 
-                            categoria={"Concepto"}
-                        />
 
+        </div>
+                ))))
+)}
 
-                    </div>
-                )}
             </div>        
         </>
 

@@ -157,8 +157,6 @@ export default function ProjResumeCont(){
         setIsLoaded(true); // Set IsLoaded to true after receiving data
       });
   }, [id_project]);
-
-
   const navigate = useNavigate();
 
   const [validated, setValidated] = useState(false);
