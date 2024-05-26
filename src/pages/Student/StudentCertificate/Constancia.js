@@ -10,8 +10,8 @@ import './Constancia.css';
 
 import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
 
-const URL = 'http://localhost:8000/projects/resumeProject/';
-function CardCalif({categoria,student_name}) {
+const URL = 'http://localhost:8000/projects/certificate/';
+function CardCalif({categoria,student_name,project}) {
     
 
         const doc = new jsPDF();
@@ -28,9 +28,9 @@ function CardCalif({categoria,student_name}) {
         doc.setFontSize(14);
         doc.setFont('times', 'normal');
         doc.text(`Por su destacada participación y contribución en la ExpoIngeniería 2024, `, 20, 110);
-        doc.text('celebrada en el mes de junio de 2024.Su proyecto ha demostrado un alto nivel de ',20,120);
-        doc.text('creatividad, innovación y excelencia técnica, reflejando su dedicación y habilidad',20,130);
-        doc.text(' en el campo de la ingenieria.',20,140)
+        doc.text(`celebrada en el mes de junio de 2024.Su proyecto ${project}`,20,120);
+        doc.text('ha demostrado un alto nivel de  creatividad, innovación y excelencia técnica,',20,130);
+        doc.text('reflejando su dedicación y habilidad en el campo de la ingenieria.',20,140)
         doc.text('A través de este evento, el estudiante ha mostrado una admirable capacidad para aplicar ', 20,150);
         doc.text('reales. El Tecnológico de Monterrey se enorgullece de contar con estudiantes ',20,160);
         doc.text('quienes encarnan los valores de excelencia, innovación y compromiso con la sociedad ',20,170);
@@ -116,16 +116,23 @@ export default function ProjSelection({ConstCheck}){
 
         {ConstCheck === "True" && (
             projects.map((item) => (
-                item.team.students.map((student,index) =>(
-                <div className='row d-flex flex-col justify-content-evenly' key={item.id}>
-                <CardCalif 
+            <div className='row d-flex flex-col justify-content-evenly' key={item.id}>
+            <CardCalif 
+                key={item.student.id}
+                categoria={"Concept"}
+                student_name={item.student.name + " " + item.student.lastName}
+                project={item.title}
+            />
+            {item.team.students.map((student, index) => (
+            <CardCalif 
+                key={student.id} // Asegúrate de usar una key única
                 categoria={"Concepto"}
                 student_name={student.name + " " + student.lastName}
-            />
-
-
-        </div>
-                ))))
+                project={item.title}
+        />
+      ))}
+    </div>
+  ))
 )}
 
             </div>        
