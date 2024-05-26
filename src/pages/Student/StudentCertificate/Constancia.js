@@ -60,7 +60,7 @@ function CardCalif({categoria,student_name,project}) {
                     </div>
                     <div className="text constanciastextsirveporfa">
                         <center><span className='fw-bolder'>Esta constancia es valida para:</span></center>
-                        <center><p>Pedro Alcachofas Dominguez</p></center>
+                        <center><p>{student_name}</p></center>
                         <button className="btn23" onClick={handleOnClick}>Descargar Constancia</button>
                     </div>
                 </div>
