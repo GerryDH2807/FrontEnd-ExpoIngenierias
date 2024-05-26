@@ -1,6 +1,6 @@
 .text .h3 {
   font-family: 'Lucida Sans' sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   color: black;
 }
@@ -8,13 +8,14 @@
 .text .p {
   font-family: 'Lucida Sans' sans-serif;
   color: #999999;
-  font-size: 13px;
+  font-size: 15px;
 }
 
   
 .card:hover {
   cursor: pointer;
   box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+  --bs-card-border-radius: 16px;
 }
 
 .btn23 {
@@ -39,9 +40,9 @@
   text-decoration: none;
 }
 
-.card {
-  width: 20vw;
-  height: 63vh;
+.cardSelect {
+  width: 30%;
+  height: 69vh;
   background: white;
   border-radius: 15px;
   box-shadow: 15px 15px 30px #bebebe,
@@ -108,8 +109,8 @@
 
 .button-container {
   position: absolute;
-  top: 6%;
-  left: 10%;
+  top: 7%;
+  left: 15%;
   transform: translate(-50%, -50%);
   transition: opacity 0.3s ease;
 }

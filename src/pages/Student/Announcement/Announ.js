@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
 import './Announ.css';
 
+const URL = 'http://localhost:8000/announ/';
+
 function AnnounSearch({ handleSearch }) {
   const handleChange = (e) => {
     handleSearch(e.target.value);
@@ -56,7 +58,7 @@ function AnnounInfo({ announ, isLoading }) {
         </>
       ) : (
         <>
-        <Link to={'/announ' + 1 + '-estudiante'} className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
+        <Link to={'/announ-estudiante/'+announ.id} className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
           <div className='col-3 d-flex align-items-center'>
             <i className='bi bi-envelope-fill AnnounIcon'></i>
             <span className='Titulo'> {announ.title}</span>
@@ -94,7 +96,7 @@ export default function AnnounCont() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8000/announ/')
+    fetch(URL)
       .then((res) => res.json())
       .then((data) => {
         setAllAnnouncements(data);

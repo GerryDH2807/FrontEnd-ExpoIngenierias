@@ -22,9 +22,9 @@ function Callback() {
       const username = user.email.split('@')[0];
       const isStudent = /^[aA]\d{8}$/.test(username);
 
-      if (false) {
+      if (isStudent) {
         localStorage.setItem('userRole', 'student');
-        navigate('/principal-profesor'); // Redirigir a la página de estudiante
+        navigate('/principal-estudiante'); // Redirigir a la página de estudiante
       } else {
         localStorage.setItem('userRole', 'teacher');
         navigate('/principal-profesor'); // Redirigir a la página de profesor

@@ -8,10 +8,13 @@ import BotonElim from '../../../components/BotonConfirmacion/ConfBot.js';
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const URL = 'http://localhost:8000/projects/resumeProject/';
 
-function CardCalif({ projects, isLoading }) {
+function MenuProyectos({id_path}) {
+    const icono = <i className='bi bi-trash-fill'> Eliminar proyecto</i>
+
     const [validated, setValidated] = useState(false);
 
     const handleSubmit = async (event, id) => {
@@ -32,9 +35,20 @@ function CardCalif({ projects, isLoading }) {
         setValidated(true);
     
     };
-    
+  return (
+    <Dropdown data-bs-theme="dark">
+      <Dropdown.Toggle className='BotonDropDownSelect fw-bolder' id="dropdown-basic">
+        Opciones
+      </Dropdown.Toggle>
 
-
+      <Dropdown.Menu className='MenuDropPersonali'>
+        <Dropdown.Item href="#/action-1" className='m-2'><BotonElim MensajeTitle={"¿Deseas eliminar este proyecto?"} BotonA={'Cancelar'} BotonB={'Eliminar'} Path={"/principal-estudiante/"} className={"ButtonEliminar"} Texto={icono} onConfirm={(event) => handleSubmit(event, id_path)} recharge={true}></BotonElim></Dropdown.Item>
+        <Dropdown.Item href="#/action-2" className='m-2'><Link to={'/extramaterial/'+ id_path} className='ButtonAddMaterial bi-wrench-adjustable-circle'> Añadir materiales extra</Link></Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+}
+function CardCalif({ projects, isLoading }) {
 
     const truncateText = (text, limit) => {
         if (!text || typeof text !== 'string' || text.length <= limit) {
@@ -42,8 +56,6 @@ function CardCalif({ projects, isLoading }) {
         }
         return text.slice(0, limit) + '...';
     };
-
-    const icono = <i className='bi bi-trash-fill'></i>
 
     return (
         <>
@@ -71,9 +83,9 @@ function CardCalif({ projects, isLoading }) {
                 </div>
             )}
             {!isLoading && (
-                <div className='col-12 d-flex flex-col justify-items-center'>
+                <div className='col-12 d-flex flex-wrap align-items-center justify-content-evenly'>
                     {projects.map((item) => (
-                        <div className="card card-container m-4 w-100" key={item.id}>
+                        <div className="cardSelect card-container m-4" key={item.id}>
                             {item.category.title === 'Concepto' && (
                                 <div className="imag algoimagConcept"></div>
                             )}
@@ -85,30 +97,30 @@ function CardCalif({ projects, isLoading }) {
                             )}
                             <div className="text">
                                 <p className="h3">{truncateText(item.title, 50)}</p>
-                                <p className="p">{truncateText(item.description, 100)}</p>
-                                <div className="badge-container">
-                                    <Badge data={item.area.name} className="badge text-wrap" />
-                                    <Badge data={item.id} className="badge" />
+                                <p className="p">{truncateText(item.description,175)}</p>
+                                <div className="badge-container w-100">
+                                    <Badge data={item.area.name} className="badgeselect d-flex text-wrap" />
+                                    <Badge data={item.id} className="badgeselect d-flex" />
                                     {item.statusGeneral === "en revision" && (
                                         <div className="badge-container">
-                                            <div className="badge">En revisión</div>
+                                            <div className="badgeselect d-flex">En revisión</div>
                                         </div>
                                     )}
                                     {item.statusGeneral === "rechazado" && (
                                         <div className="badge-container">
-                                            <div className="badge2">Rechazado</div>
+                                            <div className="badgeselect2">Rechazado</div>
                                         </div>
                                     )}
                                     {item.statusGeneral === "aprobado" && (
                                         <div className="badge-container">
-                                            <div className="badge3">Aceptado</div>
+                                            <div className="badgeselect3">Aceptado</div>
                                         </div>
                                     )}
                                 </div>
                                 <Link to={"/resumen-proyecto-estudiante/" + item.id} className="btn23">Ver Proyecto</Link>
                             </div>
                             <div className="button-container">
-                                <BotonElim MensajeTitle={"¿Deseas eliminar este proyecto?"} BotonA={'Cancelar'} BotonB={'Eliminar'} Path={"/principal-estudiante/" + item.id} className={"ButtonEliminar"} Texto={icono} onConfirm={(event) => handleSubmit(event, item.id)} recharge={true}></BotonElim>
+                                <MenuProyectos id_path={item.id}></MenuProyectos>
                             </div>
                         </div>
                     ))}
@@ -123,9 +135,7 @@ export default function ProjSelection({ ProjCheck }) {
 
 
 
-    const [projects, setProjects] = useState([
-
-    ]);
+    const [projects, setProjects] = useState([]);
 
     const { id_student } = useParams();
 
@@ -181,7 +191,7 @@ export default function ProjSelection({ ProjCheck }) {
                                 <div className='col-2 mt-2 p-3'>
                                     <Link to={'/registro-proyecto'} className='bi bi-plus-square-fill NuevoRegister'></Link>
                                 </div>
-                                <div className='col-10 mt-2 p-3'>
+                                <div className='col-10 mt-2 pt-3 ps-3 pe-3'>
                                     <center><h1 className='TituloProjSEL p-3 text-center TitleSelectContainerVF'>Proyectos en los que participas</h1></center>
                                 </div>
                             </div>

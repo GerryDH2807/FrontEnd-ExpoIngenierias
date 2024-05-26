@@ -14,6 +14,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
 
+const URL = 'http://localhost:8000/projects/resume/';
+
 function RubricaCalf({Calf1, Calf2, Calf3, Calf4, Calf5, Rubri1, Rubri2, Rubri3, Rubri4, Rubri5, IsLoaded}) {
   return (
     <Accordion>
@@ -405,6 +407,26 @@ function JuezContComment({comment,id_judge}){
   );
 }
 
+function tieneInformacion(variable) {
+  if (variable === null || variable === undefined) {
+      return false;
+  }
+  
+  if (typeof variable === 'string' && variable.trim() === '') {
+      return false;
+  }
+  
+  if (Array.isArray(variable) && variable.length === 0) {
+      return false;
+  }
+  
+  if (typeof variable === 'number' && isNaN(variable)) {
+      return false;
+  }
+  
+  return true;
+}
+
 function CommentCont({role, comment,IsLoaded}){
   return(
     <>
@@ -439,7 +461,7 @@ function CommentCont({role, comment,IsLoaded}){
               <div className ='container-fluid p-1'>
                 <div className ="row pb-3 align-items-center">
                   <div className ='col-md-auto '>
-                    <p className='text-break ComentariosCOntenidoWrap'>{comment}</p>
+                    <p className='text-break ComentariosCOntenidoWrap'>{tieneInformacion(comment) ? comment.comment : <div className='container mt-3 ContNoComment'><center> <div className='row'><div className='col'> <i className='bi bi-chat-square-text-fill IconoNohayComentarios colornohaycomment'></i> </div></div> <div className='row'><div className='col colornohaycomment'> El profesor aun no ha dejado comentarios</div></div> </center></div>}</p>
                   </div>   
                 </div>
               </div>  
@@ -459,11 +481,36 @@ function CommentCont({role, comment,IsLoaded}){
           )}
 
           {IsLoaded && (
-            <div className ="col-xxl-3 SilderCont">
-              <h1 className ="Titulo ps-0">Comentarios de {role}</h1>
-              <JuezContComment comment={comment} id_judge={1}></JuezContComment>
-            </div>
+            <>
+              {tieneInformacion(comment) && (
+                <div className ="col-xxl-3 SilderCont">
+                  <h1 className ="Titulo ps-0">Comentarios de {role}</h1>
+                  <JuezContComment comment={comment} id_judge={1}></JuezContComment>
+                </div>
+              )}
+
+              {!tieneInformacion(comment) && (
+                <div className ="col-xxl-3">
+                  <h1 className ="Titulo ps-0">Comentarios de {role}</h1>
+                  <div className='container mt-4 ContNoComment'>
+                    <center> <div className='row'>
+                      <div className='col'> 
+                        <i className='bi bi-chat-square-text-fill IconoNohayComentarios colornohaycomment'></i> 
+                      </div>
+                    </div> 
+
+                    <div className='row'>
+                      <div className='col colornohaycomment'> 
+                        Los jueces aun no han dejado comentarios
+                      </div>
+                    </div></center>
+                    
+                  </div>
+                </div>
+              )}
+            </>
           )}
+          
         </>
       )}
 
@@ -513,10 +560,12 @@ function FinalCalf({finalCalf, IsLoaded}){
 
 
 
+
 /* ~*~*~*~*~*~ FUNCIÓN PRINCIPAL DE CONTROL ~*~*~*~*~*~  */
 
 export default function ProjResumeCont(){
   const [IsLoaded, setIsLoaded] = useState(false);
+
 
   const [project, setProject] = useState({
     id_project: 0,
@@ -529,15 +578,28 @@ export default function ProjResumeCont(){
     statusVideo: "",
     area: "",
     category: "",
-    person: "",
+    Lider: "",
     student: "",
-    team: {students: []}
+    team: {students: []},
+    comment: "",
+    criterias: [
+      { id: 1, description: "", weight: 0 },
+      { id: 2, description: "", weight: 0 },
+      { id: 3, description: "", weight: 0 },
+      { id: 4, description: "", weight: 0 },
+      { id: 5, description: "", weight: 0 }
+    ]
   });
   const { id_project } = useParams();
 
+  const findCriteriaById = (id) => {
+    return project.criterias.find(criteria => criteria.id === id);
+  };
+  
+
   useEffect(() => {
-    //fetch('http://localhost:8000/projects/'+id_post)
-    fetch('http://localhost:8000/projects/resume/'+id_project)
+
+    fetch(URL+id_project)
       .then((res) => res.json())
       .then((data) => {
         setProject(data);
@@ -555,7 +617,7 @@ export default function ProjResumeCont(){
     <div className='container-fluid centered-container mt-3 '>
       <div className='container-fluid'>
         <div className='row justify-content-between d-flex align-items-center'>
-          <InfoProj IsLoaded={IsLoaded} lead={project.student.name + " " + project.student.lastName} profLead={project.person.name + " " + project.person.lastName} members={project.team.students}></InfoProj>
+          <InfoProj IsLoaded={IsLoaded} lead={project.student.name + " " + project.student.lastName} profLead={project.Lider.name + " " + project.Lider.lastName} members={project.team.students}></InfoProj>
           <ProjResume IsLoaded={IsLoaded} type={project.category.title} area={project.area.name} descr={project.description} title={project.title}></ProjResume>
           <ProjVal postVal={project.statusPoster} vidVal={project.statusVideo} finalRes={project.statusGeneral} id_project={id_project}></ProjVal>
         </div>
@@ -565,12 +627,12 @@ export default function ProjResumeCont(){
             <div className="m-auto p-4">
               <div className='container-fluid'>
                 <div className ='row'>
-                  <CommentCont IsLoaded={IsLoaded} role={"Profesor"} comment={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></CommentCont>
-                  <CommentCont IsLoaded={IsLoaded} role={"Juez"} comment={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></CommentCont>
-                  <Rubrica IsLoaded={IsLoaded} Calf11={"10"} Calf21={"6"} Calf31={"8"} Calf41={"9"} Calf51={"7"} Rubri11={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri21={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri31={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri41={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri51={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></Rubrica>
+                  <CommentCont IsLoaded={IsLoaded} role={"Profesor"} comment={project.comment}></CommentCont>
+                  <CommentCont IsLoaded={IsLoaded} role={"Juez"} comment={"Comentario"}></CommentCont>
+                  <Rubrica IsLoaded={IsLoaded} Calf11={"10"} Calf21={"6"} Calf31={"8"} Calf41={"9"} Calf51={"7"} Rubri11={findCriteriaById(1).description} Rubri21={findCriteriaById(2).description} Rubri31={findCriteriaById(3).description} Rubri41={findCriteriaById(4).description} Rubri51={findCriteriaById(5).description}></Rubrica>
                   <FinalCalf IsLoaded={IsLoaded} finalCalf={"9"}></FinalCalf>
                 </div>
-              </div>
+              </div>  
             </div>
           </div>
         </div>

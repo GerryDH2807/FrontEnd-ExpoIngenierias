@@ -3,6 +3,9 @@ import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent
 import Placeholder from 'react-bootstrap/Placeholder';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+const URL = 'http://localhost:8000/announ/';
 
 function AnnounTitle({ TituloDetailed, Fecha, isLoaded }) {
   return (
@@ -90,14 +93,16 @@ export default function DetailedAnnounCont() {
   });
   const [isLoading, setIsLoading] = useState(true);
 
+  const { id_announ } = useParams();
+
   useEffect(() => {
-    fetch('http://localhost:8000/announ/' + 9)
+    fetch(URL + id_announ)
       .then((res) => res.json())
       .then((data) => {
         setAnnounDet(data);
         setIsLoading(false); // Datos obtenidos, desactivar estado de carga
       });
-  }, []);
+  }, [id_announ]);
 
   return (
     <>

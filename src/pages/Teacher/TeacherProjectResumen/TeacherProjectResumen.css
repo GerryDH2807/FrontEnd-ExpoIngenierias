@@ -233,3 +233,33 @@
   width: 90px;
   height: 90px;
 }
+
+.TextoDescrProf{
+
+  cursor: pointer;
+  user-select: none;
+
+}
+
+.containerdescrprof{
+  overflow-y: auto;
+  height: 200px;
+}
+
+.containerdescrprof::-webkit-scrollbar {
+  width: 5px;
+}
+
+.containerdescrprof::-webkit-scrollbar-track {
+  background: #aeaeae;
+  
+}
+
+.containerdescrprof::-webkit-scrollbar-thumb {
+  background: #555555e6;
+  border-radius: 5px; 
+}
+
+.containerdescrprof::-webkit-scrollbar-thumb:hover {
+  background: #000000; 
+}

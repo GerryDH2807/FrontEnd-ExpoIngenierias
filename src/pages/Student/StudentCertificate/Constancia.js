@@ -1,10 +1,8 @@
-import { Link } from 'react-router-dom';
-
 import '../ProjectSelection/Juez.css';
 import '../ProjectSelection/Badge.css';
 import { jsPDF } from "jspdf";
 import { useAuth0 } from '@auth0/auth0-react';
-import React, { useState,useEffect,useRef} from "react";
+import React, { useState,useEffect} from "react";
 import logo from '../../../img/logo-certificado.png';
 import firma from '../../../img/firma-ejemplo.jpg';
 
@@ -57,36 +55,11 @@ function CardCalif({categoria,student_name}) {
             <div className='col-auto p-3'>
 
                 <div className="card mb-1 me-0">
-
-                    {categoria === 'Concepto' && (
-
-                        <div className="imag ConstanciaCardPhoto">
-                                    
-                        </div>
-
-                    )}
-
-                    {categoria === 'Prototipo' && (
-
-                        <div className="imag algoimagProto">
-                                    
-                        </div>
-
-                    )}
-
-                    {categoria === 'Prototipo finalizado' && (
-
-                        <div className="imag algoimagFinish">
-                                    
-                        </div>
-
-                    )}
-
-            
-                    <div className="text">
-                
-                    <button className="btn23" onClick={handleOnClick}>Descargar Constancia</button>
-                        
+                    <div className="imag ConstanciaCardPhoto">
+                                
+                    </div>
+                    <div className="text constanciastextsirveporfa">
+                        <button className="btn23" onClick={handleOnClick}>Descargar Constancia</button>
                     </div>
                 </div>
             </div>    
