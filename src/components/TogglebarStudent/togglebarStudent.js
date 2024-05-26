@@ -5,10 +5,14 @@ import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import logo from '../../img/logo.svg';
 import logo2 from '../../img/logo2.svg';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import {Link} from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+
+import { useParams } from "react-router-dom";
+
+const URL = 'http://localhost:8000/students/'
 
 
 const LogoutButton = () => {
@@ -33,6 +37,29 @@ function ToggleBarStudent({SectionName}) {
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+
+    const [student, setStudent] = useState({
+      id_student: 0,
+      name: "",
+      lastName: "",
+      enrollment: "",
+    });
+
+    const { id_student } = useParams();
+  
+    useEffect(() => {
+      //fetch(URL+id_student)
+      fetch(URL+'MaquiEl pr320S')
+        .then((res) => res.json())
+        .then((data) => {
+          setStudent(data);
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+        });
+    }, [id_student]);
+  
     
   
     return (
@@ -67,7 +94,7 @@ function ToggleBarStudent({SectionName}) {
               <div className='row'>
                 <div className='col'>
                 <center><Link to='/student-profile'><i className='bi bi-person-circle docu-icon2'>
-                  </i></Link><Link to='/student-profile' className='Titulo-toggle'> Gerardo Deustúa Hernández</Link></center>
+                  </i></Link><Link to={'/student-profile/'+ student.id} className='Titulo-toggle'> {student.name + " " + student.lastName} </Link></center>
                 </div>
               </div>
             </div>

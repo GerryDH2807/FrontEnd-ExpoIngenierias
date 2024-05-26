@@ -12,13 +12,15 @@ import Card from 'react-bootstrap/Card';
 
 import Modal from 'react-bootstrap/Modal';
 
+const URL = 'http://localhost:8000/projects/catalogue';
+
 function MemberCont({NombreMiembro}){
     return(
       <li className="Texto text-wrap mb-0">{NombreMiembro}</li>
     );
   }
 
-function MyVerticallyCenteredModal({ TitleDetailed, DescriptionDetailed, TeacherDetailed, MemebersDetailed, DriveLink, YoutubeLink,members, ...props }) {
+function MyVerticallyCenteredModal({ TitleDetailed, DescriptionDetailed, StudentDetailed,TeacherDetailed, MembersDetailed, AssesorsDetailed, DriveLink, YoutubeLink,members, ...props }) {
 const { CategoCheckModal } = props;
 
 return (
@@ -48,7 +50,7 @@ return (
                     </div>
                 )}
 
-                {CategoCheckModal === "Finalizado" && (
+                {CategoCheckModal === "Prototipo finalizado" && (
                     <div className='col p-3 m-2 FinishDetailedImage'>
 
                     </div>
@@ -58,12 +60,16 @@ return (
                     <div className='container-fluid'>
                         < div className='row'>
                             <div className='col'>
-                                <p className='Titulo123'>Lider del equipo: </p> <span>{MemebersDetailed}</span>
+                                <p className='Titulo123'>Lider del equipo: </p> <span>{StudentDetailed}</span>
                             </div>
                         </div>
                         < div className='row mt-3'>
                             <div className='col'>
-                                <p className='Titulo123'>Miembros del equipo: </p> <span><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /></span>
+                                <p className='Titulo123'>Miembros del equipo: </p> <span>
+                                {MembersDetailed.map((item,index) => (
+                                    <MemberCont NombreMiembro={item.name + " " + item.lastName} />
+                                ))}
+                                    </span>
                             </div>
                         </div>
                     </div>
@@ -72,12 +78,16 @@ return (
                 <div className='container-fluid'>
                         < div className='row'>
                             <div className='col'>
-                                <p className='Titulo123'>Profesor lider: </p> <span>{MemebersDetailed}</span>
+                                <p className='Titulo123'>Profesor lider: </p> <span>{TeacherDetailed}</span>
                             </div>
                         </div>
                         < div className='row mt-3'>
                             <div className='col'>
-                                <p className='Titulo123'>Profesores asesores: </p> <span><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /><MemberCont NombreMiembro={"Gerardo Deustúa"} /></span>
+                                <p className='Titulo123'>Profesores asesores: </p> <span>
+                                    {AssesorsDetailed.map((item,index) => (
+                                        <MemberCont NombreMiembro={item.name + " " + item.lastName} />
+                                    ))}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -152,7 +162,7 @@ return (
 );
 }
 
-function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed }) {
+function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed, Student, Members,Teacher, Assesors }) {
     const [modalShow, setModalShow] = useState(false);
   
     return (
@@ -166,10 +176,13 @@ function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed }) 
           onHide={() => setModalShow(false)}
           CategoCheckModal={CategoCheckButton}
           TitleDetailed={TitleDetailed}
+          StudentDetailed={Student.name + " " + Student.lastName}
           DescriptionDetailed={DescriptionDetailed}
-          TeacherDetailed={'Daniela Lozada Bracamontes'}
+          TeacherDetailed={Teacher.name + " " + Teacher.lastName}
 
-          MemebersDetailed={'Gerardo Deustúa Hernández' }
+          MembersDetailed={Members}
+
+          AssesorsDetailed={Assesors}
 
           DriveLink={'http://google.com'}
           YoutubeLink={'http://youtube.com'}
@@ -180,13 +193,14 @@ function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed }) 
   
 
 
-function CardProj({ CategoCheck, Title, Description }) {
+function CardProj({ CategoCheck, Title, Description, Student,Members,Teacher, Assesors }) {
     const truncatedText = (text, limit) => {
         if (!text || typeof text !== 'string' || text.length <= limit) {
           return text;
         }
-        return text.slice(0, limit) + '...';
-      };
+        return text.slice(0, limit) + '...';
+      };
+    
     
     return (
     <div className='col p-3'>
@@ -197,7 +211,7 @@ function CardProj({ CategoCheck, Title, Description }) {
                 <Card.Title className='Titulo123 text-wrap'>{Title}</Card.Title>
                 <Card.Text className='TextoCardWrap'>{truncatedText(Description,125)}</Card.Text>
                 <center>
-                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description}>Ver proyecto</ButtonModal>
+                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Student={Student} Members={Members} Teacher={Teacher} Assesors={Assesors}>Ver proyecto</ButtonModal>
                 </center>
                 </Card.Body>
             </Card>
@@ -210,7 +224,7 @@ function CardProj({ CategoCheck, Title, Description }) {
                 <Card.Title className='Titulo123'>{Title}</Card.Title>
                 <Card.Text className='TextoCardWrap'>{Description}</Card.Text>
                 <center>
-                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description}>Ver proyecto</ButtonModal>
+                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Student={Student} Members={Members} Teacher={Teacher} Assesors={Assesors}>Ver proyecto</ButtonModal>
                 </center>
                 </Card.Body>
             </Card>
@@ -224,7 +238,7 @@ function CardProj({ CategoCheck, Title, Description }) {
                 <Card.Text className='TextoCardWrap'>{Description}</Card.Text>
                 
                 <center>
-                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description}>Ver proyecto</ButtonModal>
+                    <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Student={Student} Members={Members} Teacher={Teacher} Assesors={Assesors}>Ver proyecto</ButtonModal>
                 </center>
                 </Card.Body>
             </Card>
@@ -245,7 +259,7 @@ export default function Actual() {
     
     
       useEffect(()=>{
-        fetch('http://localhost:8000/projects/catalogue')
+        fetch(URL)
         .then((res)=> res.json())
         .then((data) => {
 
@@ -278,10 +292,6 @@ export default function Actual() {
     return (
       <>
         <Menu />
-
-        {nexusProjects.map((item,index) => (
-            <h1>{item.title}</h1>
-        ))}
         <div className='container-fluid'>
             <div className='row m-4 p-3 CardsContainer'>
                 <div className='container'>
@@ -298,7 +308,6 @@ export default function Actual() {
                     </div>
                 </div>
             </div>
-
             <div className='row m-4 p-3 CardsContainer'>
 
                 <div className='container-fluid'>
@@ -312,7 +321,7 @@ export default function Actual() {
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
                                 {nanoProjects.map((item,index) => (
-                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description}/>
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Student={item.student} Members={item.team.students}  Teacher={item.Lider} Assesors={item.Asesores}/>
                                 ))}
                             </div>                  
                         </div>
@@ -334,7 +343,7 @@ export default function Actual() {
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
                                 {nexusProjects.map((item,index) => (
-                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description}/>
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Student={item.student} Members={item.team.students} Teacher={item.Lider} Assesors={item.Asesores}/>
                                 ))}
                             </div>                  
                         </div>
@@ -356,7 +365,7 @@ export default function Actual() {
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
                                 {bioProjects.map((item,index) => (
-                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description}/>
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Student={item.student}  Members={item.team.students}  Teacher={item.Lider} Assesors={item.Asesores}/>
                                 ))}
                             </div>                  
                         </div>
@@ -378,7 +387,7 @@ export default function Actual() {
                         <div className='col'>
                             <div className="d-flex flex-nowrap">
                                 {cyberProjects.map((item,index) => (
-                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description}/>
+                                    <CardProj CategoCheck={item.category.title} Title={item.title} Description={item.description} Student={item.student} Members={item.team.students}  Teacher={item.Lider} Assesors={item.Asesores} />
                                 ))}
                             </div>                  
                         </div>
