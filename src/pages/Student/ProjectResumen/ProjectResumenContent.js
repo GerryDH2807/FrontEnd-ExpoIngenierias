@@ -658,6 +658,11 @@ export default function ProjResumeCont(){
     Lider: "",
     student: "",
     team: {students: []},
+    gradeCriteria1: "",
+    gradeCriteria2: "",
+    gradeCriteria3: "",
+    gradeCriteria4: "",
+    gradeCriteria5: "",
     comment: "",
     criterias: [
       { id: 1, description: "", weight: 0 },
@@ -706,7 +711,7 @@ export default function ProjResumeCont(){
                 <div className ='row'>
                   <CommentCont IsLoaded={IsLoaded} role={"Profesor"} comment={project.comment}></CommentCont>
                   <CommentCont IsLoaded={IsLoaded} role={"Juez"} comment={"Comentario"}></CommentCont>
-                  <Rubrica IsLoaded={IsLoaded} Calf11={"10"} Calf21={"6"} Calf31={"8"} Calf41={"9"} Calf51={"7"} Rubri11={findCriteriaById(1).description} Rubri21={findCriteriaById(2).description} Rubri31={findCriteriaById(3).description} Rubri41={findCriteriaById(4).description} Rubri51={findCriteriaById(5).description}></Rubrica>
+                  <Rubrica IsLoaded={IsLoaded} Calf11={project.gradeCriteria1} Calf21={project.gradeCriteria2} Calf31={project.gradeCriteria3} Calf41={project.gradeCriteria4} Calf51={project.gradeCriteria5} Rubri11={findCriteriaById(1).description} Rubri21={findCriteriaById(2).description} Rubri31={findCriteriaById(3).description} Rubri41={findCriteriaById(4).description} Rubri51={findCriteriaById(5).description}></Rubrica>
                   <FinalCalf IsLoaded={IsLoaded} finalCalf={"9"}></FinalCalf>
                 </div>
               </div>  
