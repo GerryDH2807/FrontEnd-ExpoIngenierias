@@ -6,6 +6,9 @@ import Spinner from 'react-bootstrap/Spinner';
 import './Page.css';
 import './Resume.css';
 
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
 
 import Accordion from 'react-bootstrap/Accordion';
@@ -387,6 +390,79 @@ function ProjVal({finalRes, postVal, vidVal,id_project}){
   );
 }
 
+function MyVerticallyCenteredModal({ComentRubri1, ComentRubri2, ComentRubri3, ComentRubri4, ComentRubri5,...props}) {
+  return (
+      <Modal
+      {...props}
+      size="xl"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      >
+      <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter" className='Titulo123'>
+              Comentrarios de la rubrica
+          </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+
+        
+        <div className='container'>
+          <div className='row d-flex align-items-center justify-content-center'>
+            <div className='col-3 m-3 p-3 RubricaContDetiledMOodal'>
+              <h5 className='fw-bolder'>Comentario rubro 1:</h5>
+              <span>{ComentRubri1}</span>
+            </div>
+            <div className='col-3 m-3 p-3 RubricaContDetiledMOodal'>
+              <h5 className='fw-bolder'>Comentario rubro 2:</h5>
+              <span>{ComentRubri2}</span>
+            </div>
+            <div className='col-3 m-3 p-3 RubricaContDetiledMOodal'>
+              <h5 className='fw-bolder'>Comentario rubro 3:</h5>
+              <span>{ComentRubri3}</span>
+            </div>
+          </div>
+          <div className='row d-flex align-items-center justify-content-center'>
+            <div className='col-3 m-3 p-3 RubricaContDetiledMOodal'>
+              <h5 className='fw-bolder'>Comentario rubro 4:</h5>
+              <span>{ComentRubri4}</span>
+            </div>
+            <div className='col-3 m-3 p-3 RubricaContDetiledMOodal'>
+              <h5 className='fw-bolder'>Comentario rubro 5:</h5>
+              <span>{ComentRubri5}</span>
+            </div>
+          </div>
+        </div>
+          
+      </Modal.Body>
+      <Modal.Footer>
+          <Button onClick={props.onHide} className='ButtonColors123'>Cerrar</Button>
+      </Modal.Footer>
+      </Modal>
+  );
+  }
+  
+  function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed }) {
+      const [modalShow, setModalShow] = useState(false);
+    
+      return (
+        <>
+          <Button className='ButtonColors' onClick={() => setModalShow(true)}>
+            Ver comentarios de rubrica
+          </Button>
+    
+          <MyVerticallyCenteredModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            ComentRubri1={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempus, nulla et suscipit dapibus, quam nibh fringilla sapien, id porttitor lacus ex ac metus. In hac habitasse platea dictumst. Fusce lacus enim, consequat cursus tempus vel, volutpat vitae erat. Etiam semper lectus sapien, sit amet viverra neque malesuada eget. Suspendisse non efficitur lorem, sit amet lobortis diam. Duis accumsan tristique nibh. Ut non fringilla massa, non fringilla ipsum. Curabitur ante justo, sollicitudin nec magna sed, auctor pellentesque purus. Sed nec suscipit est. Sed fermentum ultricies varius. Cras suscipit odio quis velit faucibus, in fermentum diam fermentum. Ut ultricies quam eget lorem malesuada, non porttitor nunc ornare. Ut euismod, purus ac ultricies ultrices, quam nulla auctor nibh, ac consequat lectus ipsum eget diam. Quisque molestie viverra ante ac pretium."}
+            ComentRubri2={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempus, nulla et suscipit dapibus, quam nibh fringilla sapien, id porttitor lacus ex ac metus. In hac habitasse platea dictumst. Fusce lacus enim, consequat cursus tempus vel, volutpat vitae erat. Etiam semper lectus sapien, sit amet viverra neque malesuada eget. Suspendisse non efficitur lorem, sit amet lobortis diam. Duis accumsan tristique nibh. Ut non fringilla massa, non fringilla ipsum. Curabitur ante justo, sollicitudin nec magna sed, auctor pellentesque purus. Sed nec suscipit est. Sed fermentum ultricies varius. Cras suscipit odio quis velit faucibus, in fermentum diam fermentum. Ut ultricies quam eget lorem malesuada, non porttitor nunc ornare. Ut euismod, purus ac ultricies ultrices, quam nulla auctor nibh, ac consequat lectus ipsum eget diam. Quisque molestie viverra ante ac pretium."}
+            ComentRubri3={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempus, nulla et suscipit dapibus, quam nibh fringilla sapien, id porttitor lacus ex ac metus. In hac habitasse platea dictumst. Fusce lacus enim, consequat cursus tempus vel, volutpat vitae erat. Etiam semper lectus sapien, sit amet viverra neque malesuada eget. Suspendisse non efficitur lorem, sit amet lobortis diam. Duis accumsan tristique nibh. Ut non fringilla massa, non fringilla ipsum. Curabitur ante justo, sollicitudin nec magna sed, auctor pellentesque purus. Sed nec suscipit est. Sed fermentum ultricies varius. Cras suscipit odio quis velit faucibus, in fermentum diam fermentum. Ut ultricies quam eget lorem malesuada, non porttitor nunc ornare. Ut euismod, purus ac ultricies ultrices, quam nulla auctor nibh, ac consequat lectus ipsum eget diam. Quisque molestie viverra ante ac pretium."}
+            ComentRubri4={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempus, nulla et suscipit dapibus, quam nibh fringilla sapien, id porttitor lacus ex ac metus. In hac habitasse platea dictumst. Fusce lacus enim, consequat cursus tempus vel, volutpat vitae erat. Etiam semper lectus sapien, sit amet viverra neque malesuada eget. Suspendisse non efficitur lorem, sit amet lobortis diam. Duis accumsan tristique nibh. Ut non fringilla massa, non fringilla ipsum. Curabitur ante justo, sollicitudin nec magna sed, auctor pellentesque purus. Sed nec suscipit est. Sed fermentum ultricies varius. Cras suscipit odio quis velit faucibus, in fermentum diam fermentum. Ut ultricies quam eget lorem malesuada, non porttitor nunc ornare. Ut euismod, purus ac ultricies ultrices, quam nulla auctor nibh, ac consequat lectus ipsum eget diam. Quisque molestie viverra ante ac pretium."}
+            ComentRubri5={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempus, nulla et suscipit dapibus, quam nibh fringilla sapien, id porttitor lacus ex ac metus. In hac habitasse platea dictumst. Fusce lacus enim, consequat cursus tempus vel, volutpat vitae erat. Etiam semper lectus sapien, sit amet viverra neque malesuada eget. Suspendisse non efficitur lorem, sit amet lobortis diam. Duis accumsan tristique nibh. Ut non fringilla massa, non fringilla ipsum. Curabitur ante justo, sollicitudin nec magna sed, auctor pellentesque purus. Sed nec suscipit est. Sed fermentum ultricies varius. Cras suscipit odio quis velit faucibus, in fermentum diam fermentum. Ut ultricies quam eget lorem malesuada, non porttitor nunc ornare. Ut euismod, purus ac ultricies ultrices, quam nulla auctor nibh, ac consequat lectus ipsum eget diam. Quisque molestie viverra ante ac pretium."}
+          />
+        </>
+      );
+    }
+
 function JuezContComment({comment,id_judge}){
   return(
     <div className ='container-fluid p-3 mt-3 mb-3 ContCommentIndiJudge'>
@@ -396,9 +472,10 @@ function JuezContComment({comment,id_judge}){
         </div>   
       </div>
 
-      <div className ="row pb-3 align-items-center">
+      <div className ="row align-items-center">
         <div className ='col-md-auto '>
           <p className='text-break ComentariosCOntenidoWrap'>{comment}</p>
+          <ButtonModal></ButtonModal>
         </div>   
       </div> 
     </div> 
@@ -611,7 +688,7 @@ export default function ProjResumeCont(){
               <div className='container-fluid'>
                 <div className ='row'>
                   <CommentCont IsLoaded={IsLoaded} role={"Profesor"} comment={""}></CommentCont>
-                  <CommentCont IsLoaded={IsLoaded} role={"Juez"} comment={""}></CommentCont>
+                  <CommentCont IsLoaded={IsLoaded} role={"Juez"} comment={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></CommentCont>
                   <Rubrica IsLoaded={IsLoaded} Calf11={"10"} Calf21={"6"} Calf31={"8"} Calf41={"9"} Calf51={"7"} Rubri11={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri21={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri31={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri41={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."} Rubri51={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}></Rubrica>
                   <FinalCalf IsLoaded={IsLoaded} finalCalf={"9"}></FinalCalf>
                 </div>
