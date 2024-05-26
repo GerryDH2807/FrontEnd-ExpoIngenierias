@@ -116,7 +116,7 @@
   width: 320px;
   height: auto;
 
-  --bs-card-border-radius: 16px;
+  --bs-card-border-radius: 16px !important;
 
 }
 

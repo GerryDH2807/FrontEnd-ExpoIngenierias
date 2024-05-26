@@ -54,11 +54,13 @@ function CardCalif({categoria,student_name,project}) {
         <>
             <div className='col-auto p-3'>
 
-                <div className="card mb-1 me-0">
+                <div className="card cardconst mb-1 me-0">
                     <div className="imag ConstanciaCardPhoto">
                                 
                     </div>
                     <div className="text constanciastextsirveporfa">
+                        <center><span className='fw-bolder'>Esta constancia es valida para:</span></center>
+                        <center><p>Pedro Alcachofas Dominguez</p></center>
                         <button className="btn23" onClick={handleOnClick}>Descargar Constancia</button>
                     </div>
                 </div>
@@ -128,26 +130,26 @@ export default function ProjSelection({ConstCheck}){
 
                 )}
 
-        {ConstCheck === "True" && (
-            projects.map((item) => (
-            <div className='row d-flex flex-col justify-content-evenly' key={item.id}>
-            <CardCalif 
-                key={item.student.id}
-                categoria={"Concept"}
-                student_name={item.student.name + " " + item.student.lastName}
-                project={item.title}
-            />
-            {item.team.students.map((student, index) => (
-            <CardCalif 
-                key={student.id} // Asegúrate de usar una key única
-                categoria={"Concepto"}
-                student_name={student.name + " " + student.lastName}
-                project={item.title}
-        />
-      ))}
-    </div>
-  ))
-)}
+                {ConstCheck === "True" && (
+                    projects.map((item) => (
+                    <div className='row d-flex flex-col justify-content-evenly' key={item.id}>
+                    <CardCalif 
+                        key={item.student.id}
+                        categoria={"Concept"}
+                        student_name={item.student.name + " " + item.student.lastName}
+                        project={item.title}
+                    />
+                    {item.team.students.map((student, index) => (
+                    <CardCalif 
+                        key={student.id} // Asegúrate de usar una key única
+                        categoria={"Concepto"}
+                        student_name={student.name + " " + student.lastName}
+                        project={item.title}
+                    />
+                ))}
+            </div>
+        ))
+    )}
 
             </div>        
         </>
