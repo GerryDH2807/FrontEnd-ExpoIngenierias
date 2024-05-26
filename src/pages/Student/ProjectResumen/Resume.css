@@ -351,10 +351,14 @@
   background-color: #e6e6e6;
   border-radius: 5px;
 
-  height: 325px;
+  height: 232px;
 
   overflow-y: auto;
 
+}
+
+.RubricaContDetiledMOodal h5{
+  color: #0C356A;
 }
 
 .RubricaContDetiledMOodal::-webkit-scrollbar {

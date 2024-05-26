@@ -408,33 +408,39 @@ function MyVerticallyCenteredModal({ComentRubri1, ComentRubri2, ComentRubri3, Co
       <Modal.Body>
 
         
-        <div className='container'>
-          <div className='row d-flex align-items-center justify-content-center'>
-            <div className='col-3 m-3 p-3 RubricaContDetiledMOodal'>
+        <div className='container-fluid'>
+          <div className='row w-100'>
+            <div className='col-11 m-3 p-3 RubricaContDetiledMOodal'>
               <h5 className='fw-bolder'>Comentario rubro 1:</h5>
               <span>{ComentRubri1}</span>
             </div>
-            <div className='col-3 m-3 p-3 RubricaContDetiledMOodal'>
+          </div>
+          <div className='row w-100'>
+            <div className='col-11 m-3 p-3 RubricaContDetiledMOodal'>
               <h5 className='fw-bolder'>Comentario rubro 2:</h5>
               <span>{ComentRubri2}</span>
             </div>
-            <div className='col-3 m-3 p-3 RubricaContDetiledMOodal'>
+          </div>
+          <div className='row'>
+            <div className='col-11 m-3 p-3 RubricaContDetiledMOodal'>
               <h5 className='fw-bolder'>Comentario rubro 3:</h5>
               <span>{ComentRubri3}</span>
             </div>
           </div>
-          <div className='row d-flex align-items-center justify-content-center'>
-            <div className='col-3 m-3 p-3 RubricaContDetiledMOodal'>
+          
+          <div className='row'>
+            <div className='col-11 m-3 p-3 RubricaContDetiledMOodal'>
               <h5 className='fw-bolder'>Comentario rubro 4:</h5>
               <span>{ComentRubri4}</span>
             </div>
-            <div className='col-3 m-3 p-3 RubricaContDetiledMOodal'>
+          </div>
+          <div className='row'>
+            <div className='col-11 m-3 p-3 RubricaContDetiledMOodal'>
               <h5 className='fw-bolder'>Comentario rubro 5:</h5>
               <span>{ComentRubri5}</span>
             </div>
           </div>
         </div>
-          
       </Modal.Body>
       <Modal.Footer>
           <Button onClick={props.onHide} className='ButtonColors123'>Cerrar</Button>
