@@ -153,7 +153,7 @@
   margin-right: 10px; /* Espacio entre elementos */
 }
 .BGResume-profesor{
-  background-image: url('../../../img/proyec.svg');
+  background-color: #0C356A;
   background-size: cover; 
   background-position: center;
   border-radius: 5px;
@@ -173,7 +173,7 @@
 }
 .prof-titulo-h3-2{
   font-size: 50px;
-  background-color: #0C356A;
+  background-color: #406eaa;
   padding: 5px;
 
   border-radius: 15px;
@@ -250,4 +250,14 @@
   width: 40px ;
   height: 40px;
 
+}
+
+.IconoNohyProjectsProfe{
+
+  font-size: 100px;
+  color: #aeaeae;
+}
+
+.ColorNohayProyectoprofe{
+  color: #aeaeae;
 }

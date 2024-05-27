@@ -42,3 +42,14 @@
     height: 100%;
 
 }
+
+.FotoContenedorDerecha{
+
+
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    
+    width: 100%;
+    height: 100%;
+
+}

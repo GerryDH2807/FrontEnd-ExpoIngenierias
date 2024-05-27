@@ -263,3 +263,16 @@
 .containerdescrprof::-webkit-scrollbar-thumb:hover {
   background: #000000; 
 }
+
+.contenedorDecripcionprofesor{
+
+  overflow-y: auto;
+  height: 205px;
+
+}
+
+.contenedortextoparaversisirve{
+
+  height: 265px;
+
+}

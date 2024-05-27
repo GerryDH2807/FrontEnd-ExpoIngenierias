@@ -12,7 +12,11 @@
     display: flex;
     flex-direction: column;
     align-items: space-around;
-    height: 8vh;
+    height: 15vh;
+}
+
+.cardconst{
+    --bs-card-border-radius: 16px;
 }
 
 .Subtitulo{
@@ -75,7 +79,7 @@
 .ConstanciaCardPhoto {
     background-image: url('../../../img/Constancia1.png');
     width: 331px;
-    height: 390px;
+    height: 315px;
     background-position: center;
     background-size: cover;
   

@@ -58,7 +58,7 @@ function AnnounInfo({ announ, isLoading }) {
         </>
       ) : (
         <>
-        <Link to={'/announ' + 1 + '-teacher'} className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
+        <Link to={`/announ-teacher/${announ.id}`} className='row m-3 p-2 AnnounInfoContainer d-flex align-items-center'>
           <div className='col-3 d-flex align-items-center'>
             <i className='bi bi-envelope-fill AnnounIcon'></i>
             <span className='Titulo'> {announ.title}</span>

@@ -15,14 +15,14 @@
 .card:hover {
   cursor: pointer;
   box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
-  --bs-card-border-radius: 16px;
+  --bs-card-border-radius: 16px !important;
 }
 
 .btn23 {
   width: 100%;
   min-height: 6.5vh;
   
-  margin-top: 0.75rem;
+  margin-top: 0.10rem;
   margin-bottom: 0.5rem;
   font-size: 1.1em;
   font-weight: bold;
