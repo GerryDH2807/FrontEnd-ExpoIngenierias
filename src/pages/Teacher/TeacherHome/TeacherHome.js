@@ -73,7 +73,7 @@ function HorizontalSlider({ data, IsLoaded }) {
             {IsLoaded && (
                 <>
                     {!tieneInformacion(data) && (
-                      <div className="container pb-3">
+                      <div className="container pb-1">
                           <div className='row '>
                             <div className='col-12 d-flex align-items-center justify-content-center'>
                               <i className='bi bi-binoculars-fill IconoNohyProjectsProfe'></i>
@@ -87,11 +87,11 @@ function HorizontalSlider({ data, IsLoaded }) {
                     )}
 
                     {tieneInformacion(data) && (
-                      <div className="slider-container p-3">
+                      <div className="slider-container p-1">
                           {data.map((item) => (
-                              <div className='slider-item cardProf m-3' key={item.id}>
+                              <div className='slider-item cardProf card m-3' key={item.id}>
                                   <img src={imagenes[item.category]} alt={item.id} className='card-img-top ImagProfe' />
-                                  <div className='card-body '>
+                                  <div className='card-body'>
                                       <h5 className=' card-title m-2'>{item.id}</h5>
                                       <div className='container-fluid'>
                                           <div className='row d-flex justify-content-evenly mb-4'>
@@ -294,7 +294,7 @@ export default function Hometeacher() {
                             <div className="col-md-1"></div>
                             <div className="col-md-10 ">
                                 <div className='container-fluid' id="imgfondo">
-                                    <h3 className="Titulo p-3">Proyectos Que faltan de revisar</h3>
+                                    <h3 className="Titulo ps-3 pb-0 pt-3 mb-0">Proyectos Que faltan de revisar</h3>
                                     <HorizontalSlider data={falt} IsLoaded={IsLoaded} />
                                 </div>
                             </div>
@@ -304,7 +304,7 @@ export default function Hometeacher() {
                             <div className="col-md-1"></div>
                             <div className="col-md-10 ">
                                 <div className='container-fluid mb-3' id="imgfondo">
-                                    <h3 className="Titulo p-3">Proyectos Revisados</h3>
+                                    <h3 className="Titulo ps-3 pb-0 mb-0">Proyectos Revisados</h3>
                                     <HorizontalSlider data={rev} IsLoaded={IsLoaded} />
                                 </div>
                             </div>

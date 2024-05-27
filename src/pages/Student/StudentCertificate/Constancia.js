@@ -88,7 +88,7 @@ function tieneInformacion(variable) {
 export default function ProjSelection({ ConstCheck }) {
     const [projects, setProjects] = useState([]); // Estado inicial como un arreglo vacío
 
-    const { isAuthenticated, isLoading, error, user } = useAuth0();
+    const { user } = useAuth0();
     const id_student = user.sub;
 
     useEffect(() => {
