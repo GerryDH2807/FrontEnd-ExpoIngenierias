@@ -152,10 +152,10 @@ function FormExample() {
   const [teacherNum, setTeacherNum] = useState(1);
   const [members, setMembers] = useState([{ id: 1, nameMember: '', lastNameMember: '', enrollment: '' }]);
   const [teachers, setTeachers] = useState([{ id: 1, nameTeacher: '', lastNameTeacher: '', email: '' }]);
-  const [title, setTitle] = useState('nuevo');
-  const [description, setDescription] = useState('descripcion');
-  const [linkVideo, setLinkVideo] = useState('video.mp4');
-  const [linkPoster, setLinkPoster] = useState('poster.pdf');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [linkVideo, setLinkVideo] = useState('');
+  const [linkPoster, setLinkPoster] = useState('');
   const [area, setArea] = useState(1);
   const [category, setCategory] = useState(1);
   const [contacto, setContacto] = useState(0);

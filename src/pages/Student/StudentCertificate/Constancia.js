@@ -89,7 +89,7 @@ export default function ProjSelection({ConstCheck}){
     const { isAuthenticated, isLoading, error, user } = useAuth0();
     const id_student = user.sub;
     useEffect(() => {
-        fetch(URL + 'auth0|66340f38cfd75a371a1b532b')
+        fetch(URL + id_student)
             .then((res) => res.json())
             .then((data) => {
                 setProjects(data);
