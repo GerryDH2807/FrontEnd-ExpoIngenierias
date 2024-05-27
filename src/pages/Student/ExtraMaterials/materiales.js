@@ -142,7 +142,7 @@ export default function ProjSelection({ ProjCheck }) {
                         <div className='container-fluid'>
                             <div className='row'>
                                 <div className='col-12 mt-2 pt-3 ps-3 pe-3'>
-                                    <center><h1 className='TituloProjSEL p-3 text-center TitleSelectContainerVFascara'>Hacer solicitud de material extra</h1></center>
+                                    <center><h1 className='TituloProjSEL p-3 text-center TitleSelectContainerVFascara'>Actualizar lista de materiales extra</h1></center>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +184,7 @@ export default function ProjSelection({ ProjCheck }) {
 
                         <center>
                             <div className='row BotonMaterialExtraContinuarContainer p-3 m-3'>
-                                <Usure MensajeTitle={"¿Estas de acuerdo con la solicitud?"} BotonA={"Regresar"} BotonB={"Confirmar solicitud"} Path={'/principal-estudiante/'} className={"rcol BotonRegistrarMaterialesExtra p-3"} Texto={"Realizar pedido de materiales"} onConfirm={handleSubmit}/>
+                                <Usure MensajeTitle={"¿Estas de acuerdo con el cambio?"} BotonA={"Regresar"} BotonB={"Confirmar cambios"} Path={'/principal-estudiante/'} className={"rcol BotonRegistrarMaterialesExtra p-3"} Texto={"Actualizar pedido de materiales"} onConfirm={handleSubmit}/>
                             </div>
                         </center>
 
