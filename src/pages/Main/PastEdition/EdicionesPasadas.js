@@ -3,11 +3,9 @@ import Menu from '../../../components/Menu/menu.js';
 import './EdicionesPasadas.css';
 import { Link } from 'react-router-dom';
 
-import Caca from "../../../img/CardConcept.png";
+import Prueba from "../../../img/CardConcept.png";
 
 function ContenedorPasados({className, Titulo, Descripcion, Path, Dirección, FotoContenedor}){
-
-    const VariableTest = require("../../../img/" + FotoContenedor)
 
     return(
         <>
@@ -17,7 +15,7 @@ function ContenedorPasados({className, Titulo, Descripcion, Path, Dirección, Fo
                     <>
 
                         <div className={"col" + className+ Dirección}>
-
+                            <img src={FotoContenedor} alt="" className={'FotoContenedor'+Dirección}/>
                         </div>
 
                         <div className='col p-4 m-3'>
@@ -38,7 +36,7 @@ function ContenedorPasados({className, Titulo, Descripcion, Path, Dirección, Fo
                         </div>
 
                         <div className={"col" + className+ Dirección}>
-                            <img src={VariableTest} alt="" className={'FotoContenedor'+Dirección}/>
+                            <img src={FotoContenedor} alt="" className={'FotoContenedor'+Dirección}/>
                         </div>
                     
                     </>
@@ -54,10 +52,10 @@ export default function EdicionesPasadas(){
         <>
         <Menu />
         <div className='container-fluid p-4 mt-2'>
-            <ContenedorPasados FotoContenedor={'CardConcept.png'} Dirección={"Izquierda"} Path={'/resumen-proyecto-estudiante'} className={' BgPasados1'} Titulo={'Proyectos pasados'} Descripcion={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum elit libero, quis lobortis quam dignissim vel. Nullam quis est egestas, vestibulum magna ut, aliquam tortor. Fusce et feugiat sapien. Mauris vel lacinia sapien, vitae fringilla lectus. Nunc vulputate vulputate odio, in egestas sem rhoncus eget. Integer lobortis purus augue, vitae bibendum turpis aliquet finibus. Nulla vitae magna posuere, ornare dolor in, venenatis velit. Cras sit amet volutpat justo, quis tristique ipsum. Ut sit amet aliquam odio."}/>
-            <ContenedorPasados Dirección={"Derecha"} Path={'/resumen-proyecto-estudiante'} className={' BgPasados1'} Titulo={'Proyectos pasados'} Descripcion={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum elit libero, quis lobortis quam dignissim vel. Nullam quis est egestas, vestibulum magna ut, aliquam tortor. Fusce et feugiat sapien. Mauris vel lacinia sapien, vitae fringilla lectus. Nunc vulputate vulputate odio, in egestas sem rhoncus eget. Integer lobortis purus augue, vitae bibendum turpis aliquet finibus. Nulla vitae magna posuere, ornare dolor in, venenatis velit. Cras sit amet volutpat justo, quis tristique ipsum. Ut sit amet aliquam odio."}/>
-            <ContenedorPasados Dirección={"Izquierda"} Path={'/resumen-proyecto-estudiante'} className={' BgPasados1'} Titulo={'Proyectos pasados'} Descripcion={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum elit libero, quis lobortis quam dignissim vel. Nullam quis est egestas, vestibulum magna ut, aliquam tortor. Fusce et feugiat sapien. Mauris vel lacinia sapien, vitae fringilla lectus. Nunc vulputate vulputate odio, in egestas sem rhoncus eget. Integer lobortis purus augue, vitae bibendum turpis aliquet finibus. Nulla vitae magna posuere, ornare dolor in, venenatis velit. Cras sit amet volutpat justo, quis tristique ipsum. Ut sit amet aliquam odio."}/>
-            <ContenedorPasados Dirección={"Derecha"} Path={'/resumen-proyecto-estudiante'} className={' BgPasados1'} Titulo={'Proyectos pasados'} Descripcion={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum elit libero, quis lobortis quam dignissim vel. Nullam quis est egestas, vestibulum magna ut, aliquam tortor. Fusce et feugiat sapien. Mauris vel lacinia sapien, vitae fringilla lectus. Nunc vulputate vulputate odio, in egestas sem rhoncus eget. Integer lobortis purus augue, vitae bibendum turpis aliquet finibus. Nulla vitae magna posuere, ornare dolor in, venenatis velit. Cras sit amet volutpat justo, quis tristique ipsum. Ut sit amet aliquam odio."}/>
+            <ContenedorPasados FotoContenedor={Prueba} Dirección={"Izquierda"} Path={'/resumen-proyecto-estudiante'} className={' BgPasados1'} Titulo={'Proyectos pasados'} Descripcion={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum elit libero, quis lobortis quam dignissim vel. Nullam quis est egestas, vestibulum magna ut, aliquam tortor. Fusce et feugiat sapien. Mauris vel lacinia sapien, vitae fringilla lectus. Nunc vulputate vulputate odio, in egestas sem rhoncus eget. Integer lobortis purus augue, vitae bibendum turpis aliquet finibus. Nulla vitae magna posuere, ornare dolor in, venenatis velit. Cras sit amet volutpat justo, quis tristique ipsum. Ut sit amet aliquam odio."}/>
+            <ContenedorPasados FotoContenedor={Prueba} Dirección={"Derecha"} Path={'/resumen-proyecto-estudiante'} className={' BgPasados1'} Titulo={'Proyectos pasados'} Descripcion={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum elit libero, quis lobortis quam dignissim vel. Nullam quis est egestas, vestibulum magna ut, aliquam tortor. Fusce et feugiat sapien. Mauris vel lacinia sapien, vitae fringilla lectus. Nunc vulputate vulputate odio, in egestas sem rhoncus eget. Integer lobortis purus augue, vitae bibendum turpis aliquet finibus. Nulla vitae magna posuere, ornare dolor in, venenatis velit. Cras sit amet volutpat justo, quis tristique ipsum. Ut sit amet aliquam odio."}/>
+            <ContenedorPasados FotoContenedor={Prueba} Dirección={"Izquierda"} Path={'/resumen-proyecto-estudiante'} className={' BgPasados1'} Titulo={'Proyectos pasados'} Descripcion={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum elit libero, quis lobortis quam dignissim vel. Nullam quis est egestas, vestibulum magna ut, aliquam tortor. Fusce et feugiat sapien. Mauris vel lacinia sapien, vitae fringilla lectus. Nunc vulputate vulputate odio, in egestas sem rhoncus eget. Integer lobortis purus augue, vitae bibendum turpis aliquet finibus. Nulla vitae magna posuere, ornare dolor in, venenatis velit. Cras sit amet volutpat justo, quis tristique ipsum. Ut sit amet aliquam odio."}/>
+            <ContenedorPasados FotoContenedor={Prueba} Dirección={"Derecha"} Path={'/resumen-proyecto-estudiante'} className={' BgPasados1'} Titulo={'Proyectos pasados'} Descripcion={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum elit libero, quis lobortis quam dignissim vel. Nullam quis est egestas, vestibulum magna ut, aliquam tortor. Fusce et feugiat sapien. Mauris vel lacinia sapien, vitae fringilla lectus. Nunc vulputate vulputate odio, in egestas sem rhoncus eget. Integer lobortis purus augue, vitae bibendum turpis aliquet finibus. Nulla vitae magna posuere, ornare dolor in, venenatis velit. Cras sit amet volutpat justo, quis tristique ipsum. Ut sit amet aliquam odio."}/>
         </div>
         </>
     );
