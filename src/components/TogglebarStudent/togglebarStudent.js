@@ -51,7 +51,7 @@ function ToggleBarStudent({SectionName}) {
   
     useEffect(() => {
       //fetch(URL+id_student)
-      fetch(URL+'MaquiEl pr320S')
+      fetch(URL+user.sub)
         .then((res) => res.json())
         .then((data) => {
           setStudent(data);
@@ -66,7 +66,6 @@ function ToggleBarStudent({SectionName}) {
     return (
       <>
         <div className ="ToggleButton">
-        {/*<h1>{user.sub}</h1>*/}
           <i className='bi bi-list the_bars' onClick={handleShow}></i>
           <img className="ExpoIngLog2" src ={logo} alt="" onClick={handleShow}></img>
           <span className="textm no-select" onClick={handleShow}><strong>{SectionName}</strong></span>

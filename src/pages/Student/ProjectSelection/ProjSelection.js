@@ -10,6 +10,8 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import Dropdown from 'react-bootstrap/Dropdown';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 const URL = 'http://localhost:8000/projects/resumeProject/';
 
 function MenuProyectos({id_path}) {
@@ -132,7 +134,7 @@ function CardCalif({ projects, isLoading }) {
 
 export default function ProjSelection({ ProjCheck }) {
     const [isLoading, setIsLoading] = useState(true);
-
+    const { isAuthenticated, isLoadingAuth, error, user } = useAuth0();
 
 
     const [projects, setProjects] = useState([]);
@@ -141,7 +143,8 @@ export default function ProjSelection({ ProjCheck }) {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(URL + 'auth0|66340f38cfd75a371a1b532b')
+        //fetch(URL + 'auth0|66340f38cfd75a371a1b532b')
+        fetch(URL + user.sub)
             .then((res) => res.json())
             .then((data) => {
                 setProjects(data);
@@ -155,10 +158,12 @@ export default function ProjSelection({ ProjCheck }) {
 
     return (
         <>
+            
             <StudentToggle NameSection={"Mis proyectos"} />
             <div className='container-fluid'>
                 {ProjCheck === "False" && (
                     <>
+                        
                         <div className='container-fluid centered-containerProjSelc'>
                             <div className='row m-4 p-3 TitleSelectContainer'>
                                 <div className='col '>
@@ -186,6 +191,7 @@ export default function ProjSelection({ ProjCheck }) {
                 )}
                 {ProjCheck === "True" && (
                     <>
+                    
                         <div className='container-fluid '>
                             <div className='row'>
                                 <div className='col-2 mt-2 p-3'>

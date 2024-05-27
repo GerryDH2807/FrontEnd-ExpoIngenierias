@@ -8,6 +8,8 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import Modal from 'react-bootstrap/Modal';
 import './ProjRegister.css';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 import { Link } from 'react-router-dom';
 
 import Usure from '../../../components/BotonConfirmacion/ConfBot'
@@ -160,6 +162,8 @@ function FormExample() {
   const [mampara, setMampara] = useState(0);
   const [pantalla, setPantalla] = useState(0);
 
+  const { isAuthenticated, isLoadingAuth, error, user } = useAuth0();
+
 
 
   useEffect(() => {
@@ -177,6 +181,7 @@ function FormExample() {
       event.stopPropagation();
     } else {
       await axios.post(URI, {
+        id_student: user.sub,
         title: title,
         description: description,
         linkVideo: linkVideo,
