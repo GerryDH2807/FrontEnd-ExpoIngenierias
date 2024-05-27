@@ -233,7 +233,7 @@ const [IsLoaded, setIsLoaded] = useState(false);
 useEffect(() => {
   //nuevodescr120T
   //http://localhost:8000/projects/responsable/${user.sub}
-  fetch(`http://localhost:8000/projects/responsable/SisteEste 210T`)
+  fetch(`http://localhost:8000/projects/responsable/ProyeLorem230T`)
     .then((res) => {
       if (!res.ok) {
         throw new Error('Network response was not ok');
