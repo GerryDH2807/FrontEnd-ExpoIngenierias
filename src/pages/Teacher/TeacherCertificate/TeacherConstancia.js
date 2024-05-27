@@ -1,17 +1,35 @@
-import { Link } from 'react-router-dom';
-
 import '../../Student/ProjectSelection/Juez.css';
 import '../../Student/ProjectSelection/Badge.css';
 import { jsPDF } from "jspdf";
 import { useAuth0 } from '@auth0/auth0-react';
-import React, { useState,useEffect,useRef} from "react";
+import React, { useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import './TeacherConstancia.css';
 import logo from '../../../img/logo-certificado.png';
 import ToggleBar from '../../../components/Togglebar/togglebar.js';
-import firma from '../../../img/firma-ejemplo.jpg'
+import firma from '../../../img/firma-ejemplo.jpg';
 
-function CardCalif({categoria}) {
+function tieneInformacion(variable) {
+    if (variable === null || variable === undefined || Object.keys(variable).length === 0 ) {
+        return false;
+    }
+    
+    if (typeof variable === 'string' && variable.trim() === '') {
+        return false;
+    }
+    
+    if (Array.isArray(variable) && variable.length === 0) {
+        return false;
+    }
+    
+    if (typeof variable === 'number' && isNaN(variable)) {
+        return false;
+    }
+    
+    return true;
+}
+
+function CardCalif() {
     const [user_bs, setUser_bs] = useState({
         id: "",
         name: "",
@@ -22,7 +40,7 @@ function CardCalif({categoria}) {
     useEffect(() => {
         //nuevodescr120T
         //http://localhost:8000/projects/responsable/${user.sub}
-        fetch(`http://localhost:8000/person/resume/${id_user}`)
+        fetch(`http://localhost:8000/person/resume/auth0|6653d38ae957844eac7c9f99`)
           .then((res) => res.json())
           .then((data)=>setUser_bs(data))
         
@@ -69,46 +87,39 @@ function CardCalif({categoria}) {
 
     return (
         <>
-            <div className='col-auto p-3'>
+            {!tieneInformacion(user_bs) && (
+                <div className='container-fluid p-3'>
+                    <center>
+                        <div className='row p-3 m-3 NoProjContainer'>
+                            <div className='col p-3'>
+                                <p className='mb-0 fw-bold'>Aún no puedes visualizar o descargar las constancias que hayas adquirido durante el evento. Espera a que acabe el evento y vuelve a esta pestaña para descargar tus constancias.</p>
+                            </div>
+                        </div>
+                    </center>
+                </div>        
+            )}
 
-                <div className="card mb-1 me-0">
+            {tieneInformacion(user_bs) && (
+                <div className='col-auto p-3'>
 
-                    {categoria === 'Concepto' && (
-
+                    <div className="card cardconst mb-1 me-0">
                         <div className="imag ConstanciaCardPhoto">
                                     
                         </div>
 
-                    )}
-
-                    {categoria === 'Prototipo' && (
-
-                        <div className="imag algoimagProto">
-                                    
+                        <div className="text constanciastextsirveporfa">
+                            <center><span className='fw-bolder'>Esta constancia es valida para:</span></center>
+                            <center><p>{user_bs.name + " " +user_bs.lastName}</p></center>
+                            <button className="btn23" onClick={handleOnClick}>Descargar Constancia</button>    
                         </div>
-
-                    )}
-
-                    {categoria === 'Prototipo finalizado' && (
-
-                        <div className="imag algoimagFinish">
-                                    
-                        </div>
-
-                    )}
-
-            
-                    <div className="text">
-                
-                        <button className="btn23" onClick={handleOnClick}>Descargar Constancia</button>
-                        
                     </div>
-                </div>
-            </div>    
+                </div>        
+            )}                          
         </>
     );
   }
   
+
 
 export default function ProjSelection({ConstCheck}){
     return(
@@ -142,15 +153,11 @@ export default function ProjSelection({ConstCheck}){
                 )}
 
                 {ConstCheck === "True" && (
+
                     <div className='row d-flex flex-col justify-content-evenly'>
+                        <CardCalif/>
+                    </div>       
 
-                
-                        <CardCalif 
-                            categoria={"Concepto"}
-                        />
-
-
-                    </div>
                 )}
             </div>        
         </>

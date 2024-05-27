@@ -261,7 +261,7 @@ export default function Hometeacher() {
     useEffect(() => {
         //nuevodescr120T
         //http://localhost:8000/projects/responsable/${user.sub}
-        fetch(`http://localhost:8000/projects/responsable/ProyeLorem230T`)
+        fetch(`http://localhost:8000/projects/responsable/auth0|6653d38ae957844eac7c9f99`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Network response was not ok');
