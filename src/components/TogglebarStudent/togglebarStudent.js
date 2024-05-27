@@ -34,6 +34,7 @@ const LogoutButton = () => {
 
 function ToggleBarStudent({SectionName}) {
     const [show, setShow] = useState(false);
+    const { isAuthenticated, isLoading, error, user } = useAuth0();
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -65,6 +66,7 @@ function ToggleBarStudent({SectionName}) {
     return (
       <>
         <div className ="ToggleButton">
+        {/*<h1>{user.sub}</h1>*/}
           <i className='bi bi-list the_bars' onClick={handleShow}></i>
           <img className="ExpoIngLog2" src ={logo} alt="" onClick={handleShow}></img>
           <span className="textm no-select" onClick={handleShow}><strong>{SectionName}</strong></span>
