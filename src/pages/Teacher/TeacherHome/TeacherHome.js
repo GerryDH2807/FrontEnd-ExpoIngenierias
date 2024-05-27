@@ -258,20 +258,20 @@ export default function Hometeacher() {
     }
     const [IsLoaded, setIsLoaded] = useState(false);
 
-useEffect(() => {
-  //nuevodescr120T
-  //http://localhost:8000/projects/responsable/${user.sub}
-  fetch(`http://localhost:8000/projects/responsable/ProyeLorem230T`)
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return res.json();
-    })
-    .then((data) => {setProjects(data); setIsLoaded(true); })
-    .catch((error) => {console.error('Error al obtener los proyectos:', error); setIsLoaded(true);});
-    const endTime = new Date("2024-06-10T00:00:00");
-    clearTimer(endTime);
+    useEffect(() => {
+        //nuevodescr120T
+        //http://localhost:8000/projects/responsable/${user.sub}
+        fetch(`http://localhost:8000/projects/responsable/ProyeLorem230T`)
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return res.json();
+            })
+            .then((data) => { setProjects(data); setIsLoaded(true); })
+            .catch((error) => { console.error('Error al obtener los proyectos:', error); setIsLoaded(true); });
+        const endTime = new Date("2024-06-10T00:00:00");
+        clearTimer(endTime);
 
     }, [id_responsable]);
 

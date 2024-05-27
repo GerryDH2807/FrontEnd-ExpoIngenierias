@@ -267,6 +267,7 @@
 }
 
 .SilderCont::-webkit-scrollbar-track {
+  border-radius: 5px;
   background: #aeaeae;
   
 }
@@ -366,6 +367,7 @@
 }
 
 .RubricaContDetiledMOodal::-webkit-scrollbar-track {
+  border-radius: 5px;
   background: #aeaeae;
   
 }
@@ -379,4 +381,27 @@
   background: #000000; 
 }
 
+.contenedortituloparaquesepuedahcaergrande{
+  overflow-y: auto;
 
+  height: 245px;
+}
+
+.contenedortituloparaquesepuedahcaergrande::-webkit-scrollbar {
+  width: 5px;
+}
+
+.contenedortituloparaquesepuedahcaergrande::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: #ffffff;
+  
+}
+
+.contenedortituloparaquesepuedahcaergrande::-webkit-scrollbar-thumb {
+  background: #9d9d9de6;
+  border-radius: 5px; 
+}
+
+.contenedortituloparaquesepuedahcaergrande::-webkit-scrollbar-thumb:hover {
+  background: #000000; 
+}
