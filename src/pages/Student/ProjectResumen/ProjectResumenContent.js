@@ -197,7 +197,7 @@ function ProjResume({ type, area, descr, title, IsLoaded }) {
                     {showFullText ? descr : truncatedText(descr, 250)}
                   </p>
                 </div>
-                <div className="col-xxl-7 proj-tit text-end text-wrap contenedortituloparaquesepuedahcaergrande "><p className='text-break'>{title}</p></div>
+                <div className="col-xxl-7 proj-tit text-end text-wrap contenedortituloparaquesepuedahcaergrande"><p className='text-break'>{title}</p></div>
               </div>
             </div>
           </div>
@@ -222,7 +222,7 @@ function ProjResume({ type, area, descr, title, IsLoaded }) {
                     {showFullText ? descr : truncatedText(descr, 250)}
                   </p>
                 </div>
-                <div className="col-xxl-7 proj-tit text-end text-wrap "><p className='text-break'>{title}</p></div>
+                <div className="col-xxl-7 proj-tit text-end text-wrap contenedortituloparaquesepuedahcaergrande"><p className='text-break'>{title}</p></div>
               </div>
             </div>
           </div>
@@ -245,7 +245,9 @@ function ProjResume({ type, area, descr, title, IsLoaded }) {
                     {showFullText ? descr : truncatedText(descr, 250)}
                   </p>
                 </div>
-                <div className="col-xxl-7 proj-tit text-end text-wrap "><p className='text-break'>{title}</p></div>
+                <div className="col-xxl-7 proj-tit text-end text-wrap contenedortituloparaquesepuedahcaergrande">
+                  <p className='text-break'>{title}</p>
+                </div>
               </div>
             </div>
           </div>
