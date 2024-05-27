@@ -449,7 +449,7 @@ function MyVerticallyCenteredModal({ComentRubri1, ComentRubri2, ComentRubri3, Co
   );
   }
   
-  function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed }) {
+  function ButtonModal() {
       const [modalShow, setModalShow] = useState(false);
     
       return (
