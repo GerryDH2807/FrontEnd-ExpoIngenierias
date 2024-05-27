@@ -120,7 +120,7 @@ function HorizontalSlider({ data, IsLoaded }) {
                                               </div>
                                           </div>
                                       </div>
-                                      <Link to={`/profesor/SisteEste 210T/${item.id}`} className='custom-btn3 mb-5'>Ver Proyecto</Link>
+                                      <Link to={`/profesor/auth0|6653d38ae957844eac7c9f99/${item.id}`} className='custom-btn3 mb-5'>Ver Proyecto</Link>
                                   </div>
                               </div>
                           ))}

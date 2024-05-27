@@ -95,7 +95,7 @@ function ToggleBarStudent({SectionName}) {
               <div className='row'>
                 <div className='col'>
                 <center><Link to='/student-profile'><i className='bi bi-person-circle docu-icon2'>
-                  </i></Link><Link to={'/student-profile/'+ student.id} className='Titulo-toggle'> {student.name + " " + student.lastName} </Link></center>
+                  </i></Link><Link to={'/student-profile/'} className='Titulo-toggle'> {student.name + " " + student.lastName} </Link></center>
                 </div>
               </div>
             </div>

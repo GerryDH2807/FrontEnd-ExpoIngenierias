@@ -17,6 +17,7 @@ import Placeholder from 'react-bootstrap/Placeholder';
 import Spinner from 'react-bootstrap/Spinner';
 
 
+
 function MemberCont({ NombreMiembro }) {
     return (
         <li className="Texto text-wrap ps-3 mb-0">{NombreMiembro}</li>

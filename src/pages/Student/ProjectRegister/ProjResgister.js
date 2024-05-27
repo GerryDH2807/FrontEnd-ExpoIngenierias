@@ -164,6 +164,17 @@ function FormExample() {
 
   const { isAuthenticated, isLoadingAuth, error, user } = useAuth0();
 
+  const [selectedStudentIds, setSelectedStudentIds] = useState([user.email.substring(0,9)]); 
+  const [selectedTeacherEmails, setSelectedTeacherEmails] = useState([]);
+
+  // Filtrar estudiantes y profesores seleccionados
+  const filteredStudents = data.students.filter((student) => !selectedStudentIds.includes(student.enrollment));
+  const filteredTeachers = data.teachers.filter((teacher) => !selectedTeacherEmails.includes(teacher.email));
+
+
+
+
+
 
 
   useEffect(() => {
@@ -217,9 +228,14 @@ function FormExample() {
 
   const handleRemoveMember = (id) => {
     if (members.length === 1) return;
+    const removedMember = members.find((member) => member.id === id);
+    if (removedMember) {
+      setSelectedStudentIds(selectedStudentIds.filter((studentId) => studentId !== removedMember.enrollment));
+    }
     setMembers(members.filter((member) => member.id !== id));
     setMemberNum(memberNum - 1);
   };
+  
 
   const handleAddProf = () => {
     const newTeacherId = teacherNum + 1;
@@ -229,17 +245,29 @@ function FormExample() {
 
   const handleRemoveProf = (id) => {
     if (teachers.length === 1) return;
+    const removedTeacher = teachers.find((teacher) => teacher.id === id);
+    if (removedTeacher) {
+      setSelectedTeacherEmails(selectedTeacherEmails.filter((email) => email !== removedTeacher.email));
+    }
     setTeachers(teachers.filter((teacher) => teacher.id !== id));
     setTeacherNum(teacherNum - 1);
   };
+  
 
 
   //Students
   const handleEnrollmentChange = (value, indexMember) => {
     const updatedMembers = [...members];
+    const prevEnrollment = updatedMembers[indexMember].enrollment;
+    
+    if (value === '') {
+      setSelectedStudentIds(selectedStudentIds.filter((studentId) => studentId !== prevEnrollment));
+    }
+    
     updatedMembers[indexMember].enrollment = value;
     setMembers(updatedMembers);
   };
+  
 
 
   const handleMemberSelect = (selected, indexMember) => {
@@ -250,33 +278,42 @@ function FormExample() {
       updatedMembers[indexMember].nameMember = student.name; // Asume que los datos del estudiante contienen 'name'
       updatedMembers[indexMember].lastNameMember = student.lastName; // Asume que los datos del estudiante contienen 'lastName'
       setMembers(updatedMembers);
+      setSelectedStudentIds([...selectedStudentIds, student.enrollment]);
     }
   };
 
-  //Teachers
+    //Teachers
   const handleEmailChange = (value, indexTeacher) => {
     const updatedTeachers = [...teachers];
+    const prevEmail = updatedTeachers[indexTeacher].email;
+    
+    if (value === '') {
+      setSelectedTeacherEmails(selectedTeacherEmails.filter((email) => email !== prevEmail));
+    }
+    
     updatedTeachers[indexTeacher].email = value;
     setTeachers(updatedTeachers);
   };
-
+  
 
   const handleTeacherSelect = (selected, indexTeacher) => {
     if (selected.length > 0) {
       const teacher = selected[0];
       const updatedTeachers = [...teachers];
       updatedTeachers[indexTeacher].email = teacher.email;
-      updatedTeachers[indexTeacher].nameTeacher = teacher.name; // Asume que los datos del estudiante contienen 'name'
-      updatedTeachers[indexTeacher].lastNameTeacher = teacher.lastName; // Asume que los datos del estudiante contienen 'lastName'
+      updatedTeachers[indexTeacher].nameTeacher = teacher.name;
+      updatedTeachers[indexTeacher].lastNameTeacher = teacher.lastName;
       setTeachers(updatedTeachers);
+      setSelectedTeacherEmails([...selectedTeacherEmails, teacher.email]);
     }
   };
-
+  
 
 
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
+
         <Row className="mb-3">
           <Form.Group as={Col} md="12" controlId="validationCustom06">
             <Form.Label className="Titulo ps-2">Titulo del proyecto</Form.Label>
@@ -330,7 +367,7 @@ function FormExample() {
                   <div className="col">
                     <Typeahead
                       id={`member-enrollment-${member.id}`}
-                      options={data.students}
+                      options={filteredStudents}
                       labelKey="enrollment"
                       onChange={(selected) => handleMemberSelect(selected, indexMember)}
                       onInputChange={(text) => handleEnrollmentChange(text, indexMember)}
@@ -440,7 +477,7 @@ function FormExample() {
                 <div className='col'>
                   <Typeahead
                     id={`teacher-email-${teacher.id}`}
-                    options={data.teachers}
+                    options={filteredTeachers}
                     labelKey="email"
                     onChange={(selected) => handleTeacherSelect(selected, indexTeacher)}
                     onInputChange={(text) => handleEmailChange(text, indexTeacher)}

@@ -88,7 +88,7 @@ function App() {
               <Route path="/mapa" element={<ProtectedRoute requiredRole="student"><StudentMap /></ProtectedRoute>} />
               <Route path="/principal-estudiante" element={<ProtectedRoute requiredRole="student"><ProjSelection/></ProtectedRoute>} />
               <Route path='/EditProject/:id_project' element={<ProtectedRoute requiredRole="student"><ProjectEdition /></ProtectedRoute>} />
-              <Route path='/student-profile/:id_student' element={<ProtectedRoute requiredRole="student"><StudentProfile /></ProtectedRoute>} />
+              <Route path='/student-profile/' element={<ProtectedRoute requiredRole="student"><StudentProfile /></ProtectedRoute>} />
               <Route path="/Callback" element={<Callback />} />
           </Routes>
       </div>
