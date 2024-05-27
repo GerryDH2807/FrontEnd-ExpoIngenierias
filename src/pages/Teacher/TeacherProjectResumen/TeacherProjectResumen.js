@@ -16,7 +16,6 @@ import Usure from '../../../components/BotonConfirmacion/ConfBot';
 import Placeholder from 'react-bootstrap/Placeholder';
 import Spinner from 'react-bootstrap/Spinner';
 
-const URI = 'http://localhost:8000/projects/43';
 
 function MemberCont({ NombreMiembro }) {
     return (
@@ -126,37 +125,55 @@ function ProjResume({ type, area, title, IsLoaded }) {
 
 export default function ProjResumeCont() {
   const [project, setProject] = useState({
-      id_project: 0,
-      title: "",
-      description: "",
-      linkVideo: "",
-      linkPoster: "",
-      statusGeneral: "",
-      statusPoster: "",
-      statusVideo: "",
-      area: { name: "" },
-      category: { title: "" },
-      student: { name: "", lastName: "" },
-      team: { students: [] }
+    id_project: 0,
+    title: "",
+    description: "",
+    linkVideo: "",
+    linkPoster: "",
+    statusGeneral: "",
+    statusPoster: "",
+    statusVideo: "",
+    area: "",
+    category: "",
+    Lider: "",
+    student: "",
+    team: {students: []},
+    comment: "",
+    criterias: [
+      { id: 1, description: "", weight: 0 },
+      { id: 2, description: "", weight: 0 },
+      { id: 3, description: "", weight: 0 },
+      { id: 4, description: "", weight: 0 },
+      { id: 5, description: "", weight: 0 }
+    ]
   });
   const { id_person, id_project } = useParams();
   const [IsLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState({ comment: '' });
   const [switchPdf, setSwitchPdf] = useState(false);
   const [switchVideo, setSwitchVideo] = useState(false);
   const [showFullText, setShowFullText] = useState(false);
 
   useEffect(() => {
+    const fetchData = async () => {
       setIsLoaded(false);
-      fetch(`http://localhost:8000/projects/resume/${id_project}`)
-          .then((res) => res.json())
-          .then((data) => {
-              setProject(data);
-              setIsLoaded(true);
-          });
+      try {
+        const res = await fetch(`http://localhost:8000/projects/resume/${id_project}`);
+        const data = await res.json();
+        setProject(data);
+        setComment(data?.comment?.comment || ''); // Usa el operador de encadenamiento opcional y un valor predeterminado.
+      } catch (error) {
+        console.error('Error fetching project data:', error);
+      } finally {
+        setIsLoaded(true);
+      }
+    };
+
+    fetchData();
   }, [id_project]);
+  console.log(comment);
 
   const handleComment = async () => {
       try {
