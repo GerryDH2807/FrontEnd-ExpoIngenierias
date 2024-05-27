@@ -205,7 +205,7 @@ function CardProj({ CategoCheck, Title, Description, Student,Members,Teacher, As
     return (
     <div className='col p-3'>
         {CategoCheck === "Concepto" && (
-            <Card style={{ width: '18rem', height: '90%' }} className='CardsInfoContainer'>
+            <Card style={{ width: '18rem', height: '100%' }} className='CardsInfoContainer'>
                 <Card.Img variant="top" src={CardConcept} className='FotoCard' />
                 <Card.Body>
                 <Card.Title className='Titulo123 text-wrap'>{Title}</Card.Title>
@@ -218,11 +218,11 @@ function CardProj({ CategoCheck, Title, Description, Student,Members,Teacher, As
         )}
 
         {CategoCheck === "Prototipo" && (
-            <Card style={{ width: '18rem' , height: '90%' }} className='CardsInfoContainer'>
+            <Card style={{ width: '18rem' , height: '100%' }} className='CardsInfoContainer'>
                 <Card.Img variant="top" src={CardProto} className='FotoCard' />
                 <Card.Body>
-                <Card.Title className='Titulo123'>{Title}</Card.Title>
-                <Card.Text className='TextoCardWrap'>{Description}</Card.Text>
+                <Card.Title className='Titulo123 text-wrap'>{Title}</Card.Title>
+                <Card.Text className='TextoCardWrap'>{truncatedText(Description,125)}</Card.Text>
                 <center>
                     <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Student={Student} Members={Members} Teacher={Teacher} Assesors={Assesors}>Ver proyecto</ButtonModal>
                 </center>
@@ -231,11 +231,11 @@ function CardProj({ CategoCheck, Title, Description, Student,Members,Teacher, As
         )}
 
         {CategoCheck === "Prototipo finalizado" && (
-            <Card style={{ width: '18rem', height: '90%' }} className='CardsInfoContainer'>
+            <Card style={{ width: '18rem', height: '100%' }} className='CardsInfoContainer'>
                 <Card.Img variant="top" src={CardFinish} className='FotoCard' />
                 <Card.Body>
-                <Card.Title className='Titulo123'>{Title}</Card.Title>
-                <Card.Text className='TextoCardWrap'>{Description}</Card.Text>
+                <Card.Title className='Titulo123 text-wrap'>{Title}</Card.Title>
+                <Card.Text className='TextoCardWrap'>{truncatedText(Description,125)}</Card.Text>
                 
                 <center>
                     <ButtonModal CategoCheckButton={CategoCheck} TitleDetailed={Title} DescriptionDetailed={Description} Student={Student} Members={Members} Teacher={Teacher} Assesors={Assesors}>Ver proyecto</ButtonModal>

@@ -189,15 +189,15 @@ function ProjResume({ type, area, descr, title, IsLoaded }) {
 
           </div>                          
         
-          <div className='m-4 p-0'>
+          <div className='m-2 p-0'>
             <div className="container-fluid">
               <div className="row ">
                 <div className="col-xxl-5 proj-sub text-start TesteoSlider" >
                   <p className='text-break' onClick={toggleShowFullText}>
-                    {showFullText ? descr : truncatedText(descr, 200)}
+                    {showFullText ? descr : truncatedText(descr, 250)}
                   </p>
                 </div>
-                <div className="col-xxl-7 proj-tit text-end'wrap "><p className='text-break'>{title}</p></div>
+                <div className="col-xxl-7 proj-tit text-end text-wrap contenedortituloparaquesepuedahcaergrande "><p className='text-break'>{title}</p></div>
               </div>
             </div>
           </div>
@@ -214,15 +214,15 @@ function ProjResume({ type, area, descr, title, IsLoaded }) {
 
           </div>                          
         
-          <div className='m-4 p-0'>
+          <div className='m-2 p-0'>
             <div className="container-fluid">
               <div className="row ">
                 <div className="col-xxl-5 proj-sub text-start TesteoSlider" >
                   <p className='text-break' onClick={toggleShowFullText}>
-                    {showFullText ? descr : truncatedText(descr, 200)}
+                    {showFullText ? descr : truncatedText(descr, 250)}
                   </p>
                 </div>
-                <div className="col-xxl-7 proj-tit text-end'wrap "><p className='text-break'>{title}</p></div>
+                <div className="col-xxl-7 proj-tit text-end text-wrap "><p className='text-break'>{title}</p></div>
               </div>
             </div>
           </div>
@@ -237,15 +237,15 @@ function ProjResume({ type, area, descr, title, IsLoaded }) {
             <div className="col proj-sub-bold text-end"><span className='gemelo'>{area}</span></div>
           </div>                          
         
-          <div className='m-4 p-0'>
+          <div className='m-2 p-0'>
             <div className="container-fluid">
               <div className="row ">
                 <div className="col-xxl-5 proj-sub text-start TesteoSlider" >
                   <p className='text-break' onClick={toggleShowFullText}>
-                    {showFullText ? descr : truncatedText(descr, 200)}
+                    {showFullText ? descr : truncatedText(descr, 250)}
                   </p>
                 </div>
-                <div className="col-xxl-7 proj-tit text-end'wrap "><p className='text-break'>{title}</p></div>
+                <div className="col-xxl-7 proj-tit text-end text-wrap "><p className='text-break'>{title}</p></div>
               </div>
             </div>
           </div>
