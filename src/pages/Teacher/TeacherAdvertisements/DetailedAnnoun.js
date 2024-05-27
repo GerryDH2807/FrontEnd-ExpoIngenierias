@@ -1,7 +1,7 @@
 import "./DetailedAnnoun.css";
 
 import Placeholder from 'react-bootstrap/Placeholder';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from "react";
 
 import Menu from '../../../components/Togglebar/togglebar.js';
@@ -9,7 +9,7 @@ import Menu from '../../../components/Togglebar/togglebar.js';
 function AnnounTitle({ TituloDetailed, Fecha, isLoaded }) {
     return (
       <>
-        {isLoaded ? (
+        {!isLoaded ? (
           <>
             <div className="col-10 p-3">
               <i className="bi bi-envelope-fill AnnounIcon"></i>
@@ -59,7 +59,7 @@ function AnnounTitle({ TituloDetailed, Fecha, isLoaded }) {
   function AnnounBody({ Contenido, isLoaded }) {
     return (
       <>
-        {isLoaded ? (
+        {!isLoaded ? (
           <div className="container-fluid">
             <div className="row">
               <div className="col p-3">
@@ -90,26 +90,28 @@ function AnnounTitle({ TituloDetailed, Fecha, isLoaded }) {
       description: "",
       createdAt: ""
     });
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const {id_announ} = useParams();
+    console.log(id_announ);
   
     useEffect(() => {
-      fetch('http://localhost:8000/announ/' + 9)
+      fetch('http://localhost:8000/announ/' + id_announ)
         .then((res) => res.json())
         .then((data) => {
           setAnnounDet(data);
-          setIsLoading(false); // Datos obtenidos, desactivar estado de carga
+          setIsLoading(true); // Datos obtenidos, desactivar estado de carga
         });
-    }, []);
+    }, [id_announ]);
     return(
         <>
         <Menu NameSecProf={"Anuncios"}/>
         <div className="container-fluid mt-3 p-3">
             <div className="row p-3 ContainerAnnoun d-flex align-items-center">
-                <AnnounTitle TituloDetailed={"TItulo de los anuncio"} Fecha={"26/07/24"}></AnnounTitle>
+                <AnnounTitle IsLoaded={isLoading} TituloDetailed={announDet.title} Fecha={announDet.createdAt}></AnnounTitle>
             </div>
 
             <div className="row mt-4 p-3 ContainerAnnoun d-flex align-items-center">
-                <AnnounBody Fecha={"26/07/24"} Contenido ={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec purus ut nunc molestie rhoncus. Quisque et facilisis elit. Aliquam in ante rhoncus, fermentum diam vel, efficitur neque. Nam sapien nulla, sodales et massa sed, luctus tincidunt mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent eget egestas nibh, vel rhoncus mi. Mauris volutpat eu nisi nec molestie. Etiam non leo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla dolor augue, faucibus in ex a, vehicula rutrum tortor. Aenean tempus ligula eget sem tempus finibus. Duis sit amet velit interdum, vulputate sem et, vestibulum magna. Nullam suscipit enim sapien, at accumsan tellus gravida nec. Proin lectus dui, faucibus finibus metus quis, pulvinar dapibus mauris. Donec vehicula nisi vel viverra malesuada.'}></AnnounBody>
+                <AnnounBody IsLoaded={isLoading} Fecha={announDet.createdAt} Contenido ={announDet.description}></AnnounBody>
             </div>      
 
             <Link to={'/anuncios-profesor'} className="row mt-4 p-3 ContainerAnnounBut ButtReturn d-flex justify-items-center">
