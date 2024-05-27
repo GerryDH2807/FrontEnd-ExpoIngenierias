@@ -1,43 +1,28 @@
-// ProjectMembers.js
 import React from "react";
-import { students, professors } from "../../MockData/MockData"; // Assuming mockData.js contains your mock data
 import "./ProjectMembers.css";
 
 const ProjectMembers = ({ project }) => {
-  const getStudentById = (id) => {
-    return students.find((student) => student.id === id);
-  };
-
-  const getProfessorById = (id) => {
-    return professors.find((professor) => professor.id === id);
-  };
-
-  const projectLeader = getStudentById(project.leader);
-  const projectMembers = project.members.map((memberId) =>
-    getStudentById(memberId)
-  );
-  const projectTeachers = project.teachers.map((teacherId) =>
-    getProfessorById(teacherId)
-  );
+  const { leader, members, teachers } = project;
 
   return (
     <div className="project-members-container">
       <div className="project-leader-container">
         <div className="member-container">
-          <p className="member-name">{projectLeader.name}</p>
+          <p className="member-name">{leader}</p>
           <img
-            src={`${process.env.PUBLIC_URL}/${projectLeader.profileImg}`}
-            alt={projectLeader.name}
+            src={`${process.env.PUBLIC_URL}/user.png`}
+            alt={leader}
             className="member-img"
           />
         </div>
         <div className="project-members-list">
-          {projectMembers.map((member) => (
-            <div key={member.id} className="member-container">
-              <p className="member-name">{member.name}</p>
+          {members.map((member, index) => (
+            <div key={index} className="member-container">
+              <p className="member-name">{member}</p>
+              {/* Assuming all members have the same profile image */}
               <img
-                src={`${process.env.PUBLIC_URL}/${member.profileImg}`}
-                alt={member.name}
+                src={`${process.env.PUBLIC_URL}/user.png`}
+                alt={member}
                 className="member-img"
               />
             </div>
@@ -45,12 +30,13 @@ const ProjectMembers = ({ project }) => {
         </div>
       </div>
       <div className="project-teachers-list">
-        {projectTeachers.map((teacher) => (
-          <div key={teacher.id} className="teacher-container">
-            <p className="member-name">{teacher.name}</p>
+        {teachers.map((teacher, index) => (
+          <div key={index} className="teacher-container">
+            <p className="member-name">{teacher}</p>
+            {/* Assuming all teachers have the same profile image */}
             <img
-              src={`${process.env.PUBLIC_URL}/${teacher.profileImg}`}
-              alt={teacher.name}
+              src={`${process.env.PUBLIC_URL}/user.png`}
+              alt={teacher}
               className="member-img"
             />
           </div>

@@ -4,7 +4,7 @@ import './TitleBar.css';
 import logo from '../../Assets/logo.svg';
 import NavigationBar from '../../Components/NavigationBar/NavigationBar'; 
 
-function TitleBar({ title, profileImg }) {
+function TitleBar({ title}) {
     const [isNavOpen, setIsNavOpen] = useState(false); // State to manage the visibility of the navigation bar
     
     const toggleNav = () => {
@@ -21,10 +21,6 @@ function TitleBar({ title, profileImg }) {
             <img src={logo} alt="Logo" onClick={toggleNav} className="logo"/> {/* Add onClick event to trigger the toggleNav function */}
             <div className="title">{title}</div>
           </div>
-
-          <div className="profile-image">
-            <img src={profileImg} alt="Profile Image" />
-          </div>    
           {isNavOpen && <NavigationBar onClose={closeNav} />} {/* Render the NavigationBar component if isNavOpen is true */}   
         </div>
     );

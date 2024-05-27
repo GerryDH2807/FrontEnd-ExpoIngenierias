@@ -36,3 +36,7 @@
     border-right: 1px solid #ccc;
 }
 
+.btn-separator {
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+

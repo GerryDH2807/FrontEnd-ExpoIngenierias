@@ -10,7 +10,7 @@ function ProjectCard({ project }) {
     const StatusIcon = review ? AiOutlineCheckCircle : AiOutlineCloseCircle; // Choose icon based on review status
     const disqualifiedClass = isDisqualified ? 'disqualified' : ''; // Determine disqualified class
     return (
-      <div className={`card mb-4 ${disqualifiedClass}`} style={{ width: "18rem" }}>
+      <div className={` card  ${disqualifiedClass}`} style={{width:"40vw",height:"60vh"}}>
         <div className={`project-card-status ${statusClassName}`}>
           <StatusIcon /> {/* Render dynamic icon */}
         </div>
@@ -22,14 +22,14 @@ function ProjectCard({ project }) {
               <span key={index} className="badge">{category}</span>
             ))}
           </div>
-          <Link to={`/proyecto/${id}`} className="btn btn-primary custom-primaty-btn">Abrir</Link>
+          <Link to={`/proyectos/${id}`} className="btn btn-primary custom-primaty-btn btnPrin">Abrir</Link>
         </div>
       </div>
     );
 }
 
-export default function ProjectCardsList({ filter, searchTerm }) {
-  let filteredProjects = mockProjects;
+export default function ProjectCardsList({ data, filter, searchTerm }) {
+  let filteredProjects = data;
 
   // Apply filter based on selected edition
   if (filter) {
@@ -44,14 +44,12 @@ export default function ProjectCardsList({ filter, searchTerm }) {
   }
 
   return (
-    <div className="container">
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+      <div className="contenedor row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
         {filteredProjects.map(project => (
-          <div key={project.id} className="col mb-4">
+          <div key={project.id} className="tarjeta">
             <ProjectCard project={project} />
           </div>
         ))}
       </div>
-    </div>
   );
 }

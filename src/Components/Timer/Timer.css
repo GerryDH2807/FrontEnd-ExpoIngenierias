@@ -2,7 +2,6 @@
 .countdown-timer {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
   
 .time-fields {
@@ -14,7 +13,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 10px; /* Adjust margin between sections */
+    margin: 0px 10px 75px; /* Adjust margin between sections */
     font-size: 30px; /* Increase font size */
 }
   

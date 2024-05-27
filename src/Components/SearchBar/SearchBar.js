@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { IoIosClose } from "react-icons/io";
-
 function SearchBar({ onSearch }) {
     const [searchTerm, setSearchTerm] = useState("");
 

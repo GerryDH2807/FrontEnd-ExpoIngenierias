@@ -1,11 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function DropdownMenu({ title , options, onSelect }) {
+function DropdownMenu({ title , url, onSelect }) {
+  const [options, setOptions] = useState([]);
+  const [error, setError] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleOptionSelect = (option) => {
-    setSelectedOption(option);
-    onSelect(option);
+  useEffect(() => {
+    const fetchOptions = async () => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('El servidor no responde');
+        }
+        const data = await response.json();
+        const sortedOptions = data.sort((a, b) => b.year - a.year);
+        setOptions(sortedOptions);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchOptions();
+  }, [url]);
+
+  const handleOptionSelect = (periodo, id) => {
+    setSelectedOption(periodo);
+    onSelect(id);
   };
 
   return (
@@ -14,13 +34,20 @@ function DropdownMenu({ title , options, onSelect }) {
         {selectedOption ? selectedOption : title}
       </button>
       <ul className="dropdown-menu">
-        {options.map((option, index) => (
-          <li key={index}>
-            <a className="dropdown-item" href="#" onClick={() => handleOptionSelect(option)}>
-              {option}
+        {error && <li className="dropdown-item text-danger">{error}</li>}
+        {options.map(option => (
+          <li key={option.id}>
+            <a className="dropdown-item" href="#" onClick={() => handleOptionSelect(option.period +" "+ option.year, option.id)}>
+              {option.period + " " + option.year}
             </a>
           </li>
         ))}
+        {/* Default option "Selecciona la Edición" */}
+        <li>
+          <a className="dropdown-item" href="#" onClick={() => handleOptionSelect("Selecciona la Edición", null)}>
+            Selecciona la Edición
+          </a>
+        </li>
       </ul>
     </div>
   );
