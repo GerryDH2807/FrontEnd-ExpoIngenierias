@@ -34,6 +34,7 @@ const LogoutButton = () => {
 
 function ToggleBarStudent({SectionName}) {
     const [show, setShow] = useState(false);
+    const { isAuthenticated, isLoading, error, user } = useAuth0();
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -50,7 +51,7 @@ function ToggleBarStudent({SectionName}) {
   
     useEffect(() => {
       //fetch(URL+id_student)
-      fetch(URL+'MaquiEl pr320S')
+      fetch(URL+user.sub)
         .then((res) => res.json())
         .then((data) => {
           setStudent(data);
@@ -94,7 +95,7 @@ function ToggleBarStudent({SectionName}) {
               <div className='row'>
                 <div className='col'>
                 <center><Link to='/student-profile'><i className='bi bi-person-circle docu-icon2'>
-                  </i></Link><Link to={'/student-profile/'+ student.id} className='Titulo-toggle'> {student.name + " " + student.lastName} </Link></center>
+                  </i></Link><Link to={'/student-profile/'} className='Titulo-toggle'> {student.name + " " + student.lastName} </Link></center>
                 </div>
               </div>
             </div>

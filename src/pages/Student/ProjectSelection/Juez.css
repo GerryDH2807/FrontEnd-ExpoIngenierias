@@ -40,6 +40,12 @@
   text-decoration: none;
 }
 
+.btn23:hover {
+
+  background-color: #0d6efd !important;
+
+}
+
 .cardSelect {
   width: 30%;
   height: 69vh;

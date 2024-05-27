@@ -8,6 +8,8 @@ import './StudentProfile.css';
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 const URL = 'http://localhost:8000/students/'
 
 function Datos({name,email,type,id,IsLoaded}){
@@ -101,6 +103,8 @@ function Datos({name,email,type,id,IsLoaded}){
 export default function Perfil(){
     const [IsLoaded, setIsLoaded] = useState(false);
 
+    const { isAuthenticated, isLoading, error, user } = useAuth0();
+
     const [student, setStudent] = useState({
         id_student: 0,
         name: "",
@@ -114,7 +118,7 @@ export default function Perfil(){
     
       useEffect(() => {
         //fetch(URL+id_student)
-        fetch(URL+ id_student)
+        fetch(URL+ user.sub)
           .then((res) => res.json())
           .then((data) => {
             setStudent(data);

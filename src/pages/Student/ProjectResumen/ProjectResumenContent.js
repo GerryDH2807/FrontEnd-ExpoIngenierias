@@ -189,15 +189,15 @@ function ProjResume({ type, area, descr, title, IsLoaded }) {
 
           </div>                          
         
-          <div className='m-4 p-0'>
+          <div className='m-2 p-0'>
             <div className="container-fluid">
               <div className="row ">
                 <div className="col-xxl-5 proj-sub text-start TesteoSlider" >
                   <p className='text-break' onClick={toggleShowFullText}>
-                    {showFullText ? descr : truncatedText(descr, 200)}
+                    {showFullText ? descr : truncatedText(descr, 250)}
                   </p>
                 </div>
-                <div className="col-xxl-7 proj-tit text-end'wrap "><p className='text-break'>{title}</p></div>
+                <div className="col-xxl-7 proj-tit text-end text-wrap contenedortituloparaquesepuedahcaergrande"><p className='text-break'>{title}</p></div>
               </div>
             </div>
           </div>
@@ -214,15 +214,15 @@ function ProjResume({ type, area, descr, title, IsLoaded }) {
 
           </div>                          
         
-          <div className='m-4 p-0'>
+          <div className='m-2 p-0'>
             <div className="container-fluid">
               <div className="row ">
                 <div className="col-xxl-5 proj-sub text-start TesteoSlider" >
                   <p className='text-break' onClick={toggleShowFullText}>
-                    {showFullText ? descr : truncatedText(descr, 200)}
+                    {showFullText ? descr : truncatedText(descr, 250)}
                   </p>
                 </div>
-                <div className="col-xxl-7 proj-tit text-end'wrap "><p className='text-break'>{title}</p></div>
+                <div className="col-xxl-7 proj-tit text-end text-wrap contenedortituloparaquesepuedahcaergrande"><p className='text-break'>{title}</p></div>
               </div>
             </div>
           </div>
@@ -237,15 +237,17 @@ function ProjResume({ type, area, descr, title, IsLoaded }) {
             <div className="col proj-sub-bold text-end"><span className='gemelo'>{area}</span></div>
           </div>                          
         
-          <div className='m-4 p-0'>
+          <div className='m-2 p-0'>
             <div className="container-fluid">
               <div className="row ">
                 <div className="col-xxl-5 proj-sub text-start TesteoSlider" >
                   <p className='text-break' onClick={toggleShowFullText}>
-                    {showFullText ? descr : truncatedText(descr, 200)}
+                    {showFullText ? descr : truncatedText(descr, 250)}
                   </p>
                 </div>
-                <div className="col-xxl-7 proj-tit text-end'wrap "><p className='text-break'>{title}</p></div>
+                <div className="col-xxl-7 proj-tit text-end text-wrap contenedortituloparaquesepuedahcaergrande">
+                  <p className='text-break'>{title}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -449,7 +451,7 @@ function MyVerticallyCenteredModal({ComentRubri1, ComentRubri2, ComentRubri3, Co
   );
   }
   
-  function ButtonModal({ CategoCheckButton, TitleDetailed, DescriptionDetailed }) {
+  function ButtonModal({ ComentariosRubrica }) {
       const [modalShow, setModalShow] = useState(false);
     
       return (
@@ -457,21 +459,23 @@ function MyVerticallyCenteredModal({ComentRubri1, ComentRubri2, ComentRubri3, Co
           <Button className='ButtonColors' onClick={() => setModalShow(true)}>
             Ver comentarios de rubrica
           </Button>
-    
+          
           <MyVerticallyCenteredModal
             show={modalShow}
             onHide={() => setModalShow(false)}
-            ComentRubri1={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempus, nulla et suscipit dapibus, quam nibh fringilla sapien, id porttitor lacus ex ac metus. In hac habitasse platea dictumst. Fusce lacus enim, consequat cursus tempus vel, volutpat vitae erat. Etiam semper lectus sapien, sit amet viverra neque malesuada eget. Suspendisse non efficitur lorem, sit amet lobortis diam. Duis accumsan tristique nibh. Ut non fringilla massa, non fringilla ipsum. Curabitur ante justo, sollicitudin nec magna sed, auctor pellentesque purus. Sed nec suscipit est. Sed fermentum ultricies varius. Cras suscipit odio quis velit faucibus, in fermentum diam fermentum. Ut ultricies quam eget lorem malesuada, non porttitor nunc ornare. Ut euismod, purus ac ultricies ultrices, quam nulla auctor nibh, ac consequat lectus ipsum eget diam. Quisque molestie viverra ante ac pretium."}
-            ComentRubri2={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempus, nulla et suscipit dapibus, quam nibh fringilla sapien, id porttitor lacus ex ac metus. In hac habitasse platea dictumst. Fusce lacus enim, consequat cursus tempus vel, volutpat vitae erat. Etiam semper lectus sapien, sit amet viverra neque malesuada eget. Suspendisse non efficitur lorem, sit amet lobortis diam. Duis accumsan tristique nibh. Ut non fringilla massa, non fringilla ipsum. Curabitur ante justo, sollicitudin nec magna sed, auctor pellentesque purus. Sed nec suscipit est. Sed fermentum ultricies varius. Cras suscipit odio quis velit faucibus, in fermentum diam fermentum. Ut ultricies quam eget lorem malesuada, non porttitor nunc ornare. Ut euismod, purus ac ultricies ultrices, quam nulla auctor nibh, ac consequat lectus ipsum eget diam. Quisque molestie viverra ante ac pretium."}
-            ComentRubri3={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempus, nulla et suscipit dapibus, quam nibh fringilla sapien, id porttitor lacus ex ac metus. In hac habitasse platea dictumst. Fusce lacus enim, consequat cursus tempus vel, volutpat vitae erat. Etiam semper lectus sapien, sit amet viverra neque malesuada eget. Suspendisse non efficitur lorem, sit amet lobortis diam. Duis accumsan tristique nibh. Ut non fringilla massa, non fringilla ipsum. Curabitur ante justo, sollicitudin nec magna sed, auctor pellentesque purus. Sed nec suscipit est. Sed fermentum ultricies varius. Cras suscipit odio quis velit faucibus, in fermentum diam fermentum. Ut ultricies quam eget lorem malesuada, non porttitor nunc ornare. Ut euismod, purus ac ultricies ultrices, quam nulla auctor nibh, ac consequat lectus ipsum eget diam. Quisque molestie viverra ante ac pretium."}
-            ComentRubri4={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempus, nulla et suscipit dapibus, quam nibh fringilla sapien, id porttitor lacus ex ac metus. In hac habitasse platea dictumst. Fusce lacus enim, consequat cursus tempus vel, volutpat vitae erat. Etiam semper lectus sapien, sit amet viverra neque malesuada eget. Suspendisse non efficitur lorem, sit amet lobortis diam. Duis accumsan tristique nibh. Ut non fringilla massa, non fringilla ipsum. Curabitur ante justo, sollicitudin nec magna sed, auctor pellentesque purus. Sed nec suscipit est. Sed fermentum ultricies varius. Cras suscipit odio quis velit faucibus, in fermentum diam fermentum. Ut ultricies quam eget lorem malesuada, non porttitor nunc ornare. Ut euismod, purus ac ultricies ultrices, quam nulla auctor nibh, ac consequat lectus ipsum eget diam. Quisque molestie viverra ante ac pretium."}
-            ComentRubri5={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempus, nulla et suscipit dapibus, quam nibh fringilla sapien, id porttitor lacus ex ac metus. In hac habitasse platea dictumst. Fusce lacus enim, consequat cursus tempus vel, volutpat vitae erat. Etiam semper lectus sapien, sit amet viverra neque malesuada eget. Suspendisse non efficitur lorem, sit amet lobortis diam. Duis accumsan tristique nibh. Ut non fringilla massa, non fringilla ipsum. Curabitur ante justo, sollicitudin nec magna sed, auctor pellentesque purus. Sed nec suscipit est. Sed fermentum ultricies varius. Cras suscipit odio quis velit faucibus, in fermentum diam fermentum. Ut ultricies quam eget lorem malesuada, non porttitor nunc ornare. Ut euismod, purus ac ultricies ultrices, quam nulla auctor nibh, ac consequat lectus ipsum eget diam. Quisque molestie viverra ante ac pretium."}
+            ComentRubri1={ComentariosRubrica.comentario1}
+            ComentRubri2={ComentariosRubrica.comentario2}
+            ComentRubri3={ComentariosRubrica.comentario3}
+            ComentRubri4={ComentariosRubrica.comentario4}
+            ComentRubri5={ComentariosRubrica.comentario5}
+            
+
           />
         </>
       );
     }
 
-function JuezContComment({comment,id_judge}){
+function JuezContComment({comment,id_judge,comentariosRubrica}){
   return(
     <div className ='container-fluid p-3 mt-3 mb-3 ContCommentIndiJudge'>
       <div className ="row align-items-center">
@@ -483,15 +487,19 @@ function JuezContComment({comment,id_judge}){
       <div className ="row align-items-center">
         <div className ='col-md-auto '>
           <p className='text-break ComentariosCOntenidoWrap'>{comment}</p>
-          <ButtonModal></ButtonModal>
+          <ButtonModal ComentariosRubrica={comentariosRubrica}></ButtonModal>
         </div>   
       </div> 
+
+
     </div> 
+
+    
   );
 }
 
 function tieneInformacion(variable) {
-  if (variable === null || variable === undefined) {
+  if (variable === null || variable === undefined || Object.keys(variable).length === 0 ) {
       return false;
   }
   
@@ -511,6 +519,8 @@ function tieneInformacion(variable) {
 }
 
 function CommentCont({role, comment,IsLoaded}){
+
+
   return(
     <>
       {role === 'Profesor' && (   
@@ -568,7 +578,19 @@ function CommentCont({role, comment,IsLoaded}){
               {tieneInformacion(comment) && (
                 <div className ="col-xxl-3 SilderCont">
                   <h1 className ="Titulo ps-0">Comentarios de {role}</h1>
-                  <JuezContComment comment={comment} id_judge={1}></JuezContComment>
+                  {Object.keys(comment).map(key => (
+                    <div key={key}>
+                      <JuezContComment
+                            comment={comment[key].comentarioGeneral}
+                            id_judge={comment[key].id_juez}
+                            comentariosRubrica={comment[key]}  
+                            
+                      />
+                     </div>
+
+                    
+                  ))}
+
                 </div>
               )}
 
@@ -649,7 +671,6 @@ function FinalCalf({finalCalf, IsLoaded}){
 export default function ProjResumeCont(){
   const [IsLoaded, setIsLoaded] = useState(false);
 
-
   const [project, setProject] = useState({
     id_project: 0,
     title: "",
@@ -664,6 +685,12 @@ export default function ProjResumeCont(){
     Lider: "",
     student: "",
     team: {students: []},
+    gradeCriteria1: 0,
+    gradeCriteria2: "",
+    gradeCriteria3: "",
+    gradeCriteria4: "",
+    gradeCriteria5: "",
+    finalGrade: "",
     comment: "",
     criterias: [
       { id: 1, description: "", weight: 0 },
@@ -711,9 +738,12 @@ export default function ProjResumeCont(){
               <div className='container-fluid'>
                 <div className ='row'>
                   <CommentCont IsLoaded={IsLoaded} role={"Profesor"} comment={project.comment}></CommentCont>
-                  <CommentCont IsLoaded={IsLoaded} role={"Juez"} comment={"Comentario"}></CommentCont>
-                  <Rubrica IsLoaded={IsLoaded} Calf11={"10"} Calf21={"6"} Calf31={"8"} Calf41={"9"} Calf51={"7"} Rubri11={findCriteriaById(1).description} Rubri21={findCriteriaById(2).description} Rubri31={findCriteriaById(3).description} Rubri41={findCriteriaById(4).description} Rubri51={findCriteriaById(5).description}></Rubrica>
-                  <FinalCalf IsLoaded={IsLoaded} finalCalf={"9"}></FinalCalf>
+
+                  <CommentCont IsLoaded={IsLoaded} role={"Juez"} comment={project.comentariosAgrupados}></CommentCont>
+
+
+                  <Rubrica IsLoaded={IsLoaded} Calf11={project.gradeCriteria1} Calf21={project.gradeCriteria2} Calf31={project.gradeCriteria3} Calf41={project.gradeCriteria4} Calf51={project.gradeCriteria5} Rubri11={findCriteriaById(1).description} Rubri21={findCriteriaById(2).description} Rubri31={findCriteriaById(3).description} Rubri41={findCriteriaById(4).description} Rubri51={findCriteriaById(5).description}></Rubrica>
+                  <FinalCalf IsLoaded={IsLoaded} finalCalf={project.finalGrade}></FinalCalf>
                 </div>
               </div>  
             </div>
