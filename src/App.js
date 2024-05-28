@@ -62,7 +62,6 @@ const isDateEqualOrAfter = (specificDate) => {
 };
 
 function App() {
-  
   const [currentDate, setCurrentDate] = useState(getCurrentDate());
   const [isTargetDateReached, setIsTargetDateReached] = useState(false);
   let constancia;
