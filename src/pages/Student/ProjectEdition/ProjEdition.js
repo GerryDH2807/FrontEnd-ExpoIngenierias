@@ -8,11 +8,11 @@ import axios from 'axios';
 
 import { Link } from 'react-router-dom';
 
-import Usure from '../../../components/BotonConfirmacion/ConfBot'
+import Usure from '../../../Components/BotonConfirmacion/ConfBot'
 
 import "./ProjEdition.css"
 
-import ToggleBarStudent from '../../../components/TogglebarStudent/togglebarStudent.js';
+import ToggleBarStudent from '../../../Components/TogglebarStudent/togglebarStudent.js';
 
 
 const URI = 'http://localhost:8000/projects/editionProject/'

@@ -281,7 +281,7 @@ function FinalCalf({finalCalf}){
 
 /* ~*~*~*~*~*~ FUNCIÓN PRINCIPAL DE CONTROL ~*~*~*~*~*~  */
 
-export default function ProjResumeCont(){
+export default function ProjResumeContJudge(){
   
   return(
     <>

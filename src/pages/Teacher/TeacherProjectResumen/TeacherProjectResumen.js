@@ -11,8 +11,8 @@ import CardConcept from '../../../img/CardConcept.png';
 import CardProto from '../../../img/CardProto.png';
 import CardFinish from '../../../img/CardFinish.png';
 import './TeacherProjectResumen.css';
-import ToggleBar from '../../../components/Togglebar/togglebar.js';
-import Usure from '../../../components/BotonConfirmacion/ConfBot';
+import ToggleBar from '../../../Components/Togglebar/togglebar.js';
+import Usure from '../../../Components/BotonConfirmacion/ConfBot';
 import Placeholder from 'react-bootstrap/Placeholder';
 import Spinner from 'react-bootstrap/Spinner';
 

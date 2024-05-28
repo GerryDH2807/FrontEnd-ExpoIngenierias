@@ -12,12 +12,12 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { Link } from 'react-router-dom';
 
-import Usure from '../../../components/BotonConfirmacion/ConfBot'
+import Usure from '../../../Components/BotonConfirmacion/ConfBot'
 
 //Back
 import axios from 'axios';
 
-import ToggleBarStudent from '../../../components/TogglebarStudent/togglebarStudent.js';
+import ToggleBarStudent from '../../../Components/TogglebarStudent/togglebarStudent.js';
 
 import Autosuggest from 'react-autosuggest';
 

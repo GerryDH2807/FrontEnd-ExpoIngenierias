@@ -4,7 +4,7 @@ import Placeholder from 'react-bootstrap/Placeholder';
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from "react";
 
-import Menu from '../../../components/Togglebar/togglebar.js';
+import Menu from '../../../Components/Togglebar/togglebar.js';
 
 function AnnounTitle({ TituloDetailed, Fecha, isLoaded }) {
     return (

@@ -1,5 +1,5 @@
 import "./DetailedAnnoun.css";
-import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
+import StudentToggle from '../../../Components/TogglebarStudent/togglebarStudent.js';
 import Placeholder from 'react-bootstrap/Placeholder';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";

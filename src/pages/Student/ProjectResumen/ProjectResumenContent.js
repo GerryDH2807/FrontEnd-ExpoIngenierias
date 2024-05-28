@@ -9,7 +9,7 @@ import './Resume.css';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
+import StudentToggle from '../../../Components/TogglebarStudent/togglebarStudent.js';
 
 import Accordion from 'react-bootstrap/Accordion';
 import { Link } from 'react-router-dom';

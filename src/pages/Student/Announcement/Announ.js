@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Placeholder from 'react-bootstrap/Placeholder';
 import { Link } from 'react-router-dom';
-import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
+import StudentToggle from '../../../Components/TogglebarStudent/togglebarStudent.js';
 import './Announ.css';
 
 const URL = 'http://localhost:8000/announ/';

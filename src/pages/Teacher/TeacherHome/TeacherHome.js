@@ -7,7 +7,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Placeholder from 'react-bootstrap/Placeholder';
 import Spinner from 'react-bootstrap/Spinner';
-import ToggleBar from '../../../components/Togglebar/togglebar.js';
+import ToggleBar from '../../../Components/Togglebar/togglebar.js';
 import CardConcept from '../../../img/CardConcept.png';
 import CardProto from '../../../img/CardProto.png';
 import CardFinish from '../../../img/CardFinish.png';

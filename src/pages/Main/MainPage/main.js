@@ -5,7 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { Link } from 'react-router-dom';
 import convocatoria from '../../../img/convocatoria.jpg';
 
-import Menu from '../../../components/Menu/menu.js';
+import Menu from '../../../Components/Menu/menu.js';
 import carrusel1 from '../../../img/carruselexp2.jpg';
 import carrusel2 from '../../../img/carruselexp3.jpg';
 import carrusel3 from '../../../img/carruselexp4.jpg';

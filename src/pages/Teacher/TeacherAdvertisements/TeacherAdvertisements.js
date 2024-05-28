@@ -4,7 +4,7 @@ import Placeholder from 'react-bootstrap/Placeholder';
 import { Link } from 'react-router-dom';
 
 import './TeacherAdvertisements.css'
-import Menu from '../../../components/Togglebar/togglebar.js';
+import Menu from '../../../Components/Togglebar/togglebar.js';
 
 
 function AnnounSearch({ handleSearch }) {

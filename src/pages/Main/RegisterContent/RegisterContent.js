@@ -1,7 +1,7 @@
 import './RegisterContent.css';
 import { Link } from 'react-router-dom';
 
-import Menu from '../../../components/Menu/menu.js';
+import Menu from '../../../Components/Menu/menu.js';
 
 export default function UserRegisterCont(){
 

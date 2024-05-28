@@ -1,6 +1,5 @@
 import './Actual.css';
-import Menu from '../../../components/Menu/menu.js';
-
+import Menu from '../../../Components/Menu/menu.js';
 import { useState,useEffect } from 'react';
 
 import CardConcept from '../../../img/CardConcept.png';

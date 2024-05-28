@@ -6,7 +6,7 @@ import React, { useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import './TeacherConstancia.css';
 import logo from '../../../img/logo-certificado.png';
-import ToggleBar from '../../../components/Togglebar/togglebar.js';
+import ToggleBar from '../../../Components/Togglebar/togglebar.js';
 import firma from '../../../img/firma-ejemplo.jpg';
 
 function tieneInformacion(variable) {

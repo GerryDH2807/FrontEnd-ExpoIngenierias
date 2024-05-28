@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import Placeholder from 'react-bootstrap/Placeholder';
 
-import Menu from '../../../components/TogglebarStudent/togglebarStudent.js';
+import Menu from '../../../Components/TogglebarStudent/togglebarStudent.js';
 import './StudentProfile.css';
 
 import React, { useState, useEffect } from 'react';

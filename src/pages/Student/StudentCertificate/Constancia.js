@@ -8,7 +8,7 @@ import firma from '../../../img/firma-ejemplo.jpg';
 
 import './Constancia.css';
 
-import StudentToggle from '../../../components/TogglebarStudent/togglebarStudent.js';
+import StudentToggle from '../../../Components/TogglebarStudent/togglebarStudent.js';
 
 const URL = 'http://localhost:8000/projects/certificate/';
 

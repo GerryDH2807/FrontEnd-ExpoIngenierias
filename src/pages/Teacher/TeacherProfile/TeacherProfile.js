@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
-import Menu from '../../../components/Togglebar/togglebar.js';
+import Menu from '../../../Components/Togglebar/togglebar.js';
 import React, { useState,useEffect,useRef} from "react";
 import { useParams } from "react-router-dom";
 import './TeacherProfile.css';

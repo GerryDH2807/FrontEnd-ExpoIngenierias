@@ -2,30 +2,30 @@ import './App.css';
 import './Page.css';
 import {Routes, Route} from 'react-router-dom'
 import React, { useState,useEffect} from "react";
-import ProjResumeCont from './pages/Teacher/TeacherProjectResumen/TeacherProjectResumen.js';
-import Hometeacher from './pages/Teacher/TeacherHome/TeacherHome.js';
-import Main from './pages/Main/MainPage/main.js';
-import EdicionesPasadas from './pages/Main/PastEdition/EdicionesPasadas.js';
-import Catalogo from './pages/Main/Catalogue/Actual.js';
-import Login from './pages/Main/Login/login.js';
-import FormUser from './pages/Main/UserRegister/UserRegister.js';
-import FormStudent from './pages/Main/StudentRegister/StudentRegister.js';
-import UserRegisterCont from './pages/Main/RegisterContent/RegisterContent.js'
-import AnunciosTeacher from './pages/Teacher/TeacherAdvertisements/TeacherAdvertisements.js';
-import ConstanciaTeacher from './pages/Teacher/TeacherCertificate/TeacherConstancia.js';
-import Perfil from './pages/Teacher/TeacherProfile/TeacherProfile.js';
-import TeacherAnoDet from './pages/Teacher/TeacherAdvertisements/DetailedAnnoun.js'
-import ProjectRegister from './pages/Student/ProjectRegister/ProjResgister.js';
-import ProjectResumen from './pages/Student/ProjectResumen/ProjectResumenContent.js';
-import AnunciosStudent from './pages/Student/Announcement/Announ.js'
-import StudentCertificate from './pages/Student/StudentCertificate/Constancia.js'
-import MaterialExtra from './pages/Student/ExtraMaterials/materiales.js';
-import StudentMap from './pages/Student/StudentMap/StudentMap.js';
-import ProjSelection from './pages/Student/ProjectSelection/ProjSelection.js';
-import ProjectEdition from './pages/Student/ProjectEdition/ProjEdition.js';
-import StudentAnnounDet from './pages/Student/Announcement/DetailedAnnoun.js'
-import StudentProfile from './pages/Student/StudentProfile/StudentProfile.js';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import ProjResumeCont from './Pages/Teacher/TeacherProjectResumen/TeacherProjectResumen.js';
+import Hometeacher from './Pages/Teacher/TeacherHome/TeacherHome.js';
+import Main from './Pages/Main/MainPage/main.js';
+import EdicionesPasadas from './Pages/Main/PastEdition/EdicionesPasadas.js';
+import Catalogo from './Pages/Main/Catalogue/Actual.js';
+import Login from './Pages/Main/Login/login.js';
+import FormUser from './Pages/Main/UserRegister/UserRegister.js';
+import FormStudent from './Pages/Main/StudentRegister/StudentRegister.js';
+import UserRegisterCont from './Pages/Main/RegisterContent/RegisterContent.js'
+import AnunciosTeacher from './Pages/Teacher/TeacherAdvertisements/TeacherAdvertisements.js';
+import ConstanciaTeacher from './Pages/Teacher/TeacherCertificate/TeacherConstancia.js';
+import Perfil from './Pages/Teacher/TeacherProfile/TeacherProfile.js';
+import TeacherAnoDet from './Pages/Teacher/TeacherAdvertisements/DetailedAnnoun.js'
+import ProjectRegister from './Pages/Student/ProjectRegister/ProjResgister.js';
+import ProjectResumen from './Pages/Student/ProjectResumen/ProjectResumenContent.js';
+import AnunciosStudent from './Pages/Student/Announcement/Announ.js'
+import StudentCertificate from './Pages/Student/StudentCertificate/Constancia.js'
+import MaterialExtra from './Pages/Student/ExtraMaterials/materiales.js';
+import StudentMap from './Pages/Student/StudentMap/StudentMap.js';
+import ProjSelection from './Pages/Student/ProjectSelection/ProjSelection.js';
+import ProjectEdition from './Pages/Student/ProjectEdition/ProjEdition.js';
+import StudentAnnounDet from './Pages/Student/Announcement/DetailedAnnoun.js'
+import StudentProfile from './Pages/Student/StudentProfile/StudentProfile.js';
+import { BrowserRouter as useLocation } from 'react-router-dom';
 // Admin
 import Dashboard from './Pages/Admin/Dashboard';
 import Historical from './Pages/Admin/Historical';
@@ -44,12 +44,11 @@ import CreateCategoryPage from './Pages/Admin/CreateCategory';
 import CreateAnnouncePage from './Pages/Admin/CreateAnnounce';
 // Judge
 import Juez from './Pages/Juez/Juez';
-import ProjResumeCont from './Pages/Juez/ProjectResumenContent';
+import ProjResumeContJudge from './Pages/Juez/ProjectResumenContent';
 import Rubrica from './Pages/Juez/Rubrica';
 import Announces from './Pages/Admin/Announces';
 import Callback from './auth0/callback.js';
 import ProtectedRoute from './auth0/protect.js';
-
 
 const getCurrentDate = () => {
   const now = new Date();
@@ -63,18 +62,13 @@ const isDateEqualOrAfter = (specificDate) => {
 };
 
 function App() {
-
-  const location = useLocation(); // Get current location
-  const [pageTitle, setPageTitle] = useState('');
+  
   const [currentDate, setCurrentDate] = useState(getCurrentDate());
   const [isTargetDateReached, setIsTargetDateReached] = useState(false);
   let constancia;
 
-  useEffect(() => {
-    // Update the page title whenever the location changes
-    setPageTitle(getTitle(location.pathname));
-  }, [location.pathname]);
-  
+
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setIsTargetDateReached(isDateEqualOrAfter('2024-05-25'));
@@ -82,13 +76,13 @@ function App() {
 
     return () => clearInterval(intervalId);
   }, []);
+
   if(isTargetDateReached == true){
     constancia = "True";
   }
   else{
     constancia = "False";
   }
-
   
   return (
     <>
@@ -128,8 +122,8 @@ function App() {
               <Route path="/Admin/usuarios/jueces/:projectId" element={<Judges />} />
               <Route path="/Admin/usuarios/:userId" element={<EditUserPage />} />
               <Route path="/Admin/proyectos" element={<Projects />} />
-              <Route path="/Admin/proyectos/:projectId" element={<ProjectPage setPageTitle={setPageTitle} />} />
-              <Route path="/Admin/proyecto/:id" element={<ProjectPage setPageTitle={setPageTitle} />} />
+              <Route path="/Admin/proyectos/:projectId" element={<ProjectPage setPageTitle={"setPageTitle"} />} />
+              <Route path="/Admin/proyecto/:id" element={<ProjectPage setPageTitle={"setPageTitle"} />} />
               <Route path="/Admin/anuncios" element={<Announces/>}/>
               <Route path="/Admin/areas" element={<Areas/>}/>
               <Route path='/Admin/areas/nuevo' element={<CreateAreaPage/>}/>
@@ -141,28 +135,13 @@ function App() {
               <Route path='/Admin/anuncios/nuevo' element={<CreateAnnouncePage/>}/>
 
               <Route path='/Juez/ProyectosJuez' element={<Juez />}/>
-              <Route path="/Juez/ProyectoJuez/:projectId" element={<ProjResumeCont />} />
+              <Route path="/Juez/ProyectoJuez/:projectId" element={<ProjResumeContJudge />} />
               <Route path="/Juez/Calificar/:projectId" element={<Rubrica />} />
           </Routes>
       </div>
     </>
   );
 
-  // Function to get title based on the current route
-const getTitle = (pathname) => {
-  switch (pathname) {
-    case '/':
-      return 'Tablero';
-    case '/historico':
-      return 'Historico';
-    case '/usuarios':
-      return 'Usuarios';
-    case '/proyectos':
-      return 'Proyectos';
-    default:
-      return 'Your Default Title';
-  }
-};
 }
 
 
